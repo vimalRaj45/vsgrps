@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menubar } from 'primereact/menubar';
 import { Button } from 'primereact/button';
 import { Sidebar } from 'primereact/sidebar';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
@@ -45,39 +45,33 @@ const Navbar = ({ theme, toggleTheme }) => {
   ];
 
   const start = (
-    <div className="navbar__logo" onClick={() => handleNavClick('#home')}>
+    <motion.div 
+      className="navbar__logo" 
+      onClick={() => handleNavClick('#home')}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
       <div className="navbar__logo-icon">V</div>
       <span className="navbar__logo-text">VSGRPS</span>
-    </div>
+    </motion.div>
   );
 
   const end = (
     <div className="navbar__end">
-      {/* Custom SVG sun/moon morphing toggle — Cloudflare rule: purposeful, no bounce */}
       <button
         onClick={toggleTheme}
         className="navbar__theme-toggle"
         aria-label={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-        title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
       >
         <svg
           className={`theme-icon ${theme === 'dark' ? 'theme-icon--moon' : 'theme-icon--sun'}`}
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
         >
           {theme === 'light' ? (
-            // Moon icon
-            <path
-              d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           ) : (
-            // Sun icon
             <>
               <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="2" />
               <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -92,17 +86,15 @@ const Navbar = ({ theme, toggleTheme }) => {
           )}
         </svg>
       </button>
-      <Button 
-        label="Work With Us" 
-        icon="pi pi-bolt" 
-        onClick={() => handleNavClick('#contact')} 
-        className="navbar__cta p-button-primary" 
-      />
-      <button 
-        className="navbar__mobile-toggle" 
-        onClick={() => setVisible(true)}
-        aria-label="Navigation Menu"
-      >
+      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <Button 
+          label="Work With Us" 
+          icon="pi pi-bolt" 
+          onClick={() => handleNavClick('#contact')} 
+          className="navbar__cta p-button-primary" 
+        />
+      </motion.div>
+      <button className="navbar__mobile-toggle" onClick={() => setVisible(true)}>
         <i className="pi pi-bars"></i>
       </button>
     </div>
@@ -111,9 +103,9 @@ const Navbar = ({ theme, toggleTheme }) => {
   return (
     <motion.nav
       className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="container">
         <Menubar 
@@ -137,16 +129,22 @@ const Navbar = ({ theme, toggleTheme }) => {
           )}
         >
           <div className="navbar__mob-links">
-            {items.map((item, idx) => (
-              <div 
-                key={idx} 
-                className={`navbar__mob-link ${item.className || ''}`} 
-                onClick={item.command}
-              >
-                <i className={item.icon}></i>
-                <span>{item.label}</span>
-              </div>
-            ))}
+            <AnimatePresence>
+              {visible && items.map((item, idx) => (
+                <motion.div 
+                  key={idx} 
+                  initial={{ x: 20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: idx * 0.05 }}
+                  className={`navbar__mob-link ${item.className || ''}`} 
+                  onClick={item.command}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <i className={item.icon}></i>
+                  <span>{item.label}</span>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
 
           <div className="navbar__mob-theme">
@@ -158,7 +156,12 @@ const Navbar = ({ theme, toggleTheme }) => {
             />
           </div>
 
-          <div className="navbar__mob-footer">
+          <motion.div 
+            className="navbar__mob-footer"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
             <Button 
               label="Start a Project" 
               icon="pi pi-bolt" 
@@ -166,7 +169,7 @@ const Navbar = ({ theme, toggleTheme }) => {
               className="w-full p-button-primary p-3" 
             />
             <p className="navbar__mob-tagline">Trusted by 50+ Businesses</p>
-          </div>
+          </motion.div>
         </Sidebar>
       </div>
     </motion.nav>

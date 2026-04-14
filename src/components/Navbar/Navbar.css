@@ -1,17 +1,16 @@
-/* ===== Navbar — Cloudflare Style ===== */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  /* Instant snap on scroll — Cloudflare's rule: snappy, not animated */
+  /* Smoother transition for scroll and theme changes */
   transition:
-    background 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-    padding 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 12px 0;
+    background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 16px 0;
   background: transparent;
 }
 
@@ -45,6 +44,11 @@
   gap: 12px;
   cursor: pointer;
   padding-right: 20px;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.navbar__logo:hover {
+  transform: scale(1.05);
 }
 
 .navbar__logo-icon {
@@ -82,23 +86,46 @@
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;
+  position: relative !important;
   transition: all 0.3s ease !important;
+}
+
+/* Smooth Underline Sweep Effect */
+.navbar__menubar .p-menuitem-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar__menubar .p-menuitem-link:hover::after {
+  width: 100%;
 }
 
 .navbar__menubar .p-menuitem-text {
   color: var(--color-body) !important;
   font-weight: 600 !important;
   font-size: 0.95rem !important;
+  transition: color 0.3s ease !important;
 }
 
 .navbar__menubar .p-menuitem-icon {
   color: var(--color-accent) !important;
   font-size: 1.1rem !important;
   margin-right: 0 !important;
+  transition: transform 0.3s ease !important;
 }
 
 .navbar__menubar .p-menuitem-link:hover .p-menuitem-text {
   color: var(--color-accent) !important;
+}
+
+.navbar__menubar .p-menuitem-link:hover .p-menuitem-icon {
+  transform: translateY(-2px);
 }
 
 /* End Section */
