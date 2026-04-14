@@ -1,0 +1,170 @@
+/* Success State Animations */
+@keyframes happy-float {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+@keyframes happy-pulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 5px 15px rgba(37, 99, 235, 0.2)); }
+  50% { transform: scale(1.1); filter: drop-shadow(0 15px 30px rgba(37, 99, 235, 0.4)); }
+}
+
+.company-review__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.company-review__success-img {
+  width: 100px;
+  height: 100px;
+  animation: happy-float 3s ease-in-out infinite, happy-pulse 2s ease-in-out infinite;
+}
+
+/* Company Review Inputs */
+.company-review__dialog .p-inputgroup {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  align-items: stretch !important;
+}
+
+.company-review__dialog .p-inputgroup-addon {
+  background: #f8fafc !important;
+  color: var(--color-accent) !important;
+  border: 1px solid var(--color-border) !important;
+  border-right: none !important;
+  padding: 0 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.company-review__dialog .p-inputgroup-addon i {
+  font-size: 1.1rem !important;
+}
+
+.company-review__dialog .p-inputtext, 
+.company-review__dialog .p-inputtextarea {
+  border: 1px solid var(--color-border) !important;
+  padding: 10px 14px !important;
+  font-size: 0.9rem !important;
+  border-radius: 0 8px 8px 0 !important;
+  transition: all 0.2s ease !important;
+}
+
+.company-review__dialog .p-inputtext:focus,
+.company-review__dialog .p-inputtextarea:focus {
+  border-color: var(--color-accent) !important;
+  background: white !important;
+  outline: none !important;
+  box-shadow: none !important; /* Remove any glowing/blinking effects */
+}
+
+.company-review__dialog .field {
+  margin-bottom: 20px !important;
+}
+
+.company-review__dialog label {
+  color: var(--color-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 6px !important;
+  display: block;
+}
+
+/* Specific to Textarea */
+.company-review__dialog .p-inputtextarea {
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+/* Card Styling Refinement */
+.company-review__card {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-border);
+}
+
+[data-theme='dark'] .company-review__card h2,
+[data-theme='dark'] .company-review__card p {
+  color: var(--color-heading);
+}
+
+.company-review__dialog .p-inputgroup {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: var(--color-card-bg) !important;
+  border-radius: 8px;
+  overflow: hidden;
+  align-items: stretch !important;
+}
+
+[data-theme='dark'] .p-inputgroup-addon {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+[data-theme='dark'] .p-inputtext,
+[data-theme='dark'] .p-inputtextarea {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+.company-review__rating-wrapper {
+  margin-top: 40px;
+  display: flex !important;
+  justify-content: center !important;
+  width: 100%;
+}
+
+/* Ensure PrimeReact's internal rating container is also centered */
+.company-review__rating-wrapper .p-rating {
+  justify-content: center !important;
+  gap: 12px; /* Add some professional spacing between emojis */
+}
+
+.company_review__dialog-body {
+  padding: 10px 10px 20px;
+}
+
+[data-theme='dark'] .p-dialog,
+[data-theme='dark'] .p-dialog-header,
+[data-theme='dark'] .p-dialog-content {
+  background: var(--color-card-bg) !important;
+  color: var(--color-heading) !important;
+}
+
+[data-theme='dark'] .p-dialog-header-close-icon {
+  color: var(--color-heading) !important;
+}
+
+[data-theme='dark'] .company-review__dialog label {
+  color: #94A3B8 !important; /* Muted light color for readability */
+}
+
+[data-theme='dark'] .company-review__dialog .p-inputtext,
+[data-theme='dark'] .company-review__dialog .p-inputtextarea {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+[data-theme='dark'] .company-review__dialog .p-inputgroup-addon {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+.company-review__dialog .p-dialog-content {
+  padding: 0 30px 30px 30px !important;
+}
+
+.company-review__dialog .p-dialog-header {
+  padding: 30px 30px 15px 30px !important;
+}

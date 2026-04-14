@@ -1,0 +1,72 @@
+/* Legal Dialog Styling - Premium & Clear */
+.legal-dialog .p-dialog-header {
+    background: white;
+    padding: 24px 32px 12px;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.legal-dialog .p-dialog-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.legal-dialog .p-dialog-content {
+    background: white;
+    padding: 24px 32px;
+}
+
+.legal-content {
+    line-height: 1.7;
+    color: #475569;
+}
+
+.legal-content h3 {
+    margin: 28px 0 12px;
+    color: #1e293b;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.legal-content p {
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+}
+
+.legal-content ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.legal-content li {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+/* Dark Mode Overrides for Legal Dialog */
+[data-theme='dark'] .legal-dialog .p-dialog-header,
+[data-theme='dark'] .legal-dialog .p-dialog-content {
+    background: #0f172a !important;
+    border-color: #1e293b !important;
+}
+
+[data-theme='dark'] .legal-dialog .p-dialog-title,
+[data-theme='dark'] .legal-content h3 {
+    color: #f8fafc !important;
+}
+
+[data-theme='dark'] .legal-content,
+[data-theme='dark'] .legal-content p,
+[data-theme='dark'] .legal-content li {
+    color: #94a3b8 !important;
+}
+
+/* Animations & Scrollbar */
+.legal-scroll .p-scrollpanel-bar {
+    background: #cbd5e1 !important;
+    opacity: 0.5;
+}
+
+[data-theme='dark'] .legal-scroll .p-scrollpanel-bar {
+    background: #475569 !important;
+}

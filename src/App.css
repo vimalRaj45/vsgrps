@@ -1,0 +1,31 @@
+/* App-level overrides */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app main {
+  flex: 1;
+}
+
+/* PrimeReact theme overrides to match design system */
+.p-button {
+  font-family: var(--font-family) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.p-inputtext {
+  font-family: var(--font-family) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.p-inputtext:enabled:focus {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+  border-color: var(--color-accent) !important;
+}
+
+.p-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--color-card-shadow) !important;
+}

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0" />
+    <meta name="description" content="VSGRPS — Premium software development company delivering scalable, modern digital solutions, custom web applications, and intelligent automation systems for businesses worldwide." />
+    <meta name="keywords" content="VSGRPS, software development, web development, mobile apps, cloud solutions, digital transformation, automation, React developers, premium UI/UX" />
+    <meta name="author" content="VSGRPS Technologies" />
+    <link rel="canonical" href="https://vsgrps.com" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vsgrps.com/" />
+    <meta property="og:title" content="VSGRPS — Building Digital Excellence" />
+    <meta property="og:description" content="Premium software development company delivering scalable, modern digital solutions for businesses worldwide." />
+    <meta property="og:image" content="https://vsgrps.com/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://vsgrps.com/" />
+    <meta property="twitter:title" content="VSGRPS — Building Digital Excellence" />
+    <meta property="twitter:description" content="Premium software development company delivering scalable, modern digital solutions for businesses worldwide." />
+    <meta property="twitter:image" content="https://vsgrps.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "VSGRPS Technologies",
+        "url": "https://vsgrps.com",
+        "logo": "https://vsgrps.com/logo.png",
+        "sameAs": [
+          "https://github.com/vimalRaj45"
+        ],
+        "description": "Premium software development company delivering scalable, modern digital solutions.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Namakkal",
+          "addressRegion": "Tamil Nadu",
+          "addressCountry": "India"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-8807099288",
+          "contactType": "customer service"
+        }
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#000000" />
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('vsgrps_theme') || 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'dark') {
+            document.documentElement.style.backgroundColor = '#000000';
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://lottie.host">
+    <link rel="preconnect" href="https://assets2.lottiefiles.com">
+    <link rel="preconnect" href="https://assets5.lottiefiles.com">
+    <title>VSGRPS — Building Digital Excellence</title>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker Registered'))
+            .catch(err => console.log('Service Worker Registration Failed', err));
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script defer src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

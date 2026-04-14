@@ -1,0 +1,555 @@
+.app-solutions {
+    background: var(--color-bg);
+}
+
+.app-solutions__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 64px;
+    align-items: center;
+}
+
+.app-solutions__visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-bg);
+    padding: 24px;
+    border-radius: 40px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.app-solutions__illustration-container {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    z-index: 1;
+}
+
+.app-solutions__illustration {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.12));
+    z-index: 2;
+    position: relative;
+}
+
+.app-solutions__illustration-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0) 70%);
+    filter: blur(50px);
+    z-index: 1;
+}
+
+.app-solutions__cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.app-solutions__card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease !important;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Cloudflare: -4px lift, border gets 1 tone brighter */
+.app-solutions__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--color-card-shadow-hover);
+    border-color: var(--color-light-blue-400);
+}
+
+.app-solutions__card--highlighted {
+    background: var(--color-light-blue-100);
+    border: 2px solid var(--color-accent);
+    color: var(--color-body);
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+}
+
+.app-solutions__card--highlighted h3 {
+    color: var(--color-heading) !important;
+}
+
+.app-solutions__card--highlighted .text-color-secondary {
+    color: var(--color-muted) !important;
+}
+
+[data-theme='dark'] .app-solutions__card--highlighted {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border: 1px solid var(--color-accent);
+    color: #F8FAFC;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .app-solutions__card--highlighted h3,
+[data-theme='dark'] .app-solutions__card--highlighted .text-color {
+    color: #F8FAFC !important;
+}
+
+[data-theme='dark'] .app-solutions__card--highlighted .text-color-secondary {
+    color: #94a3b8 !important;
+}
+
+.app-solutions__card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(37, 99, 235, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #60a5fa;
+    padding: 4px 12px;
+    font-size: 0.625rem;
+    font-weight: 800;
+    border-radius: 100px;
+}
+
+.app-solutions__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.app-solutions__list li {
+    font-size: 0.9rem;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    line-height: 1.6;
+}
+
+.app-solutions__list li::before {
+    content: "•";
+    margin-right: 10px;
+    color: var(--color-accent);
+    font-weight: bold;
+}
+
+.app-solutions__card--highlighted .app-solutions__list li::before {
+    display: none;
+}
+
+/* Arc Benefits Layout */
+.app-solutions__arc-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 80px;
+    position: relative;
+    padding: 20px 0;
+}
+
+.app-solutions__arc-center {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: var(--color-bg);
+    box-shadow: 0 10px 40px rgba(37, 99, 235, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 8px solid var(--color-card-bg);
+    position: relative;
+    z-index: 2;
+}
+
+.app-solutions__arc-center::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 2px dashed rgba(37, 99, 235, 0.3);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.arc-center-content h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.3;
+    background: linear-gradient(135deg, #60A5FA, var(--color-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.app-solutions__arc-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+
+.app-solutions__arc-item {
+    display: flex;
+    align-items: center;
+    background: var(--color-card-bg);
+    border-radius: 100px;
+    padding: 12px 24px 12px 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border: 1px solid var(--color-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.app-solutions__arc-item:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
+    border-color: rgba(37, 99, 235, 0.3);
+}
+
+.arc-item-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.arc-item-content h4 {
+    margin: 0 0 4px 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.arc-item-content p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* Staggering the items to create an arc effect on desktop */
+@media (min-width: 769px) {
+    .item-1 { margin-left: -50px; }
+    .item-2 { margin-left: 10px; }
+    .item-3 { margin-left: 30px; }
+    .item-4 { margin-left: 5px; }
+}
+
+@media (max-width: 768px) {
+    .app-solutions__arc-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .app-solutions__arc-item {
+        margin-left: 0;
+        max-width: 100%;
+        border-radius: 20px;
+    }
+}
+
+/* Dark Mode Overrides */
+[data-theme='dark'] .app-solutions__arc-center {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    background: #0f172a;
+    border-color: #1e293b;
+}
+
+[data-theme='dark'] .app-solutions__arc-item {
+    background: #0f172a;
+    border-color: #1e293b;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+[data-theme='dark'] .app-solutions__card:not(.app-solutions__card--highlighted) {
+    background: #0f172a;
+    border-color: #1e293b;
+}
+
+@media (max-width: 968px) {
+    .app-solutions__grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-solutions__card {
+        padding: 24px;
+    }
+
+    .app-solutions__card-header h3 {
+        font-size: 1.125rem;
+    }
+
+    .app-solutions__list li {
+        font-size: 0.8125rem;
+    }
+}
+
+/* Pro Features Grid */
+.pro-features-section {
+    position: relative;
+    z-index: 1;
+}
+
+.pro-features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    max-width: 1040px;
+    margin: 0 auto;
+    perspective: 1500px;
+}
+
+.pro-feature-card {
+    position: relative;
+    border-radius: 20px;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    padding: 32px;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    /* Cloudflare: fast precise transitions, no slow 0.4s */
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease !important;
+}
+
+[data-theme='dark'] .pro-feature-card {
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pro-feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent), #3B82F6);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    z-index: 2;
+}
+
+/* Cloudflare card: border brightens by 1 tone, not full accent */
+.pro-feature-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-light-blue-400);
+    box-shadow: var(--color-card-shadow-hover);
+}
+
+.pro-feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.pro-feature-card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
+    opacity: 0; 
+    z-index: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+.pro-feature-card-content {
+    position: relative;
+    z-index: 1;
+}
+
+.pro-feature-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    transition: all 0.4s ease;
+}
+
+.pro-feature-icon i {
+    font-size: 1.5rem;
+    color: var(--color-accent);
+}
+
+.pro-feature-card:hover .pro-feature-icon {
+    background: transparent;
+    transform: scale(1.1);
+}
+
+.pro-feature-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-heading);
+    margin-bottom: 16px;
+    line-height: 1.3;
+}
+
+.pro-feature-desc {
+    color: var(--color-muted);
+    line-height: 1.7;
+    font-size: 0.95rem;
+    margin: 0;
+    flex: 1;
+}
+
+.pro-feature-arrow {
+    margin-top: 24px;
+    opacity: 0;
+    transform: translateX(-8px);
+    /* Cloudflare: fast, purposeful */
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+    color: var(--color-accent);
+    z-index: 1;
+}
+
+.pro-feature-card:hover .pro-feature-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+    .pro-features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 0 4px;
+    }
+    
+    .pro-feature-card {
+        padding: 16px 12px;
+        border-radius: 16px;
+    }
+
+
+    .pro-feature-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+    
+    .pro-feature-icon i {
+        font-size: 0.95rem;
+    }
+
+    .pro-feature-title {
+        font-size: 0.825rem;
+        margin-bottom: 6px;
+        line-height: 1.25;
+    }
+
+    .pro-feature-desc {
+        font-size: 0.7rem;
+        line-height: 1.4;
+        opacity: 0.8;
+    }
+
+    .pro-feature-arrow {
+        display: none; /* Hide arrow on mobile to save vertical space */
+    }
+    
+    /* Ensure the cards don't stretch too much */
+    .pro-feature-card-content {
+        display: block;
+    }
+}
+
+/* Premium CTA Button Overlay */
+.app-solutions__premium-cta {
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px 28px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+    outline: none;
+    /* Cloudflare CTA: no bounce, just confident shadow deepening */
+    transition:
+      box-shadow 0.2s ease,
+      transform 0.15s ease !important;
+}
+
+.app-solutions__premium-cta:hover {
+    box-shadow: 0 12px 32px rgba(37, 99, 235, 0.45);
+    transform: translateY(-1px);
+}
+
+.cta-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.cta-icon {
+    text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.cta-shimmer {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.3) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    transform: skewX(-25deg);
+    animation: ctaShimmer 4s infinite cubic-bezier(0.1, 0, 0.3, 1);
+    z-index: 1;
+}
+
+.app-solutions__premium-cta.installed-cta {
+    background: linear-gradient(135deg, #10B981, #059669);
+    cursor: default;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+}
+
+.app-solutions__premium-cta.installed-cta:hover {
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+    transform: none;
+}
