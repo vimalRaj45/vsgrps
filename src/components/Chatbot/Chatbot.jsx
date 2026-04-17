@@ -6,11 +6,13 @@ import { ScrollPanel } from 'primereact/scrollpanel';
 import { Sidebar } from 'primereact/sidebar';
 import './Chatbot.css';
 
-import { config } from '../../config/env';
-
 // Groq API Configuration
-const GROQ_API_KEY = config.groq.apiKey; 
-const GROQ_API_URL = config.groq.apiUrl;
+const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY; 
+const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
+
+if (!GROQ_API_KEY && import.meta.env.PROD) {
+    console.error("GROQ API Key is missing! Please add VITE_GROQ_API_KEY to your Cloudflare Pages environment variables.");
+}
 
 const SYSTEM_PROMPT = `
 You are the VSGRPS Indian Business Assistant. Talk like a friendly, helpful, and professional Indian business agent. 
@@ -78,11 +80,6 @@ const Chatbot = ({ visible, onHide }) => {
                 { role: "user", content: userInput }
             ];
 
-            if (!GROQ_API_KEY) {
-                console.error("GROQ_API_KEY is missing. Ensure VITE_GROQ_API_KEY is set.");
-                throw new Error("API Key configuration error");
-            }
-
             const response = await fetch(GROQ_API_URL, {
                 method: 'POST',
                 headers: {
@@ -91,8 +88,8 @@ const Chatbot = ({ visible, onHide }) => {
                 },
                 body: JSON.stringify({
                     messages: apiMessages,
-                    model: config.groq.model,
-                    temperature: 0.6,
+                    model: "llama-3.3-70b-versatile", // High performance model
+                    temperature: 0.6, // Slightly lower temperature for more factual responses
                     max_tokens: 512,
                     top_p: 1,
                     stream: false,
@@ -100,13 +97,8 @@ const Chatbot = ({ visible, onHide }) => {
                 })
             });
 
-            if (response.status === 401) {
-                console.error("401 Unauthorized: Invalid Groq API Key.");
-                throw new Error("Invalid API Key");
-            }
-
             if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
+                const errorData = await response.json();
                 throw new Error(errorData.error?.message || "Failed to reach intelligence server");
             }
 
