@@ -33,8 +33,6 @@ const Blog = React.lazy(() => import('./components/Blog/Blog'));
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
-import NotFoundPage from './pages/NotFoundPage';
-import ServiceDetailPage from './pages/ServiceDetailPage';
 
 // Page Components
 const HomePage = ({ onShowChatbot, theme, toggleTheme, onInstall, isInstalled }) => (
@@ -143,8 +141,8 @@ function App() {
                 <Route path="/" element={
                   <>
                     <Helmet>
-                      <title>VSGRPS Technologies — Software Development Company India</title>
-                      <meta name="description" content="VSGRPS Technologies - software development company in Namakkal, India. Web development, automation, CRM, custom software solutions. Trusted by 50+ global clients. Free consultation." />
+                      <title>VSGRPS Technologies | Digital Solutions Company India</title>
+                      <meta name="description" content="Premier software development company in Namakkal, India. We are the startup tech partner for web, app, and digital marketing." />
                       <link rel="canonical" href="https://vsgrps.com/" />
                     </Helmet>
                     <HomePage onShowChatbot={() => setShowChatbot(true)} theme={theme} toggleTheme={toggleTheme} onInstall={() => setShowInstallPrompt(true)} isInstalled={isInstalled} />
@@ -153,22 +151,12 @@ function App() {
                 <Route path="/about" element={<AboutPage theme={theme} toggleTheme={toggleTheme} />} />
                 <Route path="/services" element={<ServicesPage theme={theme} toggleTheme={toggleTheme} />} />
                 <Route path="/blog" element={<BlogPage theme={theme} toggleTheme={toggleTheme} />} />
-                <Route path="/portfolio" element={
+                <Route path="/projects" element={
                   <>
                     <Helmet>
-                      <title>Our Portfolio | VSGRPS Technologies</title>
-                      <meta name="description" content="Explore our successful projects in web development, automation, and custom CRM solutions for global clients." />
-                      <link rel="canonical" href="https://vsgrps.com/portfolio" />
-                    </Helmet>
-                    <HomePage onShowChatbot={() => setShowChatbot(true)} theme={theme} toggleTheme={toggleTheme} onInstall={() => setShowInstallPrompt(true)} isInstalled={isInstalled} />
-                  </>
-                } />
-                <Route path="/certifypro" element={
-                  <>
-                    <Helmet>
-                      <title>CertifyPro - Automate Your Certificates | VSGRPS</title>
-                      <meta name="description" content="CertifyPro is our premium certificate generation software. Automate your certification process with ease and precision." />
-                      <link rel="canonical" href="https://vsgrps.com/certifypro" />
+                      <title>Our Projects | VSGRPS Portfolio</title>
+                      <meta name="description" content="Explore our portfolio of premium digital products, from automation tools to high-scale web applications." />
+                      <link rel="canonical" href="https://vsgrps.com/projects" />
                     </Helmet>
                     <HomePage onShowChatbot={() => setShowChatbot(true)} theme={theme} toggleTheme={toggleTheme} onInstall={() => setShowInstallPrompt(true)} isInstalled={isInstalled} />
                   </>
@@ -176,16 +164,14 @@ function App() {
                 <Route path="/contact" element={
                   <>
                     <Helmet>
-                      <title>Contact VSGRPS | Get a Free Consultation</title>
-                      <meta name="description" content="Ready to scale your business? Contact VSGRPS today for premium software development and digital transformation services in Namakkal, India." />
+                      <title>Contact VSGRPS | Get a Free Quote</title>
+                      <meta name="description" content="Ready to scale your business? Contact VSGRPS today for premium software development and digital transformation services." />
                       <link rel="canonical" href="https://vsgrps.com/contact" />
                     </Helmet>
                     <HomePage onShowChatbot={() => setShowChatbot(true)} theme={theme} toggleTheme={toggleTheme} onInstall={() => setShowInstallPrompt(true)} isInstalled={isInstalled} />
                   </>
                 } />
-                <Route path="/services/:slug" element={<ServiceDetailPage theme={theme} toggleTheme={toggleTheme} />} />
                 <Route path="/project/:id" element={<ProjectPage onShowChatbot={() => setShowChatbot(true)} theme={theme} toggleTheme={toggleTheme} />} />
-                <Route path="*" element={<NotFoundPage theme={theme} toggleTheme={toggleTheme} />} />
               </Routes>
             
             <Chatbot visible={showChatbot} onHide={() => setShowChatbot(false)} />
