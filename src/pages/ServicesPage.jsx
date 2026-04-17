@@ -2,7 +2,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
-import Footer from '../components/Footer/Footer';
 import Breadcrumb from '../components/Common/Breadcrumb';
 import { motion } from 'framer-motion';
 import LottieIcon from '../components/Common/LottieIcon';
@@ -76,75 +75,71 @@ const ServicesPage = ({ theme, toggleTheme }) => {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="section-title"
+              className="section-title text-center"
             >
               Our Digital Services
             </motion.h1>
-            <p className="section-subtitle" style={{ maxWidth: '600px', margin: '1rem 0 0' }}>
+            <p className="section-subtitle text-center" style={{ maxWidth: '600px', margin: '1rem auto 0' }}>
               End-to-end digital solutions for startups and businesses in Namakkal and across India.
             </p>
           </div>
         </section>
 
-        <section className="section" style={{ padding: '3rem 0 5rem' }}>
+        <section className="section section-alt" style={{ padding: '3rem 0 5rem' }}>
           <div className="container">
             <div
+              className="svc-grid"
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                gap: '28px',
+                gap: '24px',
               }}
             >
               {services.map((service, index) => (
                 <motion.div
                   key={index}
+                  className="svc-card"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.08 }}
-                  whileHover={{ y: -4 }}
+                  whileHover={{ y: -5 }}
                   style={{
-                    background: 'var(--surface-card)',
-                    borderRadius: '20px',
-                    border: '1px solid var(--border-color)',
-                    padding: '2rem',
                     display: 'flex',
                     flexDirection: 'column',
-                    transition: 'border-color 0.2s',
+                    alignItems: 'center',
+                    textAlign: 'center',
+                    padding: '2.5rem 2rem'
                   }}
                 >
-                  <div style={{ width: '72px', height: '72px', marginBottom: '20px' }}>
-                    <LottieIcon src={service.icon} size="72px" />
+                  <div style={{ width: '80px', height: '80px', marginBottom: '24px', display: 'flex', justifyContent: 'center' }}>
+                    <LottieIcon src={service.icon} size="80px" />
                   </div>
 
-                  <h2 style={{ fontSize: '1.25rem', fontWeight: '700', marginBottom: '0.6rem' }}>
+                  <h2 style={{ fontSize: '1.25rem', fontWeight: '700', marginBottom: '1rem' }}>
                     {service.title}
                   </h2>
 
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.65', marginBottom: '1.25rem', flex: 1 }}>
+                  <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', lineHeight: '1.65', marginBottom: '1.5rem', flex: 1 }}>
                     {service.description}
                   </p>
 
-                  <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem' }}>
+                  <ul style={{ listStyle: 'none', padding: 0, marginBottom: '2rem', textAlign: 'left', width: '100%', display: 'inline-block' }}>
                     {service.benefits.map((b, i) => (
-                      <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem', fontSize: '0.875rem' }}>
+                      <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontSize: '0.875rem', color: 'var(--color-body)' }}>
                         <i className="pi pi-check-circle" style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
                         {b}
                       </li>
                     ))}
                   </ul>
 
-                  {/* Clickable link to the dedicated service page */}
                   <Link
                     to={service.slug}
+                    className="btn btn-outline"
                     style={{
-                      color: 'var(--color-accent)',
-                      fontWeight: '700',
-                      fontSize: '0.9rem',
-                      textDecoration: 'none',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.25rem',
+                      width: '100%',
+                      fontSize: '0.875rem',
+                      padding: '10px 20px'
                     }}
                     aria-label={`Learn more about ${service.title}`}
                   >
@@ -156,8 +151,6 @@ const ServicesPage = ({ theme, toggleTheme }) => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };
