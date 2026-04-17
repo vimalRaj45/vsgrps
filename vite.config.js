@@ -8,7 +8,6 @@ import PuppeteerRenderer from '@prerenderer/renderer-puppeteer'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -30,16 +29,18 @@ export default defineConfig({
           .replace(/<title>(.*?)<\/title>/g, '')
           .replace(/<head>/, `<head><title>${pageTitle}</title>`);
         
-        // Manual override for the root index.html
-        // We render /index and save it as the main index.html
-        if (renderedRoute.route === '/index') {
-          const outputPath = path.join(__dirname, 'dist', 'index.html');
-          fs.writeFileSync(outputPath, renderedRoute.html);
-          console.log(`[Prerender] Manually updated root index.html from ${renderedRoute.route}`);
-        }
-        
         return renderedRoute;
       },
     }),
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    chunkSizeWarningLimit: 1000,
+  }
 })

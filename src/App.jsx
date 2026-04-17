@@ -56,7 +56,7 @@ const ProjectPage = ({ onShowChatbot, theme, toggleTheme }) => (
 );
 
 function App() {
-  const [loading, setLoading] = useState(!window.__PRERENDER_INJECTED);
+  const [loading, setLoading] = useState(false);
   const [showChatbot, setShowChatbot] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem('vsgrps_theme') || 'dark');
   const [deferredPrompt, setDeferredPrompt] = useState(null);

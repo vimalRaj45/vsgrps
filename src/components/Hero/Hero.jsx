@@ -112,13 +112,6 @@ const Hero = () => {
 
   useEffect(() => {
     setIsClient(true);
-    // Load dotlottie-wc if not already loaded and not in pre-render mode
-    if (typeof window !== 'undefined' && !window.__PRERENDER_INJECTED && !window.customElements.get('dotlottie-wc')) {
-      const script = document.createElement('script');
-      script.src = 'https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js';
-      script.type = 'module';
-      document.body.appendChild(script);
-    }
   }, []);
 
   return (
