@@ -35,13 +35,26 @@ const Navbar = ({ theme, toggleTheme }) => {
   };
 
   const items = [
-    { label: 'Home', icon: 'pi pi-home', command: () => handleNavClick('#home') },
-    { label: 'About', icon: 'pi pi-info-circle', command: () => handleNavClick('#about') },
-    { label: 'Services', icon: 'pi pi-desktop', command: () => handleNavClick('#services') },
-    { label: 'Projects', icon: 'pi pi-briefcase', command: () => handleNavClick('#projects') },
-    { label: 'Testimonials', icon: 'pi pi-star', command: () => handleNavClick('#testimonials') },
-    { label: 'Rate Us', icon: 'pi pi-heart-fill', command: () => handleNavClick('#company-review') },
-    { label: 'Contact', icon: 'pi pi-envelope', command: () => handleNavClick('#contact') },
+    { label: 'Home',         icon: 'pi pi-home',        command: () => handleNavClick('#home') },
+    { label: 'About',        icon: 'pi pi-info-circle',  command: () => handleNavClick('#about') },
+    {
+      label: 'Services',
+      icon: 'pi pi-desktop',
+      // Click goes to /services page; sub-items go to individual service pages
+      command: () => navigate('/services'),
+      items: [
+        { label: 'Web Development',      icon: 'pi pi-globe',      command: () => { setVisible(false); navigate('/services/web-development'); } },
+        { label: 'Automation Solutions', icon: 'pi pi-cog',         command: () => { setVisible(false); navigate('/services/automation-solutions'); } },
+        { label: 'CRM & Dashboards',     icon: 'pi pi-chart-bar',   command: () => { setVisible(false); navigate('/services/crm-dashboards'); } },
+        { label: 'Custom Software',      icon: 'pi pi-code',        command: () => { setVisible(false); navigate('/services/custom-software'); } },
+        { label: 'Hosting & Cloud',      icon: 'pi pi-server',      command: () => { setVisible(false); navigate('/services/hosting-cloud'); } },
+        { label: 'Customer Support',     icon: 'pi pi-headphones',  command: () => { setVisible(false); navigate('/services/customer-support'); } },
+      ],
+    },
+    { label: 'Projects',    icon: 'pi pi-briefcase',    command: () => handleNavClick('#projects') },
+    { label: 'Testimonials',icon: 'pi pi-star',         command: () => handleNavClick('#testimonials') },
+    { label: 'Rate Us',     icon: 'pi pi-heart-fill',   command: () => handleNavClick('#company-review') },
+    { label: 'Contact',     icon: 'pi pi-envelope',     command: () => handleNavClick('#contact') },
   ];
 
   const start = (
