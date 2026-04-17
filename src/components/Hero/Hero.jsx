@@ -108,6 +108,19 @@ const Hero = () => {
     };
   }, []);
 
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    // Load dotlottie-wc if not already loaded
+    if (typeof window !== 'undefined' && !window.customElements.get('dotlottie-wc')) {
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js';
+      script.type = 'module';
+      document.body.appendChild(script);
+    }
+  }, []);
+
   return (
     <section id="home" className="hero" ref={heroRef}>
       <div className="hero__bg">
@@ -216,12 +229,14 @@ const Hero = () => {
           <div className="hero__visual-main">
             <div className="hero__lottie-primary">
               <div className="hero__lottie-container">
-                <dotlottie-wc 
-                  src="https://lottie.host/53f42021-31ae-493c-b1b2-48e90284a730/CGvBx5r6P0.lottie" 
-                  style={{ width: '110%', height: '105%' }} 
-                  autoplay 
-                  loop
-                ></dotlottie-wc>
+                {isClient && (
+                  <dotlottie-wc 
+                    src="https://lottie.host/53f42021-31ae-493c-b1b2-48e90284a730/CGvBx5r6P0.lottie" 
+                    style={{ width: '110%', height: '105%' }} 
+                    autoplay 
+                    loop
+                  ></dotlottie-wc>
+                )}
               </div>
               <div className="hero__lottie-glow"></div>
             </div>
