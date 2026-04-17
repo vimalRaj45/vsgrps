@@ -29,17 +29,27 @@
     <meta property="twitter:description" content="Software development company in Namakkal, Tamil Nadu. Building scalable digital solutions for startups worldwide." />
     <meta property="twitter:image" content="https://vsgrps.com/og-image.jpg" />
 
-    <!-- FIX 11: Enhanced @graph Schema with Organization + WebSite + Service -->
+    <!-- Schema: Organization + LocalBusiness + WebSite + Service (FIX 5+11) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "Organization",
+          "@type": ["Organization", "LocalBusiness"],
           "name": "VSGRPS Technologies",
-          "url": "https://vsgrps.com",
+          "image": "https://vsgrps.com/logo.png",
           "logo": "https://vsgrps.com/logo.png",
-          "description": "VSGRPS Technologies is a software development company in Namakkal, Tamil Nadu, India helping startups and businesses worldwide with web development, app development, digital marketing and SaaS products.",
+          "url": "https://vsgrps.com",
+          "telephone": "+918807099288",
+          "email": "vimalraj5207@gmail.com",
+          "description": "VSGRPS Technologies — software development company in Namakkal, India. Web development, automation, CRM, custom software solutions. Trusted by 50+ global clients.",
+          "priceRange": "₹₹",
+          "openingHours": "Mo-Su 00:00-23:59",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "15"
+          },
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Namakkal",
@@ -73,18 +83,16 @@
         {
           "@type": "Service",
           "serviceType": "Software Development",
-          "provider": {
-            "@type": "Organization",
-            "name": "VSGRPS Technologies"
-          },
+          "provider": { "@type": "Organization", "name": "VSGRPS Technologies" },
           "areaServed": "Worldwide",
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": "Digital Services",
             "itemListElement": [
               {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Development"}},
-              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "App Development"}},
-              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Digital Marketing"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Automation Solutions"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "CRM Dashboards"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom Software"}},
               {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "SaaS Development"}}
             ]
           }
@@ -124,6 +132,15 @@
         });
       }
     </script>
+
+    <!-- FIX 17: Google Analytics 4 — replace G-XXXXXXXXXX with your actual Measurement ID -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
   </head>
   <body>
     <div id="root"></div>

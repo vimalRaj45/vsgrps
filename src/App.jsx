@@ -34,6 +34,14 @@ import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
 
+// Service Sub-Pages (Fix 12 — dedicated content pages)
+const WebDevelopmentPage  = React.lazy(() => import('./pages/services/WebDevelopmentPage'));
+const AutomationPage      = React.lazy(() => import('./pages/services/AutomationPage'));
+const CRMPage             = React.lazy(() => import('./pages/services/CRMPage'));
+const CustomSoftwarePage  = React.lazy(() => import('./pages/services/CustomSoftwarePage'));
+const HostingPage         = React.lazy(() => import('./pages/services/HostingPage'));
+const CustomerSupportPage = React.lazy(() => import('./pages/services/CustomerSupportPage'));
+
 // Page Components
 const HomePage = ({ onShowChatbot, theme, toggleTheme, onInstall, isInstalled }) => (
   <>
@@ -172,6 +180,14 @@ function App() {
                   </>
                 } />
                 <Route path="/project/:id" element={<ProjectPage onShowChatbot={() => setShowChatbot(true)} theme={theme} toggleTheme={toggleTheme} />} />
+
+                {/* Service Sub-Pages — Fix 12 */}
+                <Route path="/services/web-development"   element={<WebDevelopmentPage  theme={theme} toggleTheme={toggleTheme} />} />
+                <Route path="/services/automation-solutions" element={<AutomationPage   theme={theme} toggleTheme={toggleTheme} />} />
+                <Route path="/services/crm-dashboards"    element={<CRMPage            theme={theme} toggleTheme={toggleTheme} />} />
+                <Route path="/services/custom-software"   element={<CustomSoftwarePage theme={theme} toggleTheme={toggleTheme} />} />
+                <Route path="/services/hosting-cloud"     element={<HostingPage        theme={theme} toggleTheme={toggleTheme} />} />
+                <Route path="/services/customer-support"  element={<CustomerSupportPage theme={theme} toggleTheme={toggleTheme} />} />
               </Routes>
             
             <Chatbot visible={showChatbot} onHide={() => setShowChatbot(false)} />
