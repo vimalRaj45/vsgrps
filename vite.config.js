@@ -25,13 +25,17 @@ export default defineConfig({
       }),
       postProcess(renderedRoute) {
         // Fix double title tags and meta issues
+        const pageTitle = renderedRoute.title || 'VSGRPS — Building Digital Excellence';
         renderedRoute.html = renderedRoute.html
           .replace(/<title>(.*?)<\/title>/g, '')
-          .replace(/<head>/, `<head><title>${renderedRoute.title || 'VSGRPS — Building Digital Excellence'}</title>`);
+          .replace(/<head>/, `<head><title>${pageTitle}</title>`);
         
-        // Manual override for the root index.html from /index route
+        // Manual override for the root index.html
+        // We render /index and save it as the main index.html
         if (renderedRoute.route === '/index') {
-          fs.writeFileSync(path.join(__dirname, 'dist', 'index.html'), renderedRoute.html);
+          const outputPath = path.join(__dirname, 'dist', 'index.html');
+          fs.writeFileSync(outputPath, renderedRoute.html);
+          console.log(`[Prerender] Manually updated root index.html from ${renderedRoute.route}`);
         }
         
         return renderedRoute;
