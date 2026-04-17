@@ -117,30 +117,17 @@ function App() {
     setLoading(false);
   }, []);
 
+  const isPrerender = window.__PRERENDER_INJECTED;
+
   return (
     <HelmetProvider>
       <Router>
         <div className="app">
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              fontFamily: 'var(--font-family)',
-              borderRadius: 'var(--radius-sm)',
-              fontSize: '0.9375rem',
-            },
-            success: {
-              iconTheme: { primary: '#2563EB', secondary: '#FFFFFF' },
-            },
-          }}
-        />
+        <Toaster />
 
-        <AnimatePresence mode="wait">
-          {loading && <LoadingScreen onComplete={handleLoadingComplete} />}
-        </AnimatePresence>
+        {loading && !isPrerender && <LoadingScreen onComplete={handleLoadingComplete} />}
 
-        {!loading && (
+        {(!loading || isPrerender) && (
           <>
             <Routes>
               <Route path="/" element={

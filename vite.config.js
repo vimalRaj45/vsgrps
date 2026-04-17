@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import prerender from '@prerenderer/rollup-plugin'
-import JSDOMRenderer from '@prerenderer/renderer-jsdom'
+import PuppeteerRenderer from '@prerenderer/renderer-puppeteer'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -13,21 +14,26 @@ export default defineConfig({
     react(),
     prerender({
       staticDir: path.join(__dirname, 'dist'),
-      routes: ['/', '/about', '/projects', '/contact'],
-      renderer: new JSDOMRenderer({
-        renderAfterTime: 5000, // Wait 5 seconds instead of waiting for an event
+      routes: ['/index', '/about', '/projects', '/contact'],
+      renderer: new PuppeteerRenderer({
+        renderAfterDocumentEvent: 'render-event',
         injectProperty: '__PRERENDER_INJECTED',
         inject: {
           foo: 'bar'
         },
+        headless: true,
       }),
       postProcess(renderedRoute) {
-        // Clean up and SEO fixes
+        // Fix double title tags and meta issues
         renderedRoute.html = renderedRoute.html
-          .replace(/(<html[^>]*)/i, '$1 lang="en"')
-          .replace(/<script (.*?) src="\/src\/main\.jsx" (.*?)><\/script>/g, '');
+          .replace(/<title>(.*?)<\/title>/g, '')
+          .replace(/<head>/, `<head><title>${renderedRoute.title || 'VSGRPS — Building Digital Excellence'}</title>`);
         
-        // Ensure canonical links are correct (if any)
+        // Manual override for the root index.html from /index route
+        if (renderedRoute.route === '/index') {
+          fs.writeFileSync(path.join(__dirname, 'dist', 'index.html'), renderedRoute.html);
+        }
+        
         return renderedRoute;
       },
     }),

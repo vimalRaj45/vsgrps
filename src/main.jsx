@@ -17,10 +17,12 @@ import 'swiper/css/autoplay';
 /* Global Styles */
 import './index.css';
 
+console.log('App initialization started...');
+
 const rootElement = document.getElementById('root');
 
-// Use hydrateRoot if the page was pre-rendered (contains children)
-if (rootElement.hasChildNodes()) {
+if (rootElement.hasChildNodes() && !window.__PRERENDER_INJECTED) {
+  console.log('Hydrating existing content...');
   ReactDOM.hydrateRoot(
     rootElement,
     <React.StrictMode>
@@ -28,6 +30,7 @@ if (rootElement.hasChildNodes()) {
     </React.StrictMode>
   );
 } else {
+  console.log('Creating new root for rendering...');
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
@@ -36,15 +39,11 @@ if (rootElement.hasChildNodes()) {
   );
 }
 
-// Notify pre-renderer that the page is ready
-// Using a slightly longer timeout to ensure GSAP and PrimeReact are initialized
+// Dispatch event for pre-renderer
 if (window.__PRERENDER_INJECTED) {
+  console.log('Pre-render environment detected, waiting for content...');
   setTimeout(() => {
+    console.log('Firing render-event after 5s delay...');
     document.dispatchEvent(new Event('render-event'));
-  }, 1500);
-} else {
-  // In normal browser mode, still dispatch just in case, but usually not needed
-  setTimeout(() => {
-    document.dispatchEvent(new Event('render-event'));
-  }, 1000);
+  }, 5000);
 }
