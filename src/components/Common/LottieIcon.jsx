@@ -18,9 +18,12 @@ const LottieIcon = ({
   const playerRef = useRef(null);
   const containerRef = useRef(null);
 
+  const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
+    setIsClient(true);
     // Check if the script is already loaded
-    if (!window.customElements.get('lottie-player')) {
+    if (typeof window !== 'undefined' && !window.customElements.get('lottie-player')) {
       const script = document.createElement('script');
       script.src = 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js';
       script.async = true;
@@ -61,7 +64,7 @@ const LottieIcon = ({
         filter: darker ? 'brightness(0.7) contrast(1.2)' : 'none'
       }}
     >
-      {isInView && (
+      {isClient && isInView && (
         <lottie-player
           ref={playerRef}
           src={src}

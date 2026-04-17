@@ -22,11 +22,12 @@ export default defineConfig({
         },
       }),
       postProcess(renderedRoute) {
-        // Simple SEO optimizations
+        // Clean up and SEO fixes
         renderedRoute.html = renderedRoute.html
-          .replace(/<script (.*?) src="\/src\/main\.jsx" (.*?)><\/script>/g, '') // Clean up dev scripts if any
-          .replace(/(<html[^>]*)/i, '$1 lang="en"');
+          .replace(/(<html[^>]*)/i, '$1 lang="en"')
+          .replace(/<script (.*?) src="\/src\/main\.jsx" (.*?)><\/script>/g, '');
         
+        // Ensure canonical links are correct (if any)
         return renderedRoute;
       },
     }),
