@@ -7,7 +7,7 @@ import { Sidebar } from 'primereact/sidebar';
 import './Chatbot.css';
 
 // Groq API Configuration
-const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY; 
+const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY ; 
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 
 if (!GROQ_API_KEY && import.meta.env.PROD) {
