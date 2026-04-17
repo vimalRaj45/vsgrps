@@ -50,8 +50,12 @@ const Navbar = ({ theme, toggleTheme }) => {
       onClick={() => handleNavClick('#home')}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
+      role="button"
+      tabIndex="0"
+      aria-label="VSGRPS Home"
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleNavClick('#home'); }}
     >
-      <div className="navbar__logo-icon">V</div>
+      <div className="navbar__logo-icon" aria-hidden="true">V</div>
       <span className="navbar__logo-text">VSGRPS</span>
     </motion.div>
   );
@@ -94,8 +98,8 @@ const Navbar = ({ theme, toggleTheme }) => {
           className="navbar__cta p-button-primary" 
         />
       </motion.div>
-      <button className="navbar__mobile-toggle" onClick={() => setVisible(true)}>
-        <i className="pi pi-bars"></i>
+      <button className="navbar__mobile-toggle" onClick={() => setVisible(true)} aria-label="Open Navigation Menu">
+        <i className="pi pi-bars" aria-hidden="true"></i>
       </button>
     </div>
   );

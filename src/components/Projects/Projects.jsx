@@ -108,6 +108,10 @@ const ProjectCard = ({ project, index, navigate }) => {
       transition={{ duration: 0.35, delay: index * 0.07, ease: [0.0, 0.0, 0.2, 1] }}
       onClick={() => navigate(`/project/${project.id}`)}
       style={{ cursor: 'pointer' }}
+      role="button"
+      tabIndex="0"
+      aria-label={`View details for project: ${project.title}`}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigate(`/project/${project.id}`); }}
     >
       {/* Image */}
       <div className="projects__card-image-wrapper">
@@ -119,6 +123,8 @@ const ProjectCard = ({ project, index, navigate }) => {
         <img
           src={project.image}
           alt={project.title}
+          width="600"
+          height="400"
           className={`projects__card-image ${imageLoaded ? 'loaded' : ''}`}
           onLoad={() => setImageLoaded(true)}
           loading="lazy"

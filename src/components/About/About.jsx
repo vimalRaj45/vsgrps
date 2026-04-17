@@ -75,7 +75,7 @@ const About = () => {
             transition={{ duration: 0.5, ease: [0.0, 0.0, 0.2, 1] }}
           >
             <div className="about__illustration-wrapper">
-              <img src={scoutAbout} alt="VSGRPS Professional Software Development and Digital Transformation Illustration" className="about__illustration" />
+              <img src={scoutAbout} alt="VSGRPS Professional Software Development and Digital Transformation Illustration" width="600" height="500" loading="lazy" className="about__illustration" />
               <div className="about__illustration-glow"></div>
             </div>
           </motion.div>
