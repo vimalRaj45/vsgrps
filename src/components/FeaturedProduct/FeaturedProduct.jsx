@@ -38,7 +38,7 @@ const FeaturedProduct = () => {
                                 icon="pi pi-external-link"
                                 className="p-button-primary premium-btn"
                                 style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}
-                                onClick={() => window.open('https://certifyiprovsgrps.com.app/', '_blank')}
+                                onClick={() => window.open('https://certifypro.vsgrps.com', '_blank')}
                             />
                             <div className="powered-by">
                                 <span>Official Utility by</span>

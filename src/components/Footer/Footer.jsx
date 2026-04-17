@@ -21,7 +21,7 @@ const Footer = () => {
       { label: 'Support', href: '#' },
     ],
     products: [
-      { label: 'CertifyPro', href: 'certifypro.vsgrps.com', target: '_blank' },
+      { label: 'CertifyPro', href: 'https://certifypro.vsgrps.com', target: '_blank' },
     ],
     legal: [
       { label: 'Privacy Policy', action: 'Privacy Policy' },
