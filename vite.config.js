@@ -13,7 +13,7 @@ export default defineConfig({
     react(),
     prerender({
       staticDir: path.join(__dirname, 'dist'),
-      routes: ['/index', '/about', '/projects', '/contact'],
+      routes: ['/', '/about', '/services', '/projects', '/contact', '/blog'],
       renderer: new PuppeteerRenderer({
         renderAfterDocumentEvent: 'render-event',
         injectProperty: '__PRERENDER_INJECTED',

@@ -55,7 +55,14 @@ const FeaturedProduct = () => {
                         transition={{ duration: 0.8, type: 'spring' }}
                     >
                         <div className="mockup-container">
-                            <img src="/images/projects/certifypro.png" alt="CertifyPro Mockup" width="800" height="500" loading="lazy" className="mockup-img" />
+                            <img 
+                                src="/images/projects/certifypro.png" 
+                                alt="CertifyPro - Flagship Batch Certificate Generation SaaS by VSGRPS Technologies Namakkal India" 
+                                width="800" 
+                                height="500" 
+                                loading="lazy" 
+                                className="mockup-img" 
+                            />
                             <div className="mockup-overlay"></div>
                         </div>
                     </motion.div>

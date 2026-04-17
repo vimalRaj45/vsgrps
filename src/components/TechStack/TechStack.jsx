@@ -63,7 +63,7 @@ const TechStack = () => {
         <div className="tech-stack__track">
           {marqueeItems.map((tech, index) => (
             <div key={`row1-${index}`} className="tech-stack__item">
-              <img src={tech.icon} alt={tech.name} width="40" height="40" loading="lazy" className="tech-stack__icon" />
+              <img src={tech.icon} alt={`VSGRPS Professional ${tech.name} Development Icon`} width="40" height="40" loading="lazy" className="tech-stack__icon" />
               <span className="tech-stack__name">{tech.name}</span>
             </div>
           ))}
@@ -75,7 +75,7 @@ const TechStack = () => {
         <div className="tech-stack__track">
           {[...marqueeItems].reverse().map((tech, index) => (
             <div key={`row2-${index}`} className="tech-stack__item">
-              <img src={tech.icon} alt={tech.name} width="40" height="40" loading="lazy" className="tech-stack__icon" />
+              <img src={tech.icon} alt={`VSGRPS Professional ${tech.name} Development Icon`} width="40" height="40" loading="lazy" className="tech-stack__icon" />
               <span className="tech-stack__name">{tech.name}</span>
             </div>
           ))}
