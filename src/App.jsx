@@ -148,14 +148,17 @@ function App() {
                   <Helmet>
                     <title>VSGRPS — Premium Software Development & Scaling</title>
                     <meta name="description" content="Build Smarter, Scale Faster. VSGRPS provides premium digital solutions, automation, and high-performance web applications for global businesses." />
+                    <meta name="keywords" content="software development, web applications, scaling, digital transformation, VSGRPS, automation, custom software" />
+                    <link rel="canonical" href="https://vsgrps.com/" />
                     <meta property="og:title" content="VSGRPS — Building Digital Excellence" />
                     <meta property="og:description" content="Transforming complex business ideas into premium digital solutions. Scalable, secure, and future-ready." />
                     <meta property="og:type" content="website" />
-                    <meta property="og:image" content="/og-image.jpg" />
+                    <meta property="og:url" content="https://vsgrps.com/" />
+                    <meta property="og:image" content="https://vsgrps.com/og-image.jpg" />
                     <meta name="twitter:card" content="summary_large_image" />
                     <meta name="twitter:title" content="VSGRPS — Premium Software Development" />
                     <meta name="twitter:description" content="Build Smarter, Scale Faster with VSGRPS." />
-                    <meta name="twitter:image" content="/og-image.jpg" />
+                    <meta name="twitter:image" content="https://vsgrps.com/og-image.jpg" />
                   </Helmet>
                   <HomePage onShowChatbot={() => setShowChatbot(true)} theme={theme} toggleTheme={toggleTheme} onInstall={() => setShowInstallPrompt(true)} isInstalled={isInstalled} />
                 </>
@@ -165,6 +168,8 @@ function App() {
                   <Helmet>
                     <title>About VSGRPS | Premium Software Development</title>
                     <meta name="description" content="Learn about VSGRPS, our mission, and our commitment to building premium digital solutions and high-performance applications." />
+                    <meta name="keywords" content="about VSGRPS, mission, software development team, premium solutions" />
+                    <link rel="canonical" href="https://vsgrps.com/about" />
                   </Helmet>
                   <HomePage onShowChatbot={() => setShowChatbot(true)} theme={theme} toggleTheme={toggleTheme} onInstall={() => setShowInstallPrompt(true)} isInstalled={isInstalled} />
                 </>
@@ -174,6 +179,8 @@ function App() {
                   <Helmet>
                     <title>Our Projects | VSGRPS Portfolio</title>
                     <meta name="description" content="Explore our portfolio of premium digital products, from automation tools to high-scale web applications." />
+                    <meta name="keywords" content="portfolio, software projects, web apps, VSGRPS projects" />
+                    <link rel="canonical" href="https://vsgrps.com/projects" />
                   </Helmet>
                   <HomePage onShowChatbot={() => setShowChatbot(true)} theme={theme} toggleTheme={toggleTheme} onInstall={() => setShowInstallPrompt(true)} isInstalled={isInstalled} />
                 </>
@@ -183,6 +190,8 @@ function App() {
                   <Helmet>
                     <title>Contact VSGRPS | Get a Free Quote</title>
                     <meta name="description" content="Ready to scale your business? Contact VSGRPS today for premium software development and digital transformation services." />
+                    <meta name="keywords" content="contact VSGRPS, software quote, business scaling, hire developers" />
+                    <link rel="canonical" href="https://vsgrps.com/contact" />
                   </Helmet>
                   <HomePage onShowChatbot={() => setShowChatbot(true)} theme={theme} toggleTheme={toggleTheme} onInstall={() => setShowInstallPrompt(true)} isInstalled={isInstalled} />
                 </>
