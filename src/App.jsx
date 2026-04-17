@@ -10,22 +10,24 @@ import { Dialog } from 'primereact/dialog';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
-import About from './components/About/About';
-import Services from './components/Services/Services';
-import Projects from './components/Projects/Projects';
-import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs';
-import Testimonials from './components/Testimonials/Testimonials';
-import TechStack from './components/TechStack/TechStack';
-import Contact from './components/Contact/Contact';
-import CompanyReview from './components/CompanyReview/CompanyReview';
-import Footer from './components/Footer/Footer';
-import Chatbot from './components/Chatbot/Chatbot';
-import FloatingActions from './components/FloatingActions/FloatingActions';
-import CookieConsent from './components/Footer/CookieConsent';
-import ProjectDetail from './pages/ProjectDetail/ProjectDetail';
-import AppSolutions from './components/AppSolutions/AppSolutions';
-import FeaturedProduct from './components/FeaturedProduct/FeaturedProduct';
-import Blog from './components/Blog/Blog';
+
+// Lazy Loaded Components
+const About = React.lazy(() => import('./components/About/About'));
+const Services = React.lazy(() => import('./components/Services/Services'));
+const Projects = React.lazy(() => import('./components/Projects/Projects'));
+const WhyChooseUs = React.lazy(() => import('./components/WhyChooseUs/WhyChooseUs'));
+const Testimonials = React.lazy(() => import('./components/Testimonials/Testimonials'));
+const TechStack = React.lazy(() => import('./components/TechStack/TechStack'));
+const Contact = React.lazy(() => import('./components/Contact/Contact'));
+const CompanyReview = React.lazy(() => import('./components/CompanyReview/CompanyReview'));
+const Footer = React.lazy(() => import('./components/Footer/Footer'));
+const Chatbot = React.lazy(() => import('./components/Chatbot/Chatbot'));
+const FloatingActions = React.lazy(() => import('./components/FloatingActions/FloatingActions'));
+const CookieConsent = React.lazy(() => import('./components/Footer/CookieConsent'));
+const ProjectDetail = React.lazy(() => import('./pages/ProjectDetail/ProjectDetail'));
+const AppSolutions = React.lazy(() => import('./components/AppSolutions/AppSolutions'));
+const FeaturedProduct = React.lazy(() => import('./components/FeaturedProduct/FeaturedProduct'));
+const Blog = React.lazy(() => import('./components/Blog/Blog'));
 
 // Page Components
 const HomePage = ({ onShowChatbot, theme, toggleTheme, onInstall, isInstalled }) => (
@@ -122,14 +124,15 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
-        <div className="app">
-        <Toaster />
+        <React.Suspense fallback={null}>
+          <div className="app">
+          <Toaster />
 
-        {loading && !isPrerender && <LoadingScreen onComplete={handleLoadingComplete} />}
+          {loading && !isPrerender && <LoadingScreen onComplete={handleLoadingComplete} />}
 
-        {(!loading || isPrerender) && (
-          <>
-            <Routes>
+          {(!loading || isPrerender) && (
+            <>
+              <Routes>
               <Route path="/" element={
                 <>
                   <Helmet>
@@ -229,6 +232,7 @@ function App() {
           </>
         )}
       </div>
+      </React.Suspense>
     </Router>
     </HelmetProvider>
   );

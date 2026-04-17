@@ -119,7 +119,7 @@ const FloatingActions = ({ onShowChatbot }) => {
                                     )}
                                 </div>
 
-                                <button className="widget-close-btn" onClick={handleCloseBubble}>
+                                <button className="widget-close-btn" onClick={handleCloseBubble} aria-label="Close Assistant Message">
                                     <i className="pi pi-times"></i>
                                 </button>
                         </div>
@@ -137,6 +137,7 @@ const FloatingActions = ({ onShowChatbot }) => {
                 showIcon="pi pi-plus" 
                 hideIcon="pi pi-times" 
                 buttonClassName="speeddial-main-btn p-button-rounded"
+                buttonProps={{ 'aria-label': 'Quick Actions Menu' }}
                 style={{ bottom: '16px', right: '16px' }}
                 onClick={() => setShowBubble(false)}
             />

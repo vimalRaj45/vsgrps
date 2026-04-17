@@ -1,9 +1,4 @@
 User-agent: *
 Allow: /
-Allow: /about
-Allow: /services
-Allow: /projects
-Allow: /contact
-Allow: /project/
 
 Sitemap: https://vsgrps.com/sitemap.xml
