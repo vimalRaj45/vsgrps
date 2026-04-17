@@ -20,40 +20,32 @@ const Navbar = ({ theme, toggleTheme }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (href) => {
+  const handleNavClick = (path) => {
     setVisible(false);
-    if (location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => {
-        const target = document.querySelector(href);
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
-      const target = document.querySelector(href);
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-    }
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const items = [
-    { label: 'Home', icon: 'pi pi-home', command: () => handleNavClick('#home') },
-    { label: 'About', icon: 'pi pi-info-circle', command: () => handleNavClick('#about') },
-    { label: 'Services', icon: 'pi pi-desktop', command: () => handleNavClick('#services') },
-    { label: 'Projects', icon: 'pi pi-briefcase', command: () => handleNavClick('#projects') },
-    { label: 'Testimonials', icon: 'pi pi-star', command: () => handleNavClick('#testimonials') },
-    { label: 'Rate Us', icon: 'pi pi-heart-fill', command: () => handleNavClick('#company-review') },
-    { label: 'Contact', icon: 'pi pi-envelope', command: () => handleNavClick('#contact') },
+    { label: 'Home', icon: 'pi pi-home', command: () => handleNavClick('/') },
+    { label: 'About', icon: 'pi pi-info-circle', command: () => handleNavClick('/about') },
+    { label: 'Services', icon: 'pi pi-desktop', command: () => handleNavClick('/services') },
+    { label: 'Portfolio', icon: 'pi pi-briefcase', command: () => handleNavClick('/portfolio') },
+    { label: 'CertifyPro', icon: 'pi pi-verified', command: () => handleNavClick('/certifypro') },
+    { label: 'Blog', icon: 'pi pi-book', command: () => handleNavClick('/blog') },
+    { label: 'Contact', icon: 'pi pi-envelope', command: () => handleNavClick('/contact') },
   ];
 
   const start = (
     <motion.div 
       className="navbar__logo" 
-      onClick={() => handleNavClick('#home')}
+      onClick={() => handleNavClick('/')}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       role="button"
       tabIndex="0"
       aria-label="VSGRPS Home"
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleNavClick('#home'); }}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleNavClick('/'); }}
     >
       <div className="navbar__logo-icon" aria-hidden="true">V</div>
       <span className="navbar__logo-text">VSGRPS</span>
@@ -94,7 +86,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         <Button 
           label="Work With Us" 
           icon="pi pi-bolt" 
-          onClick={() => handleNavClick('#contact')} 
+          onClick={() => handleNavClick('/contact')} 
           className="navbar__cta p-button-primary" 
         />
       </motion.div>
@@ -169,7 +161,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             <Button 
               label="Start a Project" 
               icon="pi pi-bolt" 
-              onClick={() => handleNavClick('#contact')} 
+              onClick={() => handleNavClick('/contact')} 
               className="w-full p-button-primary p-3" 
             />
             <p className="navbar__mob-tagline">Trusted by 50+ Businesses</p>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Footer.css';
 import LegalDialog from './LegalDialog';
 
@@ -6,22 +7,23 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [legalVisible, setLegalVisible] = useState(false);
   const [activeLegal, setActiveLegal] = useState(null);
+  const navigate = useNavigate();
 
   const footerLinks = {
     company: [
-      { label: 'About Us', href: '#about' },
-      { label: 'Services', href: '#services' },
-      { label: 'Projects', href: '#projects' },
-      { label: 'Careers', href: '#' },
+      { label: 'About Us', href: '/about' },
+      { label: 'Services', href: '/services' },
+      { label: 'Portfolio', href: '/portfolio' },
+      { label: 'Careers', href: '/careers' },
     ],
     resources: [
-      { label: 'Blog', href: '#' },
-      { label: 'Case Studies', href: '#' },
-      { label: 'Documentation', href: '#' },
-      { label: 'Support', href: '#' },
+      { label: 'Blog', href: '/blog' },
+      { label: 'Case Studies', href: '/portfolio' },
+      { label: 'CertifyPro', href: '/certifypro' },
+      { label: 'Contact', href: '/contact' },
     ],
     products: [
-      { label: 'CertifyPro', href: 'https://certifypro.vsgrps.com', target: '_blank', rel: 'noopener noreferrer' },
+      { label: 'CertifyPro SaaS', href: 'https://certifypro.vsgrps.com', target: '_blank', rel: 'noopener noreferrer' },
     ],
     legal: [
       { label: 'Privacy Policy', action: 'Privacy Policy' },
@@ -35,12 +37,9 @@ const Footer = () => {
     { icon: 'pi pi-github', href: 'https://github.com/vimalRaj45', label: 'GitHub' },
   ];
 
-  const handleNavClick = (e, href) => {
-    if (href.startsWith('#') && href.length > 1) {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleNavClick = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleLegalClick = (e, action) => {
@@ -55,7 +54,7 @@ const Footer = () => {
         <div className="footer__grid">
           {/* Brand */}
           <div className="footer__brand">
-            <div className="footer__logo">
+            <div className="footer__logo" onClick={() => handleNavClick('/')} style={{ cursor: 'pointer' }}>
               <div className="navbar__logo-icon">V</div>
               <span className="navbar__logo-text">VSGRPS</span>
             </div>
@@ -89,7 +88,7 @@ const Footer = () => {
                   <a
                     href={link.href}
                     className="footer__link"
-                    onClick={(e) => handleNavClick(e, link.href)}
+                    onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
                   >
                     {link.label}
                   </a>
@@ -104,7 +103,11 @@ const Footer = () => {
             <ul className="footer__links">
               {footerLinks.resources.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="footer__link">
+                  <a 
+                    href={link.href} 
+                    className="footer__link"
+                    onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+                  >
                     {link.label}
                   </a>
                 </li>

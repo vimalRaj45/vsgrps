@@ -122,7 +122,7 @@ const ProjectCard = ({ project, index, navigate }) => {
         )}
         <img
           src={project.image}
-          alt={project.title}
+          alt={`${project.title} - Premium digital solution and software developed by VSGRPS Technologies`}
           width="600"
           height="400"
           className={`projects__card-image ${imageLoaded ? 'loaded' : ''}`}
