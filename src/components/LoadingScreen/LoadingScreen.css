@@ -1,0 +1,195 @@
+/* ===== Loading Screen ===== */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  overflow: hidden;
+  transition: background-color var(--transition-base);
+}
+
+/* Grid Matrix Background */
+.loading-screen__grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(var(--color-accent-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-accent-light) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center;
+  mask-image: radial-gradient(circle, black, transparent 80%);
+  opacity: 0.5;
+}
+
+.loading-screen__content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Vision Shield Logo */
+.loading-screen__logo-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-screen__v-shield {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: var(--color-card-shadow);
+}
+
+.loading-screen__v-scanner {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--color-accent);
+  box-shadow: 0 0 15px var(--color-accent);
+  z-index: 5;
+}
+
+.loading-screen__v-text {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--color-heading);
+}
+
+.loading-screen__ring {
+  position: absolute;
+  inset: -10px;
+  border: 1px dashed var(--color-border);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+/* Brand Typography */
+.loading-screen__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.loading-screen__title-wrapper {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.loading-screen__title-char {
+  font-size: 2.25rem;
+  font-weight: 850;
+  color: var(--color-heading);
+  letter-spacing: 0.15em;
+}
+
+.loading-screen__vision-text {
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.loading-screen__values {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.loading-screen__value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.loading-screen__divider {
+  color: var(--color-border);
+  font-weight: 900;
+}
+
+/* Progress Area */
+.loading-screen__progress-section {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.loading-screen__bar-container {
+  width: 100%;
+  height: 2px;
+  background: var(--color-border);
+  border-radius: 100px;
+  overflow: hidden;
+  opacity: 0.3;
+}
+
+.loading-screen__bar-fill {
+  height: 100%;
+  background: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loading-screen__status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.loading-screen__status-msg {
+  font-size: 0.6875rem;
+  color: var(--color-muted);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.loading-screen__percent {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-weight: 700;
+  font-family: monospace;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .loading-screen__title-char {
+    font-size: 1.75rem;
+  }
+  
+  .loading-screen__vision-text {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+  }
+  
+  .loading-screen__logo-container {
+    width: 100px;
+    height: 100px;
+  }
+}

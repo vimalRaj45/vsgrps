@@ -1,0 +1,139 @@
+/* ===== Services ===== */
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.services__card {
+  position: relative;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 36px 28px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease !important;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: center;
+}
+
+.services__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), #3B82F6);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Cloudflare card hover: -4px lift, border brightens by exactly 1 tone */
+.services__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--color-card-shadow-hover);
+  border-color: var(--color-light-blue-400);
+}
+
+.services__card:hover::before {
+  transform: scaleX(1);
+}
+
+.services__icon {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 8px; /* Centered */
+  transition: all var(--transition-base);
+}
+
+.services__card:hover .services__icon {
+  transform: scale(1.1);
+}
+
+/* Background removal for lottie */
+.services__card:hover .services__icon {
+  background: transparent;
+}
+
+.services__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--color-heading);
+}
+
+.services__description {
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.services__arrow {
+  margin-top: 20px;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all var(--transition-base);
+  color: var(--color-accent);
+}
+
+.services__card:hover .services__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .services__card {
+    padding: 18px 14px;
+  }
+
+  .services__icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+  }
+
+  .services__icon i {
+    font-size: 1rem;
+  }
+
+  .services__title {
+    font-size: 0.875rem;
+    margin-bottom: 6px;
+  }
+
+  .services__description {
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .services__arrow {
+    margin-top: 10px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Removed 380px override for 2-column layout */

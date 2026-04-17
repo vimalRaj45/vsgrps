@@ -1,0 +1,199 @@
+.floating-actions {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.floating-actions > * {
+    pointer-events: auto;
+}
+
+/* Premium Chat Widget - Glassmorphism & SaaS Style */
+.premium-chat-widget {
+    position: absolute;
+    bottom: 60px; /* Adjusted for smaller button */
+    right: 0;
+    width: 270px;
+    border-radius: 20px;
+    cursor: pointer;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15),
+                0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+[data-theme='dark'] .premium-chat-widget {
+    background: rgba(15, 23, 42, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.widget-glow-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #9333ea, #3b82f6);
+    background-size: 200% 100%;
+    animation: glow-move 3s linear infinite;
+}
+
+@keyframes glow-move {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.widget-content {
+    padding: 12px 14px; /* Slightly tighter */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.bot-avatar {
+    width: 38px;
+    height: 38px;
+    background: var(--color-accent);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.widget-title {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+}
+
+.widget-msg {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.4;
+}
+
+[data-theme='dark'] .widget-msg {
+    color: #f1f5f9;
+}
+
+.widget-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #f1f5f9;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 50%;
+}
+
+.widget-close-btn:hover {
+    background: #fee2e2;
+    color: #ef4444;
+    transform: rotate(90deg) scale(1.1);
+}
+
+[data-theme='dark'] .widget-close-btn {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Typing Indicator */
+.typing-indicator-wrapper {
+    display: flex;
+    gap: 4px;
+    padding: 6px 0;
+    align-items: center;
+}
+
+.typing-dot {
+    width: 5px;
+    height: 5px;
+    background: #3b82f6;
+    border-radius: 50%;
+    animation: typing 1s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Speed Dial Adjustments - Mobile First & Smaller */
+.speeddial-main-btn {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3) !important;
+}
+
+[data-theme='dark'] .speeddial-main-btn {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.speeddial-main-btn .p-button-icon {
+    font-size: 0.9rem !important;
+}
+
+/* Smaller items icons */
+.p-speeddial-action {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+}
+
+.p-speeddial-action-icon {
+    font-size: 0.8rem !important;
+}
+
+.speeddial__item--whatsapp { background: #22c55e !important; }
+.speeddial__item--call { background: #3b82f6 !important; }
+
+@media (max-width: 640px) {
+    .floating-actions {
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .premium-chat-widget {
+        width: 230px;
+        bottom: 54px;
+    }
+
+    .speeddial-main-btn {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+    }
+
+    .p-speeddial-action {
+        width: 30px !important;
+        height: 30px !important;
+        min-width: 30px !important;
+    }
+}
