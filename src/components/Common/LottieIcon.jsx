@@ -22,8 +22,8 @@ const LottieIcon = ({
 
   useEffect(() => {
     setIsClient(true);
-    // Check if the script is already loaded
-    if (typeof window !== 'undefined' && !window.customElements.get('lottie-player')) {
+    // Check if the script is already loaded and not in pre-render mode
+    if (typeof window !== 'undefined' && !window.__PRERENDER_INJECTED && !window.customElements.get('lottie-player')) {
       const script = document.createElement('script');
       script.src = 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js';
       script.async = true;
