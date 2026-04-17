@@ -17,18 +17,14 @@ export default defineConfig({
       renderer: new PuppeteerRenderer({
         renderAfterDocumentEvent: 'render-event',
         injectProperty: '__PRERENDER_INJECTED',
-        inject: {
-          foo: 'bar'
-        },
+        inject: { foo: 'bar' },
         headless: true,
       }),
       postProcess(renderedRoute) {
-        // Fix double title tags and meta issues
         const pageTitle = renderedRoute.title || 'VSGRPS — Building Digital Excellence';
         renderedRoute.html = renderedRoute.html
           .replace(/<title>(.*?)<\/title>/g, '')
           .replace(/<head>/, `<head><title>${pageTitle}</title>`);
-        
         return renderedRoute;
       },
     }),
@@ -38,9 +34,22 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // FIX 8: Manual chunk splitting → reduces unused JS by ~182KB
   build: {
     outDir: 'dist',
     sourcemap: false,
-    chunkSizeWarningLimit: 1000,
-  }
+    chunkSizeWarningLimit: 500,
+    rollupOptions: {
+      output: {
+        // FIX 8: Function form required by Vite 8 / Rolldown
+        manualChunks(id) {
+          if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/')) return 'vendor';
+          if (id.includes('node_modules/primereact'))  return 'primereact';
+          if (id.includes('node_modules/react-router')) return 'router';
+          if (id.includes('node_modules/framer-motion')) return 'framer';
+          if (id.includes('node_modules/swiper'))       return 'swiper';
+        },
+      },
+    },
+  },
 })

@@ -21,7 +21,7 @@ const Footer = () => {
       { label: 'Support', href: '#' },
     ],
     products: [
-      { label: 'CertifyPro', href: 'https://certifypro.vsgrps.com', target: '_blank' },
+      { label: 'CertifyPro', href: 'https://certifypro.vsgrps.com', target: '_blank', rel: 'noopener noreferrer' },
     ],
     legal: [
       { label: 'Privacy Policy', action: 'Privacy Policy' },
@@ -82,7 +82,7 @@ const Footer = () => {
 
           {/* Company Links */}
           <div className="footer__column">
-            <h4 className="footer__column-title">Company</h4>
+            <h3 className="footer__column-title">Company</h3>
             <ul className="footer__links">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
@@ -100,7 +100,7 @@ const Footer = () => {
 
           {/* Resources */}
           <div className="footer__column">
-            <h4 className="footer__column-title">Resources</h4>
+            <h3 className="footer__column-title">Resources</h3>
             <ul className="footer__links">
               {footerLinks.resources.map((link, index) => (
                 <li key={index}>
@@ -114,7 +114,7 @@ const Footer = () => {
 
           {/* Products */}
           <div className="footer__column">
-            <h4 className="footer__column-title">Products</h4>
+            <h3 className="footer__column-title">Products</h3>
             <ul className="footer__links">
               {footerLinks.products.map((link, index) => (
                 <li key={index}>
@@ -133,7 +133,7 @@ const Footer = () => {
 
           {/* Legal */}
           <div className="footer__column">
-            <h4 className="footer__column-title">Legal</h4>
+            <h3 className="footer__column-title">Legal</h3>
             <ul className="footer__links">
               {footerLinks.legal.map((link, index) => (
                 <li key={index}>

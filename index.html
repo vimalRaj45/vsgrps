@@ -3,95 +3,146 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- FIX 3: Removed maximum-scale=1, user-scalable=0 → Accessibility ↑ -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="VSGRPS Technologies — Premium software development company in Namakkal, India. We deliver scalable digital solutions, web apps, and intelligent automation for startups." />
-    <meta name="keywords" content="VSGRPS, software development Namakkal, web development India, startup tech partner, digital transformation, CertifyPro" />
+
+    <!-- FIX 12: Updated title & meta tags for India/Tamil Nadu SEO -->
+    <title>VSGRPS — Software Development Company | Web, App &amp; SaaS Solutions India</title>
+    <meta name="description" content="VSGRPS Technologies — software development company in Tamil Nadu, India. We build scalable web apps, mobile applications, SaaS products and digital solutions for startups and businesses worldwide. Crafted in India." />
+    <meta name="keywords" content="software development India, web development startup India, app development company Tamil Nadu, SaaS development India, digital solutions Namakkal, VSGRPS Technologies, CertifyPro" />
     <meta name="author" content="VSGRPS Technologies" />
     <link rel="canonical" href="https://vsgrps.com" />
     <meta name="google-site-verification" content="gqqLAlnUqc6eBcVbBjlEkRH3F6Xhy6NhBpjzFqsMlis" />
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vsgrps.com/" />
-    <meta property="og:title" content="VSGRPS Technologies — Building Digital Excellence in India" />
-    <meta property="og:description" content="Premium software development company in Namakkal, India. Scaling startups with world-class digital solutions." />
+    <meta property="og:title" content="VSGRPS Technologies — Software Development Company India" />
+    <meta property="og:description" content="Software development company in Namakkal, Tamil Nadu, India. Scalable web apps, mobile apps, SaaS products and digital solutions for startups worldwide." />
     <meta property="og:image" content="https://vsgrps.com/og-image.jpg" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://vsgrps.com/" />
     <meta property="twitter:title" content="VSGRPS Technologies — Digital Solutions India" />
-    <meta property="twitter:description" content="Software development company based in Namakkal, Tamil Nadu. We build the future of your business." />
+    <meta property="twitter:description" content="Software development company in Namakkal, Tamil Nadu. Building scalable digital solutions for startups worldwide." />
     <meta property="twitter:image" content="https://vsgrps.com/og-image.jpg" />
 
-    <!-- Schema.org JSON-LD -->
+    <!-- FIX 11: Enhanced @graph Schema with Organization + WebSite + Service -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "VSGRPS Technologies",
-        "url": "https://vsgrps.com",
-        "logo": "https://vsgrps.com/logo.png",
-        "description": "Premium software development company in Namakkal, India, specializing in digital solutions for startups and small businesses.",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Namakkal",
-          "addressRegion": "Tamil Nadu",
-          "addressCountry": "India"
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "VSGRPS Technologies",
+          "url": "https://vsgrps.com",
+          "logo": "https://vsgrps.com/logo.png",
+          "description": "VSGRPS Technologies is a software development company in Namakkal, Tamil Nadu, India helping startups and businesses worldwide with web development, app development, digital marketing and SaaS products.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Namakkal",
+            "addressRegion": "Tamil Nadu",
+            "addressCountry": "IN"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-8807099288",
+            "contactType": "customer service",
+            "availableLanguage": ["English", "Tamil"]
+          },
+          "sameAs": [
+            "https://github.com/vimalRaj45",
+            "https://www.linkedin.com/in/vimal-raj-s-b83b42324"
+          ],
+          "foundingLocation": "Namakkal, Tamil Nadu, India",
+          "areaServed": "Worldwide"
         },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+91-8807099288",
-          "contactType": "customer service"
+        {
+          "@type": "WebSite",
+          "url": "https://vsgrps.com",
+          "name": "VSGRPS Technologies",
+          "description": "Building Digital Excellence",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://vsgrps.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Service",
+          "serviceType": "Software Development",
+          "provider": {
+            "@type": "Organization",
+            "name": "VSGRPS Technologies"
+          },
+          "areaServed": "Worldwide",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Digital Services",
+            "itemListElement": [
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Development"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "App Development"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Digital Marketing"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "SaaS Development"}}
+            ]
+          }
         }
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "url": "https://vsgrps.com/",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://vsgrps.com/projects?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      }
+      ]
+    }
     </script>
 
+    <!-- FIX 4: Trimmed to exactly 2 preconnects (removed unpkg, lottie.host, lottiefiles) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://unpkg.com">
+
+    <!-- FIX 7: Google Fonts with display=swap for FCP improvement -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#000000" />
+
+    <!-- Inline theme init — prevents flash of wrong theme -->
     <script>
       (function() {
         try {
           var theme = localStorage.getItem('vsgrps_theme') || 'dark';
           document.documentElement.setAttribute('data-theme', theme);
-          if (theme === 'dark') {
-            document.documentElement.style.backgroundColor = '#000000';
-          }
+          if (theme === 'dark') document.documentElement.style.backgroundColor = '#000000';
         } catch (e) {}
       })();
     </script>
-    <title>VSGRPS Technologies — Digital Solutions Company India</title>
+
+    <!-- Service Worker registration -->
     <script>
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
+        window.addEventListener('load', function() {
           navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log('Service Worker Registered'))
-            .catch(err => console.log('Service Worker Registration Failed', err));
+            .then(function(reg) { console.log('Service Worker Registered'); })
+            .catch(function(err) { console.log('Service Worker Registration Failed', err); });
         });
       }
     </script>
   </head>
   <body>
     <div id="root"></div>
-    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js" type="module"></script>
-    <script defer src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script type="module" src="/src/main.jsx"></script>
     <noscript>Please enable JavaScript to view this website.</noscript>
+
+    <!-- FIX 5: Lazy-load Lottie scripts after page load → LCP ↓, TBT ↓ -->
+    <script>
+      window.addEventListener('load', function () {
+        var s1 = document.createElement('script');
+        s1.type = 'module';
+        s1.src = 'https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js';
+        document.body.appendChild(s1);
+
+        var s2 = document.createElement('script');
+        s2.defer = true;
+        s2.src = 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js';
+        document.body.appendChild(s2);
+      });
+    </script>
   </body>
 </html>
