@@ -108,7 +108,7 @@ const Hero = () => {
     };
   }, []);
 
-  const [isClient, setIsClient] = useState(false);
+  const [isClient, setIsClient] = useState(typeof window !== 'undefined' && !!window.__PRERENDER_INJECTED);
 
   useEffect(() => {
     setIsClient(true);

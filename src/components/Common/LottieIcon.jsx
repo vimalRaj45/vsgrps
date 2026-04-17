@@ -18,7 +18,7 @@ const LottieIcon = ({
   const playerRef = useRef(null);
   const containerRef = useRef(null);
 
-  const [isClient, setIsClient] = useState(false);
+  const [isClient, setIsClient] = useState(typeof window !== 'undefined' && !!window.__PRERENDER_INJECTED);
 
   useEffect(() => {
     setIsClient(true);

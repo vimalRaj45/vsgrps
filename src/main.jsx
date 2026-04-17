@@ -43,7 +43,7 @@ if (rootElement.hasChildNodes() && !window.__PRERENDER_INJECTED) {
 if (window.__PRERENDER_INJECTED) {
   console.log('Pre-render environment detected, waiting for content...');
   setTimeout(() => {
-    console.log('Firing render-event after 5s delay...');
+    console.log('Firing render-event after 8s delay...');
     document.dispatchEvent(new Event('render-event'));
-  }, 5000);
+  }, 8000);
 }
