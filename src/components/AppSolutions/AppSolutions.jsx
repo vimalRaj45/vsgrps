@@ -127,7 +127,7 @@ const AppSolutions = ({ onInstall, isInstalled }) => {
             transition={{ duration: 0.6 }}
           >
             <div className="app-solutions__illustration-container">
-              <img src={scoutApp} alt="Custom Web Application and Smart Business Solutions at VSGRPS" className="app-solutions__illustration" />
+              <img src={scoutApp} alt="Custom Web Application and Smart Business Solutions at VSGRPS" className="app-solutions__illustration" loading="lazy" />
               <div className="app-solutions__illustration-bg"></div>
             </div>
           </motion.div>

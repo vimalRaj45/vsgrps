@@ -57,7 +57,7 @@ const Contact = () => {
             transition={{ duration: 0.4, delay: 0.1, ease: [0.0, 0.0, 0.2, 1] }}
           >
             <div className="contact__illustration-container mb-5">
-              <img src={scoutContact} alt="Contact VSGRPS Support Team for Software Project Inquiries" className="contact__scout-img" />
+              <img src={scoutContact} alt="Contact VSGRPS Support Team for Software Project Inquiries" className="contact__scout-img" loading="lazy" />
             </div>
 
             <div className="contact__info-card">

@@ -22,9 +22,10 @@
   --color-section-2: #F8FAFC;
   --color-section-3: #F0F9FF;
 
+  /* Text */
   --color-heading: #000000;
   --color-body: #334155;
-  --color-muted: #475569;
+  --color-muted: #64748B;
 
   /* Misc */
   --color-border: #E2E8F0;
@@ -61,11 +62,12 @@
 /* Dark Mode Variables */
 [data-theme='dark'] {
   --color-bg: #0a0a0a;
+  --color-card-bg: #111111;
   --color-heading: #F8FAFC;
   --color-body: #94A3B8;
-  --color-muted: #94A3B8;
+  --color-muted: #64748B;
   --color-border: #1e293b;
-  --color-light-blue-100: #0d0d0d; 
+  --color-light-blue-100: #0d0d0d; /* section-alt in dark */
   --color-accent-light: rgba(37, 99, 235, 0.15);
   --color-white: #0a0a0a;
 

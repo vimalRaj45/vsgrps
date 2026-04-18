@@ -67,8 +67,8 @@ const CompanyReview = () => {
                       if (e.value) setShowDialog(true);
                     }}
                     cancel={false}
-                    onIcon={<img src="https://primefaces.org/cdn/primereact/images/rating/custom-icon-active.png" alt="active" width="40px" height="40px" />}
-                    offIcon={<img src="https://primefaces.org/cdn/primereact/images/rating/custom-icon.png" alt="inactive" width="40px" height="40px" />}
+                    onIcon={<img src="https://primefaces.org/cdn/primereact/images/rating/custom-icon-active.png" alt="active" width="40px" height="40px" loading="lazy" />}
+                    offIcon={<img src="https://primefaces.org/cdn/primereact/images/rating/custom-icon.png" alt="inactive" width="40px" height="40px" loading="lazy" />}
                   />
                 </div>
               </motion.div>
@@ -89,6 +89,7 @@ const CompanyReview = () => {
                     src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f929/512.webp" 
                     alt="Star Eyes Happy" 
                     className="company-review__success-img"
+                    loading="lazy"
                   />
                 </motion.div>
                 <h2 className="section-title mt-4">Thank You So Much!</h2>

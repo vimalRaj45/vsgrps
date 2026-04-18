@@ -173,7 +173,7 @@ const ProjectDetail = () => {
                   {project.detailImages.map((img, idx) => (
                     <SwiperSlide key={idx}>
                       <div className="project-detail__slide">
-                        <img src={img} alt={`Slide ${idx + 1}`} />
+                        <img src={img} alt={`Slide ${idx + 1}`} loading="lazy" />
                       </div>
                     </SwiperSlide>
                   ))}
