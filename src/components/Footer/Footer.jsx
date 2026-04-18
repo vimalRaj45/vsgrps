@@ -12,13 +12,13 @@ const Footer = () => {
       { label: 'About Us', href: '#about' },
       { label: 'Services', href: '#services' },
       { label: 'Projects', href: '#projects' },
-      { label: 'Careers', href: '#' },
+      { label: 'Careers', href: '/contact' },
     ],
     resources: [
-      { label: 'Blog', href: '#' },
-      { label: 'Case Studies', href: '#' },
-      { label: 'Documentation', href: '#' },
-      { label: 'Support', href: '#' },
+      { label: 'Blog', href: '/blog' },
+      { label: 'Case Studies', href: '/projects' },
+      { label: 'Documentation', href: '/contact' },
+      { label: 'Support', href: '/contact' },
     ],
     products: [
       { label: 'CertifyPro', href: 'https://certifypro.vsgrps.com', target: '_blank', rel: 'noopener noreferrer' },
@@ -138,7 +138,7 @@ const Footer = () => {
               {footerLinks.legal.map((link, index) => (
                 <li key={index}>
                   <a
-                    href="#"
+                    href="javascript:void(0)"
                     className="footer__link"
                     onClick={(e) => handleLegalClick(e, link.action)}
                   >

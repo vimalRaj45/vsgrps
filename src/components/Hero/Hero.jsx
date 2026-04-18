@@ -153,10 +153,10 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="hero__line">
-              <TypingText text="Digital Solutions." delay={0.4} hideCursor cursorDelay={1.5} />
+              <TypingText text="VSGRPS Technologies." delay={0.4} hideCursor cursorDelay={1.5} />
             </div>
             <div className="hero__line">
-              <TypingText text="Company India." delay={1.5} hideCursor cursorDelay={2.7} />
+              <TypingText text="Vision Solutions Groups." delay={1.5} hideCursor cursorDelay={2.7} />
             </div>
             <div className="hero__line">
               <AnimatePresence mode="wait">
@@ -183,9 +183,9 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35 }}
           >
-            The premier <strong>Software Development Company in India</strong>. 
-            Based in Namakkal, we are the <strong>Startup Tech Partner</strong> you've been looking for 
-            to build scalable, high-performance digital solutions.
+            <strong>VSGRPS Technologies</strong> is a premier software development powerhouse in India, 
+            dedicated to building robust, scalable, and high-performance digital solutions 
+            for modern businesses via <strong>Vision Solutions Groups</strong>.
           </motion.p>
 
           <motion.div

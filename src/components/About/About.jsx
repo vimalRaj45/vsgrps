@@ -59,10 +59,11 @@ const About = () => {
             <i className="pi pi-info-circle"></i>
             About Us
           </span>
-          <h2 className="section-title">Beyond Software — We Create Impact</h2>
+          <h2 className="section-title">VSGRPS — Vision Solutions Groups</h2>
           <p className="section-subtitle">
-            Vision Solution Groups (VSGRPS) is a technology-driven digital solutions provider 
-            focused on delivering Results and Performance through efficient, scalable systems.
+            <strong>VSGRPS Technologies</strong> is a premier software development powerhouse, 
+            dedicated to building robust, scalable, and high-performance digital solutions 
+            tailored to the unique needs of modern businesses in India.
           </p>
         </motion.div>
 

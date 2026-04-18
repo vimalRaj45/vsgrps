@@ -149,8 +149,8 @@ function App() {
                 <Route path="/" element={
                   <>
                     <Helmet>
-                      <title>VSGRPS Technologies | Digital Solutions Company India</title>
-                      <meta name="description" content="Premier software development company in Namakkal, India. We are the startup tech partner for web, app, and digital marketing." />
+                      <title>VSGRPS | Vision Solutions Groups | VSGRPS Technologies - Software Development India</title>
+                      <meta name="description" content="VSGRPS (Vision Solutions Groups) is a leading software development company in India. VSGRPS Technologies provides high-end web apps and automation systems." />
                       <link rel="canonical" href="https://vsgrps.com/" />
                     </Helmet>
                     <HomePage onShowChatbot={() => setShowChatbot(true)} theme={theme} toggleTheme={toggleTheme} onInstall={() => setShowInstallPrompt(true)} isInstalled={isInstalled} />

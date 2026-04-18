@@ -47,14 +47,14 @@ const Blog = () => {
                 </div>
                 
                 <h3 className="blog__card-title">
-                  <a href="#">{post.title}</a>
+                  <a href="/blog">{post.title}</a>
                 </h3>
                 
                 <p className="blog__card-excerpt">{post.excerpt}</p>
                 
                 <div className="blog__card-footer">
                   <span className="blog__card-author">By {post.author}</span>
-                  <a href="#" className="blog__card-link">
+                  <a href="/blog" className="blog__card-link">
                     Read More
                     <i className="pi pi-arrow-right"></i>
                   </a>
@@ -71,7 +71,7 @@ const Blog = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <a href="#" className="btn btn-outline blog__more-btn">
+          <a href="/blog" className="btn btn-outline blog__more-btn">
             View All Insights
           </a>
         </motion.div>
