@@ -109,6 +109,7 @@ const Navbar = ({ theme, toggleTheme }) => {
           icon="pi pi-bolt" 
           onClick={() => handleNavClick('#contact')} 
           className="navbar__cta p-button-primary" 
+          aria-label="Work With Us - Contact VSGRPS"
         />
       </motion.div>
       <button className="navbar__mobile-toggle" onClick={() => setVisible(true)} aria-label="Open Navigation Menu">
@@ -184,6 +185,7 @@ const Navbar = ({ theme, toggleTheme }) => {
               icon="pi pi-bolt" 
               onClick={() => handleNavClick('#contact')} 
               className="w-full p-button-primary p-3" 
+              aria-label="Start a Project with VSGRPS"
             />
             <p className="navbar__mob-tagline">Trusted by 50+ Businesses</p>
           </motion.div>

@@ -143,12 +143,14 @@ const Chatbot = ({ visible, onHide }) => {
                             icon="pi pi-whatsapp" 
                             className="p-button-success p-button-sm message-cta-btn" 
                             onClick={handleWhatsAppRedirect}
+                            aria-label="Contact us on WhatsApp"
                         />
                         <Button 
                             label="Call Now" 
                             icon="pi pi-phone" 
                             className="p-button-info p-button-sm message-cta-btn call-btn" 
                             onClick={handleCall}
+                            aria-label="Call VSGRPS Technologies"
                         />
                     </div>
                 </div>
@@ -223,6 +225,7 @@ const Chatbot = ({ visible, onHide }) => {
                             onClick={handleSendMessage} 
                             disabled={loading || !input.trim()} 
                             className="p-button-rounded btn-send" 
+                            aria-label="Send Message"
                         />
                     </div>
                 </div>

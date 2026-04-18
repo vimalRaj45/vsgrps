@@ -1,11 +1,22 @@
 {
-  "name": "VSGRPS Technologies — Building Digital Excellence",
+  "name": "VSGRPS | Vision Solutions Groups | VSGRPS Technologies",
   "short_name": "VSGRPS",
-  "description": "Premium software development company delivering scalable, modern digital solutions for businesses worldwide.",
+  "description": "VSGRPS (Vision Solutions Groups) — Premium software development company in India. VSGRPS Technologies delivers scalable web apps, automation systems and digital solutions for businesses worldwide.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#F8FAFC",
-  "theme_color": "#2563EB",
+  "orientation": "portrait",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": [
+    "business",
+    "productivity",
+    "technology"
+  ],
+  "keywords": "VSGRPS, Vision Solutions Groups, VSGRPS Technologies, software development India, web apps, automation systems, digital solutions",
+  "id": "vsgrps-pwa",
   "icons": [
     {
       "src": "/pwa-icon-192.png",
@@ -19,5 +30,15 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "label": "VSGRPS — Vision Solutions Groups Homepage"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }
