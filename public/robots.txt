@@ -3,10 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 
-Verification: google-site-verification=gqqLAlnUqc6eBcVbBjlEkRH3F6Xhy6NhBpjzFqsMlis
-
-
-Crawl-delay: 1
-Priority: 1.0
-
 Sitemap: https://vsgrps.com/sitemap.xml

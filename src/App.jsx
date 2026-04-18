@@ -45,23 +45,25 @@ const CustomSoftwarePage  = React.lazy(() => import('./pages/services/CustomSoft
 const HostingPage         = React.lazy(() => import('./pages/services/HostingPage'));
 const CustomerSupportPage = React.lazy(() => import('./pages/services/CustomerSupportPage'));
 
+import LazySection from './components/Common/LazySection';
+
 // Page Components
 const HomePage = ({ onShowChatbot, theme, toggleTheme, onInstall, isInstalled }) => (
   <>
     <Navbar onShowChatbot={onShowChatbot} theme={theme} toggleTheme={toggleTheme} />
     <main>
       <Hero />
-      <About />
-      <Services />
-      <FeaturedProduct />
-      <AppSolutions onInstall={onInstall} isInstalled={isInstalled} />
-      <Projects />
-      <Blog />
-      <WhyChooseUs />
-      <Testimonials />
-      <CompanyReview />
-      <TechStack />
-      <Contact />
+      <LazySection><About /></LazySection>
+      <LazySection><Services /></LazySection>
+      <LazySection><FeaturedProduct /></LazySection>
+      <LazySection><AppSolutions onInstall={onInstall} isInstalled={isInstalled} /></LazySection>
+      <LazySection><Projects /></LazySection>
+      <LazySection><Blog /></LazySection>
+      <LazySection><WhyChooseUs /></LazySection>
+      <LazySection><Testimonials /></LazySection>
+      <LazySection><CompanyReview /></LazySection>
+      <LazySection><TechStack /></LazySection>
+      <LazySection><Contact /></LazySection>
     </main>
   </>
 );

@@ -13,9 +13,15 @@
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://unpkg.com">
 
-    <!-- Performance: Preload Critical Assets -->
-    <link rel="preload" href="https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js" as="script" type="module">
-    <link rel="preload" href="https://lottie.host/53f42021-31ae-493c-b1b2-48e90284a730/CGvBx5r6P0.lottie" as="fetch" crossorigin>
+    <!-- Performance: Preconnect to Critical Domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://unpkg.com">
+
+    <!-- Performance: Preload Critical Assets with Fetch Priority -->
+    <link rel="preload" href="https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js" as="script" type="module" fetchpriority="high">
+    <link rel="preload" href="https://lottie.host/53f42021-31ae-493c-b1b2-48e90284a730/CGvBx5r6P0.lottie" as="fetch" crossorigin fetchpriority="high">
 
     <!-- SEO Fix: Master Keyword Optimization -->
     <title>VSGRPS | Vision Solutions Groups | VSGRPS Technologies — India</title>
@@ -129,21 +135,32 @@
     <script type="module" src="/src/main.jsx"></script>
     <noscript>Please enable JavaScript to view this website.</noscript>
 
-    <!-- FIX 5: Lazy-load Lottie scripts after page load → LCP ↓, TBT ↓ -->
+    <!-- FIX 5: Lazy-load non-critical Lottie player after page load -->
     <script>
       window.addEventListener('load', function () {
-        // Skip loading scripts during prerendering to avoid JSDOM errors
         if (window.__PRERENDER_INJECTED) return;
 
+        // Load the main dotlottie-wc first as it is high priority
         var s1 = document.createElement('script');
         s1.type = 'module';
         s1.src = 'https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js';
         document.body.appendChild(s1);
 
-        var s2 = document.createElement('script');
-        s2.defer = true;
-        s2.src = 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js';
-        document.body.appendChild(s2);
+        // Defer the generic lottie-player until idle
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(function() {
+            var s2 = document.createElement('script');
+            s2.defer = true;
+            s2.src = 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js';
+            document.body.appendChild(s2);
+          });
+        } else {
+          setTimeout(function() {
+            var s2 = document.createElement('script');
+            s2.src = 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js';
+            document.body.appendChild(s2);
+          }, 2000);
+        }
       });
     </script>
   </body>
