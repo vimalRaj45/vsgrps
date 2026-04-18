@@ -22,5 +22,5 @@ if (fs.existsSync(indexRoutePath)) {
         console.log('[Fix] Cleaned up temporary index folder');
     }
 } else {
-    console.error('[Fix] Could not find pre-rendered home page at:', indexRoutePath);
+    console.log('[Fix] Pre-rendered home page already at root or not found at sub-path. Skipping move.');
 }

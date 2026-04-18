@@ -15,7 +15,7 @@ export default defineConfig({
       staticDir: path.join(__dirname, 'dist'),
       routes: ['/', '/about', '/services', '/projects', '/contact', '/blog', '/privacy', '/terms', '/cookies'],
       renderer: new JSDOMRenderer({
-        renderAfterDocumentEvent: 'render-event',
+        renderAfterTime: 5000,
         injectProperty: '__PRERENDER_INJECTED',
         inject: { foo: 'bar' },
       }),
