@@ -39,4 +39,9 @@ if (rootElement.hasChildNodes() && !window.__PRERENDER_INJECTED) {
   );
 }
 
-// No extra event dispatch needed as we use renderAfterTime in vite.config.js
+// Dispatch event for pre-renderer
+if (window.__PRERENDER_INJECTED) {
+  setTimeout(() => {
+    document.dispatchEvent(new Event('render-event'));
+  }, 5000);
+}

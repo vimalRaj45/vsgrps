@@ -4,7 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import prerender from '@prerenderer/rollup-plugin'
-import JSDOMRenderer from '@prerenderer/renderer-jsdom'
+import PuppeteerRenderer from '@prerenderer/renderer-puppeteer'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -13,11 +13,13 @@ export default defineConfig({
     react(),
     prerender({
       staticDir: path.join(__dirname, 'dist'),
-      routes: ['/', '/about', '/services', '/projects', '/contact', '/blog', '/privacy', '/terms', '/cookies'],
-      renderer: new JSDOMRenderer({
-        renderAfterTime: 5000,
+      routes: ['/index', '/about', '/services', '/projects', '/contact', '/blog', '/privacy', '/terms', '/cookies'],
+      renderer: new PuppeteerRenderer({
+        renderAfterTime: 10000,
         injectProperty: '__PRERENDER_INJECTED',
         inject: { foo: 'bar' },
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
       }),
       postProcess(renderedRoute) {
         // Remove existing title tags to prevent duplicates and ensure Helmet title wins

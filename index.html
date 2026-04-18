@@ -121,6 +121,9 @@
     <!-- FIX 5: Lazy-load Lottie scripts after page load → LCP ↓, TBT ↓ -->
     <script>
       window.addEventListener('load', function () {
+        // Skip loading scripts during prerendering to avoid JSDOM errors
+        if (window.__PRERENDER_INJECTED) return;
+
         var s1 = document.createElement('script');
         s1.type = 'module';
         s1.src = 'https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js';
