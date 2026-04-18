@@ -4,7 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import prerender from '@prerenderer/rollup-plugin'
-import PuppeteerRenderer from '@prerenderer/renderer-puppeteer'
+import JSDOMRenderer from '@prerenderer/renderer-jsdom'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -13,18 +13,15 @@ export default defineConfig({
     react(),
     prerender({
       staticDir: path.join(__dirname, 'dist'),
-      routes: ['/index', '/about', '/services', '/projects', '/contact', '/blog'],
-      renderer: new PuppeteerRenderer({
+      routes: ['/', '/about', '/services', '/projects', '/contact', '/blog', '/privacy', '/terms', '/cookies'],
+      renderer: new JSDOMRenderer({
         renderAfterDocumentEvent: 'render-event',
         injectProperty: '__PRERENDER_INJECTED',
         inject: { foo: 'bar' },
-        headless: true,
       }),
       postProcess(renderedRoute) {
-        const pageTitle = renderedRoute.title || 'VSGRPS — Building Digital Excellence';
-        renderedRoute.html = renderedRoute.html
-          .replace(/<title>(.*?)<\/title>/g, '')
-          .replace(/<head>/, `<head><title>${pageTitle}</title>`);
+        // Remove existing title tags to prevent duplicates and ensure Helmet title wins
+        renderedRoute.html = renderedRoute.html.replace(/<title>(.*?)<\/title>/g, '');
         return renderedRoute;
       },
     }),
