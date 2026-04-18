@@ -369,13 +369,13 @@
 
   .hero__visual {
     order: -1;
-    max-width: 300px;
+    max-width: 450px;
     margin: 0 auto;
   }
 
   .hero__lottie-container {
-    width: 280px;
-    height: 280px;
+    width: 380px;
+    height: 380px;
   }
 
   .hero__trust-bar {
@@ -421,8 +421,8 @@
   }
 
   .hero__lottie-container {
-    width: 220px;
-    height: 220px;
+    width: 320px;
+    height: 320px;
   }
 
   .hero__badge {
@@ -433,8 +433,8 @@
 
 @media (max-height: 700px) and (max-width: 640px) {
   .hero__lottie-container {
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 250px;
   }
   .hero__title {
     font-size: 1.5rem;
