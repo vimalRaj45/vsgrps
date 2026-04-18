@@ -20,6 +20,11 @@ const CustomerSupportPage = (props) => {
       seoTitle="Customer Support Solutions India | VSGRPS Technologies"
       seoDescription="Customer support automation in Namakkal, India. WhatsApp chatbots, helpdesk systems, live chat."
       canonical="https://vsgrps.com/services/customer-support"
+      breadcrumb={[
+        { name: 'Home', href: '/' },
+        { name: 'Services', href: '/services' },
+        { name: 'Customer Support' }
+      ]}
       badge="Customer Support"
       heroTitle="Customer Support Solutions"
       heroSubtitle="Delight your customers 24/7 with automated support systems."

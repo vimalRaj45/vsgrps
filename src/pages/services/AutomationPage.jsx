@@ -25,6 +25,11 @@ const AutomationPage = (props) => {
       seoTitle="Business Automation Solutions India | VSGRPS Technologies Namakkal"
       seoDescription="Custom business automation solutions in Namakkal, India. Automate invoicing, emails, workflows, and reporting. Save 20+ hours/week. Free consultation."
       canonical="https://vsgrps.com/services/automation-solutions"
+      breadcrumb={[
+        { name: 'Home', href: '/' },
+        { name: 'Services', href: '/services' },
+        { name: 'Automation Solutions' }
+      ]}
       badge="Automation Solutions"
       heroTitle="Business Automation Solutions in India"
       heroSubtitle="Stop doing repetitive tasks manually. VSGRPS Technologies builds intelligent automation systems that save your team 20–30 hours every week."

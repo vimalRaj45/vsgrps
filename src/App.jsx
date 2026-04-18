@@ -36,6 +36,7 @@ import BlogPage from './pages/BlogPage';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 import CookiePolicyPage from './pages/CookiePolicyPage';
+import ScrollToTop from './components/Common/ScrollToTop';
 
 // Service Sub-Pages (Fix 12 — dedicated content pages)
 const WebDevelopmentPage  = React.lazy(() => import('./pages/services/WebDevelopmentPage'));
@@ -76,12 +77,21 @@ const ProjectPage = ({ onShowChatbot, theme, toggleTheme }) => (
 function App() {
   const [loading, setLoading] = useState(false);
   const [showChatbot, setShowChatbot] = useState(false);
-  const [theme, setTheme] = useState(localStorage.getItem('vsgrps_theme') || 'dark');
+  const [theme, setTheme] = useState('dark'); // Safe default for hydration
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
 
   React.useEffect(() => {
+    // Check localStorage after mount to avoid hydration mismatch
+    const savedTheme = localStorage.getItem('vsgrps_theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
     // Check if running in standalone mode (already installed and opened)
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
     if (isStandalone) {
@@ -127,10 +137,6 @@ function App() {
     document.documentElement.setAttribute('data-theme', newTheme);
   };
 
-  React.useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
   const handleLoadingComplete = useCallback(() => {
     setLoading(false);
   }, []);
@@ -140,6 +146,7 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
+        <ScrollToTop />
         <React.Suspense fallback={null}>
           <div className="app">
           <Toaster />

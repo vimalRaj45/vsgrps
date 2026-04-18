@@ -5,7 +5,7 @@ const CRMPage = (props) => {
   const faqs = [
     { q: 'What is a CRM dashboard?', a: 'A centralized interface that shows all customer data, deals, and sales pipeline in real time.' },
     { q: 'Do you build custom CRM?', a: 'Yes. We build fully custom CRMs and also integrate with Zoho, HubSpot, and Salesforce.' },
-    { q: 'How much does a custom CRM cost?', a: 'Systems start at ₹1,50,000 for simple needs and up to ₹10,00,000+ for enterprise.' },
+    { q: 'How much does a custom CRM cost?', a: 'Final pricing is calculated based on your workflow needs. As an approximation, simple systems start at ₹20,000, while enterprise solutions can range up to ₹1,00,000+.' },
   ];
 
   const features = [
@@ -23,6 +23,11 @@ const CRMPage = (props) => {
       seoTitle="Custom CRM Dashboard Development India | VSGRPS Technologies"
       seoDescription="Custom CRM and dashboard development in Namakkal, India. Real-time analytics, sales pipeline, customer management."
       canonical="https://vsgrps.com/services/crm-dashboards"
+      breadcrumb={[
+        { name: 'Home', href: '/' },
+        { name: 'Services', href: '/services' },
+        { name: 'CRM & Dashboards' }
+      ]}
       badge="CRM & Dashboards"
       heroTitle="Custom CRM & Dashboard Development in India"
       heroSubtitle="Visualise your entire business in one place. We build powerful, real-time CRM dashboards tailored to your exact workflow."

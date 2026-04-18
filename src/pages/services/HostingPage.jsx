@@ -20,6 +20,11 @@ const HostingPage = (props) => {
       seoTitle="Cloud Hosting & DevOps India | VSGRPS Technologies"
       seoDescription="Managed cloud hosting and DevOps in Namakkal, India. Cloudflare, AWS, DigitalOcean. 99.9% uptime."
       canonical="https://vsgrps.com/services/hosting-cloud"
+      breadcrumb={[
+        { name: 'Home', href: '/' },
+        { name: 'Services', href: '/services' },
+        { name: 'Hosting & Cloud' }
+      ]}
       badge="Hosting & Cloud"
       heroTitle="Cloud Hosting & DevOps Services"
       heroSubtitle="Fast, secure, and reliable cloud infrastructure managed by experts."

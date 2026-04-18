@@ -4,7 +4,7 @@ import ServicePageLayout from '../../components/Common/ServicePageLayout';
 const CustomSoftwarePage = (props) => {
   const faqs = [
     { q: 'What is custom software?', a: 'Software built specifically for your business workflows, scaling as you grow.' },
-    { q: 'How much does it cost?', a: 'Simple tools start at ₹75,000, while business apps range from ₹2L to ₹8L.' },
+    { q: 'How much does it cost?', a: 'Pricing is not fixed and is calculated based on project complexity. Approximately, simple tools start at ₹25,000, while business apps range from ₹50,000 to ₹1,00,000.' },
     { q: 'Who owns the source code?', a: 'You do. Full ownership is transferred to you upon final payment.' },
   ];
 
@@ -21,6 +21,11 @@ const CustomSoftwarePage = (props) => {
       seoTitle="Custom Software Development India | VSGRPS Technologies"
       seoDescription="Custom software development in Namakkal, India. Bespoke business apps, ERP, internal tools. NDA protected."
       canonical="https://vsgrps.com/services/custom-software"
+      breadcrumb={[
+        { name: 'Home', href: '/' },
+        { name: 'Services', href: '/services' },
+        { name: 'Custom Software' }
+      ]}
       badge="Custom Software"
       heroTitle="Custom Software Development in India"
       heroSubtitle="Off-the-shelf tools rarely fit perfectly. VSGRPS builds tailored software — you own every line of code."

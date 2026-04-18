@@ -3,7 +3,7 @@ import ServicePageLayout from '../../components/Common/ServicePageLayout';
 
 const WebDevelopmentPage = (props) => {
   const faqs = [
-    { q: 'How much does web development cost in India?', a: 'Our projects start at ₹50,000 for landing pages and ₹1,50,000 for business websites.' },
+    { q: 'How much does web development cost in India?', a: 'Pricing is not fixed and depends on your specific requirements. Typically, projects start at an approximate range of ₹3,000 for landing pages and ₹15,000 for business websites.' },
     { q: 'How long does a typical project take?', a: 'A standard business website takes 4–6 weeks. Complex SaaS platforms take 3–6 months.' },
     { q: 'Do you provide post-launch support?', a: 'Yes. All projects include 3 months of free bug-fix support.' },
   ];
@@ -23,6 +23,11 @@ const WebDevelopmentPage = (props) => {
       seoTitle="Web Development Services India | VSGRPS Technologies Namakkal"
       seoDescription="Professional web development services in Namakkal, India. React, Next.js, Node.js experts. Custom websites, SaaS platforms, and e-commerce solutions."
       canonical="https://vsgrps.com/services/web-development"
+      breadcrumb={[
+        { name: 'Home', href: '/' },
+        { name: 'Services', href: '/services' },
+        { name: 'Web Development' }
+      ]}
       badge="Web Development"
       heroTitle="Web Development Services in India"
       heroSubtitle="From pixel-perfect landing pages to enterprise-grade SaaS platforms — VSGRPS Technologies delivers world-class web development."
