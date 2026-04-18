@@ -33,6 +33,9 @@ const Blog = React.lazy(() => import('./components/Blog/Blog'));
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
+import CookiePolicyPage from './pages/CookiePolicyPage';
 
 // Service Sub-Pages (Fix 12 — dedicated content pages)
 const WebDevelopmentPage  = React.lazy(() => import('./pages/services/WebDevelopmentPage'));
@@ -159,6 +162,9 @@ function App() {
                 <Route path="/about" element={<AboutPage theme={theme} toggleTheme={toggleTheme} />} />
                 <Route path="/services" element={<ServicesPage theme={theme} toggleTheme={toggleTheme} />} />
                 <Route path="/blog" element={<BlogPage theme={theme} toggleTheme={toggleTheme} />} />
+                <Route path="/privacy" element={<PrivacyPage theme={theme} toggleTheme={toggleTheme} />} />
+                <Route path="/terms" element={<TermsPage theme={theme} toggleTheme={toggleTheme} />} />
+                <Route path="/cookies" element={<CookiePolicyPage theme={theme} toggleTheme={toggleTheme} />} />
                 <Route path="/projects" element={
                   <>
                     <Helmet>

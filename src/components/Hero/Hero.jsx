@@ -152,13 +152,13 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="hero__line">
+            <div className="hero__line hero__line--main">
+              VSGRPS — Vision Solutions Groups
+            </div>
+            <div className="hero__line hero__line--sub">
               <TypingText text="VSGRPS Technologies." delay={0.4} hideCursor cursorDelay={1.5} />
             </div>
-            <div className="hero__line">
-              <TypingText text="Vision Solutions Groups." delay={1.5} hideCursor cursorDelay={2.7} />
-            </div>
-            <div className="hero__line">
+            <div className="hero__line hero__line--accent">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={accentPhrases[accentIndex]}

@@ -7,90 +7,111 @@
     <!-- FIX 3: Removed maximum-scale=1, user-scalable=0 → Accessibility ↑ -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Updated SEO tags for VSGRPS / Vision Solutions Groups / VSGRPS Technologies -->
-    <title>VSGRPS | Vision Solutions Groups | VSGRPS Technologies - Software Development India</title>
-    <meta name="description" content="VSGRPS (Vision Solutions Groups) is a leading software development company in India. VSGRPS Technologies provides high-end web apps, automation systems, and digital solutions to scale your business." />
+    <!-- SEO Fix: Master Keyword Optimization -->
+    <title>VSGRPS | Vision Solutions Groups | VSGRPS Technologies — India</title>
+    <meta name="description" content="VSGRPS (Vision Solutions Groups) is India's leading software development company. VSGRPS Technologies builds scalable web apps, automation systems, and digital solutions." />
     <meta name="keywords" content="VSGRPS, Vision Solutions Groups, VSGRPS Technologies, software development India, web development, automation systems, digital solutions India" />
     <meta name="author" content="VSGRPS Technologies" />
     <link rel="canonical" href="https://vsgrps.com" />
     <meta name="google-site-verification" content="gqqLAlnUqc6eBcVbBjlEkRH3F6Xhy6NhBpjzFqsMlis" />
 
-    <!-- Open Graph -->
+    <!-- Open Graph (All Keywords) -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vsgrps.com/" />
     <meta property="og:title" content="VSGRPS | Vision Solutions Groups | VSGRPS Technologies" />
-    <meta property="og:description" content="Leading software development company in India specializing in web apps and automation." />
+    <meta property="og:description" content="Leading software development powerhouse in India. We specialize in VSGRPS Technologies and Vision Solutions Groups projects." />
     <meta property="og:image" content="https://vsgrps.com/og-image.jpg" />
 
-    <!-- Twitter -->
+    <!-- Twitter (All Keywords) -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://vsgrps.com/" />
     <meta property="twitter:title" content="VSGRPS Technologies — Vision Solutions Groups" />
-    <meta property="twitter:description" content="Building Digital Excellence with VSGRPS Technologies." />
+    <meta property="twitter:description" content="Building Digital Excellence with VSGRPS Technologies and Vision Solutions Groups in India." />
     <meta property="twitter:image" content="https://vsgrps.com/og-image.jpg" />
 
-    <!-- Schema: Organization + LocalBusiness + WebSite + Service -->
+    <!-- Enhanced Schema: Master Multi-Entity JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "VSGRPS",
-      "alternateName": ["Vision Solutions Groups", "VSGRPS Technologies","VSGRPS Namakkal","VSGRPS","vsgrps"],
-      "url": "https://vsgrps.com",
-      "logo": "https://vsgrps.com/logo.png",
-      "description": "VSGRPS (Vision Solutions Groups) is a leading software development company in India specializing in web apps and automation via VSGRPS Technologies.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "IN"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/vsgrps",
-        "https://www.instagram.com/vsgrps",
-        "https://twitter.com/vsgrps"
+      "@graph": [
+        {
+          "@type": ["Organization", "ProfessionalService"],
+          "@id": "https://vsgrps.com/#organization",
+          "name": "VSGRPS",
+          "alternateName": ["Vision Solutions Groups", "VSGRPS Technologies", "vsgrps"],
+          "url": "https://vsgrps.com",
+          "logo": "https://vsgrps.com/logo.png",
+          "description": "VSGRPS (Vision Solutions Groups) is a leading software development company in India specializing in web apps and automation via VSGRPS Technologies.",
+          "foundingDate": "2021",
+          "numberOfEmployees": "10-50",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "IN"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-8807099288",
+            "contactType": "customer service",
+            "email": "vimalraj5207@gmail.com"
+          },
+          "areaServed": ["India", "Worldwide"],
+          "keywords": "VSGRPS, Vision Solutions Groups, VSGRPS Technologies, Software Development India",
+          "sameAs": [
+            "https://www.linkedin.com/company/vsgrps",
+            "https://www.instagram.com/vsgrps",
+            "https://twitter.com/vsgrps"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://vsgrps.com/#website",
+          "url": "https://vsgrps.com",
+          "name": "VSGRPS Technologies",
+          "publisher": { "@id": "https://vsgrps.com/#organization" },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://vsgrps.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://vsgrps.com"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "About",
+              "item": "https://vsgrps.com/about"
+            }
+          ]
+        }
       ]
     }
     </script>
 
-    <!-- FIX 4: Trimmed to exactly 2 preconnects (removed unpkg, lottie.host, lottiefiles) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- FIX 7: Google Fonts with display=swap for FCP improvement -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#000000" />
-
-    <!-- Inline theme init — prevents flash of wrong theme -->
-    <script>
-      (function() {
-        try {
-          var theme = localStorage.getItem('vsgrps_theme') || 'dark';
-          document.documentElement.setAttribute('data-theme', theme);
-          if (theme === 'dark') document.documentElement.style.backgroundColor = '#000000';
-        } catch (e) {}
-      })();
-    </script>
-
-    <!-- Service Worker registration -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js')
-            .then(function(reg) { console.log('Service Worker Registered'); })
-            .catch(function(err) { console.log('Service Worker Registration Failed', err); });
-        });
-      }
-    </script>
-
-    <!-- FIX 17: Google Analytics 4 — replace G-XXXXXXXXXX with your actual Measurement ID -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2CQC98J7WY"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+
+      // Default Consent Mode (EEA Compliance)
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+
       gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script> -->
+      gtag('config', 'G-2CQC98J7WY');
+    </script>
   </head>
   <body>
     <div id="root"></div>

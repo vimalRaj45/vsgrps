@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 import LegalDialog from './LegalDialog';
 
@@ -24,9 +25,9 @@ const Footer = () => {
       { label: 'CertifyPro', href: 'https://certifypro.vsgrps.com', target: '_blank', rel: 'noopener noreferrer' },
     ],
     legal: [
-      { label: 'Privacy Policy', action: 'Privacy Policy' },
-      { label: 'Terms of Service', action: 'Terms of Service' },
-      { label: 'Cookie Policy', action: 'Cookie Policy' },
+      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Terms of Service', href: '/terms' },
+      { label: 'Cookie Policy', href: '/cookies' },
     ],
   };
 
@@ -137,13 +138,12 @@ const Footer = () => {
             <ul className="footer__links">
               {footerLinks.legal.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href="javascript:void(0)"
+                  <Link
+                    to={link.href}
                     className="footer__link"
-                    onClick={(e) => handleLegalClick(e, link.action)}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
