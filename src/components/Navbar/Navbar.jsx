@@ -52,6 +52,7 @@ const Navbar = ({ theme, toggleTheme }) => {
       ],
     },
     { label: 'Projects',    icon: 'pi pi-briefcase',    command: () => handleNavClick('#projects') },
+    { label: 'Agile',       icon: 'pi pi-bolt',         command: () => window.open('https://agile.vsgrps.com', '_blank') },
     { label: 'Testimonials',icon: 'pi pi-star',         command: () => handleNavClick('#testimonials') },
     { label: 'Rate Us',     icon: 'pi pi-heart-fill',   command: () => handleNavClick('#company-review') },
     { label: 'Contact',     icon: 'pi pi-envelope',     command: () => handleNavClick('#contact') },

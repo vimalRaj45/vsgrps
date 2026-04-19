@@ -23,6 +23,7 @@ const Footer = () => {
     ],
     products: [
       { label: 'CertifyPro', href: 'https://certifypro.vsgrps.com', target: '_blank', rel: 'noopener noreferrer' },
+      { label: 'VSGRPS Agile', href: 'https://agile.vsgrps.com', target: '_blank', rel: 'noopener noreferrer' },
     ],
     legal: [
       { label: 'Privacy Policy', href: '/privacy' },

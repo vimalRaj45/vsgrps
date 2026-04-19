@@ -28,6 +28,7 @@ const ProjectDetail = React.lazy(() => import('./pages/ProjectDetail/ProjectDeta
 const AppSolutions = React.lazy(() => import('./components/AppSolutions/AppSolutions'));
 const FeaturedProduct = React.lazy(() => import('./components/FeaturedProduct/FeaturedProduct'));
 const Blog = React.lazy(() => import('./components/Blog/Blog'));
+const AgileWorkspaceProduct = React.lazy(() => import('./components/AgileWorkspaceProduct/AgileWorkspaceProduct'));
 
 // New SEO Pages
 import ServicesPage from './pages/ServicesPage';
@@ -55,6 +56,7 @@ const HomePage = ({ onShowChatbot, theme, toggleTheme, onInstall, isInstalled })
       <About />
       <Services />
       <FeaturedProduct />
+      <AgileWorkspaceProduct />
       <AppSolutions onInstall={onInstall} isInstalled={isInstalled} />
       <Projects />
       <Blog />
