@@ -108,7 +108,11 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
     html, body {
       width: 100%;
@@ -316,6 +320,32 @@
     }
     .btn-magic:hover {
       box-shadow: 0 0 20px rgba(37, 99, 235, 0.4), 0 0 40px rgba(37, 99, 235, 0.2);
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 80px 24px 40px;
+      transition: all 0.3s ease;
+    }
+    .footer-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+    .footer-link:hover {
+      color: var(--accent);
+    }
+    .footer-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: var(--text);
     }
 
     .btn-outline {
@@ -592,17 +622,33 @@
       color: var(--accent);
     }
 
-    /* Product Side-by-Side Mobile Override */
+    /* Product Mobile Optimization: Smaller Animation in Top-Right */
     @media (max-width: 640px) {
       .product-grid-mobile {
-        grid-template-columns: 1fr 1fr !important;
-        gap: 1rem !important;
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem !important;
+        position: relative;
+        padding-top: 20px;
       }
-      .product-grid-mobile h3 { font-size: 18px !important; margin-bottom: 8px !important; }
-      .product-grid-mobile p { font-size: 12px !important; line-height: 1.4 !important; }
-      .product-grid-mobile .btn-primary { padding: 8px 12px !important; font-size: 11px !important; }
-      .product-grid-mobile .product-features { display: none !important; } /* Hide features on mobile side-by-side to save space */
-      .product-grid-mobile .lottie-wrapper { height: 150px !important; width: 150px !important; margin: 0 auto; }
+      .product-grid-mobile h3 { font-size: 20px !important; margin-bottom: 8px !important; max-width: 70%; }
+      .product-grid-mobile p { font-size: 13px !important; line-height: 1.5 !important; margin-bottom: 16px !important; }
+      .product-grid-mobile .btn-primary { width: 100%; justify-content: center; }
+      .product-grid-mobile .product-features { display: none !important; }
+      
+      /* Animation becomes a slightly larger floating element in the top-right */
+      .product-grid-mobile .lottie-wrapper { 
+        height: 120px !important; 
+        width: 120px !important; 
+        position: absolute !important;
+        top: -15px;
+        right: -10px;
+        z-index: 10;
+        opacity: 0.9; /* Slight transparency to not overpower text */
+      }
+      /* Ensure tags don't clash */
+      .product-grid-mobile > div:first-child > div:first-child {
+        margin-bottom: 12px !important;
+      }
     }
 
     /* Chatbot Styles */
@@ -1473,9 +1519,9 @@
       </p>
     </div>
 
-    <div class="flex overflow-x-auto gap-6 pb-8 hide-scrollbar snap-x snap-mandatory scroll-smooth px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-      <div class="card min-w-[300px] md:min-w-[400px] snap-center" data-aos="fade-up" data-aos-delay="100">
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
         <div class="project-img" style="background:linear-gradient(135deg,var(--accent),var(--accent-blue));display:flex;align-items:center;justify-content:center;">
           <i class="bi bi-patch-check" style="font-size:48px;color:#080C14;opacity:0.8;"></i>
         </div>
@@ -1509,7 +1555,7 @@
         </div>
       </div>
 
-      <div class="card min-w-[300px] md:min-w-[400px] snap-center" data-aos="fade-up" data-aos-delay="200">
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
         <div class="project-img" style="background:linear-gradient(135deg,#1a2a4a,#0d1a35);display:flex;align-items:center;justify-content:center;">
           <i class="bi bi-cart3" style="font-size:48px;color:#3B82F6;opacity:0.8;"></i>
         </div>
@@ -1541,7 +1587,7 @@
         </div>
       </div>
 
-      <div class="card min-w-[300px] md:min-w-[400px] snap-center" data-aos="fade-up" data-aos-delay="300">
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
         <div class="project-img" style="background:linear-gradient(135deg,#1a1030,#0d0820);display:flex;align-items:center;justify-content:center;">
           <i class="bi bi-mortarboard" style="font-size:48px;color:#A855F7;opacity:0.8;"></i>
         </div>
@@ -2070,49 +2116,53 @@
 </section>
 
 <!-- ==================== FOOTER ==================== -->
-<footer style="background:#060A12;border-top:1px solid #1A2540;padding:60px 24px 32px;">
+<footer class="site-footer">
   <div class="max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
       <!-- Brand -->
       <div class="md:col-span-2">
-        <div class="flex items-center gap-3 mb-4">
-          <div style="width:38px;height:38px;background:linear-gradient(135deg,#3B82F6,#60A5FA);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;color:#FFFFFF;font-size:16px;">V</div>
-          <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;">VSGRPS</span>
+        <div class="flex items-center gap-3 mb-6">
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,#3B82F6,#2563EB);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;color:#FFFFFF;font-size:18px;">V</div>
+          <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:20px;color:var(--text);">VSGRPS</span>
         </div>
-        <p style="color:#94A3B8;font-size:14px;line-height:1.8;max-width:320px;margin-bottom:20px;">
+        <p style="color:var(--text-muted);font-size:14px;line-height:1.8;max-width:360px;margin-bottom:24px;">
           Technology-driven digital solutions focused on building efficient, scalable and user-friendly systems. Crafted with ♥ in India.
         </p>
-        <div class="flex gap-3">
-          <a href="https://certifypro.vsgrps.com" target="_blank" style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:8px 14px;font-size:12px;color:#3B82F6;text-decoration:none;font-weight:600;">CertifyPro ↗</a>
-          <a href="https://agile.vsgrps.com" target="_blank" style="background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.2);border-radius:8px;padding:8px 14px;font-size:12px;color:#2563EB;text-decoration:none;font-weight:600;">Agile ↗</a>
+        <div class="flex gap-4">
+          <a href="https://certifypro.vsgrps.com" target="_blank" class="footer-link" style="background:rgba(37,99,235,0.06);border:1px solid rgba(37,99,235,0.15);border-radius:10px;padding:10px 18px;font-weight:600;display:inline-flex;align-items:center;gap:6px;">
+            CertifyPro <i class="bi bi-arrow-up-right" style="font-size:12px;"></i>
+          </a>
+          <a href="https://agile.vsgrps.com" target="_blank" class="footer-link" style="background:rgba(37,99,235,0.06);border:1px solid rgba(37,99,235,0.15);border-radius:10px;padding:10px 18px;font-weight:600;display:inline-flex;align-items:center;gap:6px;">
+            VSGRPS Agile <i class="bi bi-arrow-up-right" style="font-size:12px;"></i>
+          </a>
         </div>
       </div>
 
       <!-- Company -->
       <div>
-        <div style="font-family:'Outfit',sans-serif;font-weight:700;margin-bottom:16px;font-size:15px;">Company</div>
-        <div class="flex flex-col gap-3">
-          <a href="#about" style="color:#94A3B8;text-decoration:none;font-size:14px;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#7A8BA8'">About Us</a>
-          <a href="#services" style="color:#94A3B8;text-decoration:none;font-size:14px;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#7A8BA8'">Services</a>
-          <a href="#projects" style="color:#94A3B8;text-decoration:none;font-size:14px;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#7A8BA8'">Projects</a>
-          <a href="#contact" style="color:#94A3B8;text-decoration:none;font-size:14px;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#7A8BA8'">Careers</a>
+        <div class="footer-title">Company</div>
+        <div class="flex flex-col gap-4">
+          <a href="#about" class="footer-link">About Us</a>
+          <a href="#services" class="footer-link">Services</a>
+          <a href="#projects" class="footer-link">Projects</a>
+          <a href="#contact" class="footer-link">Contact</a>
         </div>
       </div>
 
       <!-- Legal -->
       <div>
-        <div style="font-family:'Outfit',sans-serif;font-weight:700;margin-bottom:16px;font-size:15px;">Legal</div>
-        <div class="flex flex-col gap-3">
-          <a href="https://vsgrps.com/privacy" style="color:#94A3B8;text-decoration:none;font-size:14px;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#7A8BA8'">Privacy Policy</a>
-          <a href="https://vsgrps.com/terms" style="color:#94A3B8;text-decoration:none;font-size:14px;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#7A8BA8'">Terms of Service</a>
-          <a href="https://vsgrps.com/cookies" style="color:#94A3B8;text-decoration:none;font-size:14px;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#7A8BA8'">Cookie Policy</a>
+        <div class="footer-title">Legal</div>
+        <div class="flex flex-col gap-4">
+          <a href="privacy.html" class="footer-link">Privacy Policy</a>
+          <a href="terms.html" class="footer-link">Terms of Service</a>
+          <a href="cookies.html" class="footer-link">Cookie Policy</a>
         </div>
       </div>
     </div>
 
-    <div style="border-top:1px solid #1E293B;padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
-      <div style="color:#94A3B8;font-size:13px;">© 2026 VSGRPS Technologies. All rights reserved.</div>
-      <div style="color:#94A3B8;font-size:13px;">Crafted with ♥ in Namakkal, Tamil Nadu, India</div>
+    <div style="border-top:1px solid var(--border);padding-top:32px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;">
+      <div style="color:var(--text-muted);font-size:13px;">© 2026 VSGRPS Technologies. All rights reserved.</div>
+      <div style="color:var(--text-muted);font-size:13px;">Crafted with ♥ in Namakkal, Tamil Nadu, India</div>
     </div>
   </div>
 </footer>
