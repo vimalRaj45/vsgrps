@@ -1,153 +1,1882 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VSGRPS - Tech Platform</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VSGRPS | Vision Solutions Groups | Software Development India</title>
+  <meta name="description" content="VSGRPS (Vision Solutions Groups) is a leading software development company in Namakkal, Tamil Nadu, India. We build scalable web apps, SaaS platforms, automation systems and enterprise software." />
+  <meta name="keywords" content="software development Salem, web development Tamil Nadu, VSGRPS, full stack developer India, SaaS development, React developer India" />
+  <link rel="canonical" href="https://vsgrps.com/" />
 
-<!-- Lottie Player -->
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <!-- Open Graph -->
+  <meta property="og:title" content="VSGRPS | Vision Solutions Groups" />
+  <meta property="og:description" content="India's premier software development company. We build scalable web apps, SaaS platforms, and enterprise software." />
+  <meta property="og:url" content="https://vsgrps.com/" />
+  <meta property="og:type" content="website" />
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #0a0f1c;
-  color: white;
-}
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="VSGRPS | Vision Solutions Groups" />
+  <meta name="twitter:description" content="India's premier software development company." />
 
-.section {
-  padding: 60px 20px;
-  text-align: center;
-}
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-}
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-.card {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 15px;
-  width: 220px;
-  backdrop-filter: blur(10px);
-  transition: 0.3s;
-}
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 20px #00d2ff;
-}
+  <!-- Lottie -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 
-h2 {
-  margin-bottom: 30px;
-}
-</style>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            accent: '#00F5A0',
+            accentBlue: '#00D9F5',
+            dark: '#080C14',
+            darkCard: '#0D1320',
+            darkBorder: '#1A2540',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --accent: #00F5A0;
+      --accent-blue: #00D9F5;
+      --bg: #080C14;
+      --card: #0D1320;
+      --border: #1A2540;
+      --text: #E8EDF8;
+      --text-muted: #7A8BA8;
+      --nav-bg: rgba(8, 12, 20, 0.95);
+    }
+
+    [data-theme="light"] {
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --border: #E2E8F0;
+      --text: #0F172A;
+      --text-muted: #64748B;
+      --nav-bg: rgba(248, 250, 252, 0.95);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* Grid background */
+    .grid-bg {
+      background-image: 
+        linear-gradient(rgba(0,245,160,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,245,160,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Glow effects */
+    .glow-accent { box-shadow: 0 0 30px rgba(0,245,160,0.15); }
+    .glow-text { text-shadow: 0 0 40px rgba(0,245,160,0.4); }
+    .glow-blue { box-shadow: 0 0 30px rgba(0,217,245,0.15); }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #00F5A0, #00D9F5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Navbar */
+    #navbar {
+      transition: all 0.3s ease;
+    }
+    #navbar.scrolled {
+      background: var(--nav-bg) !important;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Hero typing cursor */
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1em;
+      background: var(--accent);
+      margin-left: 4px;
+      animation: blink 0.8s infinite;
+      vertical-align: middle;
+    }
+    @keyframes blink { 0%,50% { opacity:1; } 51%,100% { opacity:0; } }
+
+    /* Animated gradient orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: float 8s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,245,160,0.03), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .card:hover::before { opacity: 1; }
+    .card:hover {
+      border-color: rgba(0,245,160,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(0,245,160,0.08);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: linear-gradient(135deg, #00F5A0, #00D9F5);
+      color: #080C14;
+      font-weight: 700;
+      font-family: 'Syne', sans-serif;
+      border-radius: 8px;
+      padding: 14px 32px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(0,245,160,0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      font-weight: 600;
+      font-family: 'Syne', sans-serif;
+      border-radius: 8px;
+      padding: 13px 32px;
+      border: 1px solid var(--accent);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-outline:hover {
+      background: rgba(0,245,160,0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Section title */
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,245,160,0.08);
+      border: 1px solid rgba(0,245,160,0.2);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* Marquee */
+    .marquee-track {
+      display: flex;
+      gap: 48px;
+      animation: marquee 25s linear infinite;
+      width: max-content;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* Stats counter */
+    .stat-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00F5A0, #00D9F5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Mobile menu */
+    #mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    #mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    /* Lottie containers */
+    .lottie-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Testimonial card */
+    .testimonial-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(0,245,160,0.3);
+      transform: translateY(-4px);
+    }
+
+    /* Tech pill */
+    .tech-pill {
+      background: rgba(0,245,160,0.06);
+      border: 1px solid rgba(0,245,160,0.15);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    .tech-pill:hover {
+      background: rgba(0,245,160,0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Project card image */
+    .project-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px 12px 0 0;
+      background: linear-gradient(135deg, #0D1320, #1A2540);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Floating WhatsApp */
+    #whatsapp-btn {
+      position: fixed;
+      bottom: 90px;
+      right: 24px;
+      z-index: 999;
+      width: 52px;
+      height: 52px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    #whatsapp-btn:hover { transform: scale(1.1); }
+
+    #scroll-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #00F5A0, #00D9F5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,245,160,0.4);
+      transition: all 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #scroll-top.visible { opacity: 1; pointer-events: all; }
+    #scroll-top:hover { transform: scale(1.1); }
+
+    /* Cookie banner */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: rgba(13,19,32,0.98);
+      border-top: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+    #cookie-banner.show { transform: translateY(0); }
+
+    /* Input styles */
+    .form-input {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      width: 100%;
+      transition: all 0.3s ease;
+      font-size: 15px;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0,245,160,0.08);
+    }
+    .form-input::placeholder { color: var(--text-muted); }
+
+    /* Service icon bg */
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    /* Timeline dot */
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00F5A0, #00D9F5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      color: #080C14;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    /* Loading screen */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      background: #080C14;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.5s ease;
+    }
+    #loading-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .stat-number { font-size: 2rem; }
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Chatbot Styles */
+    #chatbot-toggle {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 999;
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #00F5A0, #00D9F5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,245,160,0.4);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    #chatbot-toggle:hover { transform: scale(1.1) rotate(5deg); }
+    
+    #chatbot-window {
+      position: fixed;
+      bottom: 90px;
+      left: 24px;
+      width: 380px;
+      height: 500px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      transform: translateY(20px) scale(0.95);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      overflow: hidden;
+    }
+    #chatbot-window.open {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      pointer-events: all;
+    }
+    .chat-header {
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(0,245,160,0.1), rgba(0,217,245,0.1));
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .message {
+      max-width: 80%;
+      padding: 12px 16px;
+      border-radius: 15px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .message.bot {
+      align-self: flex-start;
+      background: var(--border);
+      color: var(--text);
+      border-bottom-left-radius: 2px;
+    }
+    .message.user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #00F5A0, #00D9F5);
+      color: #080C14;
+      font-weight: 500;
+      border-bottom-right-radius: 2px;
+    }
+    .chat-input-area {
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+    }
+    .chat-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 15px;
+      color: var(--text);
+      font-size: 14px;
+      outline: none;
+    }
+    .chat-input:focus { border-color: var(--accent); }
+    .chat-send {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      color: #080C14;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    @media (max-width: 480px) {
+      #chatbot-window {
+        width: calc(100% - 48px);
+        height: 70vh;
+      }
+    }
+  </style>
 </head>
+<body class="grid-bg">
 
-<body>
-
-<!-- 🌍 HERO -->
-<div class="section">
-  <h1>VSGRPS</h1>
-  <p>Vision Solutions Group</p>
-
-  <lottie-player 
-    src="https://assets2.lottiefiles.com/packages/lf20_qp1q7mct.json"
-    background="transparent"
-    speed="1"
-    style="width: 350px; margin:auto;"
-    loop autoplay>
-  </lottie-player>
-</div>
-
-<!-- 🧠 SERVICES -->
-<div class="section">
-  <h2>Our Services</h2>
-  <div class="grid">
-
-    <div class="card">
-      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_xlmz9xwm.json" style="width:100px" loop autoplay></lottie-player>
-      <p>Web Development</p>
-    </div>
-
-    <div class="card">
-      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_tno6cg2w.json" style="width:100px" loop autoplay></lottie-player>
-      <p>Automation</p>
-    </div>
-
-    <div class="card">
-      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_zrqthn6o.json" style="width:100px" loop autoplay></lottie-player>
-      <p>Analytics</p>
-    </div>
-
-    <div class="card">
-      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_2LdLki.json" style="width:100px" loop autoplay></lottie-player>
-      <p>Custom Software</p>
-    </div>
-
+<!-- ==================== LOADING SCREEN ==================== -->
+<div id="loading-screen">
+  <div style="width:120px;height:120px;" id="loading-lottie"></div>
+  <div style="margin-top:24px;font-family:'Syne',sans-serif;font-size:22px;font-weight:700;background:linear-gradient(135deg,#00F5A0,#00D9F5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">VSGRPS</div>
+  <div style="margin-top:8px;color:#7A8BA8;font-size:14px;">Vision Solutions Groups</div>
+  <div style="margin-top:24px;width:200px;height:2px;background:#1A2540;border-radius:2px;overflow:hidden;">
+    <div id="loading-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#00F5A0,#00D9F5);border-radius:2px;transition:width 0.1s;"></div>
   </div>
 </div>
 
-<!-- ⭐ WHY CHOOSE US -->
-<div class="section">
-  <h2>Why Choose Us</h2>
-  <div class="grid">
+<!-- ==================== NAVBAR ==================== -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-3 text-decoration-none">
+      <div style="width:38px;height:38px;background:linear-gradient(135deg,#00F5A0,#00D9F5);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#080C14;font-size:16px;">V</div>
+      <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;color:#E8EDF8;">VSGRPS</span>
+    </a>
 
-    <div class="card">
-      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_3rwasyjy.json" style="width:80px" loop autoplay></lottie-player>
-      <p>Fast Delivery</p>
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#about" class="text-sm font-medium hover:text-accent transition-colors" style="color:#7A8BA8;text-decoration:none;">About</a>
+      <a href="#services" class="text-sm font-medium hover:text-accent transition-colors" style="color:#7A8BA8;text-decoration:none;">Services</a>
+      <a href="#products" class="text-sm font-medium hover:text-accent transition-colors" style="color:#7A8BA8;text-decoration:none;">Products</a>
+      <a href="#projects" class="text-sm font-medium hover:text-accent transition-colors" style="color:#7A8BA8;text-decoration:none;">Projects</a>
+      <a href="#tech" class="text-sm font-medium hover:text-accent transition-colors" style="color:#7A8BA8;text-decoration:none;">Tech Stack</a>
+      <a href="#contact" class="text-sm font-medium hover:text-accent transition-colors" style="color:#7A8BA8;text-decoration:none;">Contact</a>
     </div>
 
-    <div class="card">
-      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_w51pcehl.json" style="width:80px" loop autoplay></lottie-player>
-      <p>Dedicated Team</p>
+    <!-- CTA + Mobile -->
+    <div class="flex items-center gap-3">
+      <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
+        <i class="fas fa-moon"></i>
+      </button>
+      <a href="#contact" class="btn-primary hidden md:flex" style="padding:10px 22px;font-size:14px;">
+        <i class="fas fa-rocket"></i> Get a Quote
+      </a>
+      <button id="menu-toggle" class="md:hidden" style="background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 z-50" style="background:rgba(8,12,20,0.98);border-left:1px solid #1A2540;backdrop-filter:blur(20px);">
+  <div class="p-6">
+    <div class="flex justify-between items-center mb-8">
+      <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;">VSGRPS</span>
+      <button id="menu-close" style="background:none;border:none;color:#E8EDF8;font-size:22px;cursor:pointer;"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="flex flex-col gap-6">
+      <a href="#about" class="mobile-nav-link" style="color:#7A8BA8;text-decoration:none;font-size:16px;font-weight:500;">About</a>
+      <a href="#services" class="mobile-nav-link" style="color:#7A8BA8;text-decoration:none;font-size:16px;font-weight:500;">Services</a>
+      <a href="#products" class="mobile-nav-link" style="color:#7A8BA8;text-decoration:none;font-size:16px;font-weight:500;">Products</a>
+      <a href="#projects" class="mobile-nav-link" style="color:#7A8BA8;text-decoration:none;font-size:16px;font-weight:500;">Projects</a>
+      <a href="#contact" class="mobile-nav-link" style="color:#7A8BA8;text-decoration:none;font-size:16px;font-weight:500;">Contact</a>
+      <a href="#contact" class="btn-primary mt-4" style="justify-content:center;">Get a Quote</a>
+    </div>
+  </div>
+</div>
+<div id="menu-overlay" class="fixed inset-0 z-40 hidden" style="background:rgba(0,0,0,0.5);" onclick="closeMobileMenu()"></div>
+
+<!-- ==================== HERO ==================== -->
+<section id="hero" class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+  <!-- Orbs -->
+  <div class="orb" style="width:500px;height:500px;background:rgba(0,245,160,0.06);top:-100px;right:-100px;animation-delay:0s;"></div>
+  <div class="orb" style="width:400px;height:400px;background:rgba(0,217,245,0.05);bottom:-50px;left:-100px;animation-delay:3s;"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <!-- Left -->
+      <div>
+        <div class="section-tag" data-aos="fade-up" data-aos-delay="100">
+          <span style="width:6px;height:6px;background:#00F5A0;border-radius:50%;display:inline-block;"></span>
+          India's Premier Software Studio
+        </div>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6" data-aos="fade-up" data-aos-delay="200" style="font-family:'Syne',sans-serif;">
+          We Build<br/>
+          <span class="gradient-text glow-text">Digital</span><br/>
+          <span id="typing-text">Excellence</span><span class="cursor"></span>
+        </h1>
+        <p class="text-lg mb-10 leading-relaxed" data-aos="fade-up" data-aos-delay="300" style="color:#7A8BA8;max-width:480px;">
+          VSGRPS crafts scalable web applications, SaaS platforms, and automation systems that drive real business results. From startup to enterprise — we build it right.
+        </p>
+        <div class="flex flex-wrap gap-4" data-aos="fade-up" data-aos-delay="400">
+          <a href="#contact" class="btn-primary">
+            <i class="fas fa-rocket"></i> Start a Project
+          </a>
+          <a href="#projects" class="btn-outline">
+            <i class="fas fa-eye"></i> View Work
+          </a>
+        </div>
+
+        <!-- Mini stats -->
+        <div class="flex flex-wrap gap-8 mt-12" data-aos="fade-up" data-aos-delay="500">
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#00F5A0,#00D9F5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">7+</div>
+            <div style="color:#7A8BA8;font-size:13px;">Projects Delivered</div>
+          </div>
+          <div style="width:1px;background:#1A2540;"></div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#00F5A0,#00D9F5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">2</div>
+            <div style="color:#7A8BA8;font-size:13px;">SaaS Products</div>
+          </div>
+          <div style="width:1px;background:#1A2540;"></div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#00F5A0,#00D9F5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">100%</div>
+            <div style="color:#7A8BA8;font-size:13px;">Client Satisfaction</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right — Lottie -->
+      <div class="hidden lg:flex items-center justify-center" data-aos="fade-left" data-aos-delay="300">
+        <div style="width:480px;height:480px;position:relative;">
+          <div style="position:absolute;inset:0;background:radial-gradient(circle,rgba(0,245,160,0.1),transparent 70%);border-radius:50%;"></div>
+          <div id="hero-lottie" style="width:100%;height:100%;position:relative;z-index:1;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style="color:#7A8BA8;">
+    <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;">Scroll</span>
+    <div style="width:1px;height:40px;background:linear-gradient(to bottom,#00F5A0,transparent);animation:pulse 2s infinite;"></div>
+  </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section id="about" class="py-24 relative">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <!-- Lottie left -->
+      <div data-aos="fade-right">
+        <div style="width:100%;max-width:480px;height:400px;position:relative;">
+          <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(0,217,245,0.08),transparent 70%);"></div>
+          <div id="about-lottie" style="width:100%;height:100%;"></div>
+        </div>
+      </div>
+
+      <!-- Right content -->
+      <div>
+        <div class="section-tag" data-aos="fade-up">
+          <i class="fas fa-building"></i> About VSGRPS
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6" data-aos="fade-up" data-aos-delay="100" style="font-family:'Syne',sans-serif;">
+          Two Divisions.<br/><span class="gradient-text">One Vision.</span>
+        </h2>
+        <p class="text-base mb-6 leading-relaxed" data-aos="fade-up" data-aos-delay="200" style="color:#7A8BA8;">
+          VSGRPS (Vision Solutions Groups) is a software development company headquartered in <strong style="color:#E8EDF8;">Namakkal, Tamil Nadu, India</strong>. We operate through two focused divisions working in sync to deliver exceptional digital products.
+        </p>
+
+        <div class="grid grid-cols-1 gap-4 mb-8" data-aos="fade-up" data-aos-delay="300">
+          <div class="card p-5 flex gap-4 items-start">
+            <div style="width:44px;height:44px;background:rgba(0,245,160,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fas fa-lightbulb" style="color:#00F5A0;"></i>
+            </div>
+            <div>
+              <div style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:4px;">Vision Solutions Groups</div>
+              <div style="color:#7A8BA8;font-size:14px;">Strategic consulting, digital vision, and business transformation for startups and enterprises.</div>
+            </div>
+          </div>
+          <div class="card p-5 flex gap-4 items-start">
+            <div style="width:44px;height:44px;background:rgba(0,217,245,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fas fa-microchip" style="color:#00D9F5;"></i>
+            </div>
+            <div>
+              <div style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:4px;">VSGRPS Technologies</div>
+              <div style="color:#7A8BA8;font-size:14px;">The tech engine that turns ideas into high-performance digital products and SaaS platforms.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-4" data-aos="fade-up" data-aos-delay="400">
+          <div class="flex items-center gap-2" style="color:#7A8BA8;font-size:14px;">
+            <i class="fas fa-map-marker-alt" style="color:#00F5A0;"></i> Namakkal, Tamil Nadu
+          </div>
+          <div class="flex items-center gap-2" style="color:#7A8BA8;font-size:14px;">
+            <i class="fas fa-envelope" style="color:#00F5A0;"></i> vimalraj5207@gmail.com
+          </div>
+          <div class="flex items-center gap-2" style="color:#7A8BA8;font-size:14px;">
+            <i class="fas fa-phone" style="color:#00F5A0;"></i> +91 88070 99288
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="card">
-      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json" style="width:80px" loop autoplay></lottie-player>
-      <p>Secure Systems</p>
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
+      <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-number" data-count="7">0</div>
+        <div style="color:#7A8BA8;font-size:14px;margin-top:8px;">Projects Delivered</div>
+      </div>
+      <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-number" data-count="2">0</div>
+        <div style="color:#7A8BA8;font-size:14px;margin-top:8px;">SaaS Products</div>
+      </div>
+      <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="300">
+        <div class="stat-number" data-count="3">0</div>
+        <div style="color:#7A8BA8;font-size:14px;margin-top:8px;">Industries Served</div>
+      </div>
+      <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="400">
+        <div class="stat-number">100%</div>
+        <div style="color:#7A8BA8;font-size:14px;margin-top:8px;">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SERVICES ==================== -->
+<section id="services" class="py-24 relative">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,245,160,0.04),transparent 70%);"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <div class="section-tag mx-auto" data-aos="fade-up">
+        <i class="fas fa-cogs"></i> What We Do
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100" style="font-family:'Syne',sans-serif;">
+        Our <span class="gradient-text">Services</span>
+      </h2>
+      <p class="text-base max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200" style="color:#7A8BA8;">
+        From concept to deployment — we provide end-to-end solutions tailored to your business needs.
+      </p>
     </div>
 
-    <div class="card">
-      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_jbrw3hcz.json" style="width:80px" loop autoplay></lottie-player>
-      <p>Proven Results</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="card p-8" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-icon" style="background:rgba(0,245,160,0.1);">
+          <i class="fas fa-globe" style="color:#00F5A0;"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Web Development</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;margin-bottom:20px;">High-performance corporate websites, e-commerce platforms, and custom web applications built with React, Next.js and modern frameworks.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">React</span>
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Next.js</span>
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">PWA</span>
+        </div>
+      </div>
+
+      <div class="card p-8" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-icon" style="background:rgba(0,217,245,0.1);">
+          <i class="fas fa-robot" style="color:#00D9F5;"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Automation Solutions</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;margin-bottom:20px;">Reduce manual work through intelligent workflow automation. Customer communication bots, process optimization and Google Apps Script integrations.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Zapier</span>
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Apps Script</span>
+        </div>
+      </div>
+
+      <div class="card p-8" data-aos="fade-up" data-aos-delay="300">
+        <div class="service-icon" style="background:rgba(168,85,247,0.1);">
+          <i class="fas fa-chart-bar" style="color:#A855F7;"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Dashboards & CRM</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;margin-bottom:20px;">Centralize operations with custom business intelligence dashboards, real-time data visualization and custom CRM systems built for your workflow.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Real-time</span>
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Analytics</span>
+        </div>
+      </div>
+
+      <div class="card p-8" data-aos="fade-up" data-aos-delay="400">
+        <div class="service-icon" style="background:rgba(251,146,60,0.1);">
+          <i class="fas fa-code" style="color:#FB923C;"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Custom Software</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;margin-bottom:20px;">End-to-end system design, REST & GraphQL API architecture, enterprise-grade backend systems and third-party integrations including payments and SMS.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Fastify</span>
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">PostgreSQL</span>
+        </div>
+      </div>
+
+      <div class="card p-8" data-aos="fade-up" data-aos-delay="500">
+        <div class="service-icon" style="background:rgba(34,197,94,0.1);">
+          <i class="fas fa-cloud" style="color:#22C55E;"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Hosting & Cloud</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;margin-bottom:20px;">Secure, high-uptime deployment and cloud services. CI/CD pipeline setup, security hardening, SSL and Cloudflare integration for maximum performance.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Cloudflare</span>
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">CI/CD</span>
+        </div>
+      </div>
+
+      <div class="card p-8" data-aos="fade-up" data-aos-delay="600">
+        <div class="service-icon" style="background:rgba(239,68,68,0.1);">
+          <i class="fas fa-headset" style="color:#EF4444;"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Customer Support</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;margin-bottom:20px;">Ongoing technical support and system maintenance. 3 months free support included with every project. Bug fixes, updates and feature enhancements.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">3 Months Free</span>
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">24/7</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PRODUCTS ==================== -->
+<section id="products" class="py-24 relative overflow-hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 0% 50%,rgba(0,217,245,0.05),transparent 60%);"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <div class="section-tag mx-auto" data-aos="fade-up">
+        <i class="fas fa-cube"></i> Our Products
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100" style="font-family:'Syne',sans-serif;">
+        Built to <span class="gradient-text">Scale</span>
+      </h2>
+      <p class="text-base max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200" style="color:#7A8BA8;">
+        Two production-ready SaaS products solving real problems for real people.
+      </p>
     </div>
 
+    <!-- CertifyPro -->
+    <div class="card p-8 md:p-12 mb-8" data-aos="fade-up">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(0,245,160,0.08);border:1px solid rgba(0,245,160,0.2);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:600;color:#00F5A0;margin-bottom:20px;">
+            <span style="width:6px;height:6px;background:#00F5A0;border-radius:50%;animation:pulse 2s infinite;display:inline-block;"></span>
+            Live Product
+          </div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;margin-bottom:16px;">CertifyPro</h3>
+          <p style="color:#7A8BA8;font-size:15px;line-height:1.8;margin-bottom:24px;">
+            End-to-end certification platform — from AI-powered quiz assessments to verified certificate generation. Quiz → Assessment → Result → Certificate. All secured. All in one place.
+          </p>
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <div style="background:rgba(0,245,160,0.05);border:1px solid rgba(0,245,160,0.1);border-radius:12px;padding:16px;">
+              <i class="fas fa-shield-alt" style="color:#00F5A0;margin-bottom:8px;display:block;"></i>
+              <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Steganography</div>
+              <div style="color:#7A8BA8;font-size:12px;">Anti-forgery protection</div>
+            </div>
+            <div style="background:rgba(0,245,160,0.05);border:1px solid rgba(0,245,160,0.1);border-radius:12px;padding:16px;">
+              <i class="fas fa-eye" style="color:#00F5A0;margin-bottom:8px;display:block;"></i>
+              <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Proctoring</div>
+              <div style="color:#7A8BA8;font-size:12px;">Anti-cheat system</div>
+            </div>
+            <div style="background:rgba(0,245,160,0.05);border:1px solid rgba(0,245,160,0.1);border-radius:12px;padding:16px;">
+              <i class="fas fa-bolt" style="color:#00F5A0;margin-bottom:8px;display:block;"></i>
+              <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Bulk Generation</div>
+              <div style="color:#7A8BA8;font-size:12px;">1000s in minutes</div>
+            </div>
+            <div style="background:rgba(0,245,160,0.05);border:1px solid rgba(0,245,160,0.1);border-radius:12px;padding:16px;">
+              <i class="fas fa-lock" style="color:#00F5A0;margin-bottom:8px;display:block;"></i>
+              <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Zero Retention</div>
+              <div style="color:#7A8BA8;font-size:12px;">60s auto-delete</div>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <a href="https://certifypro.vsgrps.com" target="_blank" class="btn-primary">
+              <i class="fas fa-external-link-alt"></i> Launch CertifyPro
+            </a>
+          </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <div style="width:100%;max-width:400px;height:350px;position:relative;">
+            <div style="position:absolute;inset:0;background:radial-gradient(circle,rgba(0,245,160,0.08),transparent 70%);"></div>
+            <div id="certify-lottie" style="width:100%;height:100%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VSGRPS Agile -->
+    <div class="card p-8 md:p-12" data-aos="fade-up">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1 flex items-center justify-center">
+          <div style="width:100%;max-width:400px;height:350px;position:relative;">
+            <div style="position:absolute;inset:0;background:radial-gradient(circle,rgba(0,217,245,0.08),transparent 70%);"></div>
+            <div id="agile-lottie" style="width:100%;height:100%;"></div>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2">
+          <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(0,217,245,0.08);border:1px solid rgba(0,217,245,0.2);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:600;color:#00D9F5;margin-bottom:20px;">
+            <span style="width:6px;height:6px;background:#00D9F5;border-radius:50%;animation:pulse 2s infinite;display:inline-block;"></span>
+            Early Access
+          </div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;margin-bottom:16px;">VSGRPS Agile</h3>
+          <p style="color:#7A8BA8;font-size:15px;line-height:1.8;margin-bottom:24px;">
+            Simple. Secure. Built for small dev teams and startups. Jira is overkill. Trello is too simple. VSGRPS Agile is just right — with enterprise-grade security and high free limits.
+          </p>
+          <div class="flex flex-col gap-3 mb-8">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle" style="color:#00D9F5;"></i>
+              <span style="font-size:14px;color:#7A8BA8;">PostgreSQL session persistence — no cold login issues</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle" style="color:#00D9F5;"></i>
+              <span style="font-size:14px;color:#7A8BA8;">Isolated multi-tenancy — zero data leakage</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle" style="color:#00D9F5;"></i>
+              <span style="font-size:14px;color:#7A8BA8;">SameSite + Secure cookies — CSRF & XSS protected</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle" style="color:#00D9F5;"></i>
+              <span style="font-size:14px;color:#7A8BA8;">5 minute setup — sprint ready instantly</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle" style="color:#00D9F5;"></i>
+              <span style="font-size:14px;color:#7A8BA8;">High free limits — perfect for small teams</span>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <a href="https://agile.vsgrps.com" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#00D9F5,#0099B5);">
+              <i class="fas fa-external-link-alt"></i> Launch Agile
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PROJECTS ==================== -->
+<section id="projects" class="py-24 relative">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 100% 50%,rgba(0,245,160,0.04),transparent 60%);"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <div class="section-tag mx-auto" data-aos="fade-up">
+        <i class="fas fa-briefcase"></i> Our Work
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100" style="font-family:'Syne',sans-serif;">
+        Featured <span class="gradient-text">Projects</span>
+      </h2>
+      <p class="text-base max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200" style="color:#7A8BA8;">
+        Real projects, real results — across healthcare, education, e-commerce and more.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="project-img" style="background:linear-gradient(135deg,#00F5A0,#00D9F5);display:flex;align-items:center;justify-content:center;">
+          <i class="fas fa-certificate" style="font-size:48px;color:#080C14;opacity:0.8;"></i>
+        </div>
+        <div class="p-6">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <span style="background:rgba(0,245,160,0.1);color:#00F5A0;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">SaaS</span>
+            <span style="background:rgba(0,245,160,0.1);color:#00F5A0;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Enterprise</span>
+          </div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">CertifyPro</h3>
+          <p style="color:#7A8BA8;font-size:13px;line-height:1.6;margin-bottom:16px;">Enterprise certificate generation SaaS with visual drag-and-drop studio, bulk CSV processing and zero-retention architecture.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">React</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Fastify</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Redis</span>
+          </div>
+          <div style="border-top:1px solid #1A2540;padding-top:16px;display:flex;gap:16px;">
+            <div style="text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-weight:700;color:#00F5A0;">100%</div>
+              <div style="color:#7A8BA8;font-size:11px;">GDPR Compliant</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-weight:700;color:#00F5A0;">0</div>
+              <div style="color:#7A8BA8;font-size:11px;">Data Footprint</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <div class="project-img" style="background:linear-gradient(135deg,#1a2a4a,#0d1a35);display:flex;align-items:center;justify-content:center;">
+          <i class="fas fa-shopping-cart" style="font-size:48px;color:#00F5A0;opacity:0.8;"></i>
+        </div>
+        <div class="p-6">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <span style="background:rgba(251,146,60,0.1);color:#FB923C;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">E-Commerce</span>
+          </div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">EasanMart</h3>
+          <p style="color:#7A8BA8;font-size:13px;line-height:1.6;margin-bottom:16px;">Grocery management system with Google Sheets backend, automated order processing and real-time stock updates.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">JavaScript</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Google Sheets</span>
+          </div>
+          <div style="border-top:1px solid #1A2540;padding-top:16px;display:flex;gap:16px;">
+            <div style="text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-weight:700;color:#00F5A0;">100%</div>
+              <div style="color:#7A8BA8;font-size:11px;">Order Accuracy</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-weight:700;color:#00F5A0;">500+</div>
+              <div style="color:#7A8BA8;font-size:11px;">Monthly Orders</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
+        <div class="project-img" style="background:linear-gradient(135deg,#1a1030,#0d0820);display:flex;align-items:center;justify-content:center;">
+          <i class="fas fa-graduation-cap" style="font-size:48px;color:#A855F7;opacity:0.8;"></i>
+        </div>
+        <div class="p-6">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <span style="background:rgba(168,85,247,0.1);color:#A855F7;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Education</span>
+            <span style="background:rgba(168,85,247,0.1);color:#A855F7;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Enterprise</span>
+          </div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">Edwyna</h3>
+          <p style="color:#7A8BA8;font-size:13px;line-height:1.6;margin-bottom:16px;">Scalable enterprise web application with PostgreSQL, serverless functions, real-time sync and automated CI/CD pipeline.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Express.js</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Supabase</span>
+          </div>
+          <div style="border-top:1px solid #1A2540;padding-top:16px;display:flex;gap:16px;">
+            <div style="text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-weight:700;color:#00F5A0;">99.9%</div>
+              <div style="color:#7A8BA8;font-size:11px;">Uptime</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-weight:700;color:#00F5A0;">50ms</div>
+              <div style="color:#7A8BA8;font-size:11px;">DB Response</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="400">
+        <div class="project-img" style="background:linear-gradient(135deg,#1a2a1a,#0d1a0d);display:flex;align-items:center;justify-content:center;">
+          <i class="fas fa-building" style="font-size:48px;color:#22C55E;opacity:0.8;"></i>
+        </div>
+        <div class="p-6">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <span style="background:rgba(34,197,94,0.1);color:#22C55E;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Corporate</span>
+          </div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">Srimayil Builders</h3>
+          <p style="color:#7A8BA8;font-size:13px;line-height:1.6;margin-bottom:16px;">Premium corporate website with interactive project gallery, lead capture system and SEO-optimized pages achieving 98/100 Lighthouse score.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">React</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Framer Motion</span>
+          </div>
+          <div style="border-top:1px solid #1A2540;padding-top:16px;display:flex;gap:16px;">
+            <div style="text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-weight:700;color:#00F5A0;">60%</div>
+              <div style="color:#7A8BA8;font-size:11px;">More Leads</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-weight:700;color:#00F5A0;">98/100</div>
+              <div style="color:#7A8BA8;font-size:11px;">Lighthouse</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="500">
+        <div class="project-img" style="background:linear-gradient(135deg,#1a0a2a,#0d0515);display:flex;align-items:center;justify-content:center;">
+          <i class="fas fa-calendar-check" style="font-size:48px;color:#00D9F5;opacity:0.8;"></i>
+        </div>
+        <div class="p-6">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <span style="background:rgba(0,217,245,0.1);color:#00D9F5;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Healthcare</span>
+            <span style="background:rgba(0,217,245,0.1);color:#00D9F5;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Payments</span>
+          </div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">Hospital Booking System</h3>
+          <p style="color:#7A8BA8;font-size:13px;line-height:1.6;margin-bottom:16px;">Hospital appointment booking platform with integrated payment gateway, secure patient data management and real-time availability tracking.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">React</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Fastify</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Razorpay</span>
+          </div>
+          <div style="border-top:1px solid #1A2540;padding-top:16px;display:flex;gap:16px;">
+            <div style="text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-weight:700;color:#00F5A0;">Secure</div>
+              <div style="color:#7A8BA8;font-size:11px;">Payments</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-weight:700;color:#00F5A0;">Live</div>
+              <div style="color:#7A8BA8;font-size:11px;">In Progress</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="600">
+        <div class="project-img" style="background:linear-gradient(135deg,#1a1a0a,#0d0d05);display:flex;align-items:center;justify-content:center;">
+          <i class="fas fa-qrcode" style="font-size:48px;color:#EAB308;opacity:0.8;"></i>
+        </div>
+        <div class="p-6">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <span style="background:rgba(234,179,8,0.1);color:#EAB308;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Education</span>
+            <span style="background:rgba(234,179,8,0.1);color:#EAB308;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Events</span>
+          </div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">College Event Platform</h3>
+          <p style="color:#7A8BA8;font-size:13px;line-height:1.6;margin-bottom:16px;">Real-time event management with QR code check-in, high-concurrency API handling 5000+ users and e-certificate generation.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">React</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Fastify</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Neon DB</span>
+          </div>
+          <div style="border-top:1px solid #1A2540;padding-top:16px;display:flex;gap:16px;">
+            <div style="text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-weight:700;color:#00F5A0;">5000+</div>
+              <div style="color:#7A8BA8;font-size:11px;">Registered Users</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family:'Syne',sans-serif;font-weight:700;color:#00F5A0;">&lt;30ms</div>
+              <div style="color:#7A8BA8;font-size:11px;">API Latency</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WHY CHOOSE US ==================== -->
+<section id="why" class="py-24 relative overflow-hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(0,245,160,0.05),transparent 60%);"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <div class="section-tag mx-auto" data-aos="fade-up">
+        <i class="fas fa-star"></i> Why VSGRPS
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100" style="font-family:'Syne',sans-serif;">
+        Why Choose <span class="gradient-text">Us</span>
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+        <div style="width:64px;height:64px;background:rgba(0,245,160,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+          <i class="fas fa-shield-alt" style="color:#00F5A0;font-size:24px;"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Security First</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;">Bank-grade security architecture. Every product built with fintech-level security standards from day one.</p>
+      </div>
+      <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+        <div style="width:64px;height:64px;background:rgba(0,217,245,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+          <i class="fas fa-bolt" style="color:#00D9F5;font-size:24px;"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Fast Delivery</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;">Rapid deployment without compromising quality. Go from requirement to live product in record time.</p>
+      </div>
+      <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="300">
+        <div style="width:64px;height:64px;background:rgba(168,85,247,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+          <i class="fas fa-expand-arrows-alt" style="color:#A855F7;font-size:24px;"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Scalable</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;">Built to grow with your business. Architecture that handles 10 users or 10 million without breaking a sweat.</p>
+      </div>
+      <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="400">
+        <div style="width:64px;height:64px;background:rgba(34,197,94,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+          <i class="fas fa-headset" style="color:#22C55E;font-size:24px;"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">3M Free Support</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;">3 months free post-launch support included with every project. We don't disappear after delivery.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TECH STACK ==================== -->
+<section id="tech" class="py-24 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 mb-12">
+    <div class="text-center">
+      <div class="section-tag mx-auto" data-aos="fade-up">
+        <i class="fas fa-layer-group"></i> Tech Stack
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100" style="font-family:'Syne',sans-serif;">
+        Technologies We <span class="gradient-text">Master</span>
+      </h2>
+    </div>
+  </div>
+
+  <!-- Marquee Row 1 -->
+  <div style="overflow:hidden;padding:12px 0;margin-bottom:12px;">
+    <div class="marquee-track">
+      <span class="tech-pill">React</span>
+      <span class="tech-pill">Next.js</span>
+      <span class="tech-pill">TypeScript</span>
+      <span class="tech-pill">Tailwind CSS</span>
+      <span class="tech-pill">Framer Motion</span>
+      <span class="tech-pill">GSAP</span>
+      <span class="tech-pill">Node.js</span>
+      <span class="tech-pill">Fastify</span>
+      <span class="tech-pill">Express.js</span>
+      <span class="tech-pill">Python</span>
+      <span class="tech-pill">Django</span>
+      <span class="tech-pill">GraphQL</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="tech-pill">React</span>
+      <span class="tech-pill">Next.js</span>
+      <span class="tech-pill">TypeScript</span>
+      <span class="tech-pill">Tailwind CSS</span>
+      <span class="tech-pill">Framer Motion</span>
+      <span class="tech-pill">GSAP</span>
+      <span class="tech-pill">Node.js</span>
+      <span class="tech-pill">Fastify</span>
+      <span class="tech-pill">Express.js</span>
+      <span class="tech-pill">Python</span>
+      <span class="tech-pill">Django</span>
+      <span class="tech-pill">GraphQL</span>
+    </div>
+  </div>
+
+  <!-- Marquee Row 2 (reverse) -->
+  <div style="overflow:hidden;padding:12px 0;">
+    <div class="marquee-track" style="animation-direction:reverse;">
+      <span class="tech-pill">PostgreSQL</span>
+      <span class="tech-pill">MongoDB</span>
+      <span class="tech-pill">Redis</span>
+      <span class="tech-pill">Neon DB</span>
+      <span class="tech-pill">Supabase</span>
+      <span class="tech-pill">Firebase</span>
+      <span class="tech-pill">Cloudflare</span>
+      <span class="tech-pill">Docker</span>
+      <span class="tech-pill">AWS</span>
+      <span class="tech-pill">Flutter</span>
+      <span class="tech-pill">React Native</span>
+      <span class="tech-pill">Razorpay</span>
+      <!-- Duplicate -->
+      <span class="tech-pill">PostgreSQL</span>
+      <span class="tech-pill">MongoDB</span>
+      <span class="tech-pill">Redis</span>
+      <span class="tech-pill">Neon DB</span>
+      <span class="tech-pill">Supabase</span>
+      <span class="tech-pill">Firebase</span>
+      <span class="tech-pill">Cloudflare</span>
+      <span class="tech-pill">Docker</span>
+      <span class="tech-pill">AWS</span>
+      <span class="tech-pill">Flutter</span>
+      <span class="tech-pill">React Native</span>
+      <span class="tech-pill">Razorpay</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TESTIMONIALS ==================== -->
+<section id="testimonials" class="py-24 relative">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,217,245,0.04),transparent 60%);"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <div class="section-tag mx-auto" data-aos="fade-up">
+        <i class="fas fa-quote-left"></i> Testimonials
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100" style="font-family:'Syne',sans-serif;">
+        Client <span class="gradient-text">Stories</span>
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+        <div style="display:flex;gap:2px;margin-bottom:16px;">
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+        </div>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.8;margin-bottom:20px;">"VSGRPS delivered our e-commerce platform ahead of schedule. The technical quality and attention to detail was exceptional. Zero issues post launch."</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,#00F5A0,#00D9F5);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;color:#080C14;">E</div>
+          <div>
+            <div style="font-weight:600;font-size:14px;">EasanMart Client</div>
+            <div style="color:#7A8BA8;font-size:12px;">Logistics Company</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+        <div style="display:flex;gap:2px;margin-bottom:16px;">
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+        </div>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.8;margin-bottom:20px;">"The college event platform handled 5000+ registrations without a single crash. The QR check-in system saved us hours of manual work. Highly recommended."</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,#A855F7,#7C3AED);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;color:#fff;">U</div>
+          <div>
+            <div style="font-weight:600;font-size:14px;">Universal College</div>
+            <div style="color:#7A8BA8;font-size:12px;">Engineering Institution</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+        <div style="display:flex;gap:2px;margin-bottom:16px;">
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+          <i class="fas fa-star" style="color:#F59E0B;font-size:14px;"></i>
+        </div>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.8;margin-bottom:20px;">"Our corporate website got a 60% increase in lead generation after VSGRPS rebuilt it. The Lighthouse score of 98/100 speaks for itself. Amazing work."</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,#22C55E,#16A34A);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;color:#fff;">S</div>
+          <div>
+            <div style="font-weight:600;font-size:14px;">Srimayil Builders</div>
+            <div style="color:#7A8BA8;font-size:12px;">Construction Group</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section id="contact" class="py-24 relative">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(0,245,160,0.04),transparent 60%);"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <!-- Left -->
+      <div>
+        <div class="section-tag" data-aos="fade-up">
+          <i class="fas fa-paper-plane"></i> Get In Touch
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6" data-aos="fade-up" data-aos-delay="100" style="font-family:'Syne',sans-serif;">
+          Let's Build<br/><span class="gradient-text">Something Great</span>
+        </h2>
+        <p class="text-base mb-10 leading-relaxed" data-aos="fade-up" data-aos-delay="200" style="color:#7A8BA8;">
+          Ready to start your project? Tell us about your idea and we'll get back to you within 24 hours with a plan.
+        </p>
+
+        <div class="flex flex-col gap-6" data-aos="fade-up" data-aos-delay="300">
+          <a href="mailto:vimalraj5207@gmail.com" class="flex items-center gap-4" style="text-decoration:none;color:inherit;">
+            <div style="width:52px;height:52px;background:rgba(0,245,160,0.1);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fas fa-envelope" style="color:#00F5A0;font-size:18px;"></i>
+            </div>
+            <div>
+              <div style="font-size:12px;color:#7A8BA8;margin-bottom:2px;">Email</div>
+              <div style="font-weight:600;">vimalraj5207@gmail.com</div>
+            </div>
+          </a>
+          <a href="https://wa.me/918807099288" target="_blank" class="flex items-center gap-4" style="text-decoration:none;color:inherit;">
+            <div style="width:52px;height:52px;background:rgba(37,211,102,0.1);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fab fa-whatsapp" style="color:#25D366;font-size:20px;"></i>
+            </div>
+            <div>
+              <div style="font-size:12px;color:#7A8BA8;margin-bottom:2px;">WhatsApp</div>
+              <div style="font-weight:600;">+91 88070 99288</div>
+            </div>
+          </a>
+          <div class="flex items-center gap-4">
+            <div style="width:52px;height:52px;background:rgba(0,217,245,0.1);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fas fa-map-marker-alt" style="color:#00D9F5;font-size:18px;"></i>
+            </div>
+            <div>
+              <div style="font-size:12px;color:#7A8BA8;margin-bottom:2px;">Location</div>
+              <div style="font-weight:600;">Namakkal, Tamil Nadu, India</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div style="width:52px;height:52px;background:rgba(168,85,247,0.1);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fas fa-clock" style="color:#A855F7;font-size:18px;"></i>
+            </div>
+            <div>
+              <div style="font-size:12px;color:#7A8BA8;margin-bottom:2px;">Availability</div>
+              <div style="font-weight:600;">Always open for inquiries (24/7)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social links -->
+        <div class="flex gap-4 mt-10" data-aos="fade-up" data-aos-delay="400">
+          <a href="https://www.linkedin.com/in/vimal-raj-s-b83b42324" target="_blank" style="width:44px;height:44px;background:#1A2540;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#7A8BA8;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.background='rgba(0,245,160,0.1)';this.style.color='#00F5A0'" onmouseout="this.style.background='#1A2540';this.style.color='#7A8BA8'">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://github.com/vimalRaj45" target="_blank" style="width:44px;height:44px;background:#1A2540;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#7A8BA8;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.background='rgba(0,245,160,0.1)';this.style.color='#00F5A0'" onmouseout="this.style.background='#1A2540';this.style.color='#7A8BA8'">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://wa.me/918807099288" target="_blank" style="width:44px;height:44px;background:#1A2540;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#7A8BA8;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.background='rgba(37,211,102,0.1)';this.style.color='#25D366'" onmouseout="this.style.background='#1A2540';this.style.color='#7A8BA8'">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right — Form -->
+      <div data-aos="fade-left">
+        <div class="card p-8">
+          <h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:24px;">Send a Message</h3>
+          <div id="contact-form" class="flex flex-col gap-5">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label style="font-size:13px;color:#7A8BA8;margin-bottom:8px;display:block;">Your Name</label>
+                <input type="text" id="name" placeholder="Vimal Raj" class="form-input" />
+              </div>
+              <div>
+                <label style="font-size:13px;color:#7A8BA8;margin-bottom:8px;display:block;">Email</label>
+                <input type="email" id="email" placeholder="hello@vsgrps.com" class="form-input" />
+              </div>
+            </div>
+            <div>
+              <label style="font-size:13px;color:#7A8BA8;margin-bottom:8px;display:block;">Service Needed</label>
+              <select id="service" class="form-input" style="cursor:pointer;">
+                <option value="" disabled selected>Select a service</option>
+                <option value="web">Web Development</option>
+                <option value="automation">Automation Solutions</option>
+                <option value="crm">Dashboards & CRM</option>
+                <option value="custom">Custom Software</option>
+                <option value="hosting">Hosting & Cloud</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:13px;color:#7A8BA8;margin-bottom:8px;display:block;">Your Message</label>
+              <textarea id="message" placeholder="Tell us about your project..." class="form-input" style="height:130px;resize:vertical;"></textarea>
+            </div>
+            <button onclick="sendMessage()" class="btn-primary" style="justify-content:center;width:100%;">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+            <div id="form-success" style="display:none;background:rgba(0,245,160,0.08);border:1px solid rgba(0,245,160,0.3);border-radius:10px;padding:16px;text-align:center;color:#00F5A0;font-size:14px;">
+              <i class="fas fa-check-circle" style="margin-right:8px;"></i> Message sent! We'll get back to you within 24 hours.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer style="background:#060A12;border-top:1px solid #1A2540;padding:60px 24px 32px;">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <!-- Brand -->
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div style="width:38px;height:38px;background:linear-gradient(135deg,#00F5A0,#00D9F5);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#080C14;font-size:16px;">V</div>
+          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;">VSGRPS</span>
+        </div>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.8;max-width:320px;margin-bottom:20px;">
+          Technology-driven digital solutions focused on building efficient, scalable and user-friendly systems. Crafted with ♥ in India.
+        </p>
+        <div class="flex gap-3">
+          <a href="https://certifypro.vsgrps.com" target="_blank" style="background:rgba(0,245,160,0.08);border:1px solid rgba(0,245,160,0.2);border-radius:8px;padding:8px 14px;font-size:12px;color:#00F5A0;text-decoration:none;font-weight:600;">CertifyPro ↗</a>
+          <a href="https://agile.vsgrps.com" target="_blank" style="background:rgba(0,217,245,0.08);border:1px solid rgba(0,217,245,0.2);border-radius:8px;padding:8px 14px;font-size:12px;color:#00D9F5;text-decoration:none;font-weight:600;">Agile ↗</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:16px;font-size:15px;">Company</div>
+        <div class="flex flex-col gap-3">
+          <a href="#about" style="color:#7A8BA8;text-decoration:none;font-size:14px;transition:color 0.2s;" onmouseover="this.style.color='#00F5A0'" onmouseout="this.style.color='#7A8BA8'">About Us</a>
+          <a href="#services" style="color:#7A8BA8;text-decoration:none;font-size:14px;" onmouseover="this.style.color='#00F5A0'" onmouseout="this.style.color='#7A8BA8'">Services</a>
+          <a href="#projects" style="color:#7A8BA8;text-decoration:none;font-size:14px;" onmouseover="this.style.color='#00F5A0'" onmouseout="this.style.color='#7A8BA8'">Projects</a>
+          <a href="#contact" style="color:#7A8BA8;text-decoration:none;font-size:14px;" onmouseover="this.style.color='#00F5A0'" onmouseout="this.style.color='#7A8BA8'">Careers</a>
+        </div>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:16px;font-size:15px;">Legal</div>
+        <div class="flex flex-col gap-3">
+          <a href="https://vsgrps.com/privacy" style="color:#7A8BA8;text-decoration:none;font-size:14px;" onmouseover="this.style.color='#00F5A0'" onmouseout="this.style.color='#7A8BA8'">Privacy Policy</a>
+          <a href="https://vsgrps.com/terms" style="color:#7A8BA8;text-decoration:none;font-size:14px;" onmouseover="this.style.color='#00F5A0'" onmouseout="this.style.color='#7A8BA8'">Terms of Service</a>
+          <a href="https://vsgrps.com/cookies" style="color:#7A8BA8;text-decoration:none;font-size:14px;" onmouseover="this.style.color='#00F5A0'" onmouseout="this.style.color='#7A8BA8'">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid #1A2540;padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
+      <div style="color:#7A8BA8;font-size:13px;">© 2026 VSGRPS Technologies. All rights reserved.</div>
+      <div style="color:#7A8BA8;font-size:13px;">Crafted with ♥ in Namakkal, Tamil Nadu, India</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== FLOATING BUTTONS ==================== -->
+<a href="https://wa.me/918807099288" id="whatsapp-btn" target="_blank" title="WhatsApp Us">
+  <i class="fab fa-whatsapp" style="color:white;font-size:22px;"></i>
+</a>
+<div id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Scroll to Top">
+  <i class="fas fa-arrow-up" style="color:#080C14;font-size:16px;font-weight:700;"></i>
+</div>
+
+<!-- ==================== CHATBOT ==================== -->
+<div id="chatbot-toggle">
+  <i class="fas fa-comment-dots" style="color:#080C14;font-size:24px;"></i>
+</div>
+
+<div id="chatbot-window">
+  <div class="chat-header">
+    <div class="flex items-center gap-3">
+      <div style="width:32px;height:32px;background:linear-gradient(135deg,#00F5A0,#00D9F5);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#080C14;font-size:14px;">V</div>
+      <div>
+        <div style="font-weight:700;font-size:14px;">VSGRPS Assistant</div>
+        <div style="font-size:11px;color:var(--accent);">Online • AI Powered</div>
+      </div>
+    </div>
+    <button id="chatbot-close" style="background:none;border:none;color:var(--text-muted);cursor:pointer;"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="message bot">
+      Hi there! 👋 I'm the VSGRPS Assistant. How can I help you today? You can ask about our services, products like CertifyPro, or just say hello!
+    </div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chat-input" class="chat-input" placeholder="Type your message..." />
+    <div class="chat-send" id="chat-send">
+      <i class="fas fa-paper-plane"></i>
+    </div>
   </div>
 </div>
 
-<!-- 📞 CONTACT -->
-<div class="section">
-  <h2>Contact Us</h2>
-  <div class="grid">
-
-    <div class="card">
-      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_6ozt4yjk.json" style="width:80px" loop autoplay></lottie-player>
-      <p>Email</p>
-    </div>
-
-    <div class="card">
-      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_kkflmtur.json" style="width:80px" loop autoplay></lottie-player>
-      <p>Phone</p>
-    </div>
-
-    <div class="card">
-      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_q5pk6p1k.json" style="width:80px" loop autoplay></lottie-player>
-      <p>Location</p>
-    </div>
-
-    <div class="card">
-      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_touohxv0.json" style="width:80px" loop autoplay></lottie-player>
-      <p>24/7 Support</p>
-    </div>
-
+<!-- ==================== COOKIE BANNER ==================== -->
+<div id="cookie-banner">
+  <div style="flex:1;min-width:200px;">
+    <div style="font-family:'Syne',sans-serif;font-weight:600;margin-bottom:4px;font-size:15px;">We Value Your Experience</div>
+    <div style="color:#7A8BA8;font-size:13px;">We use cookies to enhance your journey and remember your preferences. <a href="https://vsgrps.com/cookies" style="color:#00F5A0;">Cookie Policy</a></div>
   </div>
-</div><script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.10/dist/dotlottie-wc.js" type="module"></script>
-<dotlottie-wc src="https://lottie.host/f68be217-2f0d-47b8-ad00-c7da37b73cbf/I05m1E2ify.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
+  <div class="flex gap-3 flex-shrink-0">
+    <button onclick="declineCookies()" style="background:transparent;border:1px solid #1A2540;border-radius:8px;padding:10px 20px;color:#7A8BA8;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;">Decline</button>
+    <button onclick="acceptCookies()" class="btn-primary" style="padding:10px 20px;font-size:14px;">Accept & Continue</button>
+  </div>
+</div>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+  // ---- Loading Screen ----
+  let progress = 0;
+  const loadingBar = document.getElementById('loading-bar');
+  const loadingScreen = document.getElementById('loading-screen');
+
+  const interval = setInterval(() => {
+    progress += Math.random() * 20;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      setTimeout(() => {
+        loadingScreen.classList.add('fade-out');
+        setTimeout(() => loadingScreen.style.display = 'none', 500);
+      }, 300);
+    }
+    loadingBar.style.width = progress + '%';
+  }, 150);
+
+  // ---- AOS Init ----
+  window.addEventListener('load', () => {
+    AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
+  });
+
+  // ---- Navbar scroll ----
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+
+    const scrollBtn = document.getElementById('scroll-top');
+    if (window.scrollY > 300) scrollBtn.classList.add('visible');
+    else scrollBtn.classList.remove('visible');
+  });
+
+  // ---- Mobile menu ----
+  function openMobileMenu() {
+    document.getElementById('mobile-menu').classList.add('open');
+    document.getElementById('menu-overlay').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('menu-overlay').classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('menu-toggle').addEventListener('click', openMobileMenu);
+  document.getElementById('menu-close').addEventListener('click', closeMobileMenu);
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  // ---- Typing animation ----
+  const words = ['Excellence', 'Solutions', 'Products', 'Innovation', 'Security'];
+  let wordIndex = 0, charIndex = 0, isDeleting = false;
+  const typingEl = document.getElementById('typing-text');
+
+  function type() {
+    const word = words[wordIndex];
+    if (isDeleting) {
+      typingEl.textContent = word.substring(0, charIndex - 1);
+      charIndex--;
+      if (charIndex === 0) { isDeleting = false; wordIndex = (wordIndex + 1) % words.length; setTimeout(type, 400); return; }
+      setTimeout(type, 60);
+    } else {
+      typingEl.textContent = word.substring(0, charIndex + 1);
+      charIndex++;
+      if (charIndex === word.length) { isDeleting = true; setTimeout(type, 2000); return; }
+      setTimeout(type, 100);
+    }
+  }
+  setTimeout(type, 1500);
+
+  // ---- Counter animation ----
+  function animateCounters() {
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt(el.getAttribute('data-count'));
+      let current = 0;
+      const step = target / 40;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = Math.floor(current) + (target > 10 ? '+' : '+');
+      }, 40);
+    });
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { animateCounters(); statsObserver.disconnect(); } });
+  }, { threshold: 0.3 });
+  const statsSection = document.querySelector('#about');
+  if (statsSection) statsObserver.observe(statsSection);
+
+  // ---- Contact form ----
+  function sendMessage() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    if (!name || !email || !message) { alert('Please fill in all required fields.'); return; }
+    const mailtoLink = `mailto:vimalraj5207@gmail.com?subject=Project Inquiry from ${name}&body=Name: ${name}%0AEmail: ${email}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
+    window.open(mailtoLink);
+    document.getElementById('form-success').style.display = 'block';
+    setTimeout(() => document.getElementById('form-success').style.display = 'none', 5000);
+  }
+
+  // ---- Cookie ----
+  function acceptCookies() {
+    localStorage.setItem('vsgrps_cookies', 'accepted');
+    document.getElementById('cookie-banner').classList.remove('show');
+  }
+  function declineCookies() {
+    localStorage.setItem('vsgrps_cookies', 'declined');
+    document.getElementById('cookie-banner').classList.remove('show');
+  }
+  window.addEventListener('load', () => {
+    if (!localStorage.getItem('vsgrps_cookies')) {
+      setTimeout(() => document.getElementById('cookie-banner').classList.add('show'), 2000);
+    }
+  });
+
+  // ---- Lottie Animations ----
+  // Hero - coding/tech lottie
+  lottie.loadAnimation({
+    container: document.getElementById('hero-lottie'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'https://assets10.lottiefiles.com/packages/lf20_w51pcehl.json'
+  });
+
+  // About - team/growth lottie
+  lottie.loadAnimation({
+    container: document.getElementById('about-lottie'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'https://assets4.lottiefiles.com/packages/lf20_qp1q7mct.json'
+  });
+
+  // CertifyPro - certificate lottie
+  lottie.loadAnimation({
+    container: document.getElementById('certify-lottie'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'https://assets9.lottiefiles.com/packages/lf20_jbb5xxr0.json'
+  });
+
+  // Agile - dashboard/workspace lottie
+  lottie.loadAnimation({
+    container: document.getElementById('agile-lottie'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'https://assets3.lottiefiles.com/packages/lf20_qm8eqzse.json'
+  });
+
+  // Loading lottie
+  lottie.loadAnimation({
+    container: document.getElementById('loading-lottie'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'https://assets5.lottiefiles.com/packages/lf20_szlepvdh.json'
+  });
+
+  // ---- Theme Toggle Logic ----
+  const themeToggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  
+  // Load saved theme
+  const savedTheme = localStorage.getItem('vsgrps_theme') || 'dark';
+  html.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('vsgrps_theme', newTheme);
+    updateThemeIcon(newTheme);
+  });
+
+  function updateThemeIcon(theme) {
+    const icon = themeToggle.querySelector('i');
+    if (theme === 'dark') {
+      icon.className = 'fas fa-sun';
+    } else {
+      icon.className = 'fas fa-moon';
+    }
+  }
+
+  // ---- Chatbot Logic ----
+  const chatbotToggle = document.getElementById('chatbot-toggle');
+  const chatbotWindow = document.getElementById('chatbot-window');
+  const chatbotClose = document.getElementById('chatbot-close');
+  const chatInput = document.getElementById('chat-input');
+  const chatSend = document.getElementById('chat-send');
+  const chatMessages = document.getElementById('chat-messages');
+
+  chatbotToggle.addEventListener('click', () => chatbotWindow.classList.toggle('open'));
+  chatbotClose.addEventListener('click', () => chatbotWindow.classList.remove('open'));
+
+  function addMessage(text, sender) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `message ${sender}`;
+    msgDiv.textContent = text;
+    chatMessages.appendChild(msgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function handleBotResponse(userText) {
+    const text = userText.toLowerCase();
+    let response = "I'm not sure about that. Would you like to speak with our team? You can email us at vimalraj5207@gmail.com";
+
+    if (text.includes('hello') || text.includes('hi')) {
+      response = "Hello! How can I help you today? I can tell you about our services, products, or how to contact us.";
+    } else if (text.includes('service')) {
+      response = "We offer Web Development, Automation Solutions, Dashboards & CRM, Custom Software, and Cloud Hosting. Which one are you interested in?";
+    } else if (text.includes('product') || text.includes('certifypro') || text.includes('agile')) {
+      response = "We have two main products: CertifyPro (Certificate SaaS) and VSGRPS Agile (Project Management). You can find them in the Products section!";
+    } else if (text.includes('price') || text.includes('cost')) {
+      response = "Our pricing is tailored to your specific requirements. We offer a free 3-month support period for all projects. Use the 'Get a Quote' button for a custom proposal!";
+    } else if (text.includes('contact') || text.includes('email') || text.includes('phone')) {
+      response = "You can reach us at vimalraj5207@gmail.com or via WhatsApp at +91 88070 99288. We're also located in Namakkal, Tamil Nadu.";
+    }
+
+    setTimeout(() => addMessage(response, 'bot'), 500);
+  }
+
+  function sendMessageToBot() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+    addMessage(text, 'user');
+    chatInput.value = '';
+    handleBotResponse(text);
+  }
+
+  chatSend.addEventListener('click', sendMessageToBot);
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessageToBot();
+  });
+</script>
+
+<!-- JSON-LD Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "VSGRPS Technologies",
+  "alternateName": "Vision Solutions Groups",
+  "url": "https://vsgrps.com",
+  "logo": "https://vsgrps.com/favicon.svg",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-88070-99288",
+    "contactType": "customer service",
+    "email": "vimalraj5207@gmail.com",
+    "availableLanguage": ["English", "Tamil"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Namakkal",
+    "addressRegion": "Tamil Nadu",
+    "addressCountry": "IN"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/vimal-raj-s-b83b42324",
+    "https://github.com/vimalRaj45"
+  ]
+}
+</script>
 
 </body>
 </html>
