@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>E-Commerce Plans | vsgrps.com</title>
   
   <!-- Fonts -->
@@ -44,13 +44,14 @@
       --text: #F8FAFC;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     body {
       background-color: var(--bg);
       color: var(--text);
       font-family: 'Outfit', sans-serif;
       overflow-x: hidden;
+      word-wrap: break-word;
     }
 
     /* VSGRPS Signature Elements */
@@ -75,18 +76,22 @@
 
     .glow-orb {
       position: absolute;
-      width: 600px;
-      height: 600px;
+      width: 300px;
+      height: 300px;
       background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-      filter: blur(100px);
+      filter: blur(80px);
       z-index: -1;
       pointer-events: none;
+    }
+    @media (min-width: 768px) {
+      .glow-orb { width: 600px; height: 600px; }
     }
 
     /* Premium Glassmorphism */
     .premium-card {
       background: var(--card);
       backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--border);
       border-radius: 24px;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -102,12 +107,14 @@
       transition: opacity 0.5s;
       pointer-events: none;
     }
-    .premium-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    @media (hover: hover) {
+      .premium-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+      }
+      .premium-card:hover::before { opacity: 1; }
     }
-    .premium-card:hover::before { opacity: 1; }
 
     .featured-card {
       border-color: rgba(59, 130, 246, 0.3);
@@ -124,15 +131,16 @@
       display: flex;
       align-items: flex-start;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       font-size: 14px;
       color: #94A3B8;
+      line-height: 1.5;
     }
     .list-item span { color: #E2E8F0; }
-    .list-item i { margin-top: 3px; }
+    .list-item i { margin-top: 3px; font-size: 14px; }
 
     @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .animate-in {
@@ -149,128 +157,130 @@
     .badge-premium {
       background: linear-gradient(135deg, #3B82F6, #2563EB);
       color: white;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      padding: 6px 14px;
+      letter-spacing: 0.12em;
+      padding: 5px 12px;
       border-radius: 100px;
       box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
     }
 
     .icon-box {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: rgba(59, 130, 246, 0.08);
-      border: 1px solid rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.15);
       color: var(--accent);
-      font-size: 20px;
+      font-size: 18px;
       transition: all 0.3s ease;
     }
-    .premium-card:hover .icon-box {
-      background: var(--accent);
-      color: white;
-      transform: scale(1.1);
+    @media (hover: hover) {
+      .premium-card:hover .icon-box {
+        background: var(--accent);
+        color: white;
+        transform: scale(1.05);
+      }
     }
   </style>
 </head>
-<body class="min-h-screen py-16 px-6">
+<body class="min-h-screen py-10 md:py-20 px-4 sm:px-6">
   <div class="grid-bg"></div>
   
   <!-- Ambient Glows -->
-  <div class="glow-orb top-[-10%] left-[-5%]"></div>
-  <div class="glow-orb bottom-[-10%] right-[-5%]"></div>
+  <div class="glow-orb top-[-5%] left-[-10%]"></div>
+  <div class="glow-orb bottom-[-5%] right-[-10%]"></div>
 
   <div class="max-w-4xl mx-auto relative z-10">
     
     <!-- Header -->
-    <header class="mb-12 text-center animate-in">
+    <header class="mb-12 md:mb-16 text-center animate-in">
       <div class="flex justify-center mb-6">
-        <div class="w-48 h-48 md:w-64 md:h-64">
+        <div class="w-40 h-40 md:w-64 md:h-64">
           <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_kkflmtur.json" background="transparent" speed="1" loop autoplay></lottie-player>
         </div>
       </div>
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-6">
         <i class="bi bi-patch-check-fill"></i> Verified E-Commerce Solutions
       </div>
-      <h1 class="text-5xl md:text-6xl font-black mb-4 tracking-tighter">
+      <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tighter">
         vsgrps<span class="text-blue-500">.com</span>
       </h1>
-      <p class="text-slate-400 text-lg md:text-xl font-medium tracking-tight">E-Commerce Website Plans</p>
-      <div class="mt-12 h-px w-32 mx-auto bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
+      <p class="text-slate-400 text-base md:text-xl font-medium tracking-tight px-4">E-Commerce Website Plans</p>
+      <div class="mt-8 md:mt-12 h-px w-24 md:w-32 mx-auto bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
     </header>
 
     <!-- Plans Section -->
-    <div class="grid md:grid-cols-2 gap-10 mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mb-12 md:mb-16">
       
       <!-- Basic Plan -->
-      <div class="premium-card p-10 animate-in" style="animation-delay: 0.1s;">
+      <div class="premium-card p-8 md:p-10 animate-in" style="animation-delay: 0.1s;">
         <div class="flex items-center justify-between mb-8">
           <div class="icon-box">
-            <lord-icon src="https://cdn.lordicon.com/slkvcfos.json" trigger="loop" colors="primary:#3b82f6,secondary:#3b82f6" style="width:32px;height:32px"></lord-icon>
+            <lord-icon src="https://cdn.lordicon.com/slkvcfos.json" trigger="loop" colors="primary:#3b82f6,secondary:#3b82f6" style="width:28px;height:28px"></lord-icon>
           </div>
-          <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Starter Tier</span>
+          <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest">Starter Tier</span>
         </div>
         
-        <h2 class="text-4xl font-black mb-2 text-white">₹18,000</h2>
-        <p class="text-slate-400 text-sm mb-8 font-medium leading-relaxed">This plan is suitable if you want to start selling online and are okay with handling orders manually.</p>
+        <h2 class="text-3xl md:text-4xl font-black mb-2 text-white">₹18,000</h2>
+        <p class="text-slate-400 text-sm mb-8 font-medium leading-relaxed">Suitable for starting online with manual order handling.</p>
         
-        <div class="space-y-10">
+        <div class="space-y-8">
           <div>
             <h4 class="text-blue-500 text-[10px] font-black uppercase tracking-[0.15em] mb-5">Web Store Experience</h4>
-            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>A clean website to display your products</span></div>
-            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Customers can search, view, and add to cart</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>A clean website to display products</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Search, view, and add to cart</span></div>
             <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Customers can place orders easily</span></div>
-            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Login and account system for users</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Login and account system</span></div>
             <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Payment through UPI or QR code</span></div>
-            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Basic order tracking (manual updates)</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Basic manual order tracking</span></div>
           </div>
 
           <div>
             <h4 class="text-slate-400 text-[10px] font-black uppercase tracking-[0.15em] mb-5">Admin Dashboard</h4>
-            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>Add, edit, or remove products anytime</span></div>
-            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>View and manage all incoming orders</span></div>
-            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>Manual payment verification flow</span></div>
-            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>Status updates (Confirmed/Shipped/Delivered)</span></div>
+            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>Manage products anytime</span></div>
+            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>View and manage all orders</span></div>
+            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>Manual verification flow</span></div>
+            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>Confirmed/Shipped status</span></div>
           </div>
 
-          <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 space-y-3">
-            <h4 class="text-slate-500 text-[10px] font-black uppercase tracking-[0.15em]">Important Note</h4>
-            <div class="list-item text-xs mb-0"><i class="bi bi-info-circle text-slate-500"></i> <span>Payments are handled manually</span></div>
-            <div class="list-item text-xs mb-0"><i class="bi bi-info-circle text-slate-500"></i> <span>No Google SEO setup included</span></div>
+          <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/5 space-y-2">
+            <h4 class="text-slate-500 text-[10px] font-black uppercase tracking-[0.15em]">Note</h4>
+            <div class="list-item text-xs mb-0"><i class="bi bi-info-circle text-slate-500"></i> <span>Manual payments only</span></div>
+            <div class="list-item text-xs mb-0"><i class="bi bi-info-circle text-slate-500"></i> <span>No Google SEO setup</span></div>
           </div>
         </div>
       </div>
 
       <!-- Pro Plan -->
-      <div class="premium-card featured-card p-10 animate-in border-blue-500/30" style="animation-delay: 0.2s;">
+      <div class="premium-card featured-card p-8 md:p-10 animate-in border-blue-500/30" style="animation-delay: 0.2s;">
         <div class="flex items-center justify-between mb-8">
-          <div class="w-24 h-24">
+          <div class="w-20 h-20 md:w-24 md:h-24">
             <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_touohxv0.json" background="transparent" speed="1" loop autoplay></lottie-player>
           </div>
           <span class="badge-premium float-anim">Recommended</span>
         </div>
         
-        <h2 class="text-4xl font-black mb-2 text-white">₹25,000</h2>
-        <p class="text-slate-300 text-sm mb-8 font-medium leading-relaxed">This is for businesses that want a smoother and more professional online selling system.</p>
+        <h2 class="text-3xl md:text-4xl font-black mb-2 text-white">₹25,000</h2>
+        <p class="text-slate-300 text-sm mb-8 font-medium leading-relaxed">Smoother and more professional online selling system.</p>
         
         <div class="space-y-10">
           <div class="text-blue-400 text-[10px] font-black uppercase tracking-[0.15em]">Everything in Basic, Plus:</div>
           
-          <div class="space-y-6">
+          <div class="space-y-8">
             <div class="group/item">
-              <h4 class="text-white text-sm font-bold mb-3 flex items-center gap-3"><i class="bi bi-credit-card-2-front text-blue-400"></i> Easy Online Payments</h4>
-              <div class="flex flex-col gap-6 mb-8">
-                <div class="w-full h-32 bg-blue-500/5 rounded-2xl border border-blue-500/10 p-4 flex items-center justify-center">
-                  <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_qmfs6c3i.json" background="transparent" speed="1" loop autoplay style="width: 120px; height: 120px;"></lottie-player>
+              <h4 class="text-white text-sm font-bold mb-4 flex items-center gap-3"><i class="bi bi-credit-card-2-front text-blue-400"></i> Easy Online Payments</h4>
+              <div class="flex flex-col gap-4 mb-6">
+                <div class="w-full h-24 md:h-32 bg-blue-500/5 rounded-2xl border border-blue-500/10 p-4 flex items-center justify-center overflow-hidden">
+                  <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_qmfs6c3i.json" background="transparent" speed="1" loop autoplay style="width: 100px; height: 100px;"></lottie-player>
                 </div>
-                <div class="space-y-3 px-2">
-                  <div class="list-item text-base mb-0"><i class="bi bi-stars text-blue-400"></i> <span>UPI, Cards, and Instant Checkout</span></div>
-                  <div class="list-item text-base mb-0"><i class="bi bi-stars text-blue-400"></i> <span>Automatic Payment Confirmation</span></div>
+                <div class="space-y-2 px-1">
+                  <div class="list-item mb-0"><i class="bi bi-stars text-blue-400"></i> <span>UPI, Cards, and Instant Checkout</span></div>
+                  <div class="list-item mb-0"><i class="bi bi-stars text-blue-400"></i> <span>Automatic Payment Confirmation</span></div>
                 </div>
               </div>
             </div>
@@ -278,7 +288,7 @@
             <div class="group/item">
               <h4 class="text-white text-sm font-bold mb-3 flex items-center gap-3"><i class="bi bi-shield-lock text-blue-400"></i> Professional Trust</h4>
               <div class="list-item mb-2"><i class="bi bi-stars text-blue-400"></i> <span>Google Reviews Integration</span></div>
-              <div class="list-item mb-2"><i class="bi bi-stars text-blue-400"></i> <span>Optimized performance & smoother UX</span></div>
+              <div class="list-item mb-2"><i class="bi bi-stars text-blue-400"></i> <span>Smoother high-performance UX</span></div>
             </div>
           </div>
         </div>
@@ -286,42 +296,42 @@
     </div>
 
     <!-- Massive SEO & Google Section -->
-    <div class="premium-card p-10 md:p-16 mb-16 animate-in border-blue-500/20 bg-gradient-to-br from-blue-600/5 to-transparent" style="animation-delay: 0.3s;">
+    <div class="premium-card p-8 md:p-16 mb-12 md:mb-16 animate-in border-blue-500/20 bg-gradient-to-br from-blue-600/5 to-transparent" style="animation-delay: 0.3s;">
       <div class="flex flex-col items-center">
         <!-- Lottie at Top -->
-        <div class="relative w-full max-w-sm h-64 md:h-80 mb-12">
-          <div class="absolute inset-0 bg-blue-500/20 filter blur-[100px] rounded-full opacity-30"></div>
-          <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" loop autoplay class="relative z-10"></lottie-player>
+        <div class="relative w-full max-w-xs md:max-w-sm h-48 md:h-80 mb-10 md:mb-12">
+          <div class="absolute inset-0 bg-blue-500/20 filter blur-[60px] md:blur-[100px] rounded-full opacity-30"></div>
+          <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" loop autoplay class="relative z-10 w-full h-full"></lottie-player>
         </div>
 
-        <div class="w-full text-center md:text-left grid md:grid-cols-2 gap-12 items-start">
-          <div>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-widest mb-6">
+        <div class="w-full text-center md:text-left grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-start">
+          <div class="text-center md:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[9px] font-black uppercase tracking-widest mb-6">
               The Pro Advantage
             </div>
-            <h2 class="text-3xl md:text-5xl font-black mb-6 gradient-text text-white">Get Found on Google</h2>
-            <p class="text-slate-400 text-lg mb-8 leading-relaxed">
-              If people can't find your store on Google, you're missing out on customers. The <span class="text-white font-bold">Pro Plan</span> includes a complete Google setup to put your business on the map.
+            <h2 class="text-3xl md:text-5xl font-black mb-6 gradient-text text-white tracking-tight">Get Found on Google</h2>
+            <p class="text-slate-400 text-base md:text-lg mb-8 leading-relaxed">
+              Complete Google setup to put your business on the map.
             </p>
           </div>
           
           <div class="space-y-6 text-left">
-            <div class="flex items-start gap-5 group">
+            <div class="flex items-start gap-4 md:gap-5 group">
               <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 shrink-0">
                 <i class="bi bi-google"></i>
               </div>
               <div>
-                <h4 class="text-white font-bold mb-1">Google Search Console</h4>
-                <p class="text-sm text-slate-500">We tell Google exactly what products you sell so they show them to shoppers.</p>
+                <h4 class="text-white font-bold mb-1 text-sm md:text-base">Google Search Console</h4>
+                <p class="text-xs md:text-sm text-slate-500">We tell Google exactly what products you sell.</p>
               </div>
             </div>
-            <div class="flex items-start gap-5 group">
+            <div class="flex items-start gap-4 md:gap-5 group">
               <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 shrink-0">
                 <i class="bi bi-search"></i>
               </div>
               <div>
-                <h4 class="text-white font-bold mb-1">Basic SEO Setup</h4>
-                <p class="text-sm text-slate-500">We optimize your store’s structure so it ranks higher in searches.</p>
+                <h4 class="text-white font-bold mb-1 text-sm md:text-base">Basic SEO Setup</h4>
+                <p class="text-xs md:text-sm text-slate-500">Optimized structure for higher search ranking.</p>
               </div>
             </div>
           </div>
@@ -330,86 +340,89 @@
     </div>
 
     <!-- Simple Difference -->
-    <div class="premium-card p-10 mb-12 animate-in text-center" style="animation-delay: 0.35s;">
-      <h3 class="text-xs font-black uppercase tracking-[0.2em] mb-10 text-slate-500">Comparison At A Glance</h3>
-      <div class="grid md:grid-cols-2 gap-8 items-center">
-        <div>
-          <div class="text-3xl font-black text-white mb-2">₹18,000</div>
-          <p class="text-slate-500 text-sm">Manage orders and payments manually</p>
+    <div class="premium-card p-8 md:p-10 mb-12 animate-in text-center" style="animation-delay: 0.35s;">
+      <h3 class="text-[10px] font-black uppercase tracking-[0.2em] mb-10 text-slate-500">Comparison At A Glance</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 items-center">
+        <div class="px-4 md:px-6">
+          <div class="text-2xl md:text-3xl font-black text-white mb-2">₹18,000</div>
+          <p class="text-slate-500 text-xs md:text-sm">Manage orders manually</p>
         </div>
-        <div class="md:border-l border-white/5 px-6">
-          <div class="text-3xl font-black text-blue-500 mb-2">₹25,000</div>
-          <p class="text-slate-500 text-sm">Fully automated ecosystem & Google visibility</p>
+        <div class="md:border-l border-white/5 px-4 md:px-6">
+          <div class="text-2xl md:text-3xl font-black text-blue-500 mb-2">₹25,000</div>
+          <p class="text-slate-500 text-xs md:text-sm">Automated ecosystem</p>
         </div>
       </div>
     </div>
 
     <!-- Deployment Section -->
-    <div class="premium-card p-10 mb-12 animate-in" style="animation-delay: 0.4s;">
-      <div class="flex items-center justify-between gap-3 mb-8">
-        <div class="flex items-center gap-3">
+    <div class="premium-card p-8 md:p-12 mb-12 animate-in" style="animation-delay: 0.4s;">
+      <div class="flex flex-col md:flex-row items-center md:justify-between gap-6 mb-10 text-center md:text-left">
+        <div class="flex flex-col md:flex-row items-center gap-4 md:gap-5">
           <div class="icon-box"><i class="bi bi-cloud-check"></i></div>
-          <h3 class="text-xl font-bold">Deployment & Launch</h3>
+          <h3 class="text-xl md:text-2xl font-bold">Deployment & Launch</h3>
         </div>
-        <span class="text-[10px] font-black text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full uppercase tracking-widest border border-blue-500/20">Standard on Both Plans</span>
+        <span class="text-[9px] font-black text-blue-400 bg-blue-500/10 px-3 py-1.5 rounded-full uppercase tracking-widest border border-blue-500/20">Included for Both</span>
       </div>
-      <p class="text-slate-400 text-sm mb-8 max-w-2xl leading-relaxed">
-        Professional setup is included in both the Basic and Pro plans. We handle the entire technical launch so you don't have to worry about the details.
-      </p>
       
-      <div class="grid sm:grid-cols-2 gap-6">
-        <div class="flex items-start gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6">
+        <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors">
           <i class="bi bi-hdd-network text-blue-500 mt-1"></i>
           <div>
-            <h5 class="text-white text-sm font-bold mb-1">High-Speed Hosting</h5>
-            <p class="text-xs text-slate-500">Setup on premium servers for lightning-fast loading speeds.</p>
+            <h5 class="text-white text-sm font-bold mb-1">Hosting</h5>
+            <p class="text-[11px] text-slate-500">Premium servers for speed.</p>
           </div>
         </div>
-        <div class="flex items-start gap-4">
+        <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors">
           <i class="bi bi-shield-lock text-blue-500 mt-1"></i>
           <div>
             <h5 class="text-white text-sm font-bold mb-1">SSL Security</h5>
-            <p class="text-xs text-slate-500">Installation of safety certificates so customers feel secure.</p>
+            <p class="text-[11px] text-slate-500">Safety certificates included.</p>
           </div>
         </div>
-        <div class="flex items-start gap-4">
+        <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors">
           <i class="bi bi-globe2 text-blue-500 mt-1"></i>
           <div>
-            <h5 class="text-white text-sm font-bold mb-1">Domain Connection</h5>
-            <p class="text-xs text-slate-500">Connecting your website to your custom brand name.</p>
+            <h5 class="text-white text-sm font-bold mb-1">Domain Connect</h5>
+            <p class="text-[11px] text-slate-500">Custom brand name setup.</p>
           </div>
         </div>
-        <div class="flex items-start gap-4">
+        <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors">
           <i class="bi bi-phone-flip text-blue-500 mt-1"></i>
           <div>
             <h5 class="text-white text-sm font-bold mb-1">Mobile Testing</h5>
-            <p class="text-xs text-slate-500">Final quality check on Android and iOS devices before launch.</p>
+            <p class="text-[11px] text-slate-500">Quality check on all devices.</p>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Final Suggestion -->
-    <div class="premium-card p-12 text-center animate-in mb-16 border-blue-500/20 bg-gradient-to-b from-blue-500/5 to-transparent" style="animation-delay: 0.45s;">
-      <h3 class="text-2xl font-black mb-4">Final Suggestion</h3>
-      <p class="text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed">
-        If you just want to get started, the <span class="text-white font-bold">Basic plan</span> is enough. 
-        If you want to save time and give customers a better experience, the <span class="text-blue-400 font-bold">Pro plan</span> is a better choice.
+    <div class="premium-card p-10 md:p-12 text-center animate-in mb-16 border-blue-500/20 bg-gradient-to-b from-blue-500/5 to-transparent" style="animation-delay: 0.45s;">
+      <h3 class="text-xl md:text-2xl font-black mb-4">Final Suggestion</h3>
+      <p class="text-slate-400 text-sm md:text-base max-w-xl mx-auto mb-10 leading-relaxed px-4">
+        If you want to save time and give customers a better experience, the <span class="text-blue-400 font-bold">Pro plan</span> is the best choice.
       </p>
       
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-20">
-          
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-20 w-full">
+        <a href="https://wa.me/918807099288?text=I%20would%20like%20to%20proceed%20with%20the%20Pro%20Enterprise%20Plan" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-5 bg-[#25D366] hover:bg-[#20ba5a] text-white font-black rounded-2xl transition-all shadow-xl shadow-green-500/20 active:scale-95 group">
+          <i class="bi bi-whatsapp text-xl"></i> 
+          <span>WhatsApp Chat</span>
+        </a>
+        <a href="tel:+918807099288" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-5 bg-white/5 hover:bg-white/10 text-white border border-white/10 font-black rounded-2xl transition-all active:scale-95">
+          <i class="bi bi-telephone-fill"></i> 
+          <span>Call Us Now</span>
+        </a>
       </div>
     </div>
 
     <!-- Footer -->
     <footer class="text-center pb-12 animate-in" style="animation-delay: 0.5s;">
-      <div class="flex flex-col items-center gap-6">
+      <div class="flex flex-col items-center gap-6 px-4">
         <div class="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent mb-4"></div>
-        <a href="https://vsgrps.com" target="_blank" class="text-sm font-bold text-slate-500 hover:text-blue-400 transition-colors tracking-widest uppercase">
+        <a href="https://vsgrps.com" target="_blank" class="text-xs font-bold text-slate-500 hover:text-blue-400 transition-colors tracking-widest uppercase">
           vsgrps.com
         </a>
-        <p class="text-[9px] text-slate-700 uppercase tracking-[0.3em] font-black">Innovation • Excellence • Growth</p>
+        <p class="text-[8px] text-slate-700 uppercase tracking-[0.3em] font-black">Innovation • Excellence • Growth</p>
       </div>
     </footer>
 
