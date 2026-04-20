@@ -2453,6 +2453,27 @@
     if (e.key === 'Enter') sendMessageToBot();
   });
 
+  // ---- Proactive Greeting ----
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const now = new Date();
+      const hour = now.getHours();
+      let greeting = "Good morning";
+      if (hour >= 12 && hour < 17) greeting = "Good afternoon";
+      else if (hour >= 17) greeting = "Good evening";
+      
+      const proactiveMsg = `${greeting}! I'm the VSGRPS Intelligence Assistant. Do you need any help with our digital services or flagship products today?`;
+      
+      // Only show if user hasn't started a chat yet
+      if (userMsgCount === 0) {
+        addMessage(proactiveMsg, 'bot');
+        // Pulse the toggle to attract attention
+        chatbotToggle.classList.add('glow-accent');
+        setTimeout(() => chatbotToggle.classList.remove('glow-accent'), 5000);
+      }
+    }, 6000);
+  });
+
   // ---- Rating System ----
   const stars = document.querySelectorAll('.rating-star');
   const feedbackSuccess = document.getElementById('feedback-success');
