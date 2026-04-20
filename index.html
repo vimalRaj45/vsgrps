@@ -1029,14 +1029,14 @@
 
     <!-- CTA + Mobile -->
     <div class="flex items-center gap-3">
-      <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
-        <i class="bi bi-moon-stars"></i>
+      <button id="theme-toggle" class="theme-toggle" title="Toggle Theme" aria-label="Toggle light/dark theme">
+        <i class="bi bi-moon-stars" aria-hidden="true"></i>
       </button>
       <a href="#contact" class="btn-primary hidden md:flex" style="padding:10px 22px;font-size:14px;">
         <i class="bi bi-rocket-takeoff"></i> Get a Quote
       </a>
-      <button id="menu-toggle" class="md:hidden" style="background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;">
-        <i class="bi bi-list"></i>
+      <button id="menu-toggle" class="md:hidden" aria-label="Open navigation menu" style="background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;">
+        <i class="bi bi-list" aria-hidden="true"></i>
       </button>
     </div>
   </div>
@@ -1047,7 +1047,7 @@
   <div class="p-6">
     <div class="flex justify-between items-center mb-8">
       <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:var(--text);">VSGRPS</span>
-      <button id="menu-close" style="background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;"><i class="bi bi-x-lg"></i></button>
+      <button id="menu-close" aria-label="Close navigation menu" style="background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
     </div>
     <div class="flex flex-col gap-6">
       <a href="#about" class="mobile-nav-link flex items-center gap-3" style="color:var(--text-muted);text-decoration:none;font-size:16px;font-weight:500;">
@@ -2086,14 +2086,14 @@
 
         <!-- Social links -->
         <div class="flex gap-4 mt-10" data-aos="fade-up" data-aos-delay="400">
-          <a href="https://www.linkedin.com/in/vimal-raj-s-b83b42324" target="_blank" style="width:44px;height:44px;background:#1E293B;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#94A3B8;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.background='rgba(59,130,246,0.1)';this.style.color='var(--accent)'" onmouseout="this.style.background='#1E293B';this.style.color='#94A3B8'">
-            <i class="bi bi-linkedin"></i>
+          <a href="https://www.linkedin.com/in/vimal-raj-s-b83b42324" target="_blank" aria-label="Visit Vimal Raj on LinkedIn" style="width:44px;height:44px;background:#1E293B;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#94A3B8;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.background='rgba(59,130,246,0.1)';this.style.color='var(--accent)'" onmouseout="this.style.background='#1E293B';this.style.color='#94A3B8'">
+            <i class="bi bi-linkedin" aria-hidden="true"></i>
           </a>
-          <a href="https://github.com/vimalRaj45" target="_blank" style="width:44px;height:44px;background:#1E293B;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#94A3B8;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.background='rgba(59,130,246,0.1)';this.style.color='var(--accent)'" onmouseout="this.style.background='#1E293B';this.style.color='#94A3B8'">
-            <i class="bi bi-github"></i>
+          <a href="https://github.com/vimalRaj45" target="_blank" aria-label="Visit VSGRPS on GitHub" style="width:44px;height:44px;background:#1E293B;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#94A3B8;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.background='rgba(59,130,246,0.1)';this.style.color='var(--accent)'" onmouseout="this.style.background='#1E293B';this.style.color='#94A3B8'">
+            <i class="bi bi-github" aria-hidden="true"></i>
           </a>
-          <a href="https://wa.me/918807099288" target="_blank" style="width:44px;height:44px;background:#1E293B;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#94A3B8;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.background='rgba(37,211,102,0.1)';this.style.color='#25D366'" onmouseout="this.style.background='#1A2540';this.style.color='#7A8BA8'">
-            <i class="bi bi-whatsapp"></i>
+          <a href="https://wa.me/918807099288" target="_blank" aria-label="Chat with VSGRPS on WhatsApp" style="width:44px;height:44px;background:#1E293B;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#94A3B8;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.background='rgba(37,211,102,0.1)';this.style.color='#25D366'" onmouseout="this.style.background='#1A2540';this.style.color='#7A8BA8'">
+            <i class="bi bi-whatsapp" aria-hidden="true"></i>
           </a>
         </div>
       </div>
@@ -2114,8 +2114,8 @@
               </div>
             </div>
             <div>
-              <label style="font-size:13px;color:#94A3B8;margin-bottom:8px;display:block;">Service Needed</label>
-              <select id="service" class="form-input" style="cursor:pointer;">
+              <label for="service" style="font-size:13px;color:#94A3B8;margin-bottom:8px;display:block;">Service Needed</label>
+              <select id="service" name="service" class="form-input" style="cursor:pointer;">
                 <option value="" disabled selected>Select a service</option>
                 <option value="web">Web Development</option>
                 <option value="automation">Automation Solutions</option>
@@ -2204,8 +2204,8 @@
 </div>
 
 <!-- ==================== CHATBOT ==================== -->
-<div id="chatbot-toggle">
-  <i class="bi bi-chat-dots" style="color:#080C14;font-size:24px;"></i>
+<div id="chatbot-toggle" role="button" aria-label="Open VSGRPS chat assistant" tabindex="0">
+  <i class="bi bi-chat-dots" style="color:#080C14;font-size:24px;" aria-hidden="true"></i>
 </div>
 
 <div id="chatbot-window">
@@ -2217,7 +2217,7 @@
         <div style="font-size:11px;color:var(--accent);">Online • AI Powered</div>
       </div>
     </div>
-    <button id="chatbot-close" style="background:none;border:none;color:var(--text-muted);cursor:pointer;"><i class="bi bi-x-lg"></i></button>
+    <button id="chatbot-close" aria-label="Close chat assistant" style="background:none;border:none;color:var(--text-muted);cursor:pointer;"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
   </div>
   <div class="chat-messages" id="chat-messages">
     <div class="message bot">
@@ -2226,7 +2226,7 @@
   </div>
   <div class="chat-input-area">
     <input type="text" id="chat-input" class="chat-input" placeholder="Type your message..." />
-    <div class="chat-send" id="chat-send">
+    <div class="chat-send" id="chat-send" role="button" aria-label="Send message" tabindex="0">
       <i class="bi bi-send"></i>
     </div>
   </div>

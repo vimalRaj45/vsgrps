@@ -1,8 +1,4 @@
 User-agent: *
-Allow: /
-
-# Disallow admin/internal paths
 Disallow: /functions/
 
-# Sitemaps
 Sitemap: https://vsgrps.com/sitemap.xml
