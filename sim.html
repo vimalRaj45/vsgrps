@@ -587,6 +587,124 @@
         height: 70vh;
       }
     }
+
+    /* App Solutions */
+    .pro-features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .pro-feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+    .pro-feature-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px);
+    }
+    .pro-feature-icon {
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: center;
+    }
+    .pro-feature-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .pro-feature-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Blog */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+    .blog-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .blog-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+    }
+    .blog-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .blog-content {
+      padding: 24px;
+    }
+    .blog-category {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .blog-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .blog-excerpt {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .blog-footer {
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Company Review */
+    .review-card {
+      background: linear-gradient(135deg, rgba(0,245,160,0.05), rgba(0,217,245,0.05));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .rating-stars {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 32px 0;
+    }
+    .rating-star {
+      font-size: 32px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .rating-star.active {
+      color: #F59E0B;
+      text-shadow: 0 0 20px rgba(245,158,11,0.4);
+    }
   </style>
 </head>
 <body class="grid-bg">
@@ -1013,6 +1131,95 @@
   </div>
 </section>
 
+<!-- ==================== APP SOLUTIONS ==================== -->
+<section id="app-solutions" class="py-24 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <div class="section-tag mx-auto" data-aos="fade-up">
+        <i class="fas fa-mobile-alt"></i> Smart Solutions
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100" style="font-family:'Syne',sans-serif;">
+        App Experience at <span class="gradient-text">Website Cost</span>
+      </h2>
+      <p class="text-base max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200" style="color:#7A8BA8;">
+        We build smart web applications that work like native mobile apps. You get a Website + App BOTH.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+      <div data-aos="fade-right">
+        <div class="card p-8 border-accent" style="border-width:2px;background:rgba(0,245,160,0.02);">
+          <div style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#080C14;border-radius:100px;padding:4px 12px;font-size:11px;font-weight:700;margin-bottom:20px;">SMART SOLUTION</div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;margin-bottom:16px;">VSGRPS Smart Web App</h3>
+          <ul class="flex flex-col gap-4">
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle" style="color:var(--accent);margin-top:4px;"></i>
+              <span style="color:#7A8BA8;">Installs directly from your browser — no app store needed</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle" style="color:var(--accent);margin-top:4px;"></i>
+              <span style="color:#7A8BA8;">Fast loading and smooth performance via Service Workers</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle" style="color:var(--accent);margin-top:4px;"></i>
+              <span style="color:#7A8BA8;">Reliable offline access for core features</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle" style="color:var(--accent);margin-top:4px;"></i>
+              <span style="color:#7A8BA8;">One codebase for Web, Android, and iOS</span>
+            </li>
+          </ul>
+          <button class="btn-primary mt-10" style="width:100%;justify-content:center;">
+            <i class="fas fa-cloud-download-alt"></i> Install Demo App
+          </button>
+        </div>
+      </div>
+      <div class="hidden lg:block" data-aos="fade-left">
+        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800" alt="App Solution" style="width:100%;border-radius:24px;box-shadow:0 30px 60px rgba(0,0,0,0.4);" />
+      </div>
+    </div>
+
+    <div class="pro-features-grid">
+      <div class="pro-feature-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="pro-feature-icon">
+          <div style="width:60px;height:60px;background:rgba(59,130,246,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;">
+            <i class="fas fa-rocket" style="color:#3B82F6;font-size:24px;"></i>
+          </div>
+        </div>
+        <h4 class="pro-feature-title">Instant Setup</h4>
+        <p class="pro-feature-desc">Skip complicated app store reviews. Users can install directly from browsers instantly.</p>
+      </div>
+      <div class="pro-feature-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="pro-feature-icon">
+          <div style="width:60px;height:60px;background:rgba(139,92,246,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;">
+            <i class="fas fa-wallet" style="color:#8B5CF6;font-size:24px;"></i>
+          </div>
+        </div>
+        <h4 class="pro-feature-title">Cost Effective</h4>
+        <p class="pro-feature-desc">Avoid expensive native development. Unified codebase with an app-like experience.</p>
+      </div>
+      <div class="pro-feature-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="pro-feature-icon">
+          <div style="width:60px;height:60px;background:rgba(245,158,11,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;">
+            <i class="fas fa-bolt" style="color:#F59E0B;font-size:24px;"></i>
+          </div>
+        </div>
+        <h4 class="pro-feature-title">Lightning Fast</h4>
+        <p class="pro-feature-desc">Experience incredibly fast load times and smooth scrolling with modern caching.</p>
+      </div>
+      <div class="pro-feature-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="pro-feature-icon">
+          <div style="width:60px;height:60px;background:rgba(16,185,129,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;">
+            <i class="fas fa-signal" style="color:#10B981;font-size:24px;"></i>
+          </div>
+        </div>
+        <h4 class="pro-feature-title">Offline Access</h4>
+        <p class="pro-feature-desc">Advanced caching ensures core features work even without internet connection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== PROJECTS ==================== -->
 <section id="projects" class="py-24 relative">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 100% 50%,rgba(0,245,160,0.04),transparent 60%);"></div>
@@ -1216,31 +1423,45 @@
         Why Choose <span class="gradient-text">Us</span>
       </h2>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="100">
         <div style="width:64px;height:64px;background:rgba(0,245,160,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
-          <i class="fas fa-shield-alt" style="color:#00F5A0;font-size:24px;"></i>
+          <i class="fas fa-bolt" style="color:#00F5A0;font-size:24px;"></i>
         </div>
-        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Security First</h3>
-        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;">Bank-grade security architecture. Every product built with fintech-level security standards from day one.</p>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Fast Delivery</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;">We follow agile sprints with clear milestones, delivering your project on time without compromising quality.</p>
       </div>
       <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="200">
         <div style="width:64px;height:64px;background:rgba(0,217,245,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
-          <i class="fas fa-bolt" style="color:#00D9F5;font-size:24px;"></i>
+          <i class="fas fa-users" style="color:#00D9F5;font-size:24px;"></i>
         </div>
-        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Fast Delivery</h3>
-        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;">Rapid deployment without compromising quality. Go from requirement to live product in record time.</p>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Dedicated Team</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;">Get a fully committed team of engineers, designers, and PMs focused exclusively on your project.</p>
       </div>
       <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="300">
         <div style="width:64px;height:64px;background:rgba(168,85,247,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
-          <i class="fas fa-expand-arrows-alt" style="color:#A855F7;font-size:24px;"></i>
+          <i class="fas fa-shield-alt" style="color:#A855F7;font-size:24px;"></i>
         </div>
-        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Scalable</h3>
-        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;">Built to grow with your business. Architecture that handles 10 users or 10 million without breaking a sweat.</p>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Secure & Reliable</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;">Enterprise-grade security practices baked into every line of code. Your data and users are always protected.</p>
       </div>
       <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="400">
-        <div style="width:64px;height:64px;background:rgba(34,197,94,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
-          <i class="fas fa-headset" style="color:#22C55E;font-size:24px;"></i>
+        <div style="width:64px;height:64px;background:rgba(245,158,11,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+          <i class="fas fa-expand-arrows-alt" style="color:#F59E0B;font-size:24px;"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Scalable Architecture</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;">We build systems that grow with your business — from 100 users to 1 million, without a rewrite.</p>
+      </div>
+      <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="500">
+        <div style="width:64px;height:64px;background:rgba(16,185,129,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+          <i class="fas fa-comments" style="color:#10B981;font-size:24px;"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Transparent Process</h3>
+        <p style="color:#7A8BA8;font-size:14px;line-height:1.7;">Weekly demos, daily standups, and real-time communication via your preferred tools.</p>
+      </div>
+      <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="600">
+        <div style="width:64px;height:64px;background:rgba(239,68,68,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+          <i class="fas fa-award" style="color:#EF4444;font-size:24px;"></i>
         </div>
         <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">3M Free Support</h3>
         <p style="color:#7A8BA8;font-size:14px;line-height:1.7;">3 months free post-launch support included with every project. We don't disappear after delivery.</p>
@@ -1388,6 +1609,97 @@
             <div style="color:#7A8BA8;font-size:12px;">Construction Group</div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BLOG ==================== -->
+<section id="blog" class="py-24 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <div class="section-tag mx-auto" data-aos="fade-up">
+        <i class="fas fa-book"></i> Insights
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100" style="font-family:'Syne',sans-serif;">
+        Insights & <span class="gradient-text">Innovation</span>
+      </h2>
+      <p class="text-base max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200" style="color:#7A8BA8;">
+        Stay updated with the latest trends in software development and automation.
+      </p>
+    </div>
+
+    <div class="blog-grid">
+      <!-- Post 1 -->
+      <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="Digital Transformation" class="blog-img" />
+        <div class="blog-content">
+          <span class="blog-category">Transformation</span>
+          <h3 class="blog-title">How Digital Transformation is Reshaping Modern Enterprises</h3>
+          <p class="blog-excerpt">Explore the critical pillars of digital transformation and how businesses are leveraging cloud solutions.</p>
+          <div class="blog-footer">
+            <span>By Vimal Raj</span>
+            <span>April 12, 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800" alt="Scalable Apps" class="blog-img" />
+        <div class="blog-content">
+          <span class="blog-category">Development</span>
+          <h3 class="blog-title">Building Scalable Web Apps with React and Modern Tech Stacks</h3>
+          <p class="blog-excerpt">A deep dive into why performance and scalability are the keys to successful software products.</p>
+          <div class="blog-footer">
+            <span>By VSGRPS Engineering</span>
+            <span>March 28, 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 3 -->
+      <article class="blog-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" alt="Automation Future" class="blog-img" />
+        <div class="blog-content">
+          <span class="blog-category">Automation</span>
+          <h3 class="blog-title">The Future of Automation: Smart Systems for Smart Businesses</h3>
+          <p class="blog-excerpt">How intelligent automation is reducing operational costs and driving exponential growth.</p>
+          <div class="blog-footer">
+            <span>By Vimal Raj</span>
+            <span>March 15, 2026</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="text-center mt-12" data-aos="fade-up">
+      <a href="#" class="btn-outline">View All Insights</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FEEDBACK ==================== -->
+<section id="feedback" class="py-24 relative overflow-hidden">
+  <div class="max-w-3xl mx-auto px-6 relative z-10">
+    <div class="review-card" data-aos="zoom-in">
+      <div class="section-tag mx-auto mb-6">
+        <i class="fas fa-heart"></i> Feedback
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" style="font-family:'Syne',sans-serif;">Rate Your Experience</h2>
+      <p style="color:#7A8BA8;">Your feedback drives our excellence. Let us know how we're doing!</p>
+      
+      <div class="rating-stars" id="rating-stars">
+        <i class="fas fa-star rating-star" data-value="1"></i>
+        <i class="fas fa-star rating-star" data-value="2"></i>
+        <i class="fas fa-star rating-star" data-value="3"></i>
+        <i class="fas fa-star rating-star" data-value="4"></i>
+        <i class="fas fa-star rating-star" data-value="5"></i>
+      </div>
+      
+      <div id="feedback-success" style="display:none;color:var(--accent);font-weight:600;margin-top:20px;">
+        <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f929/512.webp" alt="Happy" style="width:60px;margin:0 auto 16px;" />
+        <div>Thank you so much for your feedback!</div>
       </div>
     </div>
   </div>
@@ -1846,6 +2158,34 @@
   chatSend.addEventListener('click', sendMessageToBot);
   chatInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') sendMessageToBot();
+  });
+
+  // ---- Rating System ----
+  const stars = document.querySelectorAll('.rating-star');
+  const feedbackSuccess = document.getElementById('feedback-success');
+  const ratingWrapper = document.getElementById('rating-stars');
+
+  stars.forEach(star => {
+    star.addEventListener('click', () => {
+      const val = parseInt(star.getAttribute('data-value'));
+      stars.forEach((s, idx) => {
+        if (idx < val) s.classList.add('active');
+        else s.classList.remove('active');
+      });
+      
+      setTimeout(() => {
+        ratingWrapper.style.display = 'none';
+        feedbackSuccess.style.display = 'block';
+      }, 600);
+    });
+
+    star.addEventListener('mouseover', () => {
+      const val = parseInt(star.getAttribute('data-value'));
+      stars.forEach((s, idx) => {
+        if (idx < val) s.classList.add('active');
+        else s.classList.remove('active');
+      });
+    });
   });
 </script>
 
