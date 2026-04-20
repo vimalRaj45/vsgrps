@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>E-Commerce Plans | vsgrps.com</title>
+  <title>Premium E-Commerce Solutions | vsgrps.com</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   
   <!-- Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -23,9 +23,10 @@
           },
           colors: {
             accent: '#3B82F6',
+            accentBlue: '#2563EB',
             dark: '#050810',
-            darkCard: '#0F172A',
-            darkBorder: '#1E293B',
+            darkCard: '#0D1320',
+            darkBorder: '#1A2540',
           }
         }
       }
@@ -35,12 +36,15 @@
   <style>
     :root {
       --accent: #3B82F6;
+      --accent-glow: rgba(59, 130, 246, 0.4);
       --bg: #050810;
-      --card: #0F172A;
+      --card: #0D1320;
       --border: #1E293B;
       --text: #F1F5F9;
       --text-muted: #94A3B8;
     }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       background-color: var(--bg);
@@ -50,7 +54,7 @@
       line-height: 1.6;
     }
 
-    /* VSGRPS Style Noise & Grid */
+    /* VSGRPS Signature Noise & Grid */
     body::before {
       content: '';
       position: fixed;
@@ -67,29 +71,64 @@
       background-image: 
         linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
+      background-size: 60px 60px;
       z-index: -1;
     }
 
-    .quotation-card {
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      transition: all 0.3s ease;
+    /* Glow Orbs */
+    .glow-orb {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      filter: blur(80px);
+      z-index: -1;
+      opacity: 0.2;
+      pointer-events: none;
     }
-    .quotation-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
+
+    /* Premium Glassmorphism */
+    .premium-card {
+      background: rgba(13, 19, 32, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(30, 41, 59, 0.5);
+      border-radius: 28px;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
     }
+    .premium-card:hover {
+      border-color: rgba(59, 130, 246, 0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    }
+    .premium-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .premium-card:hover::before { opacity: 1; }
 
     .featured-card {
       border-color: rgba(59, 130, 246, 0.4);
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.4));
+      background: linear-gradient(145deg, rgba(13, 19, 32, 0.9), rgba(13, 19, 32, 0.6));
+    }
+    .featured-card::after {
+      content: '';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+      filter: blur(20px);
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #FFF 0%, #3B82F6 100%);
+      background: linear-gradient(135deg, #FFFFFF 0%, #3B82F6 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -97,161 +136,203 @@
     .list-item {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 8px;
-      font-size: 14.5px;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 15px;
+      color: var(--text-muted);
     }
+    .list-item span { color: var(--text); }
+    .list-item i { margin-top: 4px; }
 
     @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .animate-in {
-      animation: slideUp 0.6s ease-out forwards;
+      animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .float-anim { animation: float 4s ease-in-out infinite; }
+
+    /* Custom Badge */
+    .badge-premium {
+      background: linear-gradient(135deg, #3B82F6, #2563EB);
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 6px 14px;
+      border-radius: 100px;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      color: var(--accent);
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+    .premium-card:hover .icon-box {
+      background: var(--accent);
+      color: white;
+      transform: scale(1.1) rotate(5deg);
     }
   </style>
 </head>
-<body class="min-h-screen py-10 px-6">
+<body class="min-h-screen py-16 px-6">
   <div class="grid-bg"></div>
+  
+  <!-- Ambient Glows -->
+  <div class="glow-orb top-[-10%] left-[-5%]"></div>
+  <div class="glow-orb bottom-[-10%] right-[-5%]"></div>
 
-  <div class="max-w-4xl mx-auto">
+  <div class="max-w-4xl mx-auto relative z-10">
     
     <!-- Header -->
-    <header class="mb-12 text-center animate-in">
-      <h1 class="text-4xl md:text-5xl font-black mb-3">
+    <header class="mb-20 text-center animate-in">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+        <i class="bi bi-patch-check-fill"></i> Verified Solutions
+      </div>
+      <h1 class="text-5xl md:text-6xl font-black mb-4 tracking-tighter">
         vsgrps<span class="text-blue-500">.com</span>
       </h1>
-      <p class="text-slate-400 font-medium">📄 E-Commerce Website Plans</p>
-      <div class="mt-8 h-px w-full bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+      <p class="text-slate-400 text-lg md:text-xl font-medium tracking-tight">E-Commerce Website Plans</p>
+      <div class="mt-12 h-px w-32 mx-auto bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
     </header>
 
     <!-- Plans Section -->
-    <div class="grid md:grid-cols-2 gap-8 mb-12">
+    <div class="grid md:grid-cols-2 gap-10 mb-16">
       
       <!-- Basic Plan -->
-      <div class="quotation-card p-8 animate-in" style="animation-delay: 0.1s;">
-        <div class="flex items-center gap-2 mb-4">
-          <i class="bi bi-briefcase text-slate-400"></i>
-          <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Basic Plan</span>
+      <div class="premium-card p-10 animate-in" style="animation-delay: 0.1s;">
+        <div class="flex items-center justify-between mb-8">
+          <div class="icon-box"><i class="bi bi-shop"></i></div>
+          <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Starter Tier</span>
         </div>
-        <h2 class="text-3xl font-bold mb-4 text-white">₹18,000</h2>
-        <p class="text-slate-400 text-sm mb-6 font-medium">This plan is suitable if you want to start selling online and are okay with handling orders manually.</p>
         
-        <div class="space-y-6">
+        <h2 class="text-4xl font-black mb-2 text-white">₹18,000</h2>
+        <p class="text-slate-400 text-sm mb-8 font-medium leading-relaxed">This plan is suitable if you want to start selling online and are okay with handling orders manually.</p>
+        
+        <div class="space-y-10">
           <div>
-            <h4 class="text-blue-500 text-xs font-black uppercase tracking-widest mb-3">What you’ll get:</h4>
-            <div class="list-item"><i class="bi bi-check2 text-blue-500"></i> <span>A clean website to display your products</span></div>
-            <div class="list-item"><i class="bi bi-check2 text-blue-500"></i> <span>Customers can search, view, and add products to cart</span></div>
-            <div class="list-item"><i class="bi bi-check2 text-blue-500"></i> <span>Customers can place orders easily</span></div>
-            <div class="list-item"><i class="bi bi-check2 text-blue-500"></i> <span>Login and account system for users</span></div>
-            <div class="list-item"><i class="bi bi-check2 text-blue-500"></i> <span>Payment through UPI or QR code</span></div>
-            <div class="list-item"><i class="bi bi-check2 text-blue-500"></i> <span>Basic order tracking (you update status manually)</span></div>
+            <h4 class="text-blue-500 text-[10px] font-black uppercase tracking-[0.15em] mb-5">Web Store Experience</h4>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>A clean website to display your products</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Customers can search, view, and add to cart</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Customers can place orders easily</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Login and account system for users</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Payment through UPI or QR code</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Basic order tracking (manual updates)</span></div>
           </div>
 
           <div>
-            <h4 class="text-blue-500 text-xs font-black uppercase tracking-widest mb-3">Admin side:</h4>
-            <div class="list-item"><i class="bi bi-gear text-slate-400"></i> <span>You can add, edit, or remove products anytime</span></div>
-            <div class="list-item"><i class="bi bi-gear text-slate-400"></i> <span>You can view all orders</span></div>
-            <div class="list-item"><i class="bi bi-gear text-slate-400"></i> <span>You will verify payments manually</span></div>
-            <div class="list-item"><i class="bi bi-gear text-slate-400"></i> <span>You can update order status (like confirmed, shipped, delivered)</span></div>
+            <h4 class="text-slate-400 text-[10px] font-black uppercase tracking-[0.15em] mb-5">Admin Dashboard</h4>
+            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>Add, edit, or remove products anytime</span></div>
+            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>View and manage all incoming orders</span></div>
+            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>Manual payment verification flow</span></div>
+            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>Status updates (Confirmed/Shipped/Delivered)</span></div>
           </div>
 
-          <div class="p-4 rounded-xl bg-red-500/5 border border-red-500/10">
-            <h4 class="text-red-400 text-xs font-black uppercase tracking-widest mb-2">Important to know:</h4>
-            <div class="list-item text-xs text-slate-500"><i class="bi bi-info-circle"></i> <span>Payments are not automatic</span></div>
-            <div class="list-item text-xs text-slate-500"><i class="bi bi-info-circle"></i> <span>You need to check and confirm each order</span></div>
-            <div class="list-item text-xs text-slate-500"><i class="bi bi-info-circle"></i> <span>No Google setup or visibility included</span></div>
+          <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 space-y-3">
+            <h4 class="text-slate-500 text-[10px] font-black uppercase tracking-[0.15em]">Important Note</h4>
+            <div class="list-item text-xs mb-0"><i class="bi bi-info-circle text-slate-500"></i> <span>Payments are handled manually</span></div>
+            <div class="list-item text-xs mb-0"><i class="bi bi-info-circle text-slate-500"></i> <span>No Google SEO setup included</span></div>
           </div>
         </div>
       </div>
 
       <!-- Pro Plan -->
-      <div class="quotation-card featured-card p-8 animate-in" style="animation-delay: 0.2s;">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-2">
-            <i class="bi bi-briefcase-fill text-blue-500"></i>
-            <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Pro Plan</span>
-          </div>
-          <span class="px-3 py-1 rounded-full bg-blue-600 text-[10px] font-black uppercase tracking-widest text-white">Recommended</span>
+      <div class="premium-card featured-card p-10 animate-in border-blue-500/30" style="animation-delay: 0.2s;">
+        <div class="flex items-center justify-between mb-8">
+          <div class="icon-box bg-blue-600 text-white shadow-lg shadow-blue-600/30 border-none"><i class="bi bi-rocket-takeoff-fill"></i></div>
+          <span class="badge-premium float-anim">Recommended</span>
         </div>
-        <h2 class="text-3xl font-bold mb-4 text-white">₹25,000</h2>
-        <p class="text-slate-300 text-sm mb-6 font-medium">This is for businesses that want a smoother and more professional online selling system.</p>
         
-        <div class="space-y-6">
-          <div class="text-blue-400 text-xs font-black uppercase tracking-widest">Everything in Basic, plus:</div>
+        <h2 class="text-4xl font-black mb-2 text-white">₹25,000</h2>
+        <p class="text-slate-300 text-sm mb-8 font-medium leading-relaxed">This is for businesses that want a smoother and more professional online selling system.</p>
+        
+        <div class="space-y-10">
+          <div class="text-blue-400 text-[10px] font-black uppercase tracking-[0.15em]">Everything in Basic, Plus:</div>
           
-          <div>
-            <h4 class="text-white text-sm font-bold mb-3 flex items-center gap-2"><i class="bi bi-credit-card"></i> Easy online payments:</h4>
-            <div class="list-item"><i class="bi bi-stars text-blue-400"></i> <span>Customers can pay directly using UPI, cards, etc.</span></div>
-            <div class="list-item"><i class="bi bi-stars text-blue-400"></i> <span>Payment gets confirmed automatically</span></div>
-            <div class="list-item"><i class="bi bi-stars text-blue-400"></i> <span>Orders are created instantly after payment</span></div>
-          </div>
+          <div class="space-y-6">
+            <div class="group/item">
+              <h4 class="text-white text-sm font-bold mb-3 flex items-center gap-3"><i class="bi bi-credit-card-2-front text-blue-400"></i> Easy Online Payments</h4>
+              <div class="list-item mb-2"><i class="bi bi-stars text-blue-400"></i> <span>UPI, Cards, and Instant Checkout</span></div>
+              <div class="list-item mb-2"><i class="bi bi-stars text-blue-400"></i> <span>Automatic Payment Confirmation</span></div>
+            </div>
 
-          <div>
-            <h4 class="text-white text-sm font-bold mb-3 flex items-center gap-2"><i class="bi bi-lightning"></i> Less manual work:</h4>
-            <div class="list-item"><i class="bi bi-stars text-blue-400"></i> <span>No need to check payment screenshots</span></div>
-            <div class="list-item"><i class="bi bi-stars text-blue-400"></i> <span>Order process becomes faster and easier</span></div>
-          </div>
+            <div class="group/item">
+              <h4 class="text-white text-sm font-bold mb-3 flex items-center gap-3"><i class="bi bi-lightning-charge text-blue-400"></i> Zero Manual Effort</h4>
+              <div class="list-item mb-2"><i class="bi bi-stars text-blue-400"></i> <span>No payment screenshot checking</span></div>
+              <div class="list-item mb-2"><i class="bi bi-stars text-blue-400"></i> <span>Ultra-fast automated order processing</span></div>
+            </div>
 
-          <div>
-            <h4 class="text-white text-sm font-bold mb-3 flex items-center gap-2"><i class="bi bi-google"></i> Better visibility on Google:</h4>
-            <div class="list-item"><i class="bi bi-stars text-blue-400"></i> <span>Your website will be set up to appear on Google search</span></div>
-            <div class="list-item"><i class="bi bi-stars text-blue-400"></i> <span>Basic SEO setup included</span></div>
-            <div class="list-item"><i class="bi bi-stars text-blue-400"></i> <span>Google Search Console setup for visibility</span></div>
-          </div>
+            <div class="group/item">
+              <h4 class="text-white text-sm font-bold mb-3 flex items-center gap-3"><i class="bi bi-google text-blue-400"></i> Google Search Power</h4>
+              <div class="list-item mb-2"><i class="bi bi-stars text-blue-400"></i> <span>Google Search setup & Basic SEO</span></div>
+              <div class="list-item mb-2"><i class="bi bi-stars text-blue-400"></i> <span>Google Search Console Configuration</span></div>
+            </div>
 
-          <div>
-            <h4 class="text-white text-sm font-bold mb-3 flex items-center gap-2"><i class="bi bi-shield-check"></i> Build customer trust:</h4>
-            <div class="list-item"><i class="bi bi-stars text-blue-400"></i> <span>Google reviews can be shown on your website</span></div>
-            <div class="list-item"><i class="bi bi-stars text-blue-400"></i> <span>Helps customers feel confident while buying</span></div>
-          </div>
-
-          <div>
-            <h4 class="text-white text-sm font-bold mb-3 flex items-center gap-2"><i class="bi bi-speedometer2"></i> Better performance:</h4>
-            <div class="list-item"><i class="bi bi-stars text-blue-400"></i> <span>Smoother experience for users</span></div>
+            <div class="group/item">
+              <h4 class="text-white text-sm font-bold mb-3 flex items-center gap-3"><i class="bi bi-shield-lock text-blue-400"></i> Professional Trust</h4>
+              <div class="list-item mb-2"><i class="bi bi-stars text-blue-400"></i> <span>Google Reviews Integration</span></div>
+              <div class="list-item mb-2"><i class="bi bi-stars text-blue-400"></i> <span>Optimized performance & smoother UX</span></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Simple Difference -->
-    <div class="quotation-card p-8 mb-12 animate-in text-center" style="animation-delay: 0.3s;">
-      <h3 class="text-xl font-bold mb-6 gradient-text">Simple Difference</h3>
-      <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12">
-        <div class="space-y-1">
-          <div class="text-2xl font-bold text-white">₹18,000</div>
-          <div class="text-sm text-slate-500">You manage orders and payments manually</div>
+    <div class="premium-card p-10 mb-12 animate-in text-center" style="animation-delay: 0.3s;">
+      <h3 class="text-xs font-black uppercase tracking-[0.2em] mb-10 text-slate-500">Comparison At A Glance</h3>
+      <div class="grid md:grid-cols-2 gap-8 md:gap-0 items-center">
+        <div class="px-6">
+          <div class="text-3xl font-black text-white mb-2">₹18,000</div>
+          <p class="text-slate-500 text-sm">Manage orders and payments manually</p>
         </div>
-        <div class="hidden md:block w-px h-12 bg-white/10"></div>
-        <div class="space-y-1">
-          <div class="text-2xl font-bold text-blue-500">₹25,000</div>
-          <div class="text-sm text-slate-500">Most things are handled automatically by the system</div>
+        <div class="md:border-l border-white/5 px-6">
+          <div class="text-3xl font-black text-blue-500 mb-2">₹25,000</div>
+          <p class="text-slate-500 text-sm">Fully automated ecosystem & Google visibility</p>
         </div>
       </div>
     </div>
 
     <!-- Final Suggestion -->
-    <div class="p-8 rounded-3xl bg-blue-600/10 border border-blue-500/20 text-center animate-in mb-12" style="animation-delay: 0.4s;">
-      <h3 class="text-xl font-bold mb-4">Final suggestion</h3>
-      <p class="text-slate-400 max-w-xl mx-auto mb-8">
+    <div class="premium-card p-12 text-center animate-in mb-16 border-blue-500/20 bg-gradient-to-b from-blue-500/5 to-transparent" style="animation-delay: 0.4s;">
+      <h3 class="text-2xl font-black mb-4">Final Suggestion</h3>
+      <p class="text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed">
         If you just want to get started, the <span class="text-white font-bold">Basic plan</span> is enough. 
         If you want to save time and give customers a better experience, the <span class="text-blue-400 font-bold">Pro plan</span> is a better choice.
       </p>
       
-      <a href="https://wa.me/918807099288?text=I%20would%20like%20to%20proceed%20with%20the%20Pro%20Enterprise%20Plan" class="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl transition-all shadow-lg shadow-blue-600/20">
-        <i class="bi bi-whatsapp"></i> Let's Talk on WhatsApp
+      <a href="https://wa.me/918807099288?text=I%20would%20like%20to%20proceed%20with%20the%20Pro%20Enterprise%20Plan" class="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 hover:bg-blue-500 text-white font-black rounded-2xl transition-all shadow-2xl shadow-blue-600/40 hover:scale-[1.02] active:scale-95 group">
+        <i class="bi bi-whatsapp text-xl"></i> 
+        <span>Let's Talk on WhatsApp</span>
+        <i class="bi bi-arrow-right opacity-50 group-hover:translate-x-1 transition-transform"></i>
       </a>
     </div>
 
     <!-- Footer -->
-    <footer class="text-center pb-10">
-      <div class="flex flex-col items-center gap-4">
-        <div class="flex items-center gap-4">
-          <a href="https://vsgrps.com" target="_blank" class="text-sm text-slate-500 hover:text-blue-400 transition-colors">
-            vsgrps.com
-          </a>
-        </div>
-        <p class="text-[10px] text-slate-600 uppercase tracking-widest">Digital Excellence & Software Solutions</p>
+    <footer class="text-center pb-12 animate-in" style="animation-delay: 0.5s;">
+      <div class="flex flex-col items-center gap-6">
+        <div class="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent mb-4"></div>
+        <a href="https://vsgrps.com" target="_blank" class="text-sm font-bold text-slate-500 hover:text-blue-400 transition-colors tracking-widest uppercase">
+          vsgrps.com
+        </a>
+        <p class="text-[9px] text-slate-700 uppercase tracking-[0.3em] font-black">Innovation • Excellence • Growth</p>
       </div>
     </footer>
 
