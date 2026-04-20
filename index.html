@@ -255,6 +255,8 @@
       background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), transparent);
       opacity: 0;
       transition: opacity 0.3s;
+      pointer-events: none; /* Fix: Allow clicks to pass through to buttons */
+      z-index: 1;
     }
     .card:hover::before { opacity: 1; }
     .card:hover {
@@ -282,6 +284,38 @@
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 40px rgba(37,99,235,0.3);
+    }
+
+    /* Magic Button Effect */
+    .btn-magic {
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+      isolation: isolate;
+    }
+    .btn-magic::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: none;
+      animation: btn-shimmer 3s infinite;
+      z-index: -1;
+    }
+    @keyframes btn-shimmer {
+      0% { left: -100%; }
+      30%, 100% { left: 100%; }
+    }
+    .btn-magic:hover {
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.4), 0 0 40px rgba(37, 99, 235, 0.2);
     }
 
     .btn-outline {
@@ -1258,7 +1292,7 @@
             </div>
           </div>
           <div class="flex gap-4">
-            <a href="https://certifypro.vsgrps.com" target="_blank" class="btn-primary">
+            <a href="https://certifypro.vsgrps.com" target="_blank" class="btn-primary btn-magic">
               <i class="bi bi-box-arrow-up-right"></i> Launch CertifyPro
             </a>
           </div>
@@ -1268,21 +1302,14 @@
             <div style="position:absolute;inset:0;background:radial-gradient(circle,rgba(37, 99, 235, 0.08),transparent 70%);"></div>
             <div id="certify-lottie" style="width:100%;height:100%;"></div>
           </div>
-          </div>
         </div>
       </div>
     </div>
 
     <!-- VSGRPS Agile -->
-    <div class="card p-4 md:p-12 m-5" data-aos="fade-up">
+    <div class="card p-4 md:p-12 mb-8" data-aos="fade-up">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center product-grid-mobile">
-        <div class="order-1 lg:order-1 flex items-center justify-center">
-          <div class="lottie-wrapper" style="width:100%;max-width:400px;height:350px;position:relative;">
-            <div style="position:absolute;inset:0;background:radial-gradient(circle,rgba(37,99,235,0.08),transparent 70%);"></div>
-            <div id="agile-lottie" style="width:100%;height:100%;"></div>
-          </div>
-        </div>
-        <div class="order-2 lg:order-2">
+        <div>
           <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.2);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:600;color:#2563EB;margin-bottom:20px;">
             <span style="width:6px;height:6px;background:#2563EB;border-radius:50%;animation:pulse 2s infinite;display:inline-block;"></span>
             Early Access
@@ -1291,33 +1318,38 @@
           <p style="color:#94A3B8;font-size:15px;line-height:1.8;margin-bottom:24px;">
             Simple. Secure. Built for small dev teams and startups. Jira is overkill. Trello is too simple. VSGRPS Agile is just right — with enterprise-grade security and high free limits.
           </p>
-          <div class="flex flex-col gap-3 mb-8 product-features">
-            <div class="flex items-center gap-3">
-              <i class="bi bi-check2-circle" style="color:#2563EB;"></i>
-              <span style="font-size:14px;color:#94A3B8;">PostgreSQL session persistence — no cold login issues</span>
+          <div class="grid grid-cols-2 gap-4 mb-8 product-features">
+            <div style="background:rgba(37,99,235,0.05);border:1px solid rgba(37,99,235,0.1);border-radius:12px;padding:16px;">
+              <i class="bi bi-database-lock" style="color:#2563EB;margin-bottom:8px;display:block;"></i>
+              <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Persistence</div>
+              <div style="color:#94A3B8;font-size:12px;">PostgreSQL session sync</div>
             </div>
-            <div class="flex items-center gap-3">
-              <i class="bi bi-check2-circle" style="color:#2563EB;"></i>
-              <span style="font-size:14px;color:#94A3B8;">Isolated multi-tenancy — zero data leakage</span>
+            <div style="background:rgba(37,99,235,0.05);border:1px solid rgba(37,99,235,0.1);border-radius:12px;padding:16px;">
+              <i class="bi bi-layers" style="color:#2563EB;margin-bottom:8px;display:block;"></i>
+              <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Multi-tenancy</div>
+              <div style="color:#94A3B8;font-size:12px;">Isolated workspace data</div>
             </div>
-            <div class="flex items-center gap-3">
-              <i class="bi bi-check2-circle" style="color:#2563EB;"></i>
-              <span style="font-size:14px;color:#94A3B8;">SameSite + Secure cookies — CSRF & XSS protected</span>
+            <div style="background:rgba(37,99,235,0.05);border:1px solid rgba(37,99,235,0.1);border-radius:12px;padding:16px;">
+              <i class="bi bi-shield-check" style="color:#2563EB;margin-bottom:8px;display:block;"></i>
+              <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Security</div>
+              <div style="color:#94A3B8;font-size:12px;">SameSite & CSRF protection</div>
             </div>
-            <div class="flex items-center gap-3">
-              <i class="bi bi-check2-circle" style="color:#2563EB;"></i>
-              <span style="font-size:14px;color:#94A3B8;">5 minute setup — sprint ready instantly</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <i class="bi bi-check2-circle" style="color:#2563EB;"></i>
-              <span style="font-size:14px;color:#94A3B8;">High free limits — perfect for small teams</span>
+            <div style="background:rgba(37,99,235,0.05);border:1px solid rgba(37,99,235,0.1);border-radius:12px;padding:16px;">
+              <i class="bi bi-rocket-takeoff" style="color:#2563EB;margin-bottom:8px;display:block;"></i>
+              <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Instant</div>
+              <div style="color:#94A3B8;font-size:12px;">5-minute sprint setup</div>
             </div>
           </div>
           <div class="flex gap-4">
-            <a href="https://agile.vsgrps.com" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#3B82F6,#2563EB);">
+            <a href="https://agile.vsgrps.com" target="_blank" class="btn-primary btn-magic" style="background:linear-gradient(135deg,#3B82F6,#2563EB);">
               <i class="bi bi-box-arrow-up-right"></i> Launch Agile
             </a>
           </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <div class="lottie-wrapper" style="width:100%;max-width:400px;height:350px;position:relative;">
+            <div style="position:absolute;inset:0;background:radial-gradient(circle,rgba(37,99,235,0.08),transparent 70%);"></div>
+            <div id="agile-lottie" style="width:100%;height:100%;"></div>
           </div>
         </div>
       </div>
@@ -2136,7 +2168,6 @@
 
 <!-- ==================== SCRIPTS ==================== -->
 <script>
-
   // ---- AOS Init ----
   window.addEventListener('load', () => {
     AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
@@ -2415,33 +2446,10 @@
 
   let userMsgCount = 0;
 
-  function handleBotResponse(userText) {
+  async function handleBotResponse(userText) {
     userMsgCount++;
     const text = userText.toLowerCase();
-    let response = "I'm not sure about that, but as a Vision Solutions consultant, I can help you find the right fit. Would you like to discuss your specific requirements? [WS_BTN]";
     
-    const wsBtn = userMsgCount >= 3 || text.includes('contact') || text.includes('price') || text.includes('call') || text.includes('hire') ? " [WS_BTN]" : "";
-
-    if (text.includes('hello') || text.includes('hi')) {
-      response = "Namaste! I'm the VSGRPS Intelligence Assistant. How can I help you with premium digital solutions for your business today?";
-    } else if (text.includes('service') || text.includes('what do you do')) {
-      response = "We take a 'Vision Solutions' approach, offering Web Development, Business Automation, CRM Dashboards, and Custom Enterprise Software. Our goal is to build for your growth.";
-    } else if (text.includes('product')) {
-      response = "Our flagship product is CertifyPro 🛡️, an automated batch certificate utility that generates 1,000s of certificates in seconds. Visit certifypro.vsgrps.com to try it!";
-    } else if (text.includes('certifypro')) {
-      response = "CertifyPro is our automated utility for batch certificate generation with zero data footprint. It's perfect for quickly generating 1,000s of certificates.";
-    } else if (text.includes('price') || text.includes('cost') || text.includes('how much')) {
-      if (text.includes('web')) response = "Web projects range from ₹3k for landing pages to ₹15k+ for business sites. These are approximate estimates based on your specific requirements." + wsBtn;
-      else if (text.includes('automation')) response = "Business automation setups typically range from ₹5k to ₹20k. We'll offer the best possible rates based on your workflow complexity." + wsBtn;
-      else if (text.includes('crm') || text.includes('dashboard')) response = "Custom CRM and dashboards start from ₹20k up to ₹50k+. We prioritize affordable systems that drive real growth." + wsBtn;
-      else if (text.includes('software') || text.includes('erp')) response = "Enterprise projects like ERPs generally range between ₹50k to ₹1L. Final pricing is tailored to your business complexity." + wsBtn;
-      else response = "Our pricing is approximate and tailored to your needs, ranging from ₹3k for sites to ₹1L for major enterprise software. We offer the best rates to help you grow." + wsBtn;
-    } else if (text.includes('contact') || text.includes('email') || text.includes('phone') || text.includes('whatsapp')) {
-      response = "You can reach us directly at +91 88070 99288 or vimalraj5207@gmail.com. We're based in Namakkal, Tamil Nadu." + wsBtn;
-    } else if (text.includes('location') || text.includes('where')) {
-      response = "VSGRPS is located in Namakkal, Tamil Nadu, India. We serve clients globally with premium digital solutions.";
-    }
-
     // Show typing indicator
     const typingMsg = document.createElement('div');
     typingMsg.className = 'message typing';
@@ -2449,13 +2457,34 @@
     chatMessages.appendChild(typingMsg);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
+    let responseText = "";
+
+    // Call the Secure Cloudflare Pages Function
+    try {
+      const apiResponse = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userText })
+      });
+
+      if (apiResponse.ok) {
+        const data = await apiResponse.json();
+        responseText = data.choices[0].message.content;
+      } else {
+        throw new Error("Proxy API Failed");
+      }
+    } catch (err) {
+      console.warn("Falling back to rule-based logic:", err);
+      responseText = getFallbackResponse(text);
+    }
+
+    // Remove typing indicator and show response
     setTimeout(() => {
-      // Remove typing indicator
-      chatMessages.removeChild(typingMsg);
+      if (chatMessages.contains(typingMsg)) chatMessages.removeChild(typingMsg);
+      addMessage(responseText, 'bot');
       
-      const finalMsg = response.replace('[WS_BTN]', '');
-      addMessage(finalMsg, 'bot');
-      if (response.includes('[WS_BTN]')) {
+      // WhatsApp CTA logic
+      if (userMsgCount >= 3 || text.includes('contact') || text.includes('price') || text.includes('hire')) {
         const btn = document.createElement('a');
         btn.href = "https://wa.me/918807099288";
         btn.target = "_blank";
@@ -2466,9 +2495,22 @@
         chatMessages.appendChild(btn);
         chatMessages.scrollTop = chatMessages.scrollHeight;
       }
-    }, 1500); // Increased time to simulate "thinking"
+    }, 200);
   }
 
+  function getFallbackResponse(text) {
+    if (text.includes('hello') || text.includes('hi')) {
+      return "Namaste! I'm the VSGRPS Intelligence Assistant. How can I help you with premium digital solutions today?";
+    } else if (text.includes('service') || text.includes('what do you do')) {
+      return "We offer Web Development, Business Automation, CRM Dashboards, and Custom Enterprise Software. Our goal is to build for your growth.";
+    } else if (text.includes('price') || text.includes('cost') || text.includes('how much')) {
+      return "Our pricing is tailored to your needs, ranging from ₹3k for sites to ₹1L for major enterprise software. We offer the best rates to help you grow.";
+    } else if (text.includes('certifypro')) {
+      return "CertifyPro is our automated utility for batch certificate generation with zero data footprint. Visit certifypro.vsgrps.com!";
+    }
+    return "I'm not sure about that, but as a Vision Solutions consultant, I can help you find the right fit. Would you like to discuss your requirements?";
+  }
+  
   function sendMessageToBot() {
     const text = chatInput.value.trim();
     if (!text) return;
