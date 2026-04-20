@@ -1026,7 +1026,7 @@
       </div>
 
       <!-- Right — Lottie -->
-      <div class="hidden lg:flex items-center justify-center" data-aos="fade-left" data-aos-delay="300">
+      <div class="flex items-center justify-center" data-aos="fade-left" data-aos-delay="300">
         <div class="relative w-full max-w-lg">
           <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(59,130,246,0.15),transparent 70%);"></div>
           <dotlottie-wc src="https://lottie.host/53f42021-31ae-493c-b1b2-48e90284a730/CGvBx5r6P0.lottie" style="width: 100%; height: 400px;" autoplay loop class="relative z-10 jump-anim"></dotlottie-wc>
@@ -2332,19 +2332,19 @@
   const themeToggle = document.getElementById('theme-toggle');
   const html = document.documentElement;
   
-  // Force White Blue rebrand on first visit
+  // Force Dark rebrand on first visit
   let savedTheme = localStorage.getItem('vsgrps_theme');
-  const rebrandingDone = localStorage.getItem('vsgrps_rebrand_v2');
+  const rebrandingDone = localStorage.getItem('vsgrps_rebrand_v3'); // Increment version to force update
   
   if (!rebrandingDone) {
-    savedTheme = 'light';
-    localStorage.setItem('vsgrps_theme', 'light');
-    localStorage.setItem('vsgrps_rebrand_v2', 'true');
+    savedTheme = 'dark';
+    localStorage.setItem('vsgrps_theme', 'dark');
+    localStorage.setItem('vsgrps_rebrand_v3', 'true');
   }
   
-  html.setAttribute('data-theme', savedTheme || 'light');
-  updateThemeIcon(savedTheme || 'light');
-  document.body.style.backgroundColor = savedTheme === 'dark' ? '#050810' : '#F8FAFC';
+  html.setAttribute('data-theme', savedTheme || 'dark');
+  updateThemeIcon(savedTheme || 'dark');
+  document.body.style.backgroundColor = savedTheme === 'light' ? '#F8FAFC' : '#050810';
 
   themeToggle.addEventListener('click', () => {
     const currentTheme = html.getAttribute('data-theme');
