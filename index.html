@@ -321,6 +321,10 @@
       margin-bottom: 16px;
     }
 
+    /* Hide scrollbar but keep functionality */
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
     /* Marquee */
     .marquee-track {
       display: flex;
@@ -1022,6 +1026,7 @@
             <div style="font-family:'Outfit',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;" data-count="100">100%</div>
             <div style="color:var(--text-muted);font-size:13px;">Satisfaction</div>
           </div>
+          </div>
         </div>
       </div>
 
@@ -1096,6 +1101,7 @@
           </div>
           <div class="flex items-center gap-2" style="color:#94A3B8;font-size:14px;">
             <i class="fas fa-phone" style="color:#3B82F6;"></i> +91 88070 99288
+          </div>
           </div>
         </div>
       </div>
@@ -1279,6 +1285,7 @@
             <div style="position:absolute;inset:0;background:radial-gradient(circle,rgba(37, 99, 235, 0.08),transparent 70%);"></div>
             <div id="certify-lottie" style="width:100%;height:100%;"></div>
           </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1327,6 +1334,7 @@
             <a href="https://agile.vsgrps.com" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#3B82F6,#2563EB);">
               <i class="bi bi-box-arrow-up-right"></i> Launch Agile
             </a>
+          </div>
           </div>
         </div>
       </div>
@@ -1450,9 +1458,9 @@
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="flex overflow-x-auto gap-6 pb-8 hide-scrollbar snap-x snap-mandatory scroll-smooth" style="cursor: grab;">
 
-      <div class="card" data-aos="fade-up" data-aos-delay="100">
+      <div class="card min-w-[300px] md:min-w-[400px] snap-center" data-aos="fade-up" data-aos-delay="100">
         <div class="project-img" style="background:linear-gradient(135deg,var(--accent),var(--accent-blue));display:flex;align-items:center;justify-content:center;">
           <i class="bi bi-patch-check" style="font-size:48px;color:#080C14;opacity:0.8;"></i>
         </div>
@@ -1478,10 +1486,15 @@
               <div style="color:#94A3B8;font-size:11px;">Data Footprint</div>
             </div>
           </div>
+          <div class="mt-6">
+            <a href="project-details.html?id=certifypro" class="btn-outline w-full justify-center" style="padding:10px 0;font-size:13px;">
+              More Details <i class="bi bi-arrow-right-short"></i>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="card" data-aos="fade-up" data-aos-delay="200">
+      <div class="card min-w-[300px] md:min-w-[400px] snap-center" data-aos="fade-up" data-aos-delay="200">
         <div class="project-img" style="background:linear-gradient(135deg,#1a2a4a,#0d1a35);display:flex;align-items:center;justify-content:center;">
           <i class="bi bi-cart3" style="font-size:48px;color:#3B82F6;opacity:0.8;"></i>
         </div>
@@ -1505,10 +1518,15 @@
               <div style="color:#94A3B8;font-size:11px;">Monthly Orders</div>
             </div>
           </div>
+          <div class="mt-6">
+            <a href="project-details.html?id=easanmart" class="btn-outline w-full justify-center" style="padding:10px 0;font-size:13px;">
+              More Details <i class="bi bi-arrow-right-short"></i>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="card" data-aos="fade-up" data-aos-delay="300">
+      <div class="card min-w-[300px] md:min-w-[400px] snap-center" data-aos="fade-up" data-aos-delay="300">
         <div class="project-img" style="background:linear-gradient(135deg,#1a1030,#0d0820);display:flex;align-items:center;justify-content:center;">
           <i class="bi bi-mortarboard" style="font-size:48px;color:#A855F7;opacity:0.8;"></i>
         </div>
@@ -1533,10 +1551,15 @@
               <div style="color:#94A3B8;font-size:11px;">DB Response</div>
             </div>
           </div>
+          <div class="mt-6">
+            <a href="project-details.html?id=edwyna" class="btn-outline w-full justify-center" style="padding:10px 0;font-size:13px;">
+              More Details <i class="bi bi-arrow-right-short"></i>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="card" data-aos="fade-up" data-aos-delay="400">
+      <div class="card min-w-[300px] md:min-w-[400px] snap-center" data-aos="fade-up" data-aos-delay="400">
         <div class="project-img" style="background:linear-gradient(135deg,#1a2a1a,#0d1a0d);display:flex;align-items:center;justify-content:center;">
           <i class="bi bi-building" style="font-size:48px;color:#22C55E;opacity:0.8;"></i>
         </div>
@@ -1560,10 +1583,15 @@
               <div style="color:#94A3B8;font-size:11px;">Lighthouse</div>
             </div>
           </div>
+          <div class="mt-6">
+            <a href="project-details.html?id=srimayil" class="btn-outline w-full justify-center" style="padding:10px 0;font-size:13px;">
+              More Details <i class="bi bi-arrow-right-short"></i>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="card" data-aos="fade-up" data-aos-delay="500">
+      <div class="card min-w-[300px] md:min-w-[400px] snap-center" data-aos="fade-up" data-aos-delay="500">
         <div class="project-img" style="background:linear-gradient(135deg,#1a0a2a,#0d0515);display:flex;align-items:center;justify-content:center;">
           <i class="bi bi-calendar-check" style="font-size:48px;color:var(--accent-blue);opacity:0.8;"></i>
         </div>
@@ -1589,10 +1617,15 @@
               <div style="color:#94A3B8;font-size:11px;">In Progress</div>
             </div>
           </div>
+          <div class="mt-6">
+            <a href="project-details.html?id=hospital" class="btn-outline w-full justify-center" style="padding:10px 0;font-size:13px;">
+              More Details <i class="bi bi-arrow-right-short"></i>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="card" data-aos="fade-up" data-aos-delay="600">
+      <div class="card min-w-[300px] md:min-w-[400px] snap-center" data-aos="fade-up" data-aos-delay="600">
         <div class="project-img" style="background:linear-gradient(135deg,#1a1a0a,#0d0d05);display:flex;align-items:center;justify-content:center;">
           <i class="bi bi-qr-code" style="font-size:48px;color:#EAB308;opacity:0.8;"></i>
         </div>
@@ -1617,6 +1650,11 @@
               <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#3B82F6;">&lt;30ms</div>
               <div style="color:#94A3B8;font-size:11px;">API Latency</div>
             </div>
+          </div>
+          <div class="mt-6">
+            <a href="project-details.html?id=college" class="btn-outline w-full justify-center" style="padding:10px 0;font-size:13px;">
+              More Details <i class="bi bi-arrow-right-short"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -1788,6 +1826,7 @@
             <div style="font-weight:600;font-size:14px;">EasanMart Client</div>
             <div style="color:#94A3B8;font-size:12px;">Logistics Company</div>
           </div>
+          </div>
         </div>
       </div>
       <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
@@ -1805,6 +1844,7 @@
             <div style="font-weight:600;font-size:14px;">Universal College</div>
             <div style="color:#94A3B8;font-size:12px;">Engineering Institution</div>
           </div>
+          </div>
         </div>
       </div>
       <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
@@ -1821,6 +1861,7 @@
           <div>
             <div style="font-weight:600;font-size:14px;">Srimayil Builders</div>
             <div style="color:#94A3B8;font-size:12px;">Construction Group</div>
+          </div>
           </div>
         </div>
       </div>
@@ -2008,6 +2049,7 @@
             <div id="form-success" style="display:none;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.3);border-radius:10px;padding:16px;text-align:center;color:var(--accent);font-size:14px;">
               <i class="bi bi-check2-circle" style="margin-right:8px;"></i> Message sent! We'll get back to you within 24 hours.
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -2231,7 +2273,14 @@
   animateParticles();
 
   // ---- Typing animation ----
-  const words = ['Excellence', 'Solutions', 'Products', 'Innovation', 'Security'];
+  const words = [
+  'Excellence',
+  'Automation',
+  'Security',
+  'Scalable Systems',
+  'Smart Solutions',
+  'Enterprise Tools'
+];
   let wordIndex = 0, charIndex = 0, isDeleting = false;
   const typingEl = document.getElementById('typing-text');
 

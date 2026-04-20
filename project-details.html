@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Details | VSGRPS Technologies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg: #050810;
+      --card-bg: #0A0F1C;
+      --accent: #3B82F6;
+      --accent-blue: #60A5FA;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --border: #1E293B;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .glass {
+      background: rgba(10, 15, 28, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent), var(--accent-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-blue));
+      color: white;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-20">
+
+  <!-- Header -->
+  <header class="py-8 px-6 max-w-7xl mx-auto flex justify-between items-center">
+    <a href="index.html" class="flex items-center gap-3 text-decoration-none">
+      <div style="width:38px;height:38px;background:linear-gradient(135deg,#3B82F6,#60A5FA);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;color:#FFFFFF;font-size:16px;">V</div>
+      <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;">VSGRPS</span>
+    </a>
+    <a href="index.html#projects" class="text-sm font-medium text-muted hover:text-white transition-colors">
+      <i class="bi bi-arrow-left"></i> Back to Projects
+    </a>
+  </header>
+
+  <!-- Hero Content -->
+  <main class="max-w-4xl mx-auto px-6 mt-12">
+    <div id="project-loading" class="text-center py-20">
+      <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-accent border-t-transparent"></div>
+      <p class="mt-4 text-muted">Loading project details...</p>
+    </div>
+
+    <div id="project-content" class="hidden">
+      <div class="mb-8">
+        <span id="p-category" class="text-accent text-sm font-bold uppercase tracking-wider"></span>
+        <h1 id="p-title" class="text-4xl md:text-6xl font-bold mt-4 mb-6" style="font-family:'Outfit',sans-serif;"></h1>
+        <p id="p-desc" class="text-xl text-muted leading-relaxed"></p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div class="glass p-6 rounded-2xl">
+          <div class="text-muted text-sm mb-1">Status</div>
+          <div id="p-status" class="font-bold">Completed</div>
+        </div>
+        <div class="glass p-6 rounded-2xl">
+          <div class="text-muted text-sm mb-1">Industry</div>
+          <div id="p-industry" class="font-bold"></div>
+        </div>
+        <div class="glass p-6 rounded-2xl">
+          <div class="text-muted text-sm mb-1">Tech Stack</div>
+          <div id="p-tech" class="font-bold"></div>
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-6" style="font-family:'Outfit',sans-serif;">Project Overview</h2>
+        <div id="p-long-desc" class="space-y-4 text-muted leading-relaxed"></div>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-6" style="font-family:'Outfit',sans-serif;">Key Deliverables</h2>
+        <ul id="p-features" class="space-y-3"></ul>
+      </div>
+
+      <div class="flex flex-wrap gap-4 pt-8 border-t border-slate-800">
+        <a href="index.html#contact" class="btn-primary">
+          <i class="bi bi-rocket-takeoff"></i> Start Your Project
+        </a>
+        <a href="https://wa.me/918807099288" class="flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-800 hover:bg-slate-900 transition-all">
+          <i class="bi bi-whatsapp"></i> Chat with Expert
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const projectsData = {
+      'certifypro': {
+        title: 'CertifyPro Enterprise',
+        category: 'SaaS • Fintech',
+        industry: 'Professional Services',
+        tech: 'React, Fastify, Redis, Neon DB',
+        desc: 'A robust enterprise-grade certificate generation and management platform designed for high-volume automated issuance.',
+        longDesc: 'CertifyPro solves the complex challenge of managing digital credentials at scale. We built a zero-retention architecture to ensure data privacy while providing a high-performance visual studio for certificate design. The system handles bulk processing via CSV and integrates seamlessly with existing enterprise workflows.',
+        features: [
+          'Visual Drag-and-Drop Certificate Studio',
+          'Bulk Issuance with CSV/Excel Integration',
+          'Encrypted Zero-Retention Data Architecture',
+          'Automated Email Distribution System',
+          'Public Verification Portal with QR Codes'
+        ]
+      },
+      'easanmart': {
+        title: 'EasanMart Logistics',
+        category: 'E-Commerce • Supply Chain',
+        industry: 'Retail & Logistics',
+        tech: 'JavaScript, Google Sheets API',
+        desc: 'A streamlined grocery management and order fulfillment system built to bridge the gap between local retail and digital demand.',
+        longDesc: 'For EasanMart, we developed a lightweight yet powerful system using Google Sheets as a real-time database. This allowed the client to manage inventory and orders without complex backend overhead while ensuring 100% data transparency and mobile-first accessibility for staff.',
+        features: [
+          'Real-time Inventory Tracking',
+          'Automated Order Summary Generation',
+          'WhatsApp Integration for Staff Alerts',
+          'Google Sheets-powered Admin Dashboard',
+          'Mobile-optimized Fulfillment Interface'
+        ]
+      },
+      'edwyna': {
+        title: 'Edwyna Learning',
+        category: 'Education • SaaS',
+        industry: 'EdTech',
+        tech: 'Express.js, Supabase, PostgreSQL',
+        desc: 'A highly scalable learning management system focusing on real-time collaboration and automated student assessment.',
+        longDesc: 'Edwyna was built to handle high concurrency during peak exam times. Using Supabase for real-time synchronization, we ensured that student progress is saved instantly. The system includes an automated grading engine and a comprehensive reporting dashboard for educators.',
+        features: [
+          'Real-time Collaborative Classrooms',
+          'Automated Assessment and Grading',
+          'Secure Serverless Function Backend',
+          'Interactive Student Progress Analytics',
+          'PostgreSQL-powered Performance Scaling'
+        ]
+      },
+      'srimayil': {
+        title: 'Srimayil Builders',
+        category: 'Corporate • Real Estate',
+        industry: 'Construction',
+        tech: 'React, Framer Motion, SEO Pro',
+        desc: 'A premium digital storefront for a leading construction group, focusing on visual storytelling and lead generation.',
+        longDesc: 'The Srimayil Builders project was centered around high-end visual presentation. We utilized Framer Motion for smooth project transitions and optimized every asset for speed. The result was a 98/100 Lighthouse score and a significant increase in organic lead generation through SEO optimization.',
+        features: [
+          'High-Fidelity Project Gallery',
+          'Interactive 3D Floor Plan Integration',
+          'Advanced Lead Capture Workflows',
+          'Dynamic SEO Metadata Engine',
+          '98+ Performance Lighthouse Score'
+        ]
+      },
+      'hospital': {
+        title: 'HealConnect System',
+        category: 'Healthcare • Booking',
+        industry: 'Medical Services',
+        tech: 'React, Fastify, Razorpay',
+        desc: 'A secure, patient-centric appointment booking platform that simplifies hospital-patient interaction.',
+        longDesc: 'HealConnect was designed to reduce hospital wait times. By integrating a secure payment gateway and real-time doctor availability calendars, we enabled patients to book and pay for consultations in under 60 seconds. The platform adheres to strict data privacy standards for medical records.',
+        features: [
+          'Instant Doctor Appointment Booking',
+          'Secure Razorpay Payment Integration',
+          'Patient Record Management System',
+          'Automated SMS/Email Reminders',
+          'Admin Dashboard for Hospital Staff'
+        ]
+      },
+      'college': {
+        title: 'EventPulse Platform',
+        category: 'Education • Events',
+        industry: 'Higher Education',
+        tech: 'React, Fastify, QR Engine',
+        desc: 'A high-concurrency event management platform capable of handling thousands of simultaneous check-ins.',
+        longDesc: 'Built for large-scale college festivals, EventPulse manages everything from registration to certification. We implemented a high-performance QR check-in system and a certificate generation engine that delivers e-certificates instantly upon event completion to over 5,000 users.',
+        features: [
+          'High-Speed QR Check-in System',
+          'Automated E-Certificate Generation',
+          'Real-time Attendee Analytics',
+          'Multi-Session Event Management',
+          'Scalable API handling 5k+ concurrent users'
+        ]
+      }
+    };
+
+    window.addEventListener('load', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const projectId = urlParams.get('id') || 'certifypro';
+      const project = projectsData[projectId];
+
+      if (project) {
+        document.getElementById('p-title').innerText = project.title;
+        document.getElementById('p-category').innerText = project.category;
+        document.getElementById('p-desc').innerText = project.desc;
+        document.getElementById('p-industry').innerText = project.industry;
+        document.getElementById('p-tech').innerText = project.tech;
+        document.getElementById('p-long-desc').innerText = project.longDesc;
+        
+        const featureList = document.getElementById('p-features');
+        project.features.forEach(feature => {
+          const li = document.createElement('li');
+          li.className = 'flex items-center gap-3 text-muted';
+          li.innerHTML = `<i class="bi bi-check2-circle text-accent"></i> ${feature}`;
+          featureList.appendChild(li);
+        });
+
+        document.getElementById('project-loading').classList.add('hidden');
+        document.getElementById('project-content').classList.remove('hidden');
+      } else {
+        document.getElementById('project-loading').innerHTML = '<p class="text-red-500">Project not found.</p>';
+      }
+    });
+  </script>
+</body>
+</html>
