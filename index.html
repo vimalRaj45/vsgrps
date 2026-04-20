@@ -217,6 +217,14 @@
       vertical-align: middle;
     }
     @keyframes blink { 0%,50% { opacity:1; } 51%,100% { opacity:0; } }
+    
+    @keyframes jump {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .jump-anim {
+      animation: jump 4s ease-in-out infinite;
+    }
 
     /* Animated gradient orbs */
     .orb {
@@ -1019,9 +1027,9 @@
 
       <!-- Right — Lottie -->
       <div class="hidden lg:flex items-center justify-center" data-aos="fade-left" data-aos-delay="300">
-        <div class="relative w-full max-w-xl">
-          <div style="position:absolute;inset:-40px;background:radial-gradient(circle at 50% 50%,rgba(59,130,246,0.2),transparent 70%);"></div>
-          <dotlottie-wc src="https://lottie.host/53f42021-31ae-493c-b1b2-48e90284a730/CGvBx5r6P0.lottie" style="width: 100%; height: 500px;" autoplay loop class="relative z-10"></dotlottie-wc>
+        <div class="relative w-full max-w-lg">
+          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(59,130,246,0.15),transparent 70%);"></div>
+          <dotlottie-wc src="https://lottie.host/53f42021-31ae-493c-b1b2-48e90284a730/CGvBx5r6P0.lottie" style="width: 100%; height: 400px;" autoplay loop class="relative z-10 jump-anim"></dotlottie-wc>
         </div>
       </div>
     </div>
