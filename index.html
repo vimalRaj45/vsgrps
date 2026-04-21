@@ -70,7 +70,7 @@
   <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.10/dist/dotlottie-wc.js" type="module" defer></script>
 
   <!-- Lord Icon -->
-  <!-- Script moved to bottom -->
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
 
   <!-- ============ Google Analytics (deferred for perf) ============ -->
   <script defer src="https://www.googletagmanager.com/gtag/js?id=G-2CQC98J7WY"></script>
@@ -253,6 +253,8 @@
     }
     @keyframes blink { 0%,50% { opacity:1; } 51%,100% { opacity:0; } }
     
+    lord-icon { display: inline-block; }
+
     @keyframes jump {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
@@ -2684,6 +2686,5 @@
 }
 </script>
 
-<script src="https://cdn.lordicon.com/lordicon.js"></script>
 </body>
 </html>
