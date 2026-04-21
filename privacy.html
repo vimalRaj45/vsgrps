@@ -91,6 +91,17 @@
       pointer-events: none;
     }
 
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
     /* Glow orbs */
     .glow-orb {
       position: fixed;
@@ -368,9 +379,7 @@
     }
   </style>
 </head>
-<body>
-
-  <!-- Background -->
+  <canvas id="particle-canvas"></canvas>
   <div class="grid-bg"></div>
   <div class="glow-orb" style="width:500px;height:500px;top:-10%;left:-10%;background:radial-gradient(circle,rgba(59,130,246,0.08),transparent);"></div>
   <div class="glow-orb" style="width:400px;height:400px;bottom:-5%;right:-10%;background:radial-gradient(circle,rgba(96,165,250,0.06),transparent);"></div>
@@ -526,6 +535,45 @@
     function updateIcon(theme) {
       themeToggle.querySelector('i').className = theme === 'dark' ? 'bi bi-sun' : 'bi bi-moon-stars';
     }
+
+    // Particle System
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function initParticles() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particles = [];
+      for(let i=0; i<40; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random()-0.5)*0.5,
+          vy: (Math.random()-0.5)*0.5,
+          size: Math.random()*2
+        });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0,0,canvas.width, canvas.height);
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      ctx.fillStyle = isDark ? 'rgba(59,130,246,0.3)' : 'rgba(37,99,235,0.3)';
+      
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if(p.x<0 || p.x>canvas.width) p.vx *= -1;
+        if(p.y<0 || p.y>canvas.height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+        ctx.fill();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', initParticles);
+    initParticles(); animate();
   </script>
 </body>
 </html>
