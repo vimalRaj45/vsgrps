@@ -11,7 +11,7 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import client from '../api/client';
-import LottieIcon from '../components/shared/LottieIcon';
+
 import { useAuth } from '../context/AuthContext';
 
 const InvitePage = () => {
@@ -120,11 +120,11 @@ const InvitePage = () => {
           <Grid item xs={12} md={6} sx={{ display: { xs: 'none', md: 'block' } }}>
             <Box className="fade-in">
               <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', mb: 4 }}>
-                <Box sx={{ bgcolor: 'primary.main', p: 1, borderRadius: 2 }}>
+                <Box sx={{ bgcolor: 'primary.main', p: 1, borderRadius: 3 }}>
                   <SecurityIcon sx={{ color: 'white' }} />
                 </Box>
                 <Typography variant="h5" fontWeight="900" sx={{ letterSpacing: '-1px' }}>
-                  VSGRPS <span style={{ color: theme.palette.primary.main }}>Agile</span>
+                  Sprintora <span style={{ color: theme.palette.primary.main }}>Agile</span>
                 </Typography>
               </Stack>
               
@@ -145,9 +145,10 @@ const InvitePage = () => {
               </Typography>
 
               <Box sx={{ width: '100%', maxWidth: 400 }}>
-                <LottieIcon 
-                  src="/welcome.json" 
-                  style={{ width: '100%', height: 'auto' }}
+                <Box 
+                  component="img" 
+                  src="/assets/register_welcome.png" 
+                  sx={{ width: '100%', height: 'auto', borderRadius: 3 }}
                 />
               </Box>
             </Box>
@@ -174,7 +175,7 @@ const InvitePage = () => {
               </Box>
 
               {error && (
-                <Alert severity="error" sx={{ mb: 3, borderRadius: 2 }}>
+                <Alert severity="error" sx={{ mb: 3, borderRadius: 3 }}>
                   {error}
                 </Alert>
               )}

@@ -45,7 +45,7 @@ const MeetingDetailPage = () => {
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(24);
-    doc.text('VSGRPS AGILE', 15, 20);
+    doc.text('Sprintora', 15, 20);
     doc.setFontSize(10);
     doc.text('OFFICIAL MEETING MINUTES', 15, 30);
     
@@ -117,7 +117,7 @@ const MeetingDetailPage = () => {
     doc.line(15, 275, 195, 275);
     doc.setFontSize(8);
     doc.setTextColor(150, 150, 150);
-    doc.text('This is a system generated document from VSGRPS Agile Platform.', 15, 282);
+    doc.text('This is a system generated document from Sprintora Platform.', 15, 282);
     doc.text('Confidential & Internal Use Only', 160, 282);
     
     doc.save(`Meeting_${meeting.title.replace(/\s+/g, '_')}.pdf`);
@@ -201,7 +201,7 @@ const MeetingDetailPage = () => {
               value={meeting.outcome || ''}
               onChange={(e) => setMeeting({ ...meeting, outcome: e.target.value })}
               sx={{ 
-                '& .MuiOutlinedInput-root': { borderRadius: 2, bgcolor: 'rgba(255,255,255,0.02)' } 
+                '& .MuiOutlinedInput-root': { borderRadius: 3, bgcolor: 'rgba(255,255,255,0.02)' } 
               }}
             />
             
@@ -214,7 +214,7 @@ const MeetingDetailPage = () => {
               value={meeting.summary || ''}
               onChange={(e) => setMeeting({ ...meeting, summary: e.target.value })}
               sx={{ 
-                '& .MuiOutlinedInput-root': { borderRadius: 2, bgcolor: 'rgba(255,255,255,0.02)' } 
+                '& .MuiOutlinedInput-root': { borderRadius: 3, bgcolor: 'rgba(255,255,255,0.02)' } 
               }}
             />
             
@@ -228,7 +228,7 @@ const MeetingDetailPage = () => {
                   outcome: meeting.outcome, 
                   summary: meeting.summary 
                 })}
-                sx={{ borderRadius: 2, px: 4, fontWeight: 'bold' }}
+                sx={{ borderRadius: 3, px: 4, fontWeight: 'bold' }}
               >
                 {isUpdating ? 'Saving...' : 'Save Meeting Details'}
               </Button>
@@ -273,7 +273,7 @@ const MeetingDetailPage = () => {
                 fullWidth
                 href={meeting.meeting_link}
                 target="_blank"
-                sx={{ mb: 2, borderRadius: 2, fontWeight: 'bold' }}
+                sx={{ mb: 2, borderRadius: 3, fontWeight: 'bold' }}
               >
                 Join Meeting
               </Button>

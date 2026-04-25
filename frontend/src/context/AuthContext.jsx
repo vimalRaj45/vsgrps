@@ -41,13 +41,21 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  const login = async (email, password, rememberMe) => {
-    const res = await authApi.login(email, password, rememberMe);
-    setUser(res.data.user);
+  const login = async (email, password, rememberMe, companyId) => {
+    const res = await authApi.login(email, password, rememberMe, companyId);
+    if (res.data.user) {
+      setUser(res.data.user);
+    }
     return res.data;
   };
 
   const logout = async () => {
+    try {
+      const { unsubscribeFromPush } = await import('../utils/pushManager');
+      await unsubscribeFromPush();
+    } catch (err) {
+      console.warn('Push unsubscription failed during logout:', err);
+    }
     await authApi.logout();
     setUser(null);
   };
