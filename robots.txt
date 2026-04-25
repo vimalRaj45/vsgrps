@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /functions/
+
+Sitemap: https://vsgrps.com/sitemap.xml

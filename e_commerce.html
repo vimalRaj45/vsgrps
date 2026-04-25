@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>E-Commerce Plans | VSGRPS Technologies</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <!-- Animation Libraries -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+  
+  <!-- Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            accent: '#3B82F6',
+            dark: '#050810',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --border: #E2E8F0;
+      --accent: #2563EB;
+      --accent-blue: #3B82F6;
+      --text: #0F172A;
+      --text-muted: #64748B;
+      --nav-bg: rgba(248, 250, 252, 0.95);
+      --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+    }
+
+    [data-theme="dark"] {
+      --bg: #050810;
+      --card: #0F172A;
+      --border: #1E293B;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --nav-bg: rgba(5, 8, 16, 0.95);
+      --accent: #3B82F6;
+      --accent-blue: #60A5FA;
+      --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      word-wrap: break-word;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* VSGRPS Signature Elements */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.4;
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: -1;
+    }
+
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .glow-orb {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+      filter: blur(80px);
+      z-index: -1;
+      pointer-events: none;
+    }
+    @media (min-width: 768px) {
+      .glow-orb { width: 600px; height: 600px; }
+    }
+
+    /* Premium Glassmorphism */
+    .premium-card {
+      background: var(--card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .premium-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+    @media (hover: hover) {
+      .premium-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-10px);
+        box-shadow: var(--shadow);
+      }
+      .premium-card:hover::before { opacity: 1; }
+    }
+
+    .featured-card {
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .list-item span { color: var(--text); }
+    .list-item i { margin-top: 3px; font-size: 14px; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in {
+      animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .float-anim { animation: float 4s ease-in-out infinite; }
+
+    .badge-premium {
+      background: linear-gradient(135deg, #3B82F6, #2563EB);
+      color: white;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 5px 12px;
+      border-radius: 100px;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.15);
+      color: var(--accent);
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+    @media (hover: hover) {
+      .premium-card:hover .icon-box {
+        background: var(--accent);
+        color: white;
+        transform: scale(1.05);
+      }
+    }
+
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body class="min-h-screen py-10 md:py-20 px-4 sm:px-6">
+  <canvas id="particle-canvas"></canvas>
+  <div class="grid-bg"></div>
+  
+  <!-- Ambient Glows -->
+  <div class="glow-orb top-[-5%] left-[-10%]"></div>
+  <div class="glow-orb bottom-[-5%] right-[-10%]"></div>
+
+  <!-- Header Section with Back and Theme Toggle -->
+  <div class="max-w-7xl mx-auto flex justify-between items-center mb-12 relative z-50">
+    <a href="index.html" class="flex items-center gap-3 text-decoration-none">
+      <div style="width:38px;height:38px;background:linear-gradient(135deg,#3B82F6,#60A5FA);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;color:#FFFFFF;font-size:16px;">V</div>
+      <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:var(--text);">VSGRPS</span>
+    </a>
+    
+    <div class="flex items-center gap-4">
+      <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
+        <i class="bi bi-moon-stars"></i>
+      </button>
+      <a href="index.html" class="text-sm font-medium text-muted hover:text-accent transition-colors flex items-center gap-2" style="text-decoration:none; color:var(--text-muted);">
+        <i class="bi bi-arrow-left"></i> <span class="hidden md:inline">Back to Home</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+    
+    <!-- Hero Header -->
+    <header class="mb-12 md:mb-16 text-center animate-in">
+      <div class="flex justify-center mb-6">
+        <div class="w-40 h-40 md:w-64 md:h-64">
+          <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_kkflmtur.json" background="transparent" speed="1" loop autoplay></lottie-player>
+        </div>
+      </div>
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+        <i class="bi bi-patch-check-fill"></i> Verified E-Commerce Solutions
+      </div>
+      <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tighter">
+        <span class="gradient-text">E-Commerce Plans</span>
+      </h1>
+      <p class="text-slate-400 text-base md:text-xl font-medium tracking-tight px-4">Professional web stores crafted for growth.</p>
+      <div class="mt-8 md:mt-12 h-px w-24 md:w-32 mx-auto bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
+    </header>
+
+    <!-- Plans Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mb-12 md:mb-16">
+      
+      <!-- Basic Plan -->
+      <div class="premium-card p-8 md:p-10 animate-in">
+        <div class="flex items-center justify-between mb-8">
+          <div class="icon-box">
+            <lord-icon src="https://cdn.lordicon.com/slkvcfos.json" trigger="loop" colors="primary:#3b82f6,secondary:#3b82f6" style="width:28px;height:28px"></lord-icon>
+          </div>
+          <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest">Starter Tier</span>
+        </div>
+        
+        <h2 class="text-3xl md:text-4xl font-black mb-2 text-white">₹18,000</h2>
+        <p class="text-slate-400 text-sm mb-8 font-medium leading-relaxed">Suitable for starting online with manual order handling.</p>
+        
+        <div class="space-y-8">
+          <div>
+            <h4 class="text-blue-500 text-[10px] font-black uppercase tracking-[0.15em] mb-5">Web Store Experience</h4>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>A clean website to display products</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Search, view, and add to cart</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Customers can place orders easily</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Login and account system</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Payment through UPI or QR code</span></div>
+            <div class="list-item"><i class="bi bi-check-circle-fill text-blue-500"></i> <span>Basic manual order tracking</span></div>
+          </div>
+
+          <div>
+            <h4 class="text-slate-400 text-[10px] font-black uppercase tracking-[0.15em] mb-5">Admin Dashboard</h4>
+            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>Manage products anytime</span></div>
+            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>View and manage all orders</span></div>
+            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>Manual verification flow</span></div>
+            <div class="list-item"><i class="bi bi-gear-fill"></i> <span>Confirmed/Shipped status</span></div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/5 space-y-2">
+            <h4 class="text-slate-500 text-[10px] font-black uppercase tracking-[0.15em]">Note</h4>
+            <div class="list-item text-xs mb-0"><i class="bi bi-info-circle text-slate-500"></i> <span>Manual payments only</span></div>
+            <div class="list-item text-xs mb-0"><i class="bi bi-info-circle text-slate-500"></i> <span>No Google SEO setup</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="premium-card featured-card p-8 md:p-10 animate-in border-blue-500/30">
+        <div class="flex items-center justify-between mb-8">
+          <div class="w-20 h-20 md:w-24 md:h-24">
+            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_touohxv0.json" background="transparent" speed="1" loop autoplay></lottie-player>
+          </div>
+          <span class="badge-premium float-anim">Recommended</span>
+        </div>
+        
+        <h2 class="text-3xl md:text-4xl font-black mb-2 text-white">₹25,000</h2>
+        <p class="text-slate-300 text-sm mb-8 font-medium leading-relaxed">Smoother and more professional online selling system.</p>
+        
+        <div class="space-y-10">
+          <div class="text-blue-400 text-[10px] font-black uppercase tracking-[0.15em]">Everything in Basic, Plus:</div>
+          
+          <div class="space-y-8">
+            <div class="group/item">
+              <h4 class="text-white text-sm font-bold mb-4 flex items-center gap-3"><i class="bi bi-credit-card-2-front text-blue-400"></i> Easy Online Payments</h4>
+              <div class="flex flex-col gap-4 mb-6">
+                <div class="w-full h-24 md:h-32 bg-blue-500/5 rounded-2xl border border-blue-500/10 p-4 flex items-center justify-center overflow-hidden">
+                  <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_qmfs6c3i.json" background="transparent" speed="1" loop autoplay style="width: 100px; height: 100px;"></lottie-player>
+                </div>
+                <div class="space-y-2 px-1">
+                  <div class="list-item mb-0"><i class="bi bi-stars text-blue-400"></i> <span>UPI, Cards, and Instant Checkout</span></div>
+                  <div class="list-item mb-0"><i class="bi bi-stars text-blue-400"></i> <span>Automatic Payment Confirmation</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="group/item">
+              <h4 class="text-white text-sm font-bold mb-3 flex items-center gap-3"><i class="bi bi-shield-lock text-blue-400"></i> Professional Trust</h4>
+              <div class="list-item mb-2"><i class="bi bi-stars text-blue-400"></i> <span>Google Reviews Integration</span></div>
+              <div class="list-item mb-2"><i class="bi bi-stars text-blue-400"></i> <span>Smoother high-performance UX</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Massive SEO & Google Section -->
+    <div class="premium-card p-8 md:p-16 mb-12 md:mb-16 animate-in border-blue-500/20 bg-gradient-to-br from-blue-600/5 to-transparent">
+      <div class="flex flex-col items-center">
+        <!-- Lottie at Top -->
+        <div class="relative w-full max-w-xs md:max-w-sm h-48 md:h-80 mb-10 md:mb-12">
+          <div class="absolute inset-0 bg-blue-500/20 filter blur-[60px] md:blur-[100px] rounded-full opacity-30"></div>
+          <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" loop autoplay class="relative z-10 w-full h-full"></lottie-player>
+        </div>
+
+        <div class="w-full text-center md:text-left grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-start">
+          <div class="text-center md:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[9px] font-black uppercase tracking-widest mb-6">
+              The Pro Advantage
+            </div>
+            <h2 class="text-3xl md:text-5xl font-black mb-6 text-white tracking-tight">Get Found on Google</h2>
+            <p class="text-slate-400 text-base md:text-lg mb-8 leading-relaxed">
+              Complete Google setup to put your business on the map.
+            </p>
+          </div>
+          
+          <div class="space-y-6 text-left">
+            <div class="flex items-start gap-4 md:gap-5 group">
+              <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 shrink-0">
+                <i class="bi bi-google"></i>
+              </div>
+              <div>
+                <h4 class="text-white font-bold mb-1 text-sm md:text-base">Google Search Console</h4>
+                <p class="text-xs md:text-sm text-slate-500">We tell Google exactly what products you sell.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 md:gap-5 group">
+              <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 shrink-0">
+                <i class="bi bi-search"></i>
+              </div>
+              <div>
+                <h4 class="text-white font-bold mb-1 text-sm md:text-base">Basic SEO Setup</h4>
+                <p class="text-xs md:text-sm text-slate-500">Optimized structure for higher search ranking.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center pb-12 animate-in">
+      <div class="flex flex-col items-center gap-6 px-4">
+        <div class="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent mb-4"></div>
+        <p class="text-xs font-bold text-slate-500 tracking-widest uppercase">
+          © 2026 VSGRPS Technologies
+        </p>
+        <p class="text-[8px] text-slate-700 uppercase tracking-[0.3em] font-black">Innovation • Excellence • Growth</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Theme Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('vsgrps_theme') || 'dark';
+    
+    html.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('vsgrps_theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+      const icon = themeToggle.querySelector('i');
+      icon.className = theme === 'dark' ? 'bi bi-sun' : 'bi bi-moon-stars';
+    }
+
+    // Particle System
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function initParticles() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particles = [];
+      for(let i=0; i<50; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random()-0.5)*0.5,
+          vy: (Math.random()-0.5)*0.5,
+          size: Math.random()*2
+        });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0,0,canvas.width, canvas.height);
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      ctx.fillStyle = isDark ? 'rgba(59,130,246,0.3)' : 'rgba(37,99,235,0.3)';
+      
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if(p.x<0 || p.x>canvas.width) p.vx *= -1;
+        if(p.y<0 || p.y>canvas.height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+        ctx.fill();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', initParticles);
+    initParticles(); animate();
+  </script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | VSGRPS Technologies</title>
+  <meta name="description" content="Privacy Policy for VSGRPS Technologies. Learn how we collect, use, and protect your personal data." />
+  <link rel="canonical" href="https://vsgrps.com/privacy.html" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Outfit', 'sans-serif'] },
+          colors: { accent: '#3B82F6', dark: '#050810' }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --border: #E2E8F0;
+      --accent: #2563EB;
+      --accent-blue: #3B82F6;
+      --text: #0F172A;
+      --text-muted: #64748B;
+      --nav-bg: rgba(248, 250, 252, 0.95);
+      --shadow: 0 10px 30px -5px rgba(0,0,0,0.05);
+    }
+    [data-theme="dark"] {
+      --bg: #050810;
+      --card: #0F172A;
+      --border: #1E293B;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --nav-bg: rgba(5, 8, 16, 0.95);
+      --accent: #3B82F6;
+      --accent-blue: #60A5FA;
+      --shadow: 0 10px 30px -5px rgba(0,0,0,0.5);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { max-width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      transition: background 0.3s, color 0.3s;
+      line-height: 1.7;
+    }
+
+    /* Noise texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* Grid background */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    /* Glow orbs */
+    .glow-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* Navbar */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 18px 0;
+      transition: all 0.3s ease;
+    }
+    #navbar.scrolled {
+      background: var(--nav-bg) !important;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .theme-toggle {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 18px;
+      cursor: pointer;
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Main content */
+    .legal-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 140px 24px 100px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Back button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 48px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(59,130,246,0.2);
+      background: rgba(59,130,246,0.05);
+      transition: all 0.2s ease;
+    }
+    .btn-back:hover {
+      background: rgba(59,130,246,0.1);
+      border-color: var(--accent);
+      transform: translateX(-4px);
+    }
+
+    /* Page hero */
+    .page-hero {
+      margin-bottom: 60px;
+    }
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .page-title {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-subtitle {
+      color: var(--text-muted);
+      font-size: 16px;
+      max-width: 600px;
+    }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 40px 0;
+      opacity: 0.3;
+    }
+
+    /* Legal card */
+    .legal-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 24px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .legal-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(59,130,246,0.04), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .legal-card:hover::before { opacity: 1; }
+    .legal-card:hover { border-color: rgba(59,130,246,0.3); }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .card-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(59,130,246,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .card-number {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .legal-card p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 14px;
+      line-height: 1.75;
+    }
+    .legal-card p:last-child { margin-bottom: 0; }
+
+    .legal-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0;
+    }
+    .legal-card ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    .legal-card ul li i {
+      color: var(--accent);
+      font-size: 14px;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+    .legal-card ul li strong { color: var(--text); font-weight: 600; }
+
+    /* Highlight box */
+    .highlight-box {
+      background: rgba(59,130,246,0.05);
+      border: 1px solid rgba(59,130,246,0.15);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .highlight-box i { color: var(--accent); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+    .highlight-box p { color: var(--text-muted); font-size: 14px; margin: 0; }
+    .highlight-box strong { color: var(--text); }
+
+    /* Contact card */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(96,165,250,0.04));
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .contact-card h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+    .contact-card p { color: var(--text-muted); margin-bottom: 24px; }
+    .contact-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .contact-link.primary {
+      background: linear-gradient(135deg, #3B82F6, #2563EB);
+      color: white;
+      box-shadow: 0 4px 15px rgba(37,99,235,0.3);
+    }
+    .contact-link.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,0.4); }
+    .contact-link.secondary {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .contact-link.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Footer */
+    .site-footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 48px 24px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+    .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { color: var(--text-muted); font-size: 13px; }
+
+    @media (max-width: 640px) {
+      .legal-wrapper { padding: 120px 16px 80px; }
+      .legal-card { padding: 28px 20px; }
+      .page-title { font-size: 36px; }
+    }
+  </style>
+</head>
+  <canvas id="particle-canvas"></canvas>
+  <div class="grid-bg"></div>
+  <div class="glow-orb" style="width:500px;height:500px;top:-10%;left:-10%;background:radial-gradient(circle,rgba(59,130,246,0.08),transparent);"></div>
+  <div class="glow-orb" style="width:400px;height:400px;bottom:-5%;right:-10%;background:radial-gradient(circle,rgba(96,165,250,0.06),transparent);"></div>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      <a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:10px;">
+        <div style="width:34px;height:34px;background:linear-gradient(135deg,#3B82F6,#2563EB);border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:white;box-shadow:0 4px 15px rgba(37,99,235,0.3);">V</div>
+        <span style="font-weight:800;font-size:18px;letter-spacing:-0.01em;">VSGRPS</span>
+      </a>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <i class="bi bi-sun"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="legal-wrapper">
+
+    <a href="index.html" class="btn-back" data-aos="fade-right">
+      <i class="bi bi-arrow-left"></i> Back to Home
+    </a>
+
+    <!-- Page Hero -->
+    <div class="page-hero" data-aos="fade-up">
+      <div class="section-tag">
+        <i class="bi bi-shield-lock-fill"></i> Legal
+      </div>
+      <h1 class="page-title gradient-text">Privacy Policy</h1>
+      <p class="page-subtitle">Last updated: April 20, 2026 &nbsp;·&nbsp; Effective immediately</p>
+      <div class="divider"></div>
+      <p style="color:var(--text-muted);font-size:15px;line-height:1.75;">At VSGRPS Technologies, we take your privacy seriously. This policy describes how we collect, use, and protect your information when you use our website and services.</p>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="legal-card" data-aos="fade-up" data-aos-delay="50">
+      <div class="card-header">
+        <div class="card-icon"><i class="bi bi-collection-fill"></i></div>
+        <div>
+          <div class="card-number">Section 01</div>
+          <div class="card-title">Information We Collect</div>
+        </div>
+      </div>
+      <p>We only collect information that is necessary for the provision of our services:</p>
+      <ul>
+        <li><i class="bi bi-check-circle-fill"></i><span><strong>Contact Information:</strong> Name, email address, and phone number when you fill out our contact form.</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span><strong>Usage Data:</strong> Information on how you use our website via Google Analytics (anonymized).</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span><strong>Project Requirements:</strong> Details you provide regarding your software or business needs.</span></li>
+      </ul>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="legal-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="card-header">
+        <div class="card-icon"><i class="bi bi-gear-fill"></i></div>
+        <div>
+          <div class="card-number">Section 02</div>
+          <div class="card-title">How We Use Your Information</div>
+        </div>
+      </div>
+      <p>Your data is used solely for the following purposes:</p>
+      <ul>
+        <li><i class="bi bi-check-circle-fill"></i><span>To respond to your inquiries and provide service estimates.</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span>To improve our website user experience.</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span>To send updates regarding your projects (only if you are a client).</span></li>
+      </ul>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="legal-card" data-aos="fade-up" data-aos-delay="150">
+      <div class="card-header">
+        <div class="card-icon"><i class="bi bi-shield-check-fill"></i></div>
+        <div>
+          <div class="card-number">Section 03</div>
+          <div class="card-title">Data Protection</div>
+        </div>
+      </div>
+      <p>We implement enterprise-grade security measures to protect your data. We do not sell, trade, or otherwise transfer your personal information to outside parties.</p>
+      <div class="highlight-box">
+        <i class="bi bi-lock-fill"></i>
+        <p><strong>Your data is yours.</strong> We operate a strict no-resale policy. Your personal information will never be shared with third parties for marketing or advertising purposes.</p>
+      </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="legal-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="card-header">
+        <div class="card-icon"><i class="bi bi-stars"></i></div>
+        <div>
+          <div class="card-number">Section 04</div>
+          <div class="card-title">CertifyPro &amp; Agile Data</div>
+        </div>
+      </div>
+      <p>Our flagship product, <strong>CertifyPro</strong>, follows a strict 'Zero Retention' policy. Any data uploaded for certificate generation is auto-deleted within 60 seconds of processing.</p>
+      <div class="highlight-box">
+        <i class="bi bi-hourglass-split"></i>
+        <p><strong>Zero Retention Policy:</strong> Certificate data → Auto-deleted within <strong>60 seconds</strong>. We never store your certificate content.</p>
+      </div>
+    </div>
+
+    <!-- Section 5 — Contact -->
+    <div class="contact-card" data-aos="fade-up" data-aos-delay="250">
+      <div class="card-icon" style="margin:0 auto 20px;"><i class="bi bi-envelope-fill"></i></div>
+      <h3>Have Questions?</h3>
+      <p>If you have any questions about this Privacy Policy, reach out to us directly.</p>
+      <div class="contact-links">
+        <a href="mailto:vimalraj5207@gmail.com" class="contact-link primary">
+          <i class="bi bi-envelope-fill"></i> vimalraj5207@gmail.com
+        </a>
+        <a href="tel:+918807099288" class="contact-link secondary">
+          <i class="bi bi-telephone-fill"></i> +91 88070 99288
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="cookies.html">Cookie Policy</a>
+    </div>
+    <p class="footer-copy">© 2026 VSGRPS Technologies. All rights reserved.</p>
+  </footer>
+
+  <script>
+    AOS.init({ duration: 700, once: true, easing: 'ease-out-cubic' });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('vsgrps_theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+    updateIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('vsgrps_theme', next);
+      updateIcon(next);
+    });
+
+    function updateIcon(theme) {
+      themeToggle.querySelector('i').className = theme === 'dark' ? 'bi bi-sun' : 'bi bi-moon-stars';
+    }
+
+    // Particle System
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function initParticles() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particles = [];
+      for(let i=0; i<40; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random()-0.5)*0.5,
+          vy: (Math.random()-0.5)*0.5,
+          size: Math.random()*2
+        });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0,0,canvas.width, canvas.height);
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      ctx.fillStyle = isDark ? 'rgba(59,130,246,0.3)' : 'rgba(37,99,235,0.3)';
+      
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if(p.x<0 || p.x>canvas.width) p.vx *= -1;
+        if(p.y<0 || p.y>canvas.height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+        ctx.fill();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', initParticles);
+    initParticles(); animate();
+  </script>
+</body>
+</html>

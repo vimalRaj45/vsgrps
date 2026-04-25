@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Details | VSGRPS Technologies</title>
+  
+  <!-- ============ SEO ============ -->
+  <meta name="description" content="Detailed overview of VSGRPS high-performance digital projects and SaaS products." />
+  
+  <!-- ============ Performance: Preconnect & DNS Prefetch ============ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- ============ Fonts ============ -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- ============ Scripts ============ -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --border: #E2E8F0;
+      --accent: #2563EB;
+      --accent-blue: #3B82F6;
+      --text: #0F172A;
+      --text-muted: #64748B;
+      --nav-bg: rgba(248, 250, 252, 0.95);
+      --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+    }
+
+    [data-theme="dark"] {
+      --bg: #050810;
+      --card: #0F172A;
+      --border: #1E293B;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --nav-bg: rgba(5, 8, 16, 0.95);
+      --accent: #3B82F6;
+      --accent-blue: #60A5FA;
+      --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* Grid background */
+    .grid-bg {
+      background-image: 
+        linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .glass {
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-blue));
+      color: white;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+    }
+
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .tech-pill {
+      background: rgba(37, 99, 235, 0.05);
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 12px;
+      color: var(--text);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body class="grid-bg">
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="py-8 px-6 max-w-7xl mx-auto flex justify-between items-center relative z-10">
+    <a href="index.html" class="flex items-center gap-3 text-decoration-none">
+      <div style="width:38px;height:38px;background:linear-gradient(135deg,#3B82F6,#60A5FA);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;color:#FFFFFF;font-size:16px;">V</div>
+      <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:var(--text);">VSGRPS</span>
+    </a>
+    
+    <div class="flex items-center gap-4">
+      <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
+        <i class="bi bi-moon-stars"></i>
+      </button>
+      <a href="index.html#projects" class="text-sm font-medium text-muted hover:text-accent transition-colors flex items-center gap-2" style="text-decoration:none;">
+        <i class="bi bi-arrow-left"></i> <span class="hidden md:inline">Back to Work</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Content -->
+  <main class="max-w-4xl mx-auto px-6 mt-12 relative z-10">
+    <div id="project-loading" class="text-center py-20">
+      <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-accent border-t-transparent"></div>
+      <p class="mt-4 text-muted">Scanning system for project data...</p>
+    </div>
+
+    <div id="project-content" class="hidden">
+      <div class="mb-12" data-aos="fade-up">
+        <span id="p-category" class="text-accent text-sm font-bold uppercase tracking-wider mb-4 block"></span>
+        <h1 id="p-title" class="text-4xl md:text-6xl font-bold mt-2 mb-6" style="font-family:'Outfit',sans-serif;"></h1>
+        <p id="p-desc" class="text-xl text-muted leading-relaxed"></p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16" data-aos="fade-up" data-aos-delay="100">
+        <div class="card">
+          <div class="text-muted text-xs uppercase tracking-widest mb-2">Status</div>
+          <div id="p-status" class="font-bold text-lg">Completed</div>
+        </div>
+        <div class="card">
+          <div class="text-muted text-xs uppercase tracking-widest mb-2">Industry</div>
+          <div id="p-industry" class="font-bold text-lg"></div>
+        </div>
+        <div class="card">
+          <div class="text-muted text-xs uppercase tracking-widest mb-2">Core Tech</div>
+          <div id="p-tech" class="font-bold text-lg"></div>
+        </div>
+      </div>
+
+      <div class="mb-16" data-aos="fade-up" data-aos-delay="200">
+        <h2 class="text-2xl font-bold mb-6" style="font-family:'Outfit',sans-serif;">Project Overview</h2>
+        <div id="p-long-desc" class="space-y-4 text-muted leading-relaxed text-lg"></div>
+      </div>
+
+      <div class="mb-16" data-aos="fade-up" data-aos-delay="300">
+        <h2 class="text-2xl font-bold mb-6" style="font-family:'Outfit',sans-serif;">Key Deliverables</h2>
+        <ul id="p-features" class="grid grid-cols-1 md:grid-cols-2 gap-4"></ul>
+      </div>
+
+      <div class="flex flex-wrap gap-4 pt-12 border-t border-slate-800/20" data-aos="fade-up" data-aos-delay="400">
+        <a href="index.html#contact" class="btn-primary">
+          <i class="bi bi-rocket-takeoff"></i> Start Similar Project
+        </a>
+        <a href="https://wa.me/918807099288" class="flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-800/20 hover:bg-slate-800/5 transition-all text-muted hover:text-accent" style="text-decoration:none;">
+          <i class="bi bi-whatsapp"></i> Chat with Expert
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-20 text-center text-muted text-sm relative z-10">
+    <p>© 2026 VSGRPS Technologies. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const projectsData = {
+      'certifypro': {
+        title: 'CertifyPro Enterprise',
+        category: 'SaaS • Fintech',
+        industry: 'Professional Services',
+        tech: 'React, Fastify, Redis, Neon DB',
+        desc: 'A robust enterprise-grade certificate generation and management platform designed for high-volume automated issuance.',
+        longDesc: 'CertifyPro solves the complex challenge of managing digital credentials at scale. We built a zero-retention architecture to ensure data privacy while providing a high-performance visual studio for certificate design. The system handles bulk processing via CSV and integrates seamlessly with existing enterprise workflows.',
+        features: [
+          'Visual Drag-and-Drop Certificate Studio',
+          'Bulk Issuance with CSV/Excel Integration',
+          'Encrypted Zero-Retention Data Architecture',
+          'Automated Email Distribution System',
+          'Public Verification Portal with QR Codes'
+        ]
+      },
+      'vsgrps-agile': {
+        title: 'VSGRPS Agile Workspace',
+        category: 'SaaS • Agile Governance',
+        industry: 'Project Management',
+        tech: 'React 19, Fastify, Llama-3.3, Neon DB',
+        desc: 'A modern, secure, and multi-tenant SaaS platform designed for high-performance agile project management and organizational governance.',
+        longDesc: 'VSGRPS Agile is a comprehensive workspace solution that combines agile project tracking, team collaboration, and administrative governance into a single, high-fidelity platform. Built with a focus on security, scalability, and premium user experience, it allows organizations to manage projects, tasks, meetings, and shared resources with precision. It features a hardened RBAC system, AI-driven task decomposition, and memory-efficient organization backups.',
+        features: [
+          'Multi-Tenant Architecture with Company Isolation',
+          'AI Architect: Automatic Task Breakdown (Llama-3.3)',
+          'Advanced Analytics: Team Velocity & Performance Tracking',
+          'Interactive Kanban Boards with Real-time Status',
+          'Enterprise Data Portability (Gzip SQL Backups)',
+          'Meeting Management & Internal Resource Sharing',
+          'Secure RBAC: Admin, PO, Scrum Master, Dev roles'
+        ]
+      },
+      'easanmart': {
+        title: 'EasanMart Logistics',
+        category: 'E-Commerce • Supply Chain',
+        industry: 'Retail & Logistics',
+        tech: 'JavaScript, Google Sheets API',
+        desc: 'A streamlined grocery management and order fulfillment system built to bridge the gap between local retail and digital demand.',
+        longDesc: 'For EasanMart, we developed a lightweight yet powerful system using Google Sheets as a real-time database. This allowed the client to manage inventory and orders without complex backend overhead while ensuring 100% data transparency and mobile-first accessibility for staff.',
+        features: [
+          'Real-time Inventory Tracking',
+          'Automated Order Summary Generation',
+          'WhatsApp Integration for Staff Alerts',
+          'Google Sheets-powered Admin Dashboard',
+          'Mobile-optimized Fulfillment Interface'
+        ]
+      },
+      'edwyna': {
+        title: 'Edwyna Learning',
+        category: 'Education • SaaS',
+        industry: 'EdTech',
+        tech: 'Express.js, Supabase, PostgreSQL',
+        desc: 'A highly scalable learning management system focusing on real-time collaboration and automated student assessment.',
+        longDesc: 'Edwyna was built to handle high concurrency during peak exam times. Using Supabase for real-time synchronization, we ensured that student progress is saved instantly. The system includes an automated grading engine and a comprehensive reporting dashboard for educators.',
+        features: [
+          'Real-time Collaborative Classrooms',
+          'Automated Assessment and Grading',
+          'Secure Serverless Function Backend',
+          'Interactive Student Progress Analytics',
+          'PostgreSQL-powered Performance Scaling'
+        ]
+      },
+      'srimayil': {
+        title: 'Srimayil Builders',
+        category: 'Corporate • Real Estate',
+        industry: 'Construction',
+        tech: 'React, Framer Motion, SEO Pro',
+        desc: 'A premium digital storefront for a leading construction group, focusing on visual storytelling and lead generation.',
+        longDesc: 'The Srimayil Builders project was centered around high-end visual presentation. We utilized Framer Motion for smooth project transitions and optimized every asset for speed. The result was a 98/100 Lighthouse score and a significant increase in organic lead generation through SEO optimization.',
+        features: [
+          'High-Fidelity Project Gallery',
+          'Interactive 3D Floor Plan Integration',
+          'Advanced Lead Capture Workflows',
+          'Dynamic SEO Metadata Engine',
+          '98+ Performance Lighthouse Score'
+        ]
+      },
+      'hospital': {
+        title: 'HealConnect System',
+        category: 'Healthcare • Booking',
+        industry: 'Medical Services',
+        tech: 'React, Fastify, Razorpay',
+        desc: 'A secure, patient-centric appointment booking platform that simplifies hospital-patient interaction.',
+        longDesc: 'HealConnect was designed to reduce hospital wait times. By integrating a secure payment gateway and real-time doctor availability calendars, we enabled patients to book and pay for consultations in under 60 seconds. The platform adheres to strict data privacy standards for medical records.',
+        features: [
+          'Instant Doctor Appointment Booking',
+          'Secure Razorpay Payment Integration',
+          'Patient Record Management System',
+          'Automated SMS/Email Reminders',
+          'Admin Dashboard for Hospital Staff'
+        ]
+      },
+      'college': {
+        title: 'EventPulse Platform',
+        category: 'Education • Events',
+        industry: 'Higher Education',
+        tech: 'React, Fastify, QR Engine',
+        desc: 'A high-concurrency event management platform capable of handling thousands of simultaneous check-ins.',
+        longDesc: 'Built for large-scale college festivals, EventPulse manages everything from registration to certification. We implemented a high-performance QR check-in system and a certificate generation engine that delivers e-certificates instantly upon event completion to over 5,000 users.',
+        features: [
+          'High-Speed QR Check-in System',
+          'Automated E-Certificate Generation',
+          'Real-time Attendee Analytics',
+          'Multi-Session Event Management',
+          'Scalable API handling 5k+ concurrent users'
+        ]
+      }
+    };
+
+    window.addEventListener('load', () => {
+      AOS.init({ duration: 800, once: true });
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const projectId = urlParams.get('id') || 'certifypro';
+      const project = projectsData[projectId];
+
+      if (project) {
+        document.getElementById('p-title').innerText = project.title;
+        document.getElementById('p-category').innerText = project.category;
+        document.getElementById('p-desc').innerText = project.desc;
+        document.getElementById('p-industry').innerText = project.industry;
+        document.getElementById('p-tech').innerText = project.tech;
+        document.getElementById('p-long-desc').innerText = project.longDesc;
+        
+        const featureList = document.getElementById('p-features');
+        project.features.forEach(feature => {
+          const li = document.createElement('li');
+          li.className = 'card p-4 flex items-center gap-3 text-muted';
+          li.innerHTML = `<i class="bi bi-check2-circle text-accent"></i> ${feature}`;
+          featureList.appendChild(li);
+        });
+
+        document.getElementById('project-loading').classList.add('hidden');
+        document.getElementById('project-content').classList.remove('hidden');
+      } else {
+        document.getElementById('project-loading').innerHTML = '<p class="text-red-500">Project not found.</p>';
+      }
+    });
+
+    // Theme Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('vsgrps_theme') || 'dark';
+    
+    html.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('vsgrps_theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+      const icon = themeToggle.querySelector('i');
+      icon.className = theme === 'dark' ? 'bi bi-sun' : 'bi bi-moon-stars';
+    }
+
+    // Particle System
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function initParticles() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particles = [];
+      for(let i=0; i<50; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random()-0.5)*0.5,
+          vy: (Math.random()-0.5)*0.5,
+          size: Math.random()*2
+        });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0,0,canvas.width, canvas.height);
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      ctx.fillStyle = isDark ? 'rgba(59,130,246,0.3)' : 'rgba(37,99,235,0.3)';
+      
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if(p.x<0 || p.x>canvas.width) p.vx *= -1;
+        if(p.y<0 || p.y>canvas.height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+        ctx.fill();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', initParticles);
+    initParticles(); animate();
+  </script>
+</body>
+</html>
