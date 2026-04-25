@@ -5,7 +5,6 @@ import TopBar from './TopBar';
 import InstallPrompt from './InstallPrompt';
 import PushNotificationPrompt from './PushNotificationPrompt';
 import BottomNav from './BottomNav';
-import AIHelper from './AIHelper';
 import { subscribeToPush } from '../../utils/pushManager';
 
 
@@ -73,7 +72,6 @@ const AppLayout = ({ children }) => {
         </Box>
       </Box>
       <BottomNav />
-      <AIHelper />
     </Box>
   );
 };
