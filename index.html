@@ -7,7 +7,7 @@
 
   <!-- ============ SEO ============ -->
   <title>VSGRPS | Vision Solutions Groups | Software Development India</title>
-  <link rel="icon" type="image/webp" href="assets/vsgrps_dark_logo.webp" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
   <meta name="description" content="VSGRPS (Vision Solutions Groups) is a leading software development company in Namakkal, Tamil Nadu, India. We build scalable web apps, SaaS platforms, CertifyPro, VSGRPS Agile, automation systems and enterprise software." />
   <meta name="keywords" content="software development Namakkal, web development Tamil Nadu, VSGRPS, Vision Solutions Groups, full stack developer India, SaaS development, React developer India, CertifyPro, VSGRPS Agile, automation software" />
   <meta name="author" content="VSGRPS Technologies" />
@@ -119,7 +119,7 @@
       /* Text */
       --text: #0F172A;
       --text-muted: #64748B;
-      --nav-bg: rgba(255, 255, 255, 0.95);
+      --nav-bg: #FFFFFF; /* Opaque white for better logo matching */
 
       /* Shadows for Light Mode */
       --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
@@ -215,6 +215,7 @@
     /* Navbar */
     #navbar {
       transition: all 0.3s ease;
+      background: var(--nav-bg); /* Use solid bg to match logo in light mode */
     }
     #navbar.scrolled {
       background: var(--nav-bg) !important;
