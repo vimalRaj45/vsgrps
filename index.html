@@ -39,7 +39,8 @@
   <link rel="dns-prefetch" href="https://assets4.lottiefiles.com" />
   <link rel="dns-prefetch" href="https://assets5.lottiefiles.com" />
 
-  <!-- ============ Critical Fonts (above the fold) ============ -->
+  <!-- ============ Critical Assets Preload ============ -->
+  <link rel="preload" href="assets/vsgrps_navbar_dark_banner.webp" as="image" type="image/webp" />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" /></noscript>
 
@@ -664,6 +665,13 @@
       color: var(--accent);
     }
 
+    .logo-img {
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .logo-fade {
+      opacity: 0;
+    }
+
     /* Product Mobile Optimization: Smaller Animation in Top-Right */
     @media (max-width: 640px) {
       .product-grid-mobile {
@@ -1026,9 +1034,8 @@
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-4">
   <div class="max-w-7xl mx-auto flex items-center justify-between">
     <!-- Logo -->
-    <a href="#" class="flex items-center gap-3 text-decoration-none">
-      <div style="width:38px;height:38px;background:linear-gradient(135deg,#3B82F6,#60A5FA);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;color:#FFFFFF;font-size:16px;">V</div>
-      <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:var(--text);">VSGRPS</span>
+    <a href="#" class="flex items-center gap-3 text-decoration-none" aria-label="VSGRPS Home">
+      <img id="nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies Logo" class="logo-img h-[28px] md:h-[38px] w-auto rounded-[4px]" width="180" height="38" fetchpriority="high" />
     </a>
 
     <!-- Desktop Nav -->
@@ -1060,7 +1067,7 @@
 <div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 z-50" style="background:var(--nav-bg);border-left:1px solid var(--border);backdrop-filter:blur(20px);">
   <div class="p-6">
     <div class="flex justify-between items-center mb-8">
-      <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:var(--text);">VSGRPS</span>
+      <img id="mobile-nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies" class="logo-img h-[24px] w-auto" width="120" height="24" />
       <button id="menu-close" aria-label="Close navigation menu" style="background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
     </div>
     <div class="flex flex-col gap-6">
@@ -1492,7 +1499,7 @@
         </div>
       </div>
       <div class="hidden lg:block" data-aos="fade-left">
-        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800" alt="App Solution" style="width:100%;border-radius:24px;box-shadow:0 30px 60px rgba(0,0,0,0.4);" />
+        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800" alt="VSGRPS Smart Web App Experience" style="width:100%;border-radius:24px;box-shadow:0 30px 60px rgba(0,0,0,0.4);" loading="lazy" width="800" height="600" />
       </div>
     </div>
 
@@ -1959,7 +1966,7 @@
     <div class="blog-grid">
       <!-- Post 1 -->
     <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
-      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="Digital Transformation" class="blog-img" />
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="Digital Transformation in Software Development" class="blog-img" loading="lazy" width="800" height="450" />
       <div class="blog-content">
         <span class="blog-category" style="background:rgba(59,130,246,0.1);color:#3B82F6;">Transformation</span>
         <h3 class="blog-title">How Digital Transformation is Reshaping Modern Enterprises</h3>
@@ -1973,7 +1980,7 @@
 
       <!-- Post 2 -->
       <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
-        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800" alt="Scalable Apps" class="blog-img" />
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800" alt="Scalable Web Application Development" class="blog-img" loading="lazy" width="800" height="450" />
         <div class="blog-content">
           <span class="blog-category">Development</span>
           <h3 class="blog-title">Building Scalable Web Apps with React and Modern Tech Stacks</h3>
@@ -1987,7 +1994,7 @@
 
       <!-- Post 3 -->
       <article class="blog-card" data-aos="fade-up" data-aos-delay="300">
-        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" alt="Automation Future" class="blog-img" />
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" alt="Future of Automation Systems" class="blog-img" loading="lazy" width="800" height="450" />
         <div class="blog-content">
           <span class="blog-category">Automation</span>
           <h3 class="blog-title">The Future of Automation: Smart Systems for Smart Businesses</h3>
@@ -2136,8 +2143,7 @@
       <!-- Brand -->
       <div class="md:col-span-2">
         <div class="flex items-center gap-3 mb-6">
-          <div style="width:40px;height:40px;background:linear-gradient(135deg,#3B82F6,#2563EB);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;color:#FFFFFF;font-size:18px;">V</div>
-          <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:20px;color:var(--text);">VSGRPS</span>
+          <img id="footer-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies Branding" class="logo-img h-[32px] md:h-[40px] w-auto" width="200" height="40" loading="lazy" />
         </div>
         <p style="color:var(--text-muted);font-size:14px;line-height:1.8;max-width:360px;margin-bottom:24px;">
           Technology-driven digital solutions focused on building efficient, scalable and user-friendly systems. Crafted with ♥ in India.
@@ -2480,13 +2486,34 @@
 
   function updateThemeIcon(theme) {
     const icon = themeToggle.querySelector('i');
-    if (theme === 'dark') {
-      icon.className = 'bi bi-sun';
-      document.body.style.backgroundColor = '#050810';
-    } else {
-      icon.className = 'bi bi-moon-stars';
-      document.body.style.backgroundColor = '#F8FAFC';
-    }
+    const logos = document.querySelectorAll('.logo-img');
+    
+    // Smooth transition for logos
+    logos.forEach(img => img.classList.add('logo-fade'));
+
+    setTimeout(() => {
+      const isWebp = true; // Set to true once images are converted
+      const ext = isWebp ? 'webp' : 'jpeg';
+      const suffix = theme === 'dark' ? 'dark_banner' : 'light_banner';
+      const newSrc = `assets/vsgrps_navbar_${suffix}.${ext}`;
+      
+      logos.forEach(img => {
+        img.src = newSrc;
+      });
+
+      if (theme === 'dark') {
+        icon.className = 'bi bi-sun';
+        document.body.style.backgroundColor = '#050810';
+      } else {
+        icon.className = 'bi bi-moon-stars';
+        document.body.style.backgroundColor = '#F8FAFC';
+      }
+
+      // Fade back in
+      setTimeout(() => {
+        logos.forEach(img => img.classList.remove('logo-fade'));
+      }, 50);
+    }, 150);
   }
 
   // ---- Chatbot Logic ----

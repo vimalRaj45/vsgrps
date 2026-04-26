@@ -3,17 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Details | VSGRPS Technologies</title>
+  <title>Project Details | VSGRPS Technologies | High-Performance Solutions</title>
   
   <!-- ============ SEO ============ -->
-  <meta name="description" content="Detailed overview of VSGRPS high-performance digital projects and SaaS products." />
+  <meta name="description" content="Explore the technical depth of VSGRPS high-performance digital projects, SaaS products, and custom automation solutions built for global enterprises." />
+  <meta name="keywords" content="VSGRPS projects, software case studies, SaaS development India, business automation results" />
+  <link rel="canonical" href="https://vsgrps.com/project-details.html" />
+
+  <!-- ============ Open Graph ============ -->
+  <meta property="og:title" content="Project Details | VSGRPS Technologies" />
+  <meta property="og:description" content="Deep dive into our engineering excellence and digital solutions." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://vsgrps.com/project-details.html" />
   
   <!-- ============ Performance: Preconnect & DNS Prefetch ============ -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
   
   <!-- ============ Fonts ============ -->
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" /></noscript>
   
   <!-- ============ Scripts ============ -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -148,6 +159,13 @@
       color: var(--text);
       font-weight: 500;
     }
+
+    .logo-img {
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .logo-fade {
+      opacity: 0;
+    }
   </style>
 </head>
 <body class="grid-bg">
@@ -155,9 +173,8 @@
 
   <!-- Header -->
   <header class="py-8 px-6 max-w-7xl mx-auto flex justify-between items-center relative z-10">
-    <a href="index.html" class="flex items-center gap-3 text-decoration-none">
-      <div style="width:38px;height:38px;background:linear-gradient(135deg,#3B82F6,#60A5FA);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;color:#FFFFFF;font-size:16px;">V</div>
-      <span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:var(--text);">VSGRPS</span>
+    <a href="index.html" class="flex items-center gap-3 text-decoration-none" aria-label="Back to VSGRPS Home">
+      <img id="nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies" class="logo-img h-[28px] md:h-[38px] w-auto rounded-[4px]" width="180" height="38" fetchpriority="high" />
     </a>
     
     <div class="flex items-center gap-4">
@@ -383,7 +400,29 @@
 
     function updateThemeIcon(theme) {
       const icon = themeToggle.querySelector('i');
-      icon.className = theme === 'dark' ? 'bi bi-sun' : 'bi bi-moon-stars';
+      const navLogo = document.getElementById('nav-logo');
+      
+      if (navLogo) navLogo.classList.add('logo-fade');
+
+      setTimeout(() => {
+        const isWebp = true; // Set to true once images are converted
+        const ext = isWebp ? 'webp' : 'jpeg';
+        const suffix = theme === 'dark' ? 'dark_banner' : 'light_banner';
+        
+        if (navLogo) {
+          navLogo.src = `assets/vsgrps_navbar_${suffix}.${ext}`;
+        }
+
+        if (theme === 'dark') {
+          icon.className = 'bi bi-sun';
+        } else {
+          icon.className = 'bi bi-moon-stars';
+        }
+
+        setTimeout(() => {
+          if (navLogo) navLogo.classList.remove('logo-fade');
+        }, 50);
+      }, 150);
     }
 
     // Particle System
