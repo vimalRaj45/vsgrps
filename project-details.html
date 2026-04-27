@@ -8,7 +8,7 @@
   
   <!-- ============ SEO ============ -->
   <meta name="description" content="Explore the technical depth of VSGRPS high-performance digital projects, SaaS products, and custom automation solutions built for global enterprises." />
-  <meta name="keywords" content="VSGRPS projects, software case studies, SaaS development India, business automation results" />
+  <meta name="keywords" content="VSGRPS Technologies, VSGRPS projects, software case studies, SaaS development India, business automation results" />
   <link rel="canonical" href="https://vsgrps.com/project-details.html" />
 
   <!-- ============ Open Graph ============ -->
@@ -244,13 +244,13 @@
 
   <script>
     const projectsData = {
-      'certifypro': {
-        title: 'CertifyPro Enterprise',
+      'certlock': {
+        title: 'CertLock Enterprise',
         category: 'SaaS • Fintech',
         industry: 'Professional Services',
         tech: 'React, Fastify, Redis, Neon DB',
         desc: 'A robust enterprise-grade certificate generation and management platform designed for high-volume automated issuance.',
-        longDesc: 'CertifyPro solves the complex challenge of managing digital credentials at scale. We built a zero-retention architecture to ensure data privacy while providing a high-performance visual studio for certificate design. The system handles bulk processing via CSV and integrates seamlessly with existing enterprise workflows.',
+        longDesc: 'CertLock solves the complex challenge of managing digital credentials at scale. We built a zero-retention architecture to ensure data privacy while providing a high-performance visual studio for certificate design. The system handles bulk processing via CSV and integrates seamlessly with existing enterprise workflows.',
         features: [
           'Visual Drag-and-Drop Certificate Studio',
           'Bulk Issuance with CSV/Excel Integration',
@@ -259,13 +259,13 @@
           'Public Verification Portal with QR Codes'
         ]
       },
-      'vsgrps-agile': {
-        title: 'VSGRPS Agile Workspace',
-        category: 'SaaS • Agile Governance',
+      'sprintora': {
+        title: 'Sprintora Workspace',
+        category: 'SaaS • Sprintora Governance',
         industry: 'Project Management',
         tech: 'React 19, Fastify, Llama-3.3, Neon DB',
         desc: 'A modern, secure, and multi-tenant SaaS platform designed for high-performance agile project management and organizational governance.',
-        longDesc: 'VSGRPS Agile is a comprehensive workspace solution that combines agile project tracking, team collaboration, and administrative governance into a single, high-fidelity platform. Built with a focus on security, scalability, and premium user experience, it allows organizations to manage projects, tasks, meetings, and shared resources with precision. It features a hardened RBAC system, AI-driven task decomposition, and memory-efficient organization backups.',
+        longDesc: 'Sprintora is a comprehensive workspace solution that combines agile project tracking, team collaboration, and administrative governance into a single, high-fidelity platform. Built with a focus on security, scalability, and premium user experience, it allows organizations to manage projects, tasks, meetings, and shared resources with precision. It features a hardened RBAC system, AI-driven task decomposition, and memory-efficient organization backups.',
         features: [
           'Multi-Tenant Architecture with Company Isolation',
           'AI Architect: Automatic Task Breakdown (Llama-3.3)',
@@ -357,7 +357,7 @@
       AOS.init({ duration: 800, once: true });
       
       const urlParams = new URLSearchParams(window.location.search);
-      const projectId = urlParams.get('id') || 'certifypro';
+      const projectId = urlParams.get('id') || 'certlock';
       const project = projectsData[projectId];
 
       if (project) {

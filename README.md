@@ -4,8 +4,8 @@ India's Premier Software Development Studio.
 
 ## 🌐 Official Links
 - **Main Website**: [vsgrps.com](https://vsgrps.com)
-- **Agile Workspace**: [agile.vsgrps.com](https://agile.vsgrps.com)
-- **CertifyPro Utility**: [certifypro.vsgrps.com](https://certifypro.vsgrps.com)
+- **Sprintora**: [agile.vsgrps.com](https://agile.vsgrps.com)
+- **CertLock**: [certifypro.vsgrps.com](https://certifypro.vsgrps.com)
 
 ## 🚀 Tech Stack (Static Version)
 - **Structure**: Semantic HTML5
