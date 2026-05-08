@@ -2576,16 +2576,32 @@
       if (chatMessages.contains(typingMsg)) chatMessages.removeChild(typingMsg);
       addMessage(responseText, 'bot');
       
-      // WhatsApp CTA logic
-      if (userMsgCount >= 3 || text.includes('contact') || text.includes('price') || text.includes('hire')) {
-        const btn = document.createElement('a');
-        btn.href = "https://wa.me/918807099288";
-        btn.target = "_blank";
-        btn.className = "btn-primary mt-2 flex items-center justify-center gap-2";
-        btn.style.padding = "8px 16px";
-        btn.style.fontSize = "13px";
-        btn.innerHTML = '<i class="bi bi-whatsapp"></i> Chat on WhatsApp';
-        chatMessages.appendChild(btn);
+      // WhatsApp & Email CTA logic
+      if (userMsgCount >= 3 || text.includes('contact') || text.includes('price') || text.includes('hire') || text.includes('interest')) {
+        const btnContainer = document.createElement('div');
+        btnContainer.className = "flex flex-col gap-2 mt-2";
+        
+        // WhatsApp Button
+        const waBtn = document.createElement('a');
+        waBtn.href = "https://wa.me/918807099288";
+        waBtn.target = "_blank";
+        waBtn.className = "btn-primary flex items-center justify-center gap-2";
+        waBtn.style.padding = "10px 16px";
+        waBtn.style.fontSize = "13px";
+        waBtn.innerHTML = '<i class="bi bi-whatsapp"></i> Chat on WhatsApp';
+        
+        // Email Button
+        const mailBtn = document.createElement('a');
+        mailBtn.href = "mailto:vimalraj5207@gmail.com";
+        mailBtn.className = "btn-outline flex items-center justify-center gap-2";
+        mailBtn.style.padding = "10px 16px";
+        mailBtn.style.fontSize = "13px";
+        mailBtn.style.background = "var(--card)";
+        mailBtn.innerHTML = '<i class="bi bi-envelope"></i> Email Us';
+
+        btnContainer.appendChild(waBtn);
+        btnContainer.appendChild(mailBtn);
+        chatMessages.appendChild(btnContainer);
         chatMessages.scrollTop = chatMessages.scrollHeight;
       }
     }, 200);
@@ -2597,7 +2613,7 @@
     } else if (text.includes('service') || text.includes('what do you do')) {
       return "We offer Web Development, Business Automation, CRM Dashboards, and Custom Enterprise Software. Our goal is to build for your growth.";
     } else if (text.includes('price') || text.includes('cost') || text.includes('how much')) {
-      return "Our pricing is tailored to your needs, ranging from ₹3k for sites to ₹1L for major enterprise software. We offer the best rates to help you grow.";
+      return "Our pricing is tailored to your specific requirements to ensure you get the best value. Please get in touch with us using the buttons below for a customized quote!";
     } else if (text.includes('certlock') || text.includes('certifypro')) {
       return "CertLock is our automated utility for batch certificate generation with zero data footprint. Visit certifypro.vsgrps.com!";
     } else if (text.includes('sprintora') || text.includes('agile')) {

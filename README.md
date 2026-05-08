@@ -19,7 +19,7 @@ India's Premier Software Development Studio.
 ## 🛡️ Key Features
 - **Responsive Design**: Mobile-first approach with side-by-side product grids on mobile.
 - **Dark/Light Themes**: Dynamic theme toggle with state persistence.
-- **VSGRPS Intelligence Assistant**: Consultative chatbot with custom pricing logic and high-intent WhatsApp integration.
+- **VSGRPS Intelligence Assistant**: Consultative chatbot with personalized quote lead generation and high-intent contact integration.
 - **Animated Background**: Custom Plexus particle system and tech line motion effects.
 - **Privacy Focused**: Cookie consent banner and minimal data footprint.
 
