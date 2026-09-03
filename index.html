@@ -1289,71 +1289,140 @@
       0%, 100% { transform: translateY(-10%); }
       50% { transform: translateY(110vh); }
     }
-    /* Splash Screen Glassmorphism Styles */
+    /* ==================== MINIMALIST TECH SPLASH SCREEN STYLES ==================== */
     .splash-overlay {
       position: fixed;
       inset: 0;
       width: 100%;
       height: 100vh;
-      background: #020617;
+      background: radial-gradient(circle at 50% 50%, #081636 0%, #020617 80%);
       z-index: 999999;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding: 40px 24px;
+      justify-content: center;
+      padding: 24px;
       overflow: hidden;
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.7s;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+    }
+    [data-theme="light"] .splash-overlay {
+      background: radial-gradient(circle at 50% 50%, #EFF6FF 0%, #F8FAFC 80%) !important;
     }
     .splash-overlay.hidden-splash {
       opacity: 0;
-      transform: scale(1.08);
+      transform: scale(1.04);
       pointer-events: none;
       visibility: hidden;
     }
-    .splash-vanta-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-    .glass-center-card {
-      position: relative;
-      z-index: 10;
+    .tech-splash-core {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 0;
-      max-width: 520px;
+      max-width: 480px;
       width: 90%;
-      background: transparent !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      border: none !important;
-      box-shadow: none !important;
-      animation: glassCardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: techCoreIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    @keyframes glassCardIn {
-      from { opacity: 0; transform: translateY(24px) scale(0.95); }
+    @keyframes techCoreIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.96); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
-    .glass-badge {
+    .tech-emblem {
+      position: relative;
+      width: 76px;
+      height: 76px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .emblem-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px dashed rgba(59, 130, 246, 0.4);
+    }
+    .emblem-ring.ring-1 {
+      animation: rotateRing1 8s linear infinite;
+    }
+    .emblem-ring.ring-2 {
+      inset: -6px;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-top-color: #00F0FF;
+      border-bottom-color: #3B82F6;
+      animation: rotateRing2 4s linear infinite;
+    }
+    @keyframes rotateRing1 {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes rotateRing2 {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    .emblem-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+    }
+    [data-theme="light"] .emblem-icon {
+      background: #FFFFFF;
+      border-color: #BFDBFE;
+      box-shadow: 0 0 25px rgba(37, 99, 235, 0.2);
+    }
+    .tech-splash-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(59, 130, 246, 0.15);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(59, 130, 246, 0.35);
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.3);
       border-radius: 100px;
       padding: 6px 16px;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.12em;
       color: #93C5FD;
-      box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
       margin-bottom: 16px;
+    }
+    [data-theme="light"] .tech-splash-badge {
+      background: #DBEAFE;
+      color: #1D4ED8;
+      border-color: #93C5FD;
+    }
+    .tech-brand-title {
+      font-size: clamp(34px, 5vw, 46px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
+      margin-bottom: 6px;
+    }
+    [data-theme="light"] .tech-brand-title {
+      background: linear-gradient(135deg, #0F172A 30%, #2563EB 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      text-shadow: none !important;
+    }
+    .tech-brand-sub {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #94A3B8;
+      margin-bottom: 24px;
+    }
+    [data-theme="light"] .tech-brand-sub {
+      color: #475569 !important;
     }
     .pulse-dot {
       width: 6px;
@@ -1367,25 +1436,6 @@
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.8); }
     }
-    .brand-title {
-      font-size: clamp(32px, 5vw, 44px);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
-      margin-bottom: 6px;
-    }
-    .brand-subtitle {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #94A3B8;
-      margin-bottom: 24px;
-    }
     .loader-wrap {
       width: 100%;
       margin-bottom: 16px;
@@ -1397,6 +1447,9 @@
       border-radius: 100px;
       overflow: hidden;
       box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
+    [data-theme="light"] .loader-track {
+      background: rgba(0, 0, 0, 0.08) !important;
     }
     .loader-bar {
       height: 100%;
@@ -1417,6 +1470,9 @@
       font-family: 'Space Grotesk', sans-serif;
       margin-top: 8px;
     }
+    [data-theme="light"] .status-row {
+      color: #475569 !important;
+    }
     .btn-enter {
       background: rgba(37, 99, 235, 0.2);
       backdrop-filter: blur(12px);
@@ -1432,6 +1488,13 @@
       gap: 8px;
       transition: all 0.3s ease;
       box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+    }
+    .btn-enter:hover {
+      background: #3B82F6;
+      color: #FFFFFF;
+      border-color: #3B82F6;
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+      transform: translateY(-2px);
     }
     /* ==================== INTERACTIVE MODAL & CALCULATOR STYLES ==================== */
     #info-modal {
@@ -1545,26 +1608,34 @@
 </head>
 <body class="grid-bg">
 
-<!-- ==================== REAL SATELLITE EARTH SPLASH SCREEN ==================== -->
+<!-- ==================== MINIMALIST TECH SPLASH SCREEN ==================== -->
 <div id="splash-screen" class="splash-overlay">
-  <div id="vanta-globe-splash" class="splash-vanta-bg"></div>
-  
-  <div></div> <!-- Top Spacer -->
-
-  <!-- Glassmorphic Center Card -->
-  <div class="glass-center-card">
-    <div class="glass-badge">
-      <span class="pulse-dot"></span> GLOBAL INTELLIGENCE NETWORK
+  <div class="tech-splash-core">
+    <!-- Glowing Animated Tech Monogram Emblem -->
+    <div class="tech-emblem">
+      <div class="emblem-ring ring-1"></div>
+      <div class="emblem-ring ring-2"></div>
+      <div class="emblem-icon">
+        <i class="bi bi-cpu text-blue-400 text-2xl"></i>
+      </div>
     </div>
-    <h1 class="brand-title">VSGRPS</h1>
-    <p class="brand-subtitle">Engineering Digital Transformation</p>
 
+    <!-- Tech Badge -->
+    <div class="tech-splash-badge">
+      <span class="pulse-dot"></span> NEXT-GEN CLOUD & SOFTWARE ARCHITECTURE
+    </div>
+
+    <!-- Brand Typography -->
+    <h1 class="tech-brand-title">VSGRPS</h1>
+    <p class="tech-brand-sub">Engineering Digital Transformation</p>
+
+    <!-- Progress Line -->
     <div class="loader-wrap">
       <div class="loader-track">
         <div class="loader-bar" id="splash-progress"></div>
       </div>
       <div class="status-row">
-        <span id="splash-status-text">CONNECTING TO SATELLITE MESH...</span>
+        <span id="splash-status-text">INITIALIZING SYSTEMS...</span>
         <span id="splash-percent">0%</span>
       </div>
     </div>
@@ -1573,8 +1644,6 @@
       Enter Studio <i class="bi bi-arrow-right"></i>
     </button>
   </div>
-
-  <div></div> <!-- Bottom Spacer -->
 </div>
 
 <!-- ==================== VANTA.JS CLOUDS BACKGROUND ==================== -->
@@ -3357,164 +3426,21 @@
     updateThemeIcon(newTheme);
   });
 
-  // ---- Theme-Adaptive Photorealistic NASA Satellite Earth Engine ----
-  let splashScene, splashCamera, splashRenderer, splashGlobeGroup, splashAnimId;
-
-  const textureLoader = new THREE.TextureLoader();
-  const earthTextures = {
-    night: 'https://cdn.jsdelivr.net/gh/vasturiano/three-globe/example/img/earth-night.jpg',
-    day: 'https://cdn.jsdelivr.net/gh/vasturiano/three-globe/example/img/earth-blue-marble.jpg'
-  };
-
-  function latLongToVector3(lat, lon, radius, alt = 0) {
-    const phi = (90 - lat) * (Math.PI / 180);
-    const theta = (lon + 180) * (Math.PI / 180);
-    const r = radius + alt;
-    return new THREE.Vector3(
-      -r * Math.sin(phi) * Math.cos(theta),
-      r * Math.cos(phi),
-      r * Math.sin(phi) * Math.sin(theta)
-    );
-  }
-
-  const globalTechHubs = [
-    { name: "India HQ", lat: 11.45, lon: 78.17 },
-    { name: "Singapore", lat: 1.35, lon: 103.82 },
-    { name: "Dubai", lat: 25.20, lon: 55.27 },
-    { name: "London", lat: 51.50, lon: -0.12 },
-    { name: "New York", lat: 40.71, lon: -74.00 },
-    { name: "San Francisco", lat: 37.77, lon: -122.41 },
-    { name: "Tokyo", lat: 35.67, lon: 139.65 },
-    { name: "Sydney", lat: -33.86, lon: 151.20 }
-  ];
-  
-  function initSplashGlobe() {
-    const wrap = document.getElementById('vanta-globe-splash');
-    if (!wrap || typeof THREE === 'undefined') return;
-    wrap.innerHTML = '';
-
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-    const isLight = currentTheme === 'light';
-    const earthMapUrl = isLight ? earthTextures.day : earthTextures.night;
-
-    splashScene = new THREE.Scene();
-    splashCamera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-    splashCamera.position.z = 245;
-
-    splashRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    splashRenderer.setSize(window.innerWidth, window.innerHeight);
-    splashRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    wrap.appendChild(splashRenderer.domElement);
-
-    splashGlobeGroup = new THREE.Group();
-    splashScene.add(splashGlobeGroup);
-
-    const radius = 72;
-
-    // 1. Theme-Adaptive NASA Satellite Earth Sphere
-    const earthGeo = new THREE.SphereGeometry(radius, 64, 64);
-    const earthMap = textureLoader.load(earthMapUrl);
-    
-    const earthMat = new THREE.MeshPhongMaterial({
-      map: earthMap,
-      specular: isLight ? 0x1d4ed8 : 0x3b82f6,
-      shininess: 15,
-      emissive: isLight ? 0x000000 : 0x051535,
-      emissiveIntensity: isLight ? 0 : 0.4
-    });
-    const earthMesh = new THREE.Mesh(earthGeo, earthMat);
-    splashGlobeGroup.add(earthMesh);
-
-    // Atmospheric Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, isLight ? 1.2 : 0.9);
-    splashGlobeGroup.add(ambientLight);
-    const dirLight = new THREE.DirectionalLight(isLight ? 0xffffff : 0x38bdf8, isLight ? 2.0 : 1.8);
-    dirLight.position.set(120, 60, 150);
-    splashGlobeGroup.add(dirLight);
-
-    // 2. Glowing Atmosphere Halo
-    const atmosGeo = new THREE.SphereGeometry(radius * 1.04, 32, 32);
-    const atmosMat = new THREE.MeshBasicMaterial({
-      color: isLight ? 0x3b82f6 : 0x00d2ff,
-      transparent: true,
-      opacity: isLight ? 0.25 : 0.18,
-      side: THREE.BackSide
-    });
-    splashGlobeGroup.add(new THREE.Mesh(atmosGeo, atmosMat));
-
-    // 3. Tech Hub City Beacons on Continents
-    globalTechHubs.forEach(hub => {
-      const pos = latLongToVector3(hub.lat, hub.lon, radius, 0.6);
-      const nodeGeo = new THREE.SphereGeometry(1.3, 16, 16);
-      const nodeMat = new THREE.MeshBasicMaterial({ color: 0x00F0FF });
-      const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
-      nodeMesh.position.copy(pos);
-      splashGlobeGroup.add(nodeMesh);
-
-      const ringGeo = new THREE.RingGeometry(1.6, 2.3, 32);
-      const ringMat = new THREE.MeshBasicMaterial({ color: 0x60A5FA, side: THREE.DoubleSide, transparent: true, opacity: 0.7 });
-      const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-      ringMesh.position.copy(pos);
-      ringMesh.lookAt(0, 0, 0);
-      splashGlobeGroup.add(ringMesh);
-    });
-
-    // 4. Curved Flight Arcs between Tech Hubs
-    const connections = [
-      [0, 1], // India -> Singapore
-      [0, 2], // India -> Dubai
-      [2, 3], // Dubai -> London
-      [3, 4], // London -> NY
-      [4, 5], // NY -> San Francisco
-      [5, 6], // SF -> Tokyo
-      [1, 7]  // Singapore -> Sydney
-    ];
-
-    connections.forEach(([startIdx, endIdx]) => {
-      const p1 = latLongToVector3(globalTechHubs[startIdx].lat, globalTechHubs[startIdx].lon, radius);
-      const p2 = latLongToVector3(globalTechHubs[endIdx].lat, globalTechHubs[endIdx].lon, radius);
-
-      const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
-      const dist = p1.distanceTo(p2);
-      mid.normalize().multiplyScalar(radius + dist * 0.28);
-
-      const curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
-      const points = curve.getPoints(40);
-      const curveGeo = new THREE.BufferGeometry().setFromPoints(points);
-      const curveMat = new THREE.LineBasicMaterial({
-        color: 0x00F0FF,
-        transparent: true,
-        opacity: 0.65,
-        linewidth: 2
-      });
-      const arcLine = new THREE.Line(curveGeo, curveMat);
-      splashGlobeGroup.add(arcLine);
-    });
-
-    function animateSplashGlobe() {
-      splashAnimId = requestAnimationFrame(animateSplashGlobe);
-      if (splashGlobeGroup) {
-        splashGlobeGroup.rotation.y += 0.0035;
-      }
-      splashRenderer.render(splashScene, splashCamera);
-    }
-    animateSplashGlobe();
-  }
-
+  // ---- Minimalist High-Tech Splash Lifecycle ----
   let splashProgress = 0;
   const progressBar = document.getElementById('splash-progress');
   const percentText = document.getElementById('splash-percent');
   const statusText = document.getElementById('splash-status-text');
 
   const statusMessages = [
-    'CONNECTING TO GLOBAL MESH...',
-    'SYNCING CLOUD NODES...',
-    'CONFIGURING ARCHITECTURE...',
+    'INITIALIZING SYSTEM ARCHITECTURE...',
+    'LOADING HIGH-PERFORMANCE MODULES...',
+    'OPTIMIZING 60FPS RENDERING...',
     'SYSTEM READY'
   ];
 
   const splashInterval = setInterval(() => {
-    splashProgress += 4;
+    splashProgress += 5;
     if (splashProgress > 100) splashProgress = 100;
 
     if (progressBar) progressBar.style.width = splashProgress + '%';
@@ -3529,9 +3455,9 @@
 
     if (splashProgress >= 100) {
       clearInterval(splashInterval);
-      setTimeout(dismissSplash, 200);
+      setTimeout(dismissSplash, 150);
     }
-  }, 35);
+  }, 25);
 
   // Force instant scroll to top on initial boot
   if ('scrollRestoration' in history) {
@@ -3543,24 +3469,14 @@
     clearInterval(splashInterval);
     const splash = document.getElementById('splash-screen');
     if (splash && !splash.classList.contains('hidden-splash')) {
-      // Guarantee scroll position is at the very top
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       splash.classList.add('hidden-splash');
       setTimeout(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-        if (splashAnimId) cancelAnimationFrame(splashAnimId);
-        if (splashRenderer) {
-          splashRenderer.dispose();
-          const wrap = document.getElementById('vanta-globe-splash');
-          if (wrap) wrap.innerHTML = '';
-        }
         initVantaClouds();
-      }, 700);
+      }, 600);
     }
   }
-
-  // Initialize custom globe immediately
-  initSplashGlobe();
 
   // ---- Vanta.js Clouds Background Init ----
   let vantaEffect = null;
