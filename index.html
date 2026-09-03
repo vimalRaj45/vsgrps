@@ -505,13 +505,14 @@
     /* Project card image */
     .project-img {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
+      height: 180px;
       border-radius: 12px 12px 0 0;
-      background: linear-gradient(135deg, #0D1320, #1A2540);
+      background: rgba(59, 130, 246, 0.04);
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
 
     /* Floating WhatsApp */
@@ -1034,7 +1035,7 @@
 
 <!-- ==================== NAVBAR ==================== -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-2 md:py-4">
-  <div class="max-w-7xl mx-auto flex items-center justify-between">
+  <div class="max-w-[1536px] w-full mx-auto flex items-center justify-between">
     <!-- Logo -->
     <a href="#" class="flex items-center gap-3 text-decoration-none" aria-label="VSGRPS Home">
       <img id="nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies Logo" class="logo-img h-[28px] md:h-[38px] w-auto rounded-[4px]" width="180" height="38" fetchpriority="high" />
@@ -1116,13 +1117,13 @@
   <div class="orb" style="width:500px;height:500px;background:rgba(59,130,246,0.06);top:-100px;right:-100px;animation-delay:0s;"></div>
   <div class="orb" style="width:400px;height:400px;background:rgba(96,165,250,0.05);bottom:-50px;left:-100px;animation-delay:3s;"></div>
 
-  <div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
+  <div class="max-w-[1536px] w-full mx-auto px-6 relative z-10 w-full">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <!-- Left -->
       <div class="text-left order-2 lg:order-1">
         <div class="section-tag flex justify-start" data-aos="fade-up" data-aos-delay="100">
           <span style="width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block;margin-right:8px;animation:pulse 2s infinite;"></span>
-          India's Premier Software Studio
+          Software Development & UI/UX Studio
         </div>
         <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-left ml-2" data-aos="fade-up" data-aos-delay="200" style="font-family:'Outfit',sans-serif;">
           We Build<br/>
@@ -1130,7 +1131,7 @@
           <span id="typing-text">Excellence</span><span class="cursor"></span>
         </h1>
         <p class="text-lg mb-10 leading-relaxed text-left" data-aos="fade-up" data-aos-delay="300" style="color:var(--text-muted);max-width:480px;">
-          VSGRPS crafts scalable web applications, SaaS platforms, and automation systems that drive real business results. From startup to enterprise — we build it right.
+          VSGRPS crafts scalable web applications, SaaS platforms, and automation systems tailored for growing businesses and startups.
         </p>
         <div class="flex flex-wrap gap-4 justify-start" data-aos="fade-up" data-aos-delay="400">
           <a href="#contact" class="btn-primary">
@@ -1144,20 +1145,20 @@
         <!-- Mini stats -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 hero-stats" data-aos="fade-up" data-aos-delay="500">
           <div class="glass p-4 rounded-xl border border-slate-800/50 text-center">
-            <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;" data-count="7">7+</div>
-            <div style="color:var(--text-muted);font-size:12px;margin-top:4px;">Projects Delivered</div>
+            <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">7+</div>
+            <div style="color:var(--text-muted);font-size:12px;margin-top:4px;">Projects Built</div>
           </div>
           <div class="glass p-4 rounded-xl border border-slate-800/50 text-center">
-            <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;" data-count="2">2+</div>
-            <div style="color:var(--text-muted);font-size:12px;margin-top:4px;">SaaS Products</div>
+            <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">2</div>
+            <div style="color:var(--text-muted);font-size:12px;margin-top:4px;">SaaS Platforms</div>
           </div>
           <div class="glass p-4 rounded-xl border border-slate-800/50 text-center">
-            <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;" data-count="99">99%</div>
-            <div style="color:var(--text-muted);font-size:12px;margin-top:4px;">Success Rate</div>
+            <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Modern</div>
+            <div style="color:var(--text-muted);font-size:12px;margin-top:4px;">Tech Stack</div>
           </div>
           <div class="glass p-4 rounded-xl border border-slate-800/50 text-center">
-            <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;" data-count="100">100%</div>
-            <div style="color:var(--text-muted);font-size:12px;margin-top:4px;">Satisfaction</div>
+            <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">100%</div>
+            <div style="color:var(--text-muted);font-size:12px;margin-top:4px;">Client Focused</div>
           </div>
         </div>
         </div>
@@ -1182,7 +1183,7 @@
 
 <!-- ==================== ABOUT ==================== -->
 <section id="about" class="py-24 relative overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6">
+  <div class="max-w-[1536px] w-full mx-auto px-6">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <!-- Lottie left -->
       <div data-aos="fade-right">
@@ -1246,16 +1247,16 @@
 <!-- ==================== SERVICES ==================== -->
 <section id="services" class="py-24 relative overflow-hidden">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(59,130,246,0.04),transparent 70%);"></div>
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="text-left mb-16">
-      <div class="section-tag" data-aos="fade-up">
+  <div class="max-w-[1536px] w-full mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 max-w-3xl mx-auto">
+      <div class="section-tag mx-auto" data-aos="fade-up">
         <i class="bi bi-gear"></i> What We Do
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-left" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
         Our <span class="gradient-text">Services</span>
       </h2>
-      <p class="text-base max-w-2xl text-left" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
-        From concept to deployment — we provide end-to-end solutions tailored to your business needs.
+      <p class="text-base max-w-2xl mx-auto text-center" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
+        End-to-end digital engineering and design solutions tailored to your business needs.
       </p>
     </div>
 
@@ -1266,11 +1267,24 @@
           <lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="hover" colors="primary:#3B82F6,secondary:#60A5FA" style="width:36px;height:36px;"></lord-icon>
         </div>
         <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Web Development</h3>
-        <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">High-performance corporate websites, e-commerce platforms, and custom web applications built with React, Next.js and modern frameworks.</p>
+        <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Corporate websites, e-commerce platforms, and responsive web applications built with React, Next.js and modern web standards.</p>
         <div class="flex flex-wrap gap-2">
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">React</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Next.js</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">PWA</span>
+        </div>
+      </div>
+
+      <div class="card p-8" data-aos="fade-up" data-aos-delay="150">
+        <div class="service-icon" style="background:rgba(236,72,153,0.1);">
+          <i class="bi bi-palette" style="color:#EC4899; font-size:24px;"></i>
+        </div>
+        <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">UI/UX & Product Design</h3>
+        <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">User-centered interface design, Figma wireframing, high-fidelity prototypes, design systems, and responsive micro-interactions.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Figma</span>
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Wireframing</span>
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Design Systems</span>
         </div>
       </div>
 
@@ -1279,58 +1293,50 @@
           <lord-icon src="https://cdn.lordicon.com/wjyqkiew.json" trigger="hover" colors="primary:#2563EB,secondary:#3B82F6" style="width:36px;height:36px;"></lord-icon>
         </div>
         <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Automation Solutions</h3>
-        <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Reduce manual work through intelligent workflow automation. Customer communication bots, process optimization and Google Apps Script integrations.</p>
+        <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Streamline operations with workflow automation, customer notifications, and Google Apps Script integrations.</p>
         <div class="flex flex-wrap gap-2">
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Zapier</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Apps Script</span>
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Webhooks</span>
         </div>
       </div>
 
-      <div class="card p-8" data-aos="fade-up" data-aos-delay="300">
+      <div class="card p-8" data-aos="fade-up" data-aos-delay="250">
         <div class="service-icon" style="background:rgba(14,165,233,0.1);">
           <lord-icon src="https://cdn.lordicon.com/qhgmphtg.json" trigger="hover" colors="primary:#0EA5E9,secondary:#38BDF8" style="width:36px;height:36px;"></lord-icon>
         </div>
         <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Dashboards & CRM</h3>
-        <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Centralize operations with custom business intelligence dashboards, real-time data visualization and custom CRM systems built for your workflow.</p>
+        <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Centralize your data with custom business dashboards, real-time metrics tracking, and tailored CRM systems.</p>
         <div class="flex flex-wrap gap-2">
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Real-time</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Analytics</span>
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Reports</span>
         </div>
       </div>
 
-      <div class="card p-8" data-aos="fade-up" data-aos-delay="400">
+      <div class="card p-8" data-aos="fade-up" data-aos-delay="300">
         <div class="service-icon" style="background:rgba(59,130,246,0.1);">
           <lord-icon src="https://cdn.lordicon.com/wloilxuq.json" trigger="hover" colors="primary:#3B82F6,secondary:#60A5FA" style="width:36px;height:36px;"></lord-icon>
         </div>
-        <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Custom Software</h3>
-        <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">End-to-end system design, REST & GraphQL API architecture, enterprise-grade backend systems and third-party integrations.</p>
+        <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Custom Software & APIs</h3>
+        <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Robust backend architecture, REST and GraphQL APIs, database modeling, and seamless third-party integrations.</p>
         <div class="flex flex-wrap gap-2">
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Fastify</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">PostgreSQL</span>
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Node.js</span>
         </div>
       </div>
 
-      <div class="card p-8" data-aos="fade-up" data-aos-delay="500">
+      <div class="card p-8" data-aos="fade-up" data-aos-delay="350">
         <div class="service-icon" style="background:rgba(37,99,235,0.1);">
           <i class="bi bi-cloud-check" style="color:#2563EB; font-size:24px;"></i>
         </div>
-        <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Hosting & Cloud</h3>
-        <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Secure, high-uptime deployment and cloud services. CI/CD pipeline setup, security hardening, SSL and Cloudflare integration.</p>
+        <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Cloud & Maintenance Support</h3>
+        <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Deployment on high-uptime infrastructure, SSL setup, CI/CD pipelines, security hardening, and dedicated maintenance support.</p>
         <div class="flex flex-wrap gap-2">
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Cloudflare</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">CI/CD</span>
-        </div>
-      </div>
-
-      <div class="card p-8" data-aos="fade-up" data-aos-delay="600">
-        <div class="service-icon" style="background:rgba(14,165,233,0.1);">
-          <i class="bi bi-headset" style="color:#0EA5E9; font-size:24px;"></i>
-        </div>
-        <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Customer Support</h3>
-        <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Ongoing technical support and system maintenance. 3 months free support included with every project. Bug fixes and updates.</p>
-        <div class="flex flex-wrap gap-2">
-          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">3 Months Free</span>
-          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">24/7</span>
+          <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Maintenance</span>
         </div>
       </div>
 
@@ -1341,16 +1347,16 @@
 <!-- ==================== PRODUCTS ==================== -->
 <section id="products" class="py-24 relative overflow-hidden">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 0% 50%,rgba(59,130,246,0.05),transparent 60%);"></div>
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="text-left mb-16">
-      <div class="section-tag" data-aos="fade-up">
+  <div class="max-w-[1536px] w-full mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 max-w-3xl mx-auto">
+      <div class="section-tag mx-auto" data-aos="fade-up">
         <i class="bi bi-box-seam"></i> Our Products
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-left" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
         Built to <span class="gradient-text">Scale</span>
       </h2>
-      <p class="text-base max-w-2xl text-left" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
-        Two production-ready SaaS products solving real problems for real people.
+      <p class="text-base max-w-2xl mx-auto text-center" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
+        Production-grade SaaS platforms developed in-house for real-world operations.
       </p>
     </div>
 
@@ -1459,16 +1465,16 @@
 
 <!-- ==================== APP SOLUTIONS ==================== -->
 <section id="app-solutions" class="py-24 relative overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="text-left mb-16">
-      <div class="section-tag" data-aos="fade-up">
+  <div class="max-w-[1536px] w-full mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 max-w-3xl mx-auto">
+      <div class="section-tag mx-auto" data-aos="fade-up">
         <i class="bi bi-phone"></i> Smart Solutions
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-left" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
         App Experience at <span class="gradient-text">Website Cost</span>
       </h2>
-      <p class="text-base max-w-2xl text-left" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
-        We build smart web applications that work like native mobile apps. You get a Website + App BOTH.
+      <p class="text-base max-w-2xl mx-auto text-center" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
+        Progressive Web Apps (PWA) that deliver the look, feel, and features of a native mobile app directly in the browser.
       </p>
     </div>
 
@@ -1560,182 +1566,258 @@
     <div class="tech-line-v" style="left: 60%; animation-delay: 6s;"></div>
     <div class="tech-line-v" style="left: 80%; animation-delay: 8s;"></div>
   </div>
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="text-left mb-16">
-      <div class="section-tag" data-aos="fade-up">
+  <div class="max-w-[1536px] w-full mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 max-w-3xl mx-auto">
+      <div class="section-tag mx-auto" data-aos="fade-up">
         <i class="bi bi-briefcase"></i> Portfolio
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-left" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
-        Client <span class="gradient-text">Success Stories</span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
+        Featured <span class="gradient-text">Projects</span>
       </h2>
-      <p class="text-base max-w-2xl text-left" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
-        A selection of high-impact projects delivered for our global clients across various industries.
+      <p class="text-base max-w-2xl mx-auto text-center" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
+        A selection of digital solutions delivered across e-commerce, real estate, healthcare, education, and SaaS.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-
-
-      <div class="card" data-aos="fade-up" data-aos-delay="200">
-        <div class="project-img" style="background:linear-gradient(135deg,#1a2a4a,#0d1a35);display:flex;align-items:center;justify-content:center;">
-          <i class="bi bi-cart3" style="font-size:48px;color:#3B82F6;opacity:0.8;"></i>
+      <!-- EasanMart -->
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="project-img">
+          <i class="bi bi-cart3" style="font-size:44px;color:#3B82F6;"></i>
+          <span style="position:absolute;top:12px;right:12px;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.25);color:#22C55E;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;display:flex;align-items:center;gap:5px;">
+            <span style="width:6px;height:6px;background:#22C55E;border-radius:50%;display:inline-block;animation:pulse 2s infinite;"></span> Live App
+          </span>
         </div>
         <div class="p-6">
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
             <span style="background:rgba(251,146,60,0.1);color:#FB923C;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">E-Commerce</span>
+            <span style="background:rgba(59,130,246,0.1);color:#3B82F6;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Logistics</span>
           </div>
           <h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">EasanMart</h3>
-          <p style="color:#94A3B8;font-size:13px;line-height:1.6;margin-bottom:16px;">Grocery management system with Google Sheets backend, automated order processing and real-time stock updates.</p>
+          <p style="color:#94A3B8;font-size:13px;line-height:1.6;margin-bottom:16px;">Grocery management & order system with automated processing, real-time catalog sync, and mobile-first fulfillment.</p>
           <div class="flex flex-wrap gap-2 mb-4">
             <span class="tech-pill" style="font-size:11px;padding:3px 10px;">JavaScript</span>
             <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Google Sheets</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Netlify</span>
           </div>
-          <div style="border-top:1px solid #1A2540;padding-top:16px;display:flex;gap:16px;">
+          <div style="border-top:1px solid var(--border);padding-top:16px;display:flex;gap:16px;">
             <div style="text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#3B82F6;">100%</div>
-              <div style="color:#94A3B8;font-size:11px;">Order Accuracy</div>
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">Automated</div>
+              <div style="color:#94A3B8;font-size:11px;">Workflow</div>
             </div>
             <div style="text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#3B82F6;">500+</div>
-              <div style="color:#94A3B8;font-size:11px;">Monthly Orders</div>
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">Catalog</div>
+              <div style="color:#94A3B8;font-size:11px;">Sync</div>
             </div>
           </div>
-          <div class="mt-6">
-            <a href="project-details.html?id=easanmart" class="btn-outline w-full justify-center relative z-20" style="padding:10px 0;font-size:13px;pointer-events:auto;">
-              More Details <i class="bi bi-arrow-right-short"></i>
+          <div class="mt-6 grid grid-cols-2 gap-2">
+            <a href="https://easanmart.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-primary justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;font-weight:600;">
+              <i class="bi bi-box-arrow-up-right"></i> Visit Site
+            </a>
+            <a href="project-details.html?id=easanmart" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
+              Details <i class="bi bi-arrow-right-short"></i>
             </a>
           </div>
         </div>
       </div>
 
-      <div class="card" data-aos="fade-up" data-aos-delay="300">
-        <div class="project-img" style="background:linear-gradient(135deg,#1a1030,#0d0820);display:flex;align-items:center;justify-content:center;">
-          <i class="bi bi-mortarboard" style="font-size:48px;color:#A855F7;opacity:0.8;"></i>
+      <!-- THREADS'26 -->
+      <div class="card" data-aos="fade-up" data-aos-delay="150">
+        <div class="project-img">
+          <i class="bi bi-qr-code-scan" style="font-size:44px;color:#EAB308;"></i>
+          <span style="position:absolute;top:12px;right:12px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:#EAB308;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;display:flex;align-items:center;gap:5px;">
+            <span style="width:6px;height:6px;background:#EAB308;border-radius:50%;display:inline-block;animation:pulse 2s infinite;"></span> Live Site
+          </span>
         </div>
         <div class="p-6">
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
-            <span style="background:rgba(168,85,247,0.1);color:#A855F7;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Education</span>
-            <span style="background:rgba(168,85,247,0.1);color:#A855F7;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Enterprise</span>
+            <span style="background:rgba(234,179,8,0.1);color:#EAB308;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Symposium</span>
+            <span style="background:rgba(234,179,8,0.1);color:#EAB308;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Events</span>
           </div>
-          <h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">Edwyna</h3>
-          <p style="color:#94A3B8;font-size:13px;line-height:1.6;margin-bottom:16px;">Scalable enterprise web application with PostgreSQL, serverless functions, real-time sync and automated CI/CD pipeline.</p>
+          <h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">THREADS'26 Platform</h3>
+          <p style="color:#94A3B8;font-size:13px;line-height:1.6;margin-bottom:16px;">National symposium platform handling attendee registrations, live event schedules, QR check-in, and digital certificates.</p>
           <div class="flex flex-wrap gap-2 mb-4">
-            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Express.js</span>
-            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Supabase</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">React</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Fastify</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">QR Engine</span>
           </div>
-          <div style="border-top:1px solid #1A2540;padding-top:16px;display:flex;gap:16px;">
+          <div style="border-top:1px solid var(--border);padding-top:16px;display:flex;gap:16px;">
             <div style="text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#3B82F6;">99.9%</div>
-              <div style="color:#94A3B8;font-size:11px;">Uptime</div>
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">Symposium</div>
+              <div style="color:#94A3B8;font-size:11px;">Portal</div>
             </div>
             <div style="text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#3B82F6;">50ms</div>
-              <div style="color:#94A3B8;font-size:11px;">DB Response</div>
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">QR</div>
+              <div style="color:#94A3B8;font-size:11px;">Check-in</div>
             </div>
           </div>
-          <div class="mt-6">
-            <a href="project-details.html?id=edwyna" class="btn-outline w-full justify-center relative z-20" style="padding:10px 0;font-size:13px;pointer-events:auto;">
-              More Details <i class="bi bi-arrow-right-short"></i>
+          <div class="mt-6 grid grid-cols-2 gap-2">
+            <a href="https://threadscse.co.in/" target="_blank" rel="noopener noreferrer" class="btn-primary justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;font-weight:600;">
+              <i class="bi bi-box-arrow-up-right"></i> Visit Site
+            </a>
+            <a href="project-details.html?id=college" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
+              Details <i class="bi bi-arrow-right-short"></i>
             </a>
           </div>
         </div>
       </div>
 
-      <div class="card min-w-[300px] md:min-w-[400px] snap-center" data-aos="fade-up" data-aos-delay="400">
-        <div class="project-img" style="background:linear-gradient(135deg,#1a2a1a,#0d1a0d);display:flex;align-items:center;justify-content:center;">
-          <i class="bi bi-building" style="font-size:48px;color:#22C55E;opacity:0.8;"></i>
+      <!-- Srimayil Builders -->
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <div class="project-img">
+          <i class="bi bi-building" style="font-size:44px;color:#22C55E;"></i>
+          <span style="position:absolute;top:12px;right:12px;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.25);color:#22C55E;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;display:flex;align-items:center;gap:5px;">
+            <span style="width:6px;height:6px;background:#22C55E;border-radius:50%;display:inline-block;animation:pulse 2s infinite;"></span> Live Site
+          </span>
         </div>
         <div class="p-6">
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
             <span style="background:rgba(34,197,94,0.1);color:#22C55E;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Corporate</span>
+            <span style="background:rgba(34,197,94,0.1);color:#22C55E;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Real Estate</span>
           </div>
           <h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">Srimayil Builders</h3>
-          <p style="color:#94A3B8;font-size:13px;line-height:1.6;margin-bottom:16px;">Premium corporate website with interactive project gallery, lead capture system and SEO-optimized pages achieving 98/100 Lighthouse score.</p>
+          <p style="color:#94A3B8;font-size:13px;line-height:1.6;margin-bottom:16px;">Corporate digital storefront with interactive project showcase, lead capture workflows, and optimized fast performance.</p>
           <div class="flex flex-wrap gap-2 mb-4">
             <span class="tech-pill" style="font-size:11px;padding:3px 10px;">React</span>
             <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Framer Motion</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">SEO Pro</span>
           </div>
-          <div style="border-top:1px solid #1A2540;padding-top:16px;display:flex;gap:16px;">
+          <div style="border-top:1px solid var(--border);padding-top:16px;display:flex;gap:16px;">
             <div style="text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#3B82F6;">60%</div>
-              <div style="color:#94A3B8;font-size:11px;">More Leads</div>
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">SEO</div>
+              <div style="color:#94A3B8;font-size:11px;">Optimized</div>
             </div>
             <div style="text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#3B82F6;">98/100</div>
-              <div style="color:#94A3B8;font-size:11px;">Lighthouse</div>
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">Fast</div>
+              <div style="color:#94A3B8;font-size:11px;">Load Times</div>
             </div>
           </div>
-          <div class="mt-6">
-            <a href="project-details.html?id=srimayil" class="btn-outline w-full justify-center relative z-20" style="padding:10px 0;font-size:13px;pointer-events:auto;">
-              More Details <i class="bi bi-arrow-right-short"></i>
+          <div class="mt-6 grid grid-cols-2 gap-2">
+            <a href="https://www.srimayilbuilders.com/" target="_blank" rel="noopener noreferrer" class="btn-primary justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;font-weight:600;">
+              <i class="bi bi-box-arrow-up-right"></i> Visit Site
+            </a>
+            <a href="project-details.html?id=srimayil" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
+              Details <i class="bi bi-arrow-right-short"></i>
             </a>
           </div>
         </div>
       </div>
 
-      <div class="card min-w-[300px] md:min-w-[400px] snap-center" data-aos="fade-up" data-aos-delay="500">
-        <div class="project-img" style="background:linear-gradient(135deg,#1a0a2a,#0d0515);display:flex;align-items:center;justify-content:center;">
-          <i class="bi bi-calendar-check" style="font-size:48px;color:var(--accent-blue);opacity:0.8;"></i>
+      <!-- Dr. Kanak's Healthcare -->
+      <div class="card" data-aos="fade-up" data-aos-delay="250">
+        <div class="project-img">
+          <i class="bi bi-hospital" style="font-size:44px;color:var(--accent-blue);"></i>
+          <span style="position:absolute;top:12px;right:12px;background:rgba(0,217,245,0.12);border:1px solid rgba(0,217,245,0.25);color:var(--accent-blue);font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;display:flex;align-items:center;gap:5px;">
+            <span style="width:6px;height:6px;background:var(--accent-blue);border-radius:50%;display:inline-block;animation:pulse 2s infinite;"></span> Live Portal
+          </span>
         </div>
         <div class="p-6">
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
             <span style="background:rgba(0,217,245,0.1);color:var(--accent-blue);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Healthcare</span>
-            <span style="background:rgba(0,217,245,0.1);color:var(--accent-blue);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Payments</span>
+            <span style="background:rgba(0,217,245,0.1);color:var(--accent-blue);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Booking</span>
           </div>
-          <h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">Hospital Booking System</h3>
-          <p style="color:#94A3B8;font-size:13px;line-height:1.6;margin-bottom:16px;">Hospital appointment booking platform with integrated payment gateway, secure patient data management and real-time availability tracking.</p>
+          <h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">Dr. Kanak's Healthcare</h3>
+          <p style="color:#94A3B8;font-size:13px;line-height:1.6;margin-bottom:16px;">Healthcare appointment booking portal with doctor consultation scheduling, patient data records, and secure payments.</p>
           <div class="flex flex-wrap gap-2 mb-4">
             <span class="tech-pill" style="font-size:11px;padding:3px 10px;">React</span>
             <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Fastify</span>
             <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Razorpay</span>
           </div>
-          <div style="border-top:1px solid #1A2540;padding-top:16px;display:flex;gap:16px;">
+          <div style="border-top:1px solid var(--border);padding-top:16px;display:flex;gap:16px;">
             <div style="text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#3B82F6;">Secure</div>
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">Online</div>
+              <div style="color:#94A3B8;font-size:11px;">Booking</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">Secure</div>
               <div style="color:#94A3B8;font-size:11px;">Payments</div>
             </div>
-            <div style="text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#3B82F6;">Live</div>
-              <div style="color:#94A3B8;font-size:11px;">In Progress</div>
-            </div>
           </div>
-          <div class="mt-6">
-            <a href="project-details.html?id=hospital" class="btn-outline w-full justify-center relative z-20" style="padding:10px 0;font-size:13px;pointer-events:auto;">
-              More Details <i class="bi bi-arrow-right-short"></i>
+          <div class="mt-6 grid grid-cols-2 gap-2">
+            <a href="https://drkanaks.com/" target="_blank" rel="noopener noreferrer" class="btn-primary justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;font-weight:600;">
+              <i class="bi bi-box-arrow-up-right"></i> Visit Site
+            </a>
+            <a href="project-details.html?id=hospital" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
+              Details <i class="bi bi-arrow-right-short"></i>
             </a>
           </div>
         </div>
       </div>
 
-      <div class="card" data-aos="fade-up" data-aos-delay="600">
-        <div class="project-img" style="background:linear-gradient(135deg,#1a1a0a,#0d0d05);display:flex;align-items:center;justify-content:center;">
-          <i class="bi bi-qr-code" style="font-size:48px;color:#EAB308;opacity:0.8;"></i>
+      <!-- CertLock Enterprise -->
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
+        <div class="project-img">
+          <i class="bi bi-shield-check" style="font-size:44px;color:#3B82F6;"></i>
+          <span style="position:absolute;top:12px;right:12px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);color:#3B82F6;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;display:flex;align-items:center;gap:5px;">
+            <span style="width:6px;height:6px;background:#3B82F6;border-radius:50%;display:inline-block;animation:pulse 2s infinite;"></span> SaaS
+          </span>
         </div>
         <div class="p-6">
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
-            <span style="background:rgba(234,179,8,0.1);color:#EAB308;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Education</span>
-            <span style="background:rgba(234,179,8,0.1);color:#EAB308;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Events</span>
+            <span style="background:rgba(59,130,246,0.1);color:#3B82F6;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">SaaS</span>
+            <span style="background:rgba(59,130,246,0.1);color:#3B82F6;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Fintech</span>
           </div>
-          <h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">College Event Platform</h3>
-          <p style="color:#94A3B8;font-size:13px;line-height:1.6;margin-bottom:16px;">Real-time event management with QR code check-in, high-concurrency API handling 5000+ users and e-certificate generation.</p>
+          <h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">CertLock Platform</h3>
+          <p style="color:#94A3B8;font-size:13px;line-height:1.6;margin-bottom:16px;">Enterprise certificate generation & credential verification platform with CSV bulk issuance and visual canvas designer.</p>
           <div class="flex flex-wrap gap-2 mb-4">
             <span class="tech-pill" style="font-size:11px;padding:3px 10px;">React</span>
             <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Fastify</span>
             <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Neon DB</span>
           </div>
-          <div style="border-top:1px solid #1A2540;padding-top:16px;display:flex;gap:16px;">
+          <div style="border-top:1px solid var(--border);padding-top:16px;display:flex;gap:16px;">
             <div style="text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#3B82F6;">5000+</div>
-              <div style="color:#94A3B8;font-size:11px;">Registered Users</div>
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">Bulk</div>
+              <div style="color:#94A3B8;font-size:11px;">Issuance</div>
             </div>
             <div style="text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#3B82F6;">&lt;30ms</div>
-              <div style="color:#94A3B8;font-size:11px;">API Latency</div>
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">QR</div>
+              <div style="color:#94A3B8;font-size:11px;">Verification</div>
+            </div>
+          </div>
+          <div class="mt-6 grid grid-cols-2 gap-2">
+            <a href="https://certifypro.vsgrps.com" target="_blank" rel="noopener noreferrer" class="btn-primary justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;font-weight:600;">
+              <i class="bi bi-box-arrow-up-right"></i> Visit Site
+            </a>
+            <a href="project-details.html?id=certlock" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
+              Details <i class="bi bi-arrow-right-short"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edwyna -->
+      <div class="card" data-aos="fade-up" data-aos-delay="350">
+        <div class="project-img">
+          <i class="bi bi-mortarboard" style="font-size:44px;color:#A855F7;"></i>
+          <span style="position:absolute;top:12px;right:12px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.25);color:#C084FC;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;display:flex;align-items:center;gap:5px;">
+            <span style="width:6px;height:6px;background:#C084FC;border-radius:50%;display:inline-block;"></span> Platform
+          </span>
+        </div>
+        <div class="p-6">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <span style="background:rgba(168,85,247,0.1);color:#A855F7;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Education</span>
+            <span style="background:rgba(168,85,247,0.1);color:#A855F7;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">EdTech</span>
+          </div>
+          <h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">Edwyna Learning</h3>
+          <p style="color:#94A3B8;font-size:13px;line-height:1.6;margin-bottom:16px;">Collaborative education & student assessment platform with PostgreSQL backend, real-time sync, and automated grading engine.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Express.js</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Supabase</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">PostgreSQL</span>
+          </div>
+          <div style="border-top:1px solid var(--border);padding-top:16px;display:flex;gap:16px;">
+            <div style="text-align:center;">
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">Cloud</div>
+              <div style="color:#94A3B8;font-size:11px;">Deployed</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">Fast</div>
+              <div style="color:#94A3B8;font-size:11px;">Response</div>
             </div>
           </div>
           <div class="mt-6">
-            <a href="project-details.html?id=college" class="btn-outline w-full justify-center relative z-20" style="padding:10px 0;font-size:13px;pointer-events:auto;">
+            <a href="project-details.html?id=edwyna" class="btn-outline w-full justify-center relative z-20" style="padding:10px 0;font-size:12px;pointer-events:auto;">
               More Details <i class="bi bi-arrow-right-short"></i>
             </a>
           </div>
@@ -1750,57 +1832,60 @@
 <!-- ==================== WHY CHOOSE US ==================== -->
 <section id="why" class="py-24 relative overflow-hidden">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(59,130,246,0.05),transparent 60%);"></div>
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="text-left mb-16">
-      <div class="section-tag" data-aos="fade-up">
+  <div class="max-w-[1536px] w-full mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 max-w-3xl mx-auto">
+      <div class="section-tag mx-auto" data-aos="fade-up">
         <i class="bi bi-star"></i> Why VSGRPS
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-left" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
         Why Choose <span class="gradient-text">Us</span>
       </h2>
+      <p class="text-base max-w-2xl mx-auto text-center" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
+        We build sustainable, high-performing software tailored to your specific business goals.
+      </p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="100">
         <div style="width:64px;height:64px;background:rgba(59,130,246,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
           <i class="bi bi-lightning-charge" style="color:#3B82F6;font-size:24px;"></i>
         </div>
-        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Fast Delivery</h3>
-        <p style="color:#94A3B8;font-size:14px;line-height:1.7;">We follow agile sprints with clear milestones, delivering your project on time without compromising quality.</p>
+        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Agile Delivery</h3>
+        <p style="color:#94A3B8;font-size:14px;line-height:1.7;">Iterative development sprints with clear milestones, delivering projects predictably with thorough quality checks.</p>
       </div>
       <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="200">
         <div style="width:64px;height:64px;background:rgba(37,99,235,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
           <i class="bi bi-people" style="color:#2563EB;font-size:24px;"></i>
         </div>
-        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Dedicated Team</h3>
-        <p style="color:#94A3B8;font-size:14px;line-height:1.7;">Get a fully committed team of engineers, designers, and PMs focused exclusively on your project.</p>
+        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Dedicated Engineers</h3>
+        <p style="color:#94A3B8;font-size:14px;line-height:1.7;">Work with focused developers and designers who understand your product vision and technical requirements.</p>
       </div>
       <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="300">
         <div style="width:64px;height:64px;background:rgba(14,165,233,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
           <i class="bi bi-shield-lock" style="color:#0EA5E9;font-size:24px;"></i>
         </div>
         <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Secure & Reliable</h3>
-        <p style="color:#94A3B8;font-size:14px;line-height:1.7;">Enterprise-grade security practices baked into every line of code. Your data and users are always protected.</p>
+        <p style="color:#94A3B8;font-size:14px;line-height:1.7;">Industry-standard security practices, clean architecture, and modern code standards across every project.</p>
       </div>
       <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="400">
         <div style="width:64px;height:64px;background:rgba(59,130,246,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
           <i class="bi bi-arrows-expand" style="color:#3B82F6;font-size:24px;"></i>
         </div>
         <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Scalable Architecture</h3>
-        <p style="color:#94A3B8;font-size:14px;line-height:1.7;">We build systems that grow with your business — from 100 users to 1 million, without a rewrite.</p>
+        <p style="color:#94A3B8;font-size:14px;line-height:1.7;">Modular design patterns that allow your applications to handle traffic spikes and scale seamlessly.</p>
       </div>
       <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="500">
         <div style="width:64px;height:64px;background:rgba(37,99,235,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
           <i class="bi bi-chat-quote" style="color:#2563EB;font-size:24px;"></i>
         </div>
-        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Transparent Process</h3>
-        <p style="color:#94A3B8;font-size:14px;line-height:1.7;">Weekly demos, daily standups, and real-time communication via your preferred tools.</p>
+        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Transparent Collaboration</h3>
+        <p style="color:#94A3B8;font-size:14px;line-height:1.7;">Regular updates, demo walkthroughs, and responsive communication channels throughout the project lifecycle.</p>
       </div>
       <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="600">
         <div style="width:64px;height:64px;background:rgba(14,165,233,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
           <i class="bi bi-award" style="color:#0EA5E9;font-size:24px;"></i>
         </div>
-        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">3M Free Support</h3>
-        <p style="color:#94A3B8;font-size:14px;line-height:1.7;">3 months free post-launch support included with every project. We don't disappear after delivery.</p>
+        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">Ongoing Support</h3>
+        <p style="color:#94A3B8;font-size:14px;line-height:1.7;">Comprehensive post-launch assistance and maintenance to keep your digital platform performing at its best.</p>
       </div>
     </div>
   </div>
@@ -1808,12 +1893,12 @@
 
 <!-- ==================== TECH STACK ==================== -->
 <section id="tech" class="py-24 relative overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 mb-12">
-    <div class="text-left">
-      <div class="section-tag" data-aos="fade-up">
+  <div class="max-w-[1536px] w-full mx-auto px-6 mb-12">
+    <div class="text-center max-w-3xl mx-auto">
+      <div class="section-tag mx-auto" data-aos="fade-up">
         <i class="bi bi-layers"></i> Tech Stack
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-left" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
         Technologies We <span class="gradient-text">Use</span>
       </h2>
     </div>
@@ -1824,9 +1909,12 @@
     <div class="marquee-track">
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/react/61DAFB/61DAFB" alt="React" /> React</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/nextdotjs/000000/FFFFFF" alt="Next.js" /> Next.js</span>
+      <span class="tech-pill"><img src="https://cdn.simpleicons.org/figma/F24E1E/F24E1E" alt="Figma" /> Figma</span>
+      <span class="tech-pill"><img src="https://cdn.simpleicons.org/adobexd/FF61F6/FF61F6" alt="Adobe XD" /> Adobe XD</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/typescript/3178C6/3178C6" alt="TypeScript" /> TypeScript</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/tailwindcss/06B6D4/06B6D4" alt="Tailwind CSS" /> Tailwind CSS</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/framer/0055FF/0055FF" alt="Framer Motion" /> Framer Motion</span>
+      <span class="tech-pill"><img src="https://cdn.simpleicons.org/storybook/FF4785/FF4785" alt="Storybook" /> Storybook</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/greensock/88CE02/88CE02" alt="GSAP" /> GSAP</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/nodedotjs/339933/339933" alt="Node.js" /> Node.js</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/fastify/000000/FFFFFF" alt="Fastify" /> Fastify</span>
@@ -1837,9 +1925,12 @@
       <!-- Duplicate for seamless loop -->
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/react/61DAFB/61DAFB" alt="React" /> React</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/nextdotjs/000000/FFFFFF" alt="Next.js" /> Next.js</span>
+      <span class="tech-pill"><img src="https://cdn.simpleicons.org/figma/F24E1E/F24E1E" alt="Figma" /> Figma</span>
+      <span class="tech-pill"><img src="https://cdn.simpleicons.org/adobexd/FF61F6/FF61F6" alt="Adobe XD" /> Adobe XD</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/typescript/3178C6/3178C6" alt="TypeScript" /> TypeScript</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/tailwindcss/06B6D4/06B6D4" alt="Tailwind CSS" /> Tailwind CSS</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/framer/0055FF/0055FF" alt="Framer Motion" /> Framer Motion</span>
+      <span class="tech-pill"><img src="https://cdn.simpleicons.org/storybook/FF4785/FF4785" alt="Storybook" /> Storybook</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/greensock/88CE02/88CE02" alt="GSAP" /> GSAP</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/nodedotjs/339933/339933" alt="Node.js" /> Node.js</span>
       <span class="tech-pill"><img src="https://cdn.simpleicons.org/fastify/000000/FFFFFF" alt="Fastify" /> Fastify</span>
@@ -1885,14 +1976,17 @@
 <!-- ==================== TESTIMONIALS ==================== -->
 <section id="testimonials" class="py-24 relative overflow-hidden">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(59,130,246,0.04),transparent 60%);"></div>
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="text-left mb-16">
-      <div class="section-tag" data-aos="fade-up">
+  <div class="max-w-[1536px] w-full mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 max-w-3xl mx-auto">
+      <div class="section-tag mx-auto" data-aos="fade-up">
         <i class="bi bi-quote"></i> Testimonials
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-left" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
         Client <span class="gradient-text">Stories</span>
       </h2>
+      <p class="text-base max-w-2xl mx-auto text-center" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
+        Feedback from clients we have partnered with across various engagements.
+      </p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
@@ -1952,16 +2046,16 @@
 
 <!-- ==================== BLOG ==================== -->
 <section id="blog" class="py-24 relative overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="text-left mb-16">
-      <div class="section-tag" data-aos="fade-up">
+  <div class="max-w-[1536px] w-full mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 max-w-3xl mx-auto">
+      <div class="section-tag mx-auto" data-aos="fade-up">
         <i class="bi bi-book"></i> Insights
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-left" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
         Insights & <span class="gradient-text">Innovation</span>
       </h2>
-      <p class="text-base max-w-2xl text-left" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
-        Stay updated with the latest trends in software development and automation.
+      <p class="text-base max-w-2xl mx-auto text-center" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
+        Stay updated with modern practices in web engineering, UI/UX, and cloud systems.
       </p>
     </div>
 
@@ -2044,7 +2138,7 @@
 <!-- ==================== CONTACT ==================== -->
 <section id="contact" class="py-24 relative">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(0,245,160,0.04),transparent 60%);"></div>
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
+  <div class="max-w-[1536px] w-full mx-auto px-6 relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
       <!-- Left -->
       <div>
@@ -2140,7 +2234,7 @@
 
 <!-- ==================== FOOTER ==================== -->
 <footer class="site-footer">
-  <div class="max-w-7xl mx-auto">
+  <div class="max-w-[1536px] w-full mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
       <!-- Brand -->
       <div class="md:col-span-2">

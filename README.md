@@ -2,10 +2,14 @@
 
 India's Premier Software Development Studio. 
 
-## 🌐 Official Links
+## 🌐 Official & Client Links
 - **Main Website**: [vsgrps.com](https://vsgrps.com)
 - **Sprintora**: [agile.vsgrps.com](https://agile.vsgrps.com)
 - **CertLock**: [certifypro.vsgrps.com](https://certifypro.vsgrps.com)
+- **EasanMart**: [easanmart.netlify.app](https://easanmart.netlify.app)
+- **THREADS'26 (College Symposium Platform)**: [threadscse.co.in](https://threadscse.co.in)
+- **Srimayil Builders**: [srimayilbuilders.com](https://www.srimayilbuilders.com)
+- **Dr. Kanak's Healthcare**: [drkanaks.com](https://drkanaks.com)
 
 ## 🚀 Tech Stack (Static Version)
 - **Structure**: Semantic HTML5

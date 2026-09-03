@@ -173,7 +173,7 @@
   <canvas id="particle-canvas"></canvas>
 
   <!-- Header -->
-  <header class="py-4 md:py-8 px-6 max-w-7xl mx-auto flex justify-between items-center relative z-10">
+  <header class="py-4 md:py-8 px-6 max-w-[1536px] w-full mx-auto flex justify-between items-center relative z-10">
     <a href="index.html" class="flex items-center gap-3 text-decoration-none" aria-label="Back to VSGRPS Home">
       <img id="nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies" class="logo-img h-[28px] md:h-[38px] w-auto rounded-[4px]" width="180" height="38" fetchpriority="high" />
     </a>
@@ -189,7 +189,7 @@
   </header>
 
   <!-- Hero Content -->
-  <main class="max-w-4xl mx-auto px-6 mt-12 relative z-10">
+  <main class="max-w-5xl mx-auto px-6 mt-12 relative z-10">
     <div id="project-loading" class="text-center py-20">
       <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-accent border-t-transparent"></div>
       <p class="mt-4 text-muted">Scanning system for project data...</p>
@@ -197,7 +197,12 @@
 
     <div id="project-content" class="hidden">
       <div class="mb-12" data-aos="fade-up">
-        <span id="p-category" class="text-accent text-sm font-bold uppercase tracking-wider mb-4 block"></span>
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+          <span id="p-category" class="text-accent text-sm font-bold uppercase tracking-wider block"></span>
+          <a id="p-live-btn-top" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-4 inline-flex items-center gap-2" style="display:none;">
+            <i class="bi bi-box-arrow-up-right"></i> Visit Live Website
+          </a>
+        </div>
         <h1 id="p-title" class="text-4xl md:text-6xl font-bold mt-2 mb-6" style="font-family:'Outfit',sans-serif;"></h1>
         <p id="p-desc" class="text-xl text-muted leading-relaxed"></p>
       </div>
@@ -205,7 +210,9 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16" data-aos="fade-up" data-aos-delay="100">
         <div class="card">
           <div class="text-muted text-xs uppercase tracking-widest mb-2">Status</div>
-          <div id="p-status" class="font-bold text-lg">Completed</div>
+          <div id="p-status" class="font-bold text-lg text-emerald-400 flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse inline-block"></span> Live / Production
+          </div>
         </div>
         <div class="card">
           <div class="text-muted text-xs uppercase tracking-widest mb-2">Industry</div>
@@ -228,7 +235,10 @@
       </div>
 
       <div class="flex flex-wrap gap-4 pt-12 border-t border-slate-800/20" data-aos="fade-up" data-aos-delay="400">
-        <a href="index.html#contact" class="btn-primary">
+        <a id="p-live-btn-bottom" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:none;">
+          <i class="bi bi-box-arrow-up-right"></i> Launch Live Website
+        </a>
+        <a href="index.html#contact" class="btn-primary" style="background:linear-gradient(135deg,#475569,#334155);">
           <i class="bi bi-rocket-takeoff"></i> Start Similar Project
         </a>
         <a href="https://wa.me/918807099288" class="flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-800/20 hover:bg-slate-800/5 transition-all text-muted hover:text-accent" style="text-decoration:none;">
@@ -249,6 +259,7 @@
         category: 'SaaS • Fintech',
         industry: 'Professional Services',
         tech: 'React, Fastify, Redis, Neon DB',
+        liveUrl: 'https://certifypro.vsgrps.com',
         desc: 'A robust enterprise-grade certificate generation and management platform designed for high-volume automated issuance.',
         longDesc: 'CertLock solves the complex challenge of managing digital credentials at scale. We built a zero-retention architecture to ensure data privacy while providing a high-performance visual studio for certificate design. The system handles bulk processing via CSV and integrates seamlessly with existing enterprise workflows.',
         features: [
@@ -261,9 +272,10 @@
       },
       'sprintora': {
         title: 'Sprintora Workspace',
-        category: 'SaaS • Sprintora Governance',
+        category: 'SaaS • Agile Governance',
         industry: 'Project Management',
         tech: 'React 19, Fastify, Llama-3.3, Neon DB',
+        liveUrl: 'https://agile.vsgrps.com',
         desc: 'A modern, secure, and multi-tenant SaaS platform designed for high-performance agile project management and organizational governance.',
         longDesc: 'Sprintora is a comprehensive workspace solution that combines agile project tracking, team collaboration, and administrative governance into a single, high-fidelity platform. Built with a focus on security, scalability, and premium user experience, it allows organizations to manage projects, tasks, meetings, and shared resources with precision. It features a hardened RBAC system, AI-driven task decomposition, and memory-efficient organization backups.',
         features: [
@@ -280,7 +292,8 @@
         title: 'EasanMart Logistics',
         category: 'E-Commerce • Supply Chain',
         industry: 'Retail & Logistics',
-        tech: 'JavaScript, Google Sheets API',
+        tech: 'JavaScript, Google Sheets API, Netlify',
+        liveUrl: 'https://easanmart.netlify.app/',
         desc: 'A streamlined grocery management and order fulfillment system built to bridge the gap between local retail and digital demand.',
         longDesc: 'For EasanMart, we developed a lightweight yet powerful system using Google Sheets as a real-time database. This allowed the client to manage inventory and orders without complex backend overhead while ensuring 100% data transparency and mobile-first accessibility for staff.',
         features: [
@@ -296,6 +309,7 @@
         category: 'Education • SaaS',
         industry: 'EdTech',
         tech: 'Express.js, Supabase, PostgreSQL',
+        liveUrl: '',
         desc: 'A highly scalable learning management system focusing on real-time collaboration and automated student assessment.',
         longDesc: 'Edwyna was built to handle high concurrency during peak exam times. Using Supabase for real-time synchronization, we ensured that student progress is saved instantly. The system includes an automated grading engine and a comprehensive reporting dashboard for educators.',
         features: [
@@ -311,6 +325,7 @@
         category: 'Corporate • Real Estate',
         industry: 'Construction',
         tech: 'React, Framer Motion, SEO Pro',
+        liveUrl: 'https://www.srimayilbuilders.com/',
         desc: 'A premium digital storefront for a leading construction group, focusing on visual storytelling and lead generation.',
         longDesc: 'The Srimayil Builders project was centered around high-end visual presentation. We utilized Framer Motion for smooth project transitions and optimized every asset for speed. The result was a 98/100 Lighthouse score and a significant increase in organic lead generation through SEO optimization.',
         features: [
@@ -322,32 +337,66 @@
         ]
       },
       'hospital': {
-        title: 'HealConnect System',
-        category: 'Healthcare • Booking',
+        title: 'Dr. Kanak\'s Healthcare',
+        category: 'Healthcare • Booking & Payments',
         industry: 'Medical Services',
         tech: 'React, Fastify, Razorpay',
-        desc: 'A secure, patient-centric appointment booking platform that simplifies hospital-patient interaction.',
-        longDesc: 'HealConnect was designed to reduce hospital wait times. By integrating a secure payment gateway and real-time doctor availability calendars, we enabled patients to book and pay for consultations in under 60 seconds. The platform adheres to strict data privacy standards for medical records.',
+        liveUrl: 'https://drkanaks.com/',
+        desc: 'A secure, patient-centric appointment booking platform that simplifies doctor-patient interaction and online payments.',
+        longDesc: 'Dr. Kanak\'s Healthcare platform was designed to streamline medical appointments and consultations. By integrating a secure payment gateway and real-time doctor availability calendars, patients can book and pay for consultations effortlessly with end-to-end data privacy.',
         features: [
           'Instant Doctor Appointment Booking',
-          'Secure Razorpay Payment Integration',
+          'Secure Online Payment Integration',
           'Patient Record Management System',
           'Automated SMS/Email Reminders',
-          'Admin Dashboard for Hospital Staff'
+          'Admin Dashboard for Clinic & Hospital Staff'
+        ]
+      },
+      'drkanaks': {
+        title: 'Dr. Kanak\'s Healthcare',
+        category: 'Healthcare • Booking & Payments',
+        industry: 'Medical Services',
+        tech: 'React, Fastify, Razorpay',
+        liveUrl: 'https://drkanaks.com/',
+        desc: 'A secure, patient-centric appointment booking platform that simplifies doctor-patient interaction and online payments.',
+        longDesc: 'Dr. Kanak\'s Healthcare platform was designed to streamline medical appointments and consultations. By integrating a secure payment gateway and real-time doctor availability calendars, patients can book and pay for consultations effortlessly with end-to-end data privacy.',
+        features: [
+          'Instant Doctor Appointment Booking',
+          'Secure Online Payment Integration',
+          'Patient Record Management System',
+          'Automated SMS/Email Reminders',
+          'Admin Dashboard for Clinic & Hospital Staff'
         ]
       },
       'college': {
-        title: 'EventPulse Platform',
-        category: 'Education • Events',
+        title: 'THREADS\'26 Platform',
+        category: 'Education • Symposium & Events',
         industry: 'Higher Education',
         tech: 'React, Fastify, QR Engine',
-        desc: 'A high-concurrency event management platform capable of handling thousands of simultaneous check-ins.',
-        longDesc: 'Built for large-scale college festivals, EventPulse manages everything from registration to certification. We implemented a high-performance QR check-in system and a certificate generation engine that delivers e-certificates instantly upon event completion to over 5,000 users.',
+        liveUrl: 'https://threadscse.co.in/',
+        desc: 'A high-concurrency national symposium and college event platform handling attendee check-ins and digital certificates.',
+        longDesc: 'Built for large-scale college technical symposiums and festivals, THREADS\'26 manages everything from participant registration to real-time attendance and certification. We implemented a high-performance QR check-in system and instant e-certificate delivery.',
         features: [
           'High-Speed QR Check-in System',
           'Automated E-Certificate Generation',
-          'Real-time Attendee Analytics',
-          'Multi-Session Event Management',
+          'Real-time Attendee Analytics & Reports',
+          'Multi-Session Event & Round Management',
+          'Scalable API handling 5k+ concurrent users'
+        ]
+      },
+      'threads26': {
+        title: 'THREADS\'26 Platform',
+        category: 'Education • Symposium & Events',
+        industry: 'Higher Education',
+        tech: 'React, Fastify, QR Engine',
+        liveUrl: 'https://threadscse.co.in/',
+        desc: 'A high-concurrency national symposium and college event platform handling attendee check-ins and digital certificates.',
+        longDesc: 'Built for large-scale college technical symposiums and festivals, THREADS\'26 manages everything from participant registration to real-time attendance and certification. We implemented a high-performance QR check-in system and instant e-certificate delivery.',
+        features: [
+          'High-Speed QR Check-in System',
+          'Automated E-Certificate Generation',
+          'Real-time Attendee Analytics & Reports',
+          'Multi-Session Event & Round Management',
           'Scalable API handling 5k+ concurrent users'
         ]
       }
@@ -368,6 +417,19 @@
         document.getElementById('p-tech').innerText = project.tech;
         document.getElementById('p-long-desc').innerText = project.longDesc;
         
+        if (project.liveUrl) {
+          const topBtn = document.getElementById('p-live-btn-top');
+          const bottomBtn = document.getElementById('p-live-btn-bottom');
+          if (topBtn) {
+            topBtn.href = project.liveUrl;
+            topBtn.style.display = 'inline-flex';
+          }
+          if (bottomBtn) {
+            bottomBtn.href = project.liveUrl;
+            bottomBtn.style.display = 'inline-flex';
+          }
+        }
+
         const featureList = document.getElementById('p-features');
         project.features.forEach(feature => {
           const li = document.createElement('li');
