@@ -324,6 +324,15 @@
       transition: color 0.3s;
     }
 
+    /* 60FPS Hardware Acceleration & Layout Containment */
+    .card, .service-card, .project-card, .why-card, .ai-showcase-step, .glass, .testimonial-card, .blog-card {
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      contain: paint;
+    }
+
     /* Particle Background */
     #particle-canvas {
       position: fixed;
@@ -1424,12 +1433,100 @@
       transition: all 0.3s ease;
       box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
     }
-    .btn-enter:hover {
-      background: #3B82F6;
-      color: #FFFFFF;
+    /* ==================== INTERACTIVE MODAL & CALCULATOR STYLES ==================== */
+    #info-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100000;
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #info-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content-card {
+      background: #0F172A;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 24px;
+      max-width: 620px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 32px;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(59, 130, 246, 0.2);
+      transform: scale(0.95) translateY(20px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #info-modal.active .modal-content-card {
+      transform: scale(1) translateY(0);
+    }
+    [data-theme="light"] .modal-content-card {
+      background: #FFFFFF !important;
+      border-color: #CBD5E1 !important;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15) !important;
+    }
+    .calc-pill {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #94A3B8;
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .calc-pill:hover {
       border-color: #3B82F6;
-      box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
-      transform: translateY(-2px);
+      color: #93C5FD;
+    }
+    .calc-pill.active {
+      background: #2563EB !important;
+      border-color: #60A5FA !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 0 16px rgba(37, 99, 235, 0.4);
+    }
+    [data-theme="light"] .calc-pill {
+      background: #F1F5F9;
+      border-color: #E2E8F0;
+      color: #475569;
+    }
+    #toast-notification {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 100001;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid #3B82F6;
+      color: #F1F5F9;
+      padding: 12px 24px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #toast-notification.show {
+      transform: translateY(0);
+      opacity: 1;
     }
   </style>
   <!-- Three.js & Vanta.js (Globe + Clouds) -->
@@ -1704,81 +1801,111 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      <div class="card p-8" data-aos="fade-up" data-aos-delay="100">
+      <!-- Web Development -->
+      <div class="card p-8 cursor-pointer group hover:border-accent transition-all" data-aos="fade-up" data-aos-delay="100" onclick="openServiceModal('web')">
         <div class="service-icon" style="background:rgba(59,130,246,0.1);">
           <lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="hover" colors="primary:#3B82F6,secondary:#60A5FA" style="width:36px;height:36px;"></lord-icon>
         </div>
         <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Web Development</h3>
         <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Corporate websites, e-commerce platforms, and responsive web applications built with React, Next.js and modern web standards.</p>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2 mb-4">
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">React</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Next.js</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">PWA</span>
         </div>
+        <div class="pt-4 border-t border-slate-800/40 flex items-center justify-between text-xs font-semibold text-accent">
+          <span>View Architecture Specs</span>
+          <i class="bi bi-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+        </div>
       </div>
 
-      <div class="card p-8" data-aos="fade-up" data-aos-delay="150">
+      <!-- UI/UX & Product Design -->
+      <div class="card p-8 cursor-pointer group hover:border-accent transition-all" data-aos="fade-up" data-aos-delay="150" onclick="openServiceModal('uiux')">
         <div class="service-icon" style="background:rgba(236,72,153,0.1);">
           <i class="bi bi-palette" style="color:#EC4899; font-size:24px;"></i>
         </div>
         <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">UI/UX & Product Design</h3>
         <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">User-centered interface design, Figma wireframing, high-fidelity prototypes, design systems, and responsive micro-interactions.</p>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2 mb-4">
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Figma</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Wireframing</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Design Systems</span>
         </div>
+        <div class="pt-4 border-t border-slate-800/40 flex items-center justify-between text-xs font-semibold text-pink-400">
+          <span>View Design Process</span>
+          <i class="bi bi-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+        </div>
       </div>
 
-      <div class="card p-8" data-aos="fade-up" data-aos-delay="200">
+      <!-- Automation Solutions -->
+      <div class="card p-8 cursor-pointer group hover:border-accent transition-all" data-aos="fade-up" data-aos-delay="200" onclick="openServiceModal('automation')">
         <div class="service-icon" style="background:rgba(37,99,235,0.1);">
           <lord-icon src="https://cdn.lordicon.com/wjyqkiew.json" trigger="hover" colors="primary:#2563EB,secondary:#3B82F6" style="width:36px;height:36px;"></lord-icon>
         </div>
         <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Automation Solutions</h3>
         <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Streamline operations with workflow automation, customer notifications, and Google Apps Script integrations.</p>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2 mb-4">
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Zapier</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Apps Script</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Webhooks</span>
         </div>
+        <div class="pt-4 border-t border-slate-800/40 flex items-center justify-between text-xs font-semibold text-accent">
+          <span>View Automation Flows</span>
+          <i class="bi bi-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+        </div>
       </div>
 
-      <div class="card p-8" data-aos="fade-up" data-aos-delay="250">
+      <!-- Dashboards & CRM -->
+      <div class="card p-8 cursor-pointer group hover:border-accent transition-all" data-aos="fade-up" data-aos-delay="250" onclick="openServiceModal('crm')">
         <div class="service-icon" style="background:rgba(14,165,233,0.1);">
           <lord-icon src="https://cdn.lordicon.com/qhgmphtg.json" trigger="hover" colors="primary:#0EA5E9,secondary:#38BDF8" style="width:36px;height:36px;"></lord-icon>
         </div>
         <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Dashboards & CRM</h3>
         <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Centralize your data with custom business dashboards, real-time metrics tracking, and tailored CRM systems.</p>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2 mb-4">
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Real-time</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Analytics</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Reports</span>
         </div>
+        <div class="pt-4 border-t border-slate-800/40 flex items-center justify-between text-xs font-semibold text-sky-400">
+          <span>View Analytics Telemetry</span>
+          <i class="bi bi-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+        </div>
       </div>
 
-      <div class="card p-8" data-aos="fade-up" data-aos-delay="300">
+      <!-- Custom Software & APIs -->
+      <div class="card p-8 cursor-pointer group hover:border-accent transition-all" data-aos="fade-up" data-aos-delay="300" onclick="openServiceModal('custom')">
         <div class="service-icon" style="background:rgba(59,130,246,0.1);">
           <lord-icon src="https://cdn.lordicon.com/wloilxuq.json" trigger="hover" colors="primary:#3B82F6,secondary:#60A5FA" style="width:36px;height:36px;"></lord-icon>
         </div>
         <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Custom Software & APIs</h3>
         <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Robust backend architecture, REST and GraphQL APIs, database modeling, and seamless third-party integrations.</p>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2 mb-4">
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Fastify</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">PostgreSQL</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Node.js</span>
         </div>
+        <div class="pt-4 border-t border-slate-800/40 flex items-center justify-between text-xs font-semibold text-accent">
+          <span>View API Specifications</span>
+          <i class="bi bi-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+        </div>
       </div>
 
-      <div class="card p-8" data-aos="fade-up" data-aos-delay="350">
+      <!-- Cloud & Maintenance Support -->
+      <div class="card p-8 cursor-pointer group hover:border-accent transition-all" data-aos="fade-up" data-aos-delay="350" onclick="openServiceModal('cloud')">
         <div class="service-icon" style="background:rgba(37,99,235,0.1);">
           <i class="bi bi-cloud-check" style="color:#2563EB; font-size:24px;"></i>
         </div>
         <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Cloud & Maintenance Support</h3>
         <p style="color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:20px;">Deployment on high-uptime infrastructure, SSL setup, CI/CD pipelines, security hardening, and dedicated maintenance support.</p>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2 mb-4">
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Cloudflare</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">CI/CD</span>
           <span class="tech-pill" style="font-size:12px;padding:4px 12px;">Maintenance</span>
+        </div>
+        <div class="pt-4 border-t border-slate-800/40 flex items-center justify-between text-xs font-semibold text-accent">
+          <span>View SLA & Uptime Matrix</span>
+          <i class="bi bi-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
         </div>
       </div>
 
@@ -2179,9 +2306,9 @@
             <a href="https://easanmart.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-primary justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;font-weight:600;">
               <i class="bi bi-box-arrow-up-right"></i> Visit Site
             </a>
-            <a href="project-details.html?id=easanmart" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
+            <button onclick="openProjectModal('easanmart')" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
               Details <i class="bi bi-arrow-right-short"></i>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -2220,9 +2347,9 @@
             <a href="https://threadscse.co.in/" target="_blank" rel="noopener noreferrer" class="btn-primary justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;font-weight:600;">
               <i class="bi bi-box-arrow-up-right"></i> Visit Site
             </a>
-            <a href="project-details.html?id=college" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
+            <button onclick="openProjectModal('threads')" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
               Details <i class="bi bi-arrow-right-short"></i>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -2261,9 +2388,9 @@
             <a href="https://www.srimayilbuilders.com/" target="_blank" rel="noopener noreferrer" class="btn-primary justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;font-weight:600;">
               <i class="bi bi-box-arrow-up-right"></i> Visit Site
             </a>
-            <a href="project-details.html?id=srimayil" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
+            <button onclick="openProjectModal('srimayil')" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
               Details <i class="bi bi-arrow-right-short"></i>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -2302,9 +2429,9 @@
             <a href="https://drkanaks.com/" target="_blank" rel="noopener noreferrer" class="btn-primary justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;font-weight:600;">
               <i class="bi bi-box-arrow-up-right"></i> Visit Site
             </a>
-            <a href="project-details.html?id=hospital" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
+            <button onclick="openProjectModal('drkanak')" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
               Details <i class="bi bi-arrow-right-short"></i>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -2320,32 +2447,32 @@
         <div class="p-6">
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
             <span style="background:rgba(59,130,246,0.1);color:#3B82F6;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">SaaS</span>
-            <span style="background:rgba(59,130,246,0.1);color:#3B82F6;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Fintech</span>
+            <span style="background:rgba(59,130,246,0.1);color:#3B82F6;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Security</span>
           </div>
-          <h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">CertLock Platform</h3>
-          <p style="color:#94A3B8;font-size:13px;line-height:1.6;margin-bottom:16px;">Enterprise certificate generation & credential verification platform with CSV bulk issuance and visual canvas designer.</p>
+          <h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">CertLock Enterprise</h3>
+          <p style="color:#94A3B8;font-size:13px;line-height:1.6;margin-bottom:16px;">Cryptographic digital certificate issuance and instant QR verification platform for enterprise compliance and institutions.</p>
           <div class="flex flex-wrap gap-2 mb-4">
-            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">React</span>
             <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Fastify</span>
-            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Neon DB</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">PostgreSQL</span>
+            <span class="tech-pill" style="font-size:11px;padding:3px 10px;">Crypto</span>
           </div>
           <div style="border-top:1px solid var(--border);padding-top:16px;display:flex;gap:16px;">
             <div style="text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">Bulk</div>
-              <div style="color:#94A3B8;font-size:11px;">Issuance</div>
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">Instant</div>
+              <div style="color:#94A3B8;font-size:11px;">Verification</div>
             </div>
             <div style="text-align:center;">
-              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">QR</div>
-              <div style="color:#94A3B8;font-size:11px;">Verification</div>
+              <div style="font-family:'Outfit',sans-serif;font-weight:700;color:var(--accent);">Zero</div>
+              <div style="color:#94A3B8;font-size:11px;">Forgery</div>
             </div>
           </div>
           <div class="mt-6 grid grid-cols-2 gap-2">
             <a href="https://certifypro.vsgrps.com" target="_blank" rel="noopener noreferrer" class="btn-primary justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;font-weight:600;">
-              <i class="bi bi-box-arrow-up-right"></i> Visit Site
+              <i class="bi bi-box-arrow-up-right"></i> Launch App
             </a>
-            <a href="project-details.html?id=certlock" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
+            <button onclick="openProjectModal('certlock')" class="btn-outline justify-center text-center relative z-20" style="padding:10px 0;font-size:12px;">
               Details <i class="bi bi-arrow-right-short"></i>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -2716,25 +2843,32 @@
           Ready to start your project? Tell us about your idea and we'll get back to you within 24 hours with a plan.
         </p>
 
-        <div class="flex gap-6" data-aos="fade-up" data-aos-delay="300">
-          <a href="mailto:vimalraj5207@gmail.com" class="flex items-center gap-4" style="text-decoration:none;color:inherit;">
-            <div style="width:52px;height:52px;background:rgba(59,130,246,0.1);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <i class="bi bi-envelope" style="color:#3B82F6;font-size:18px;"></i>
+        <div class="flex flex-col gap-4" data-aos="fade-up" data-aos-delay="300">
+          <div onclick="copyContact('vimalraj5207@gmail.com', 'Email copied to clipboard!')" class="glass p-4 rounded-xl flex items-center justify-between cursor-pointer hover:border-accent transition-all">
+            <div class="flex items-center gap-4">
+              <div style="width:44px;height:44px;background:rgba(59,130,246,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="bi bi-envelope" style="color:#3B82F6;font-size:18px;"></i>
+              </div>
+              <div>
+                <div style="font-size:11px;color:#94A3B8;margin-bottom:2px;">DIRECT EMAIL</div>
+                <div style="font-weight:600;font-size:14px;">vimalraj5207@gmail.com</div>
+              </div>
             </div>
-            <div>
-              <div style="font-size:12px;color:#94A3B8;margin-bottom:2px;">Email</div>
-              <div style="font-weight:600;">vimalraj5207@gmail.com</div>
+            <i class="bi bi-copy text-sm text-slate-400"></i>
+          </div>
+
+          <div onclick="copyContact('+918807099288', 'WhatsApp phone copied to clipboard!')" class="glass p-4 rounded-xl flex items-center justify-between cursor-pointer hover:border-green-500 transition-all">
+            <div class="flex items-center gap-4">
+              <div style="width:44px;height:44px;background:rgba(37,211,102,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="bi bi-whatsapp" style="color:#25D366;font-size:20px;"></i>
+              </div>
+              <div>
+                <div style="font-size:11px;color:#94A3B8;margin-bottom:2px;">WHATSAPP DIRECT</div>
+                <div style="font-weight:600;font-size:14px;">+91 88070 99288</div>
+              </div>
             </div>
-          </a>
-          <a href="https://wa.me/918807099288" target="_blank" class="flex items-center gap-4" style="text-decoration:none;color:inherit;">
-            <div style="width:52px;height:52px;background:rgba(37,211,102,0.1);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <i class="bi bi-whatsapp" style="color:#25D366;font-size:20px;"></i>
-            </div>
-            <div>
-              <div style="font-size:12px;color:#94A3B8;margin-bottom:2px;">WhatsApp</div>
-              <div style="font-weight:600;">+91 88070 99288</div>
-            </div>
-          </a>
+            <i class="bi bi-copy text-sm text-slate-400"></i>
+          </div>
         </div>
 
         <!-- Social links -->
@@ -2751,10 +2885,55 @@
         </div>
       </div>
 
-      <!-- Right — Form -->
+      <!-- Right — Form & Estimator -->
       <div class="lg:col-span-7" data-aos="fade-left">
+        <!-- Interactive Project Estimator Tool -->
+        <div class="card p-6 mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <i class="bi bi-calculator text-accent text-lg"></i>
+              <span style="font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;">Instant Project Estimator</span>
+            </div>
+            <span id="est-timeline-badge" style="background:rgba(59,130,246,0.15);color:#93C5FD;border:1px solid rgba(59,130,246,0.3);padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;">
+              2 - 3 WEEKS
+            </span>
+          </div>
+
+          <div class="mb-4">
+            <div style="font-size:12px;color:#94A3B8;margin-bottom:8px;font-weight:600;">1. SELECT SCOPE</div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" class="calc-pill active" data-type="scope" data-weeks="3" onclick="toggleCalcScope(this, 'Web Application', 3)">
+                <i class="bi bi-laptop"></i> Web Application
+              </button>
+              <button type="button" class="calc-pill" data-type="scope" data-weeks="4" onclick="toggleCalcScope(this, 'Enterprise SaaS', 4)">
+                <i class="bi bi-cloud-check"></i> Enterprise SaaS
+              </button>
+              <button type="button" class="calc-pill" data-type="scope" data-weeks="2" onclick="toggleCalcScope(this, 'UI/UX System', 2)">
+                <i class="bi bi-palette"></i> UI/UX System
+              </button>
+              <button type="button" class="calc-pill" data-type="scope" data-weeks="2" onclick="toggleCalcScope(this, 'Cloud Automation', 2)">
+                <i class="bi bi-lightning-charge"></i> Automation
+              </button>
+            </div>
+          </div>
+
+          <div class="mb-5">
+            <div style="font-size:12px;color:#94A3B8;margin-bottom:8px;font-weight:600;">2. SELECT ADD-ON CAPABILITIES</div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" class="calc-pill" data-feature="auth" data-add="1" onclick="toggleCalcFeature(this, 'Auth & RBAC')">+ Auth & RBAC</button>
+              <button type="button" class="calc-pill" data-feature="payment" data-add="1" onclick="toggleCalcFeature(this, 'Payment Gateway')">+ Payment Gateway</button>
+              <button type="button" class="calc-pill" data-feature="realtime" data-add="1" onclick="toggleCalcFeature(this, 'Live WebSocket Sync')">+ Live Real-Time</button>
+              <button type="button" class="calc-pill" data-feature="ai" data-add="2" onclick="toggleCalcFeature(this, 'AI / LLM Workflows')">+ AI Pipeline</button>
+            </div>
+          </div>
+
+          <button onclick="sendWhatsAppEstimate()" class="btn-primary w-full justify-center" style="font-size:13px;padding:10px 0;">
+            <i class="bi bi-whatsapp"></i> Get Quote for this Configuration on WhatsApp
+          </button>
+        </div>
+
         <div class="card p-8">
-          <h3 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:700;margin-bottom:24px;">Send a Message</h3>
+          <h3 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:700;margin-bottom:24px;">Send a Direct Message</h3>
           <div id="contact-form" class="flex flex-col gap-5">
             <div class="grid grid-cols-2 gap-4">
               <div>
@@ -2788,7 +2967,6 @@
             <div id="form-success" style="display:none;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.3);border-radius:10px;padding:16px;text-align:center;color:var(--accent);font-size:14px;">
               <i class="bi bi-check2-circle" style="margin-right:8px;"></i> Message sent! We'll get back to you within 24 hours.
             </div>
-          </div>
           </div>
         </div>
       </div>
@@ -2903,16 +3081,27 @@
     AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
   });
 
-  // ---- Navbar scroll ----
+  // ---- High-Performance rAF Throttled Scroll Engine ----
+  let isScrolling = false;
   window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) navbar.classList.add('scrolled');
-    else navbar.classList.remove('scrolled');
+    if (!isScrolling) {
+      window.requestAnimationFrame(() => {
+        const navbar = document.getElementById('navbar');
+        if (navbar) {
+          if (window.scrollY > 40) navbar.classList.add('scrolled');
+          else navbar.classList.remove('scrolled');
+        }
 
-    const scrollBtn = document.getElementById('scroll-top');
-    if (window.scrollY > 300) scrollBtn.classList.add('visible');
-    else scrollBtn.classList.remove('visible');
-  });
+        const scrollBtn = document.getElementById('scroll-top');
+        if (scrollBtn) {
+          if (window.scrollY > 300) scrollBtn.classList.add('visible');
+          else scrollBtn.classList.remove('visible');
+        }
+        isScrolling = false;
+      });
+      isScrolling = true;
+    }
+  }, { passive: true });
 
   // ---- Mobile menu ----
   function openMobileMenu() {
@@ -2931,19 +3120,26 @@
     link.addEventListener('click', closeMobileMenu);
   });
 
-  // ---- Particle System (Plexus Effect) ----
+  // ---- Ultra-Optimized Particle System (Zero-Lag Squared Math) ----
   const canvas = document.getElementById('particle-canvas');
   const ctx = canvas.getContext('2d');
   let particles = [];
-  const particleCount = 60;
-  let mouse = { x: null, y: null, radius: 150 };
+  const particleCount = 32; // Optimized count for 60FPS
+  let mouse = { x: null, y: null, radiusSq: 14400 };
+  let particleAnimId = null;
 
   window.addEventListener('mousemove', (e) => {
-    mouse.x = e.x;
-    mouse.y = e.y;
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => {
+    mouse.x = null;
+    mouse.y = null;
   });
 
   function initParticles() {
+    if (!canvas) return;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     particles = [];
@@ -2951,17 +3147,23 @@
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 2 + 1,
-        speedX: (Math.random() - 0.5) * 0.5,
-        speedY: (Math.random() - 0.5) * 0.5
+        size: Math.random() * 1.8 + 1,
+        speedX: (Math.random() - 0.5) * 0.4,
+        speedY: (Math.random() - 0.5) * 0.4
       });
     }
   }
 
   function animateParticles() {
+    if (document.hidden) {
+      particleAnimId = requestAnimationFrame(animateParticles);
+      return;
+    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const color = isDark ? 'rgba(59, 130, 246,' : 'rgba(37, 99, 235,';
+    const fillStyle = isDark ? 'rgba(59, 130, 246, 0.35)' : 'rgba(37, 99, 235, 0.35)';
+    const strokePrefix = isDark ? 'rgba(59, 130, 246,' : 'rgba(37, 99, 235,';
 
     for (let i = 0; i < particles.length; i++) {
       let p = particles[i];
@@ -2971,19 +3173,21 @@
       if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
       if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
 
-      ctx.fillStyle = `${color} 0.3)`;
+      ctx.fillStyle = fillStyle;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       ctx.fill();
 
-      for (let j = i; j < particles.length; j++) {
+      // Squared Distance Math (Avoids Math.sqrt bottleneck)
+      for (let j = i + 1; j < particles.length; j++) {
         let p2 = particles[j];
         let dx = p.x - p2.x;
         let dy = p.y - p2.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
+        let distSq = dx * dx + dy * dy;
 
-        if (distance < 120) {
-          ctx.strokeStyle = `${color} ${0.15 - (distance / 120) * 0.15})`;
+        if (distSq < 12100) { // 110px squared
+          let alpha = 0.15 * (1 - distSq / 12100);
+          ctx.strokeStyle = `${strokePrefix} ${alpha})`;
           ctx.lineWidth = 0.5;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
@@ -2992,13 +3196,14 @@
         }
       }
 
-      // Mouse interaction
-      if (mouse.x) {
+      // Mouse Proximity Squared Check
+      if (mouse.x !== null) {
         let dx = p.x - mouse.x;
         let dy = p.y - mouse.y;
-        let dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < mouse.radius) {
-          ctx.strokeStyle = `${color} ${0.2 - (dist / mouse.radius) * 0.2})`;
+        let distSq = dx * dx + dy * dy;
+        if (distSq < mouse.radiusSq) {
+          let alpha = 0.2 * (1 - distSq / mouse.radiusSq);
+          ctx.strokeStyle = `${strokePrefix} ${alpha})`;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(mouse.x, mouse.y);
@@ -3006,10 +3211,10 @@
         }
       }
     }
-    requestAnimationFrame(animateParticles);
+    particleAnimId = requestAnimationFrame(animateParticles);
   }
 
-  window.addEventListener('resize', initParticles);
+  window.addEventListener('resize', initParticles, { passive: true });
   initParticles();
   animateParticles();
 
@@ -3621,7 +3826,334 @@
 
     aiSteps.forEach(step => observer.observe(step));
   }
+  // ==================== FULL-SITE INTERACTIVE DATA & MODAL CONTROLLERS ====================
+  const servicesData = {
+    web: {
+      title: "Web Development Architecture",
+      subtitle: "Enterprise Responsive Platforms & Web Apps",
+      icon: "bi-laptop",
+      color: "#3B82F6",
+      timeline: "2 – 4 Weeks",
+      stack: ["React", "Next.js", "Node.js", "Fastify", "PostgreSQL", "TailwindCSS"],
+      deliverables: [
+        "Component-driven modular frontend with server-side rendering (SSR)",
+        "Sub-second Time to First Byte (TTFB) and 95+ Lighthouse Score",
+        "Secure Role-Based Access Control (RBAC) & OAuth authentication",
+        "REST & GraphQL API endpoints with schema validation",
+        "Responsive, mobile-first design tailored to your corporate branding"
+      ]
+    },
+    uiux: {
+      title: "UI/UX & Product Design System",
+      subtitle: "Human-Centered Digital Product Architecture",
+      icon: "bi-palette",
+      color: "#EC4899",
+      timeline: "1 – 3 Weeks",
+      stack: ["Figma", "Design Tokens", "Storybook", "WCAG 2.1 AA", "Interactive Prototyping"],
+      deliverables: [
+        "End-to-end user persona journey mapping & UX wireframing",
+        "Pixel-perfect high-fidelity interactive Figma prototypes",
+        "Scalable design tokens, typography scales, and UI component libraries",
+        "Micro-interaction & transition physics guidelines",
+        "Production-ready SVG/Figma asset exports ready for engineer handoff"
+      ]
+    },
+    automation: {
+      title: "Business Automation Solutions",
+      subtitle: "Workflow Orchestration & Event-Driven Bots",
+      icon: "bi-lightning-charge",
+      color: "#2563EB",
+      timeline: "1 – 2 Weeks",
+      stack: ["Python", "Zapier", "Apps Script", "Webhooks", "WhatsApp Cloud API", "Telegram API"],
+      deliverables: [
+        "Automated lead capture, triage, and instant CRM synchronization",
+        "Instant multi-channel customer notifications (WhatsApp, SMS, Email)",
+        "Automated PDF invoice generation and payment verification pipelines",
+        "Google Sheets & DB auto-backup and reporting schedulers",
+        "Zero-error event logging and failure-alerting triggers"
+      ]
+    },
+    crm: {
+      title: "Custom Dashboards & CRM",
+      subtitle: "Real-Time Telemetry & Enterprise Business Analytics",
+      icon: "bi-speedometer2",
+      color: "#0EA5E9",
+      timeline: "2 – 4 Weeks",
+      stack: ["Chart.js", "TanStack Table", "PostgreSQL", "Redis", "Fastify", "Export Engines"],
+      deliverables: [
+        "Real-time KPI telemetry with animated dynamic charts",
+        "Multi-tenant customer data table with sorting, filtering, and bulk export",
+        "Audit trail logging with role-based dashboard permissions",
+        "Automated daily/weekly executive email summary digests",
+        "Sub-100ms database queries cached via in-memory Redis layer"
+      ]
+    },
+    custom: {
+      title: "Custom Enterprise Software & APIs",
+      subtitle: "Scalable Microservices & Mission-Critical Backends",
+      icon: "bi-code-slash",
+      color: "#3B82F6",
+      timeline: "3 – 6 Weeks",
+      stack: ["Fastify", "Node.js", "Docker", "PostgreSQL", "Redis", "Cloudflare"],
+      deliverables: [
+        "High-throughput REST & GraphQL microservice backend architecture",
+        "Stateless JWT authentication with cryptographic token rotation",
+        "Payment gateway integrations (Razorpay, Stripe) with webhook verification",
+        "Automated unit, integration, and load testing suites",
+        "99.9% uptime SLA with horizontal autoscaling configuration"
+      ]
+    },
+    cloud: {
+      title: "Cloud Infrastructure & Maintenance SLA",
+      subtitle: "Zero-Downtime CI/CD, SSL & 24/7 Security Hardening",
+      icon: "bi-cloud-check",
+      color: "#2563EB",
+      timeline: "Ongoing Monthly SLA",
+      stack: ["Cloudflare Edge", "Docker", "GitHub Actions CI/CD", "Nginx", "SSL Engine"],
+      deliverables: [
+        "Automated CI/CD deployment pipelines with zero-downtime rollouts",
+        "Enterprise DDoS protection, SSL auto-renewal, and web application firewall",
+        "Automated hourly / daily encrypted database snapshots",
+        "24/7 server health monitoring and proactive anomaly detection",
+        "Dedicated engineer on-call support for critical updates"
+      ]
+    }
+  };
+
+  const projectsData = {
+    easanmart: {
+      title: "EasanMart E-Commerce & Logistics",
+      type: "Production Web App",
+      url: "https://easanmart.netlify.app/",
+      stack: ["JavaScript", "Google Sheets API", "Netlify", "PWA"],
+      problem: "Grocery enterprise needed an automated order-taking catalog synced in real-time with zero server hosting overhead.",
+      solution: "Engineered a lightning-fast mobile-optimized storefront powered by a headless Google Sheets database with automated order routing."
+    },
+    threads: {
+      title: "THREADS'26 Symposium Platform",
+      type: "National Event Portal",
+      url: "https://threadscse.co.in/",
+      stack: ["React", "Fastify", "QR Cryptography", "PostgreSQL"],
+      problem: "College needed a robust registration system capable of handling 5,000+ concurrent student registrations without crashing.",
+      solution: "Built high-concurrency event portal with dynamic schedule management, sub-second QR check-in scanning, and automated digital certificate dispatch."
+    },
+    srimayil: {
+      title: "Srimayil Builders Corporate Hub",
+      type: "Real Estate & Construction Portal",
+      url: "https://www.srimayilbuilders.com/",
+      stack: ["React", "Framer Motion", "TailwindCSS", "SEO Engine"],
+      problem: "Construction company required modern digital presence to showcase luxury properties and capture high-intent buyer leads.",
+      solution: "Engineered a high-performance architectural showcase featuring interactive project galleries and instant WhatsApp lead capture."
+    },
+    drkanak: {
+      title: "Dr. Kanak's Healthcare Portal",
+      type: "Medical Booking System",
+      url: "https://drkanaks.com/",
+      stack: ["React", "Fastify", "Razorpay", "PostgreSQL"],
+      problem: "Healthcare facility needed an automated patient scheduling tool to eliminate manual phone bookings and missed appointments.",
+      solution: "Delivered an appointment booking engine with doctor consultation slots, automated SMS reminders, and integrated Razorpay payments."
+    },
+    certlock: {
+      title: "CertLock Enterprise Platform",
+      type: "Proprietary SaaS Product",
+      url: "https://certifypro.vsgrps.com",
+      stack: ["Fastify", "PostgreSQL", "Crypto Signatures", "QR Engine"],
+      problem: "Institutions and universities faced certificate fraud and slow manual credential verification.",
+      solution: "Engineered cryptographic certificate engine with instant tamper-proof QR verification and automated batch generation."
+    }
+  };
+
+  function openServiceModal(key) {
+    const data = servicesData[key];
+    if (!data) return;
+
+    const modal = document.getElementById('info-modal');
+    const container = document.getElementById('info-modal-body');
+    if (!modal || !container) return;
+
+    container.innerHTML = `
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <div style="width:48px;height:48px;background:rgba(59,130,246,0.15);border-radius:14px;display:flex;align-items:center;justify-content:center;">
+            <i class="bi ${data.icon}" style="color:${data.color};font-size:22px;"></i>
+          </div>
+          <div>
+            <h3 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:700;">${data.title}</h3>
+            <div style="font-size:12px;color:#94A3B8;">${data.subtitle}</div>
+          </div>
+        </div>
+        <button onclick="closeInfoModal()" class="text-slate-400 hover:text-white text-xl p-2 cursor-pointer bg-transparent border-none">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2 mb-6">
+        <span style="background:rgba(59,130,246,0.15);color:#93C5FD;border:1px solid rgba(59,130,246,0.3);padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;">
+          EST. DELIVERY: ${data.timeline}
+        </span>
+      </div>
+
+      <div style="font-size:13px;font-weight:700;color:#94A3B8;letter-spacing:0.08em;margin-bottom:12px;text-transform:uppercase;">Key Deliverables & Specifications</div>
+      <div class="flex flex-col gap-3 mb-6">
+        ${data.deliverables.map(item => `
+          <div class="flex items-start gap-3 text-sm">
+            <i class="bi bi-check2-circle text-accent text-base mt-0.5"></i>
+            <span style="color:var(--text);">${item}</span>
+          </div>
+        `).join('')}
+      </div>
+
+      <div style="font-size:13px;font-weight:700;color:#94A3B8;letter-spacing:0.08em;margin-bottom:12px;text-transform:uppercase;">Technology Stack Used</div>
+      <div class="flex flex-wrap gap-2 mb-8">
+        ${data.stack.map(tech => `<span class="tech-pill" style="font-size:12px;padding:5px 14px;">${tech}</span>`).join('')}
+      </div>
+
+      <div class="flex gap-3">
+        <a href="#contact" onclick="closeInfoModal(); document.getElementById('service').value='${key}';" class="btn-primary flex-1 justify-center">
+          <i class="bi bi-send"></i> Request Quote for this Service
+        </a>
+        <a href="https://wa.me/918807099288?text=Hello%20VSGRPS,%20I%20am%20interested%20in%20your%20${encodeURIComponent(data.title)}" target="_blank" class="btn-outline justify-center">
+          <i class="bi bi-whatsapp"></i> Chat
+        </a>
+      </div>
+    `;
+
+    modal.classList.add('active');
+  }
+
+  function openProjectModal(key) {
+    const data = projectsData[key];
+    if (!data) return;
+
+    const modal = document.getElementById('info-modal');
+    const container = document.getElementById('info-modal-body');
+    if (!modal || !container) return;
+
+    container.innerHTML = `
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <span style="background:rgba(34,197,94,0.12);color:#22C55E;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;margin-bottom:8px;display:inline-block;">
+            ${data.type}
+          </span>
+          <h3 style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:700;">${data.title}</h3>
+        </div>
+        <button onclick="closeInfoModal()" class="text-slate-400 hover:text-white text-xl p-2 cursor-pointer bg-transparent border-none">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="p-4 rounded-xl mb-4" style="background:rgba(255,255,255,0.03);border:1px solid var(--border);">
+        <div style="font-size:11px;font-weight:700;color:#94A3B8;letter-spacing:0.08em;margin-bottom:4px;text-transform:uppercase;">THE CHALLENGE</div>
+        <p style="color:var(--text);font-size:13px;line-height:1.6;">${data.problem}</p>
+      </div>
+
+      <div class="p-4 rounded-xl mb-6" style="background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.2);">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:0.08em;margin-bottom:4px;text-transform:uppercase;">THE ARCHITECTURAL SOLUTION</div>
+        <p style="color:var(--text);font-size:13px;line-height:1.6;">${data.solution}</p>
+      </div>
+
+      <div style="font-size:13px;font-weight:700;color:#94A3B8;letter-spacing:0.08em;margin-bottom:12px;text-transform:uppercase;">Technology Stack</div>
+      <div class="flex flex-wrap gap-2 mb-8">
+        ${data.stack.map(tech => `<span class="tech-pill" style="font-size:12px;padding:5px 14px;">${tech}</span>`).join('')}
+      </div>
+
+      <div class="flex gap-3">
+        <a href="${data.url}" target="_blank" rel="noopener noreferrer" class="btn-primary flex-1 justify-center">
+          <i class="bi bi-box-arrow-up-right"></i> Launch Live Application
+        </a>
+        <button onclick="closeInfoModal()" class="btn-outline justify-center">
+          Close
+        </button>
+      </div>
+    `;
+
+    modal.classList.add('active');
+  }
+
+  function closeInfoModal() {
+    const modal = document.getElementById('info-modal');
+    if (modal) modal.classList.remove('active');
+  }
+
+  // Close on backdrop or Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeInfoModal();
+  });
+
+  // ---- Copy to Clipboard with Toast ----
+  function copyContact(text, msg) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(msg || 'Copied to clipboard!');
+      });
+    } else {
+      showToast('Copied: ' + text);
+    }
+  }
+
+  function showToast(message) {
+    const toast = document.getElementById('toast-notification');
+    const textSpan = document.getElementById('toast-msg');
+    if (!toast || !textSpan) return;
+
+    textSpan.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2800);
+  }
+
+  // ---- Interactive Timeline & Cost Estimator State ----
+  let currentScope = 'Web Application';
+  let baseWeeks = 3;
+  let selectedFeatures = [];
+
+  function toggleCalcScope(btn, scopeName, weeks) {
+    document.querySelectorAll('.calc-pill[data-type="scope"]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentScope = scopeName;
+    baseWeeks = weeks;
+    updateEstimator();
+  }
+
+  function toggleCalcFeature(btn, featureName) {
+    const idx = selectedFeatures.indexOf(featureName);
+    if (idx > -1) {
+      selectedFeatures.splice(idx, 1);
+      btn.classList.remove('active');
+    } else {
+      selectedFeatures.push(featureName);
+      btn.classList.add('active');
+    }
+    updateEstimator();
+  }
+
+  function updateEstimator() {
+    let totalWeeks = baseWeeks + selectedFeatures.length;
+    const badge = document.getElementById('est-timeline-badge');
+    if (badge) {
+      badge.textContent = `${totalWeeks} - ${totalWeeks + 1} WEEKS`;
+    }
+  }
+
+  function sendWhatsAppEstimate() {
+    let totalWeeks = baseWeeks + selectedFeatures.length;
+    let featText = selectedFeatures.length > 0 ? selectedFeatures.join(', ') : 'Core Features';
+    let text = `Hello VSGRPS, I configured a project on your website:%0A- Scope: ${encodeURIComponent(currentScope)}%0A- Add-ons: ${encodeURIComponent(featText)}%0A- Estimated Timeline: ${totalWeeks}-${totalWeeks + 1} Weeks.%0APlease provide a quote.`;
+    window.open(`https://wa.me/918807099288?text=${text}`, '_blank');
+  }
 </script>
+
+<!-- Universal Interactive Modal -->
+<div id="info-modal" onclick="if(event.target===this) closeInfoModal()">
+  <div class="modal-content-card" id="info-modal-body"></div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast-notification">
+  <i class="bi bi-check2-circle text-accent text-lg"></i>
+  <span id="toast-msg">Copied to clipboard!</span>
+</div>
 
 <!-- JSON-LD Schema -->
 <script type="application/ld+json">
