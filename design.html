@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VSGRPS • Cloudflare-Style Cyber Globe Splash Screen</title>
+  <title>VSGRPS • Real Satellite Earth Splash Screen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #030712;
+      background: #020617;
       color: #F1F5F9;
       font-family: 'Outfit', sans-serif;
       overflow: hidden;
@@ -30,9 +30,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 32px 24px 40px;
+      padding: 36px 24px 44px;
       z-index: 100;
-      background: radial-gradient(circle at 50% 50%, #081636 0%, #020617 80%);
+      background: radial-gradient(circle at 50% 50%, #081636 0%, #020617 75%);
       transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
     #splash-container.exit-anim {
@@ -51,28 +51,45 @@
       pointer-events: none;
     }
 
-    /* Top Live Telemetry Bar (Cloudflare Style) */
-    .top-telemetry {
+    /* Premium Glassmorphic Center Card */
+    .glass-center-card {
       position: relative;
       z-index: 10;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 16px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: #64748B;
-      animation: fadeInDown 0.8s ease forwards;
+      text-align: center;
+      padding: 0;
+      max-width: 520px;
+      width: 90%;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      animation: glassCardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    .telemetry-tag {
+    @keyframes glassCardIn {
+      from { opacity: 0; transform: translateY(24px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Glass Badge */
+    .glass-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      gap: 8px;
+      background: rgba(59, 130, 246, 0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(59, 130, 246, 0.35);
       border-radius: 100px;
-      padding: 5px 14px;
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       color: #93C5FD;
-      letter-spacing: 0.08em;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
+      margin-bottom: 16px;
     }
     .pulse-dot {
       width: 6px;
@@ -80,67 +97,52 @@
       border-radius: 50%;
       background: #00F0FF;
       box-shadow: 0 0 10px #00F0FF;
-      animation: pulseAnim 1.5s infinite;
+      animation: pulseAnim 2s infinite;
     }
     @keyframes pulseAnim {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.8); }
     }
 
-    /* Floating Center Content (Zero Box Container) */
-    .floating-center-content {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      pointer-events: none;
-    }
     .brand-title {
-      font-size: clamp(38px, 6vw, 64px);
+      font-size: clamp(32px, 5vw, 44px);
       font-weight: 800;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #FFFFFF 40%, #60A5FA 100%);
+      background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 50px rgba(59, 130, 246, 0.5);
+      text-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
       margin-bottom: 6px;
     }
     .brand-subtitle {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(11px, 2vw, 13px);
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: #94A3B8;
+      margin-bottom: 24px;
     }
 
-    /* Footer Progress Track (Cloudflare Radar Style) */
-    .splash-footer {
-      position: relative;
-      z-index: 10;
+    /* Glass Progress Bar */
+    .loader-wrap {
       width: 100%;
-      max-width: 420px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      animation: fadeInUp 0.8s ease forwards;
+      margin-bottom: 16px;
     }
     .loader-track {
       width: 100%;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.1);
+      height: 4px;
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 100px;
       overflow: hidden;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
     }
     .loader-bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, #3B82F6, #00F0FF);
+      background: linear-gradient(90deg, #2563EB, #00F0FF);
       box-shadow: 0 0 16px #00F0FF;
-      transition: width 0.05s linear;
+      transition: width 0.06s linear;
       border-radius: 100px;
     }
     .status-row {
@@ -148,17 +150,19 @@
       justify-content: space-between;
       width: 100%;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       color: #64748B;
       letter-spacing: 0.08em;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Space Grotesk', sans-serif;
+      margin-top: 8px;
     }
+
     .btn-enter {
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(37, 99, 235, 0.2);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(59, 130, 246, 0.4);
       color: #93C5FD;
-      padding: 9px 24px;
+      padding: 10px 26px;
       border-radius: 100px;
       font-size: 12px;
       font-weight: 600;
@@ -167,14 +171,13 @@
       align-items: center;
       gap: 8px;
       transition: all 0.3s ease;
-      margin-top: 4px;
-      font-family: 'Space Grotesk', sans-serif;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
     }
     .btn-enter:hover {
       background: #3B82F6;
       color: #FFFFFF;
       border-color: #3B82F6;
-      box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
       transform: translateY(-2px);
     }
 
@@ -244,23 +247,14 @@
       text-align: center;
       padding: 24px;
     }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
 
   <!-- Controls Panel to test styles -->
   <div class="controls-panel">
-    <button class="control-btn active" onclick="setGlobeMode('cloudflare')">1. Cloudflare Dotted Radar</button>
-    <button class="control-btn" onclick="setGlobeMode('github')">2. GitHub / Stripe Cyber Core</button>
+    <button class="control-btn active" onclick="setGlobeMode('satellite')">1. NASA Satellite Night Earth</button>
+    <button class="control-btn" onclick="setGlobeMode('blue-marble')">2. Blue Marble Day Earth</button>
   </div>
 
   <!-- Replay Button -->
@@ -271,7 +265,7 @@
   <!-- Main Website Mock (Behind Splash) -->
   <div class="website-preview">
     <h2 style="font-size:32px;font-weight:700;margin-bottom:12px;color:#FFFFFF;">Welcome to VSGRPS Technologies</h2>
-    <p style="color:#94A3B8;max-width:500px;margin-bottom:24px;">The Cloudflare-style Cyber Globe dissolved seamlessly into your main website experience.</p>
+    <p style="color:#94A3B8;max-width:500px;margin-bottom:24px;">The real-world NASA satellite Earth splash screen dissolved seamlessly into your main website experience.</p>
     <a href="index.html" style="color:#3B82F6;text-decoration:none;font-weight:600;"><i class="bi bi-arrow-left"></i> Return to Main Index</a>
   </div>
 
@@ -279,40 +273,48 @@
   <div id="splash-container">
     <div id="globe-canvas-wrap"></div>
 
-    <!-- Top Telemetry Tag -->
-    <div class="top-telemetry">
-      <div class="telemetry-tag">
+    <div></div> <!-- Top spacer -->
+
+    <!-- Glassmorphic Center Floating Card -->
+    <div class="glass-center-card">
+      <div class="glass-badge">
         <span class="pulse-dot"></span> GLOBAL INTELLIGENCE NETWORK
       </div>
-      <span class="hidden md:inline" style="opacity:0.7;">LATENCY: &lt;18ms</span>
-    </div>
-
-    <!-- Floating Center Content (Zero Box) -->
-    <div class="floating-center-content">
       <h1 class="brand-title">VSGRPS</h1>
       <p class="brand-subtitle">Engineering Digital Transformation</p>
-    </div>
 
-    <!-- Footer Progress & Action -->
-    <div class="splash-footer">
-      <div class="loader-track">
-        <div class="loader-bar" id="loader-fill"></div>
+      <div class="loader-wrap">
+        <div class="loader-track">
+          <div class="loader-bar" id="loader-fill"></div>
+        </div>
+        <div class="status-row">
+          <span id="status-text">INITIALIZING GLOBAL MESH...</span>
+          <span id="percent-text">0%</span>
+        </div>
       </div>
-      <div class="status-row">
-        <span id="status-text">INITIALIZING GLOBAL MESH...</span>
-        <span id="percent-text">0%</span>
-      </div>
+
       <button class="btn-enter" onclick="dismissSplash()">
         Enter Studio <i class="bi bi-arrow-right"></i>
       </button>
     </div>
+
+    <div></div> <!-- Bottom spacer -->
   </div>
 
   <script>
-    // ---- Three.js Cloudflare Radar & Dotted Earth Engine ----
-    let scene, camera, renderer, globeGroup, animId, arcGroup, spikesGroup;
-    let currentMode = 'cloudflare';
+    // ---- Three.js Photorealistic Satellite Earth Engine ----
+    let scene, camera, renderer, globeGroup, animId;
+    let currentMode = 'satellite';
     const container = document.getElementById('globe-canvas-wrap');
+
+    const textureLoader = new THREE.TextureLoader();
+
+    // High-Res Satellite Earth Textures
+    const textures = {
+      night: 'https://cdn.jsdelivr.net/gh/vasturiano/three-globe/example/img/earth-night.jpg',
+      day: 'https://cdn.jsdelivr.net/gh/vasturiano/three-globe/example/img/earth-blue-marble.jpg',
+      bump: 'https://cdn.jsdelivr.net/gh/vasturiano/three-globe/example/img/earth-topology.png'
+    };
 
     function latLongToVector3(lat, lon, radius, alt = 0) {
       const phi = (90 - lat) * (Math.PI / 180);
@@ -325,17 +327,15 @@
       );
     }
 
-    // Cloudflare Radar Tech Hub Data Centers
-    const techCenters = [
-      { name: "India HQ", lat: 11.45, lon: 78.17, height: 18 },
-      { name: "Singapore", lat: 1.35, lon: 103.82, height: 14 },
-      { name: "Dubai", lat: 25.20, lon: 55.27, height: 12 },
-      { name: "London", lat: 51.50, lon: -0.12, height: 16 },
-      { name: "Frankfurt", lat: 50.11, lon: 8.68, height: 14 },
-      { name: "New York", lat: 40.71, lon: -74.00, height: 18 },
-      { name: "San Francisco", lat: 37.77, lon: -122.41, height: 20 },
-      { name: "Tokyo", lat: 35.67, lon: 139.65, height: 15 },
-      { name: "Sydney", lat: -33.86, lon: 151.20, height: 12 }
+    const hubs = [
+      { name: "India HQ", lat: 11.45, lon: 78.17 },
+      { name: "Singapore", lat: 1.35, lon: 103.82 },
+      { name: "Dubai", lat: 25.20, lon: 55.27 },
+      { name: "London", lat: 51.50, lon: -0.12 },
+      { name: "New York", lat: 40.71, lon: -74.00 },
+      { name: "San Francisco", lat: 37.77, lon: -122.41 },
+      { name: "Tokyo", lat: 35.67, lon: 139.65 },
+      { name: "Sydney", lat: -33.86, lon: 151.20 }
     ];
 
     function initGlobe() {
@@ -354,11 +354,11 @@
       globeGroup = new THREE.Group();
       scene.add(globeGroup);
 
-      buildCloudflareGlobe(currentMode);
+      buildGlobe(currentMode);
       animate();
     }
 
-    function buildCloudflareGlobe(mode) {
+    function buildGlobe(mode) {
       while (globeGroup.children.length > 0) {
         const obj = globeGroup.children[0];
         if (obj.geometry) obj.geometry.dispose();
@@ -367,124 +367,90 @@
       }
 
       const radius = 72;
+      const mapUrl = mode === 'satellite' ? textures.night : textures.day;
 
-      // 1. Dark Core Sphere
-      const sphereGeo = new THREE.SphereGeometry(radius * 0.99, 48, 48);
-      const sphereMat = new THREE.MeshBasicMaterial({
-        color: 0x050c1e,
-        transparent: true,
-        opacity: 0.85
+      // Real Satellite Earth Sphere
+      const earthGeo = new THREE.SphereGeometry(radius, 64, 64);
+      const earthMap = textureLoader.load(mapUrl);
+      
+      const earthMat = new THREE.MeshPhongMaterial({
+        map: earthMap,
+        specular: 0x3b82f6,
+        shininess: 12,
+        emissive: mode === 'satellite' ? 0x051535 : 0x000000,
+        emissiveIntensity: 0.4
       });
-      globeGroup.add(new THREE.Mesh(sphereGeo, sphereMat));
+      const earthMesh = new THREE.Mesh(earthGeo, earthMat);
+      globeGroup.add(earthMesh);
 
-      // 2. High-Density Dotted Matrix Grid (1,800 Fibonacci points)
-      const dotCount = 1800;
-      const dotGeo = new THREE.BufferGeometry();
-      const dotPos = new Float32Array(dotCount * 3);
+      // Atmospheric Lighting
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+      globeGroup.add(ambientLight);
+      const dirLight = new THREE.DirectionalLight(0x38bdf8, 1.8);
+      dirLight.position.set(120, 60, 150);
+      globeGroup.add(dirLight);
 
-      for (let i = 0; i < dotCount; i++) {
-        const theta = Math.acos(2 * (i / dotCount) - 1);
-        const phi = Math.PI * (1 + Math.sqrt(5)) * i;
-
-        dotPos[i * 3] = radius * Math.sin(theta) * Math.cos(phi);
-        dotPos[i * 3 + 1] = radius * Math.sin(theta) * Math.sin(phi);
-        dotPos[i * 3 + 2] = radius * Math.cos(theta);
-      }
-      dotGeo.setAttribute('position', new THREE.BufferAttribute(dotPos, 3));
-
-      const dotMat = new THREE.PointsMaterial({
-        color: 0x3B82F6,
-        size: 1.8,
-        transparent: true,
-        opacity: 0.75
-      });
-      globeGroup.add(new THREE.Points(dotGeo, dotMat));
-
-      // 3. Glowing Atmosphere Halo
-      const atmosGeo = new THREE.SphereGeometry(radius * 1.05, 32, 32);
+      // Outer Glowing Atmosphere Halo
+      const atmosGeo = new THREE.SphereGeometry(radius * 1.04, 32, 32);
       const atmosMat = new THREE.MeshBasicMaterial({
-        color: 0x00F0FF,
+        color: 0x00d2ff,
         transparent: true,
-        opacity: 0.16,
+        opacity: 0.18,
         side: THREE.BackSide
       });
       globeGroup.add(new THREE.Mesh(atmosGeo, atmosMat));
 
-      // 4. Cloudflare Data Center City Vertical Light Spikes
-      techCenters.forEach(dc => {
-        const basePos = latLongToVector3(dc.lat, dc.lon, radius);
-        const tipPos = latLongToVector3(dc.lat, dc.lon, radius + dc.height);
+      // Global Tech Hubs & Glowing Radar Beacons
+      hubs.forEach(hub => {
+        const pos = latLongToVector3(hub.lat, hub.lon, radius, 0.6);
+        
+        // Node dot
+        const nodeGeo = new THREE.SphereGeometry(1.3, 16, 16);
+        const nodeMat = new THREE.MeshBasicMaterial({ color: 0x00F0FF });
+        const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
+        nodeMesh.position.copy(pos);
+        globeGroup.add(nodeMesh);
 
-        // Vertical laser line
-        const lineGeo = new THREE.BufferGeometry().setFromPoints([basePos, tipPos]);
-        const lineMat = new THREE.LineBasicMaterial({
-          color: 0x00F0FF,
-          transparent: true,
-          opacity: 0.85,
-          linewidth: 2
-        });
-        globeGroup.add(new THREE.Line(lineGeo, lineMat));
-
-        // Tip glowing head
-        const tipGeo = new THREE.SphereGeometry(1.2, 12, 12);
-        const tipMat = new THREE.MeshBasicMaterial({ color: 0xFFFFFF });
-        const tipMesh = new THREE.Mesh(tipGeo, tipMat);
-        tipMesh.position.copy(tipPos);
-        globeGroup.add(tipMesh);
-
-        // Ground Radar Ring
-        const ringGeo = new THREE.RingGeometry(1.6, 2.4, 32);
-        const ringMat = new THREE.MeshBasicMaterial({ color: 0x3B82F6, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
+        // Pulsing Ring
+        const ringGeo = new THREE.RingGeometry(1.6, 2.3, 32);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x60A5FA, side: THREE.DoubleSide, transparent: true, opacity: 0.7 });
         const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-        ringMesh.position.copy(basePos);
+        ringMesh.position.copy(pos);
         ringMesh.lookAt(0, 0, 0);
         globeGroup.add(ringMesh);
       });
 
-      // 5. High-Speed Pulsing Traffic Arcs (Cloudflare Network Routing)
+      // Photorealistic Tech Hub Curved Flight Arcs
       const connections = [
         [0, 1], // India -> Singapore
         [0, 2], // India -> Dubai
         [2, 3], // Dubai -> London
-        [3, 4], // London -> Frankfurt
-        [3, 5], // London -> NY
-        [5, 6], // NY -> San Francisco
-        [6, 7], // SF -> Tokyo
-        [1, 8]  // Singapore -> Sydney
+        [3, 4], // London -> NY
+        [4, 5], // NY -> San Francisco
+        [5, 6], // SF -> Tokyo
+        [1, 7]  // Singapore -> Sydney
       ];
 
       connections.forEach(([startIdx, endIdx]) => {
-        const p1 = latLongToVector3(techCenters[startIdx].lat, techCenters[startIdx].lon, radius);
-        const p2 = latLongToVector3(techCenters[endIdx].lat, techCenters[endIdx].lon, radius);
+        const p1 = latLongToVector3(hubs[startIdx].lat, hubs[startIdx].lon, radius);
+        const p2 = latLongToVector3(hubs[endIdx].lat, hubs[endIdx].lon, radius);
 
         const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
         const dist = p1.distanceTo(p2);
-        mid.normalize().multiplyScalar(radius + dist * 0.32);
+        mid.normalize().multiplyScalar(radius + dist * 0.28);
 
         const curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
-        const points = curve.getPoints(50);
+        const points = curve.getPoints(40);
         const curveGeo = new THREE.BufferGeometry().setFromPoints(points);
         const curveMat = new THREE.LineBasicMaterial({
           color: 0x00F0FF,
           transparent: true,
-          opacity: 0.7,
+          opacity: 0.65,
           linewidth: 2
         });
         const arcLine = new THREE.Line(curveGeo, curveMat);
         globeGroup.add(arcLine);
       });
-
-      // 6. Orbital Satellite Ring
-      const orbitRingGeo = new THREE.RingGeometry(radius * 1.35, radius * 1.38, 64);
-      const orbitRingMat = new THREE.MeshBasicMaterial({
-        color: 0x3B82F6,
-        side: THREE.DoubleSide,
-        transparent: true,
-        opacity: 0.35
-      });
-      const orbitRing = new THREE.Mesh(orbitRingGeo, orbitRingMat);
-      orbitRing.rotation.x = Math.PI / 3.5;
-      globeGroup.add(orbitRing);
     }
 
     let mouseX = 0, mouseY = 0;
@@ -497,7 +463,7 @@
       animId = requestAnimationFrame(animate);
 
       if (globeGroup) {
-        globeGroup.rotation.y += 0.004;
+        globeGroup.rotation.y += 0.0035;
         globeGroup.rotation.y += mouseX * 0.3;
         globeGroup.rotation.x += mouseY * 0.3;
       }
@@ -517,7 +483,7 @@
       currentMode = mode;
       document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
       event.target.classList.add('active');
-      buildCloudflareGlobe(mode);
+      buildGlobe(mode);
     }
 
     // ---- Progress Loader Simulation ----
@@ -526,10 +492,10 @@
     const percentText = document.getElementById('percent-text');
     const statusText = document.getElementById('status-text');
     const statusList = [
-      'ROUTING TO CLOUDFLARE EDGE...',
-      'ESTABLISHING ENCRYPTED TUNNEL...',
-      'CALCULATING OPTIMAL LATENCY...',
-      'EDGE ACTIVE • 310+ NODES'
+      'CONNECTING TO SATELLITE MESH...',
+      'SYNCING GLOBAL NODES...',
+      'CONFIGURING ARCHITECTURE...',
+      'SYSTEM READY'
     ];
 
     let interval = setInterval(() => {
