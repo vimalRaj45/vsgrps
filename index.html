@@ -2,6 +2,12 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    (function() {
+      var saved = localStorage.getItem('vsgrps_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="gqqLAlnUqc6eBcVbBjlEkRH3F6Xhy6NhBpjzFqsMlis" />
 
@@ -3406,18 +3412,9 @@
   const themeToggle = document.getElementById('theme-toggle');
   const html = document.documentElement;
   
-  // Force Dark rebrand on first visit
-  let savedTheme = localStorage.getItem('vsgrps_theme');
-  const rebrandingDone = localStorage.getItem('vsgrps_rebrand_v3'); // Increment version to force update
-  
-  if (!rebrandingDone) {
-    savedTheme = 'dark';
-    localStorage.setItem('vsgrps_theme', 'dark');
-    localStorage.setItem('vsgrps_rebrand_v3', 'true');
-  }
-  
-  html.setAttribute('data-theme', savedTheme || 'dark');
-  updateThemeIcon(savedTheme || 'dark');
+  let savedTheme = localStorage.getItem('vsgrps_theme') || 'dark';
+  html.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
   document.body.style.backgroundColor = savedTheme === 'light' ? '#F8FAFC' : '#050810';
 
   themeToggle.addEventListener('click', () => {
@@ -3425,6 +3422,7 @@
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('vsgrps_theme', newTheme);
+    document.body.style.backgroundColor = newTheme === 'light' ? '#F8FAFC' : '#050810';
     updateThemeIcon(newTheme);
   });
 
