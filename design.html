@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VSGRPS • Real-World Cyber Globe Splash Screen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #030712;
+      color: #F1F5F9;
+      font-family: 'Outfit', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Fullscreen Splash Screen */
+    #splash-container {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 24px 44px;
+      z-index: 100;
+      background: radial-gradient(circle at 50% 50%, #06122c 0%, #030712 75%);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #splash-container.exit-anim {
+      opacity: 0;
+      transform: scale(1.08);
+      pointer-events: none;
+    }
+
+    /* Three.js Canvas Container */
+    #globe-canvas-wrap {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Header / Badge */
+    .splash-header {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      animation: fadeInDown 0.8s ease forwards;
+    }
+    .enterprise-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #93C5FD;
+      box-shadow: 0 0 35px rgba(59, 130, 246, 0.25);
+    }
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00F0FF;
+      box-shadow: 0 0 10px #00F0FF;
+      animation: pulseAnim 2s infinite;
+    }
+    @keyframes pulseAnim {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    /* Center Content */
+    .splash-center {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      pointer-events: none;
+    }
+    .brand-title {
+      font-size: clamp(34px, 6vw, 58px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FFFFFF 40%, #60A5FA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 50px rgba(59, 130, 246, 0.5);
+      margin-bottom: 6px;
+    }
+    .brand-subtitle {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(11px, 2vw, 13px);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #94A3B8;
+    }
+
+    /* Footer / Progress Track */
+    .splash-footer {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    .loader-track {
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .loader-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #2563EB, #00F0FF);
+      box-shadow: 0 0 16px #00F0FF;
+      transition: width 0.06s linear;
+      border-radius: 100px;
+    }
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748B;
+      letter-spacing: 0.08em;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .btn-enter {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      color: #93C5FD;
+      padding: 9px 24px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      margin-top: 4px;
+    }
+    .btn-enter:hover {
+      background: #3B82F6;
+      color: #FFFFFF;
+      border-color: #3B82F6;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Style Switcher Controls */
+    .controls-panel {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 200;
+      display: flex;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(16px);
+      padding: 6px;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .control-btn {
+      background: transparent;
+      border: none;
+      color: #94A3B8;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .control-btn.active {
+      background: #3B82F6;
+      color: #FFFFFF;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Preview Replay Button */
+    .replay-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 200;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #E2E8F0;
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .replay-btn:hover {
+      border-color: #3B82F6;
+      color: #60A5FA;
+    }
+
+    /* Main Website Reveal Simulator */
+    .website-preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 24px;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Controls Panel to test 3 styles -->
+  <div class="controls-panel">
+    <button class="control-btn active" onclick="setGlobeMode('earth-arcs')">1. Real Earth + Flight Arcs</button>
+    <button class="control-btn" onclick="setGlobeMode('earth-grid')">2. Continents Dot Grid</button>
+    <button class="control-btn" onclick="setGlobeMode('tech-matrix')">3. Cyber Matrix Earth</button>
+  </div>
+
+  <!-- Replay Button -->
+  <button class="replay-btn" onclick="replaySplash()">
+    <i class="bi bi-arrow-counterclockwise"></i> Replay Splash
+  </button>
+
+  <!-- Main Website Mock (Behind Splash) -->
+  <div class="website-preview">
+    <h2 style="font-size:32px;font-weight:700;margin-bottom:12px;color:#FFFFFF;">Welcome to VSGRPS Technologies</h2>
+    <p style="color:#94A3B8;max-width:500px;margin-bottom:24px;">The real-world Earth splash screen dissolved seamlessly into your main website experience.</p>
+    <a href="index.html" style="color:#3B82F6;text-decoration:none;font-weight:600;"><i class="bi bi-arrow-left"></i> Return to Main Index</a>
+  </div>
+
+  <!-- Fullscreen Splash Screen -->
+  <div id="splash-container">
+    <div id="globe-canvas-wrap"></div>
+
+    <!-- Header / Brand Tag -->
+    <div class="splash-header">
+      <div class="enterprise-badge">
+        <span class="pulse-dot"></span> GLOBAL CONNECTIVITY NETWORK
+      </div>
+    </div>
+
+    <!-- Center Brand Typography -->
+    <div class="splash-center">
+      <h1 class="brand-title">VSGRPS</h1>
+      <p class="brand-subtitle">Engineering Digital Transformation</p>
+    </div>
+
+    <!-- Footer Progress & Action -->
+    <div class="splash-footer">
+      <div class="loader-track">
+        <div class="loader-bar" id="loader-fill"></div>
+      </div>
+      <div class="status-row">
+        <span id="status-text">INITIALIZING GLOBAL NETWORK...</span>
+        <span id="percent-text">0%</span>
+      </div>
+      <button class="btn-enter" onclick="dismissSplash()">
+        Enter Studio <i class="bi bi-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // ---- Three.js Real-World Earth Cyber Globe Engine ----
+    let scene, camera, renderer, globeGroup, animId, arcGroup;
+    let currentMode = 'earth-arcs';
+    const container = document.getElementById('globe-canvas-wrap');
+
+    // Geo coordinates helper (lat, lon to 3D Cartesian on sphere)
+    function latLongToVector3(lat, lon, radius, alt = 0) {
+      const phi = (90 - lat) * (Math.PI / 180);
+      const theta = (lon + 180) * (Math.PI / 180);
+      const r = radius + alt;
+      return new THREE.Vector3(
+        -r * Math.sin(phi) * Math.cos(theta),
+        r * Math.cos(phi),
+        r * Math.sin(phi) * Math.sin(theta)
+      );
+    }
+
+    // World Major Tech Hubs
+    const hubs = [
+      { name: "India HQ", lat: 11.45, lon: 78.17 },        // Namakkal / Bangalore
+      { name: "Singapore", lat: 1.35, lon: 103.82 },
+      { name: "Dubai", lat: 25.20, lon: 55.27 },
+      { name: "London", lat: 51.50, lon: -0.12 },
+      { name: "Frankfurt", lat: 50.11, lon: 8.68 },
+      { name: "New York", lat: 40.71, lon: -74.00 },
+      { name: "San Francisco", lat: 37.77, lon: -122.41 },
+      { name: "Tokyo", lat: 35.67, lon: 139.65 },
+      { name: "Sydney", lat: -33.86, lon: 151.20 }
+    ];
+
+    function createEarthTexture() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 1024;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+
+      // Ocean Background
+      ctx.fillStyle = '#050c1e';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Procedural continents drawing (approximate real-world landmasses with cyber dots)
+      ctx.fillStyle = '#1d4ed8';
+      
+      // Draw stylized world landmass blocks:
+      // Eurasia & Africa
+      drawContinent(ctx, 420, 100, 240, 150); // Europe / Asia
+      drawContinent(ctx, 450, 230, 140, 180); // Africa
+      drawContinent(ctx, 600, 140, 150, 160); // East Asia / India
+      
+      // Americas
+      drawContinent(ctx, 160, 90, 160, 140);  // North America
+      drawContinent(ctx, 240, 250, 110, 180); // South America
+      
+      // Australia
+      drawContinent(ctx, 760, 310, 110, 90);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      return texture;
+    }
+
+    function drawContinent(ctx, x, y, w, h) {
+      ctx.beginPath();
+      for (let i = 0; i < 40; i++) {
+        const px = x + (Math.random() - 0.5) * w;
+        const py = y + (Math.random() - 0.5) * h;
+        const rad = Math.random() * 22 + 10;
+        ctx.arc(px, py, rad, 0, Math.PI * 2);
+      }
+      ctx.fill();
+    }
+
+    function initGlobe() {
+      if (!container) return;
+      container.innerHTML = '';
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 240;
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      globeGroup = new THREE.Group();
+      scene.add(globeGroup);
+
+      buildGlobeMode(currentMode);
+      animate();
+    }
+
+    function buildGlobeMode(mode) {
+      while (globeGroup.children.length > 0) {
+        const obj = globeGroup.children[0];
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) obj.material.dispose();
+        globeGroup.remove(obj);
+      }
+
+      const radius = 68;
+
+      // 1. Base Earth Sphere with Continent Texture
+      const earthGeo = new THREE.SphereGeometry(radius, 64, 64);
+      const earthTexture = createEarthTexture();
+      const earthMat = new THREE.MeshPhongMaterial({
+        map: earthTexture,
+        bumpScale: 0.05,
+        specular: 0x3b82f6,
+        shininess: 15,
+        transparent: true,
+        opacity: 0.95
+      });
+      const earthMesh = new THREE.Mesh(earthGeo, earthMat);
+      globeGroup.add(earthMesh);
+
+      // Ambient & Directional Lighting
+      const ambientLight = new THREE.AmbientLight(0x38bdf8, 1.2);
+      globeGroup.add(ambientLight);
+
+      const dirLight = new THREE.DirectionalLight(0x00f0ff, 1.8);
+      dirLight.position.set(100, 50, 150);
+      globeGroup.add(dirLight);
+
+      // 2. Atmosphere Glow Ring
+      const atmosGeo = new THREE.SphereGeometry(radius * 1.03, 32, 32);
+      const atmosMat = new THREE.MeshBasicMaterial({
+        color: 0x3b82f6,
+        transparent: true,
+        opacity: 0.15,
+        side: THREE.BackSide
+      });
+      globeGroup.add(new THREE.Mesh(atmosGeo, atmosMat));
+
+      // 3. Tech Hub Nodes on Earth
+      hubs.forEach(hub => {
+        const pos = latLongToVector3(hub.lat, hub.lon, radius, 0.5);
+        
+        // Node marker
+        const nodeGeo = new THREE.SphereGeometry(1.4, 16, 16);
+        const nodeMat = new THREE.MeshBasicMaterial({ color: 0x00F0FF });
+        const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
+        nodeMesh.position.copy(pos);
+        globeGroup.add(nodeMesh);
+
+        // Outer pulsing ring
+        const ringGeo = new THREE.RingGeometry(1.8, 2.4, 32);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x60A5FA, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
+        const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+        ringMesh.position.copy(pos);
+        ringMesh.lookAt(0, 0, 0);
+        globeGroup.add(ringMesh);
+      });
+
+      // 4. Arcs connecting Tech Hubs (e.g. India to Singapore, Dubai, London, SF)
+      if (mode === 'earth-arcs' || mode === 'tech-matrix') {
+        const connections = [
+          [0, 1], // India -> Singapore
+          [0, 2], // India -> Dubai
+          [2, 3], // Dubai -> London
+          [3, 5], // London -> NY
+          [5, 6], // NY -> San Francisco
+          [6, 7], // SF -> Tokyo
+          [1, 8]  // Singapore -> Sydney
+        ];
+
+        connections.forEach(([startIdx, endIdx]) => {
+          const p1 = latLongToVector3(hubs[startIdx].lat, hubs[startIdx].lon, radius);
+          const p2 = latLongToVector3(hubs[endIdx].lat, hubs[endIdx].lon, radius);
+
+          // Quadratic Bezier Curve with elevated mid point
+          const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
+          const dist = p1.distanceTo(p2);
+          mid.normalize().multiplyScalar(radius + dist * 0.25);
+
+          const curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
+          const points = curve.getPoints(40);
+          const curveGeo = new THREE.BufferGeometry().setFromPoints(points);
+          const curveMat = new THREE.LineBasicMaterial({
+            color: 0x00F0FF,
+            transparent: true,
+            opacity: 0.6,
+            linewidth: 2
+          });
+          const arcLine = new THREE.Line(curveGeo, curveMat);
+          globeGroup.add(arcLine);
+        });
+      }
+
+      // 5. Equatorial and Orbit Rings
+      const orbitRingGeo = new THREE.RingGeometry(radius * 1.35, radius * 1.38, 64);
+      const orbitRingMat = new THREE.MeshBasicMaterial({
+        color: 0x3B82F6,
+        side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 0.35
+      });
+      const orbitRing = new THREE.Mesh(orbitRingGeo, orbitRingMat);
+      orbitRing.rotation.x = Math.PI / 3.5;
+      globeGroup.add(orbitRing);
+    }
+
+    let mouseX = 0, mouseY = 0;
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX - window.innerWidth / 2) * 0.0005;
+      mouseY = (e.clientY - window.innerHeight / 2) * 0.0005;
+    });
+
+    function animate() {
+      animId = requestAnimationFrame(animate);
+
+      if (globeGroup) {
+        globeGroup.rotation.y += 0.004;
+        globeGroup.rotation.y += mouseX * 0.3;
+        globeGroup.rotation.x += mouseY * 0.3;
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    window.addEventListener('resize', () => {
+      if (camera && renderer) {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+    });
+
+    function setGlobeMode(mode) {
+      currentMode = mode;
+      document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      buildGlobeMode(mode);
+    }
+
+    // ---- Progress Loader Simulation ----
+    let progress = 0;
+    const loaderFill = document.getElementById('loader-fill');
+    const percentText = document.getElementById('percent-text');
+    const statusText = document.getElementById('status-text');
+    const statusList = [
+      'CONNECTING TO SATELLITE MESH...',
+      'SYNCING GLOBAL CONTINENTS...',
+      'DEPLOYING CYBER ARCHITECTURE...',
+      'SYSTEM READY'
+    ];
+
+    let interval = setInterval(() => {
+      progress += 4;
+      if (progress > 100) progress = 100;
+
+      if (loaderFill) loaderFill.style.width = progress + '%';
+      if (percentText) percentText.textContent = progress + '%';
+
+      if (statusText) {
+        if (progress < 30) statusText.textContent = statusList[0];
+        else if (progress < 60) statusText.textContent = statusList[1];
+        else if (progress < 90) statusText.textContent = statusList[2];
+        else statusText.textContent = statusList[3];
+      }
+
+      if (progress >= 100) clearInterval(interval);
+    }, 40);
+
+    function dismissSplash() {
+      const splash = document.getElementById('splash-container');
+      if (splash) splash.classList.add('exit-anim');
+    }
+
+    function replaySplash() {
+      const splash = document.getElementById('splash-container');
+      if (splash) {
+        splash.classList.remove('exit-anim');
+        progress = 0;
+        clearInterval(interval);
+        interval = setInterval(() => {
+          progress += 4;
+          if (progress > 100) progress = 100;
+
+          if (loaderFill) loaderFill.style.width = progress + '%';
+          if (percentText) percentText.textContent = progress + '%';
+
+          if (statusText) {
+            if (progress < 30) statusText.textContent = statusList[0];
+            else if (progress < 60) statusText.textContent = statusList[1];
+            else if (progress < 90) statusText.textContent = statusList[2];
+            else statusText.textContent = statusList[3];
+          }
+
+          if (progress >= 100) clearInterval(interval);
+        }, 40);
+      }
+    }
+
+    // Init on load
+    window.addEventListener('load', initGlobe);
+  </script>
+</body>
+</html>

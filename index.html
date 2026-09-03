@@ -139,6 +139,145 @@
       --shadow-lg: 0 20px 50px -10px rgba(0, 0, 0, 0.8);
     }
 
+    /* ==================== HIGH-CONTRAST LIGHT THEME RULES ==================== */
+    [data-theme="light"] {
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --border: #E2E8F0;
+      --text: #0F172A;
+      --text-muted: #475569;
+      --nav-bg: rgba(255, 255, 255, 0.95);
+      --accent: #2563EB;
+      --accent-blue: #3B82F6;
+    }
+
+    [data-theme="light"] body {
+      color: #0F172A !important;
+    }
+
+    [data-theme="light"] h1,
+    [data-theme="light"] h2,
+    [data-theme="light"] h3,
+    [data-theme="light"] h4,
+    [data-theme="light"] h5,
+    [data-theme="light"] h6 {
+      color: #0F172A !important;
+    }
+
+    [data-theme="light"] p {
+      color: #334155 !important;
+    }
+
+    [data-theme="light"] .glass {
+      background: rgba(255, 255, 255, 0.92) !important;
+      border-color: rgba(226, 232, 240, 0.9) !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+    }
+
+    [data-theme="light"] .glass * {
+      color: #0F172A !important;
+    }
+
+    [data-theme="light"] .card,
+    [data-theme="light"] .service-card,
+    [data-theme="light"] .project-card,
+    [data-theme="light"] .why-card,
+    [data-theme="light"] .ai-showcase-step,
+    [data-theme="light"] .review-card,
+    [data-theme="light"] .blog-card {
+      background: #FFFFFF !important;
+      border-color: #E2E8F0 !important;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    [data-theme="light"] .card h3,
+    [data-theme="light"] .service-card h3,
+    [data-theme="light"] .project-card h3,
+    [data-theme="light"] .why-card h3,
+    [data-theme="light"] .ai-showcase-step h3,
+    [data-theme="light"] .blog-card h3 {
+      color: #0F172A !important;
+    }
+
+    [data-theme="light"] .card p,
+    [data-theme="light"] .service-card p,
+    [data-theme="light"] .project-card p,
+    [data-theme="light"] .why-card p,
+    [data-theme="light"] .ai-showcase-step p,
+    [data-theme="light"] .blog-card p {
+      color: #475569 !important;
+    }
+
+    [data-theme="light"] .ai-showcase-step.active {
+      background: #EFF6FF !important;
+      border-color: #93C5FD !important;
+    }
+
+    [data-theme="light"] .tech-pill {
+      background: #EFF6FF !important;
+      color: #1D4ED8 !important;
+      border-color: #BFDBFE !important;
+    }
+
+    [data-theme="light"] .section-tag {
+      background: #DBEAFE !important;
+      color: #1D4ED8 !important;
+      border-color: #93C5FD !important;
+    }
+
+    [data-theme="light"] .btn-outline {
+      border-color: #2563EB !important;
+      color: #2563EB !important;
+      background: #FFFFFF !important;
+    }
+    [data-theme="light"] .btn-outline:hover {
+      background: #EFF6FF !important;
+    }
+
+    [data-theme="light"] #chatbot-window {
+      background: #FFFFFF !important;
+      border-color: #E2E8F0 !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    [data-theme="light"] .chat-messages .message.bot {
+      background: #F1F5F9 !important;
+      color: #0F172A !important;
+    }
+
+    [data-theme="light"] .chat-input {
+      background: #F8FAFC !important;
+      border-color: #CBD5E1 !important;
+      color: #0F172A !important;
+    }
+
+    [data-theme="light"] .form-input {
+      background: #FFFFFF !important;
+      border-color: #CBD5E1 !important;
+      color: #0F172A !important;
+    }
+
+    [data-theme="light"] .site-footer {
+      background: #F1F5F9 !important;
+      border-color: #E2E8F0 !important;
+    }
+
+    [data-theme="light"] .footer-link {
+      color: #475569 !important;
+    }
+    [data-theme="light"] .footer-link:hover {
+      color: #2563EB !important;
+    }
+
+    [data-theme="light"] #cookie-banner {
+      background: #FFFFFF !important;
+      border-color: #E2E8F0 !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+    }
+    [data-theme="light"] #cookie-banner div {
+      color: #1E293B !important;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
@@ -1121,17 +1260,19 @@
       inset: 0;
       width: 100%;
       height: 100vh;
-      background: #050811;
+      background: #030712;
       z-index: 999999;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      padding: 60px 24px;
       overflow: hidden;
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.7s;
     }
     .splash-overlay.hidden-splash {
       opacity: 0;
-      transform: scale(1.06);
+      transform: scale(1.08);
       pointer-events: none;
       visibility: hidden;
     }
@@ -1142,106 +1283,132 @@
       height: 100%;
       z-index: 1;
     }
-    .splash-content {
+    .splash-top {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeInDown 0.6s ease forwards;
+    }
+    .splash-center {
       position: relative;
       z-index: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 32px 28px;
-      max-width: 440px;
-      width: 90%;
-      background: rgba(8, 12, 20, 0.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      border-radius: 28px;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(59, 130, 246, 0.15);
-      animation: splashCardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      pointer-events: none;
+      animation: zoomIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    @keyframes splashCardIn {
-      from { opacity: 0; transform: translateY(30px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    .splash-bottom {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
     .splash-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(59, 130, 246, 0.12);
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(59, 130, 246, 0.35);
       border-radius: 100px;
-      padding: 5px 14px;
+      padding: 6px 18px;
       font-size: 11px;
       font-weight: 700;
-      color: #60A5FA;
-      letter-spacing: 0.08em;
-      margin-bottom: 16px;
+      color: #93C5FD;
+      letter-spacing: 0.12em;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
     }
     .splash-pulse-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #3B82F6;
-      box-shadow: 0 0 8px #3B82F6;
+      background: #00F0FF;
+      box-shadow: 0 0 10px #00F0FF;
       animation: pulse 1.5s infinite;
     }
-    .splash-logo {
-      height: 40px;
-      width: auto;
-      margin-bottom: 12px;
+    .splash-brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      text-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
+      margin-bottom: 6px;
     }
-    .splash-tagline {
+    .splash-brand-sub {
+      font-size: 14px;
       color: #94A3B8;
-      font-size: 13px;
-      margin-bottom: 24px;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
     }
     .splash-loader-bar {
       width: 100%;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.08);
+      height: 3px;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 100px;
       overflow: hidden;
-      margin-bottom: 10px;
     }
     .splash-loader-fill {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, #3B82F6, #00D2FF);
+      background: linear-gradient(90deg, #3B82F6, #00F0FF);
       border-radius: 100px;
-      box-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
-      transition: width 0.1s linear;
+      box-shadow: 0 0 14px #00F0FF;
+      transition: width 0.08s linear;
     }
     .splash-status-row {
       display: flex;
       justify-content: space-between;
       width: 100%;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       color: #64748B;
-      letter-spacing: 0.05em;
-      margin-bottom: 20px;
+      letter-spacing: 0.08em;
     }
     .splash-skip {
-      background: rgba(59, 130, 246, 0.15);
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(12px);
       border: 1px solid rgba(59, 130, 246, 0.3);
       color: #93C5FD;
-      padding: 8px 18px;
+      padding: 8px 22px;
       border-radius: 100px;
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      margin-top: 6px;
     }
     .splash-skip:hover {
       background: var(--accent);
       color: #FFFFFF;
       border-color: var(--accent);
-      box-shadow: 0 0 16px rgba(59, 130, 246, 0.4);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      transform: translateY(-2px);
     }
   </style>
   <!-- Three.js & Vanta.js (Globe + Clouds) -->
@@ -1254,16 +1421,22 @@
 <!-- ==================== 3D VANTA GLOBE SPLASH SCREEN ==================== -->
 <div id="splash-screen" class="splash-overlay">
   <div id="vanta-globe-splash" class="splash-vanta-bg"></div>
-  <div class="splash-content">
+  
+  <!-- Top Badge -->
+  <div class="splash-top">
     <div class="splash-badge">
-      <span class="splash-pulse-dot"></span> GLOBAL INTELLIGENCE
+      <span class="splash-pulse-dot"></span> GLOBAL INTELLIGENCE NETWORK
     </div>
-    <div class="splash-logo-container">
-      <img src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies" class="splash-logo" width="220" height="40" />
-    </div>
-    <p class="splash-tagline">Engineering Digital Transformation</p>
-    
-    <!-- Progress Bar -->
+  </div>
+
+  <!-- Center Floating Typography -->
+  <div class="splash-center">
+    <h1 class="splash-brand-title">VSGRPS</h1>
+    <div class="splash-brand-sub">Engineering Digital Transformation</div>
+  </div>
+
+  <!-- Bottom Loader & Action -->
+  <div class="splash-bottom">
     <div class="splash-loader-bar">
       <div class="splash-loader-fill" id="splash-progress"></div>
     </div>
@@ -1271,7 +1444,6 @@
       <span id="splash-status-text">INITIALIZING SYSTEMS...</span>
       <span id="splash-percent">0%</span>
     </div>
-
     <button id="splash-skip-btn" class="splash-skip" onclick="dismissSplash()">
       Enter Studio <i class="bi bi-arrow-right"></i>
     </button>
@@ -2950,28 +3122,185 @@
     updateThemeIcon(newTheme);
   });
 
-  // ---- 3D Vanta Globe Splash Screen Logic ----
-  let splashGlobe = null;
-  function initSplashGlobe() {
-    if (typeof VANTA === 'undefined' || !VANTA.GLOBE) return;
-    try {
-      splashGlobe = VANTA.GLOBE({
-        el: "#vanta-globe-splash",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        color: 0x3b82f6,
-        color2: 0x00d2ff,
-        size: 1.15,
-        backgroundColor: 0x050811
-      });
-    } catch (e) {
-      console.warn("Splash Globe fallback:", e);
+  // ---- Real-World Earth Cyber Globe Splash Engine ----
+  let splashScene, splashCamera, splashRenderer, splashGlobeGroup, splashAnimId;
+
+  function latLongToVector3(lat, lon, radius, alt = 0) {
+    const phi = (90 - lat) * (Math.PI / 180);
+    const theta = (lon + 180) * (Math.PI / 180);
+    const r = radius + alt;
+    return new THREE.Vector3(
+      -r * Math.sin(phi) * Math.cos(theta),
+      r * Math.cos(phi),
+      r * Math.sin(phi) * Math.sin(theta)
+    );
+  }
+
+  const globalTechHubs = [
+    { name: "India HQ", lat: 11.45, lon: 78.17 },
+    { name: "Singapore", lat: 1.35, lon: 103.82 },
+    { name: "Dubai", lat: 25.20, lon: 55.27 },
+    { name: "London", lat: 51.50, lon: -0.12 },
+    { name: "New York", lat: 40.71, lon: -74.00 },
+    { name: "San Francisco", lat: 37.77, lon: -122.41 },
+    { name: "Tokyo", lat: 35.67, lon: 139.65 },
+    { name: "Sydney", lat: -33.86, lon: 151.20 }
+  ];
+
+  function createEarthTexture() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1024;
+    canvas.height = 512;
+    const ctx = canvas.getContext('2d');
+
+    // Deep Ocean Background
+    ctx.fillStyle = '#050c1e';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Procedural continents drawing (Asia, Europe, Africa, Americas, Australia)
+    ctx.fillStyle = '#1d4ed8';
+    
+    function drawLandmass(x, y, w, h) {
+      ctx.beginPath();
+      for (let i = 0; i < 40; i++) {
+        const px = x + (Math.random() - 0.5) * w;
+        const py = y + (Math.random() - 0.5) * h;
+        const rad = Math.random() * 22 + 10;
+        ctx.arc(px, py, rad, 0, Math.PI * 2);
+      }
+      ctx.fill();
     }
+
+    drawLandmass(420, 100, 240, 150); // Europe / Asia
+    drawLandmass(450, 230, 140, 180); // Africa
+    drawLandmass(600, 140, 150, 160); // East Asia / India
+    drawLandmass(160, 90, 160, 140);  // North America
+    drawLandmass(240, 250, 110, 180); // South America
+    drawLandmass(760, 310, 110, 90);   // Australia
+
+    return new THREE.CanvasTexture(canvas);
+  }
+  
+  function initSplashGlobe() {
+    const wrap = document.getElementById('vanta-globe-splash');
+    if (!wrap || typeof THREE === 'undefined') return;
+    wrap.innerHTML = '';
+
+    splashScene = new THREE.Scene();
+    splashCamera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    splashCamera.position.z = 240;
+
+    splashRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    splashRenderer.setSize(window.innerWidth, window.innerHeight);
+    splashRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    wrap.appendChild(splashRenderer.domElement);
+
+    splashGlobeGroup = new THREE.Group();
+    splashScene.add(splashGlobeGroup);
+
+    const radius = 68;
+
+    // 1. Continental Earth Sphere
+    const earthGeo = new THREE.SphereGeometry(radius, 64, 64);
+    const earthTexture = createEarthTexture();
+    const earthMat = new THREE.MeshPhongMaterial({
+      map: earthTexture,
+      bumpScale: 0.05,
+      specular: 0x3b82f6,
+      shininess: 15,
+      transparent: true,
+      opacity: 0.95
+    });
+    const earthMesh = new THREE.Mesh(earthGeo, earthMat);
+    splashGlobeGroup.add(earthMesh);
+
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0x38bdf8, 1.2);
+    splashGlobeGroup.add(ambientLight);
+    const dirLight = new THREE.DirectionalLight(0x00f0ff, 1.8);
+    dirLight.position.set(100, 50, 150);
+    splashGlobeGroup.add(dirLight);
+
+    // 2. Glowing Atmosphere Halo
+    const atmosGeo = new THREE.SphereGeometry(radius * 1.03, 32, 32);
+    const atmosMat = new THREE.MeshBasicMaterial({
+      color: 0x3b82f6,
+      transparent: true,
+      opacity: 0.15,
+      side: THREE.BackSide
+    });
+    splashGlobeGroup.add(new THREE.Mesh(atmosGeo, atmosMat));
+
+    // 3. Tech Hub City Nodes on Continents
+    globalTechHubs.forEach(hub => {
+      const pos = latLongToVector3(hub.lat, hub.lon, radius, 0.5);
+      const nodeGeo = new THREE.SphereGeometry(1.4, 16, 16);
+      const nodeMat = new THREE.MeshBasicMaterial({ color: 0x00F0FF });
+      const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
+      nodeMesh.position.copy(pos);
+      splashGlobeGroup.add(nodeMesh);
+
+      const ringGeo = new THREE.RingGeometry(1.8, 2.4, 32);
+      const ringMat = new THREE.MeshBasicMaterial({ color: 0x60A5FA, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
+      const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+      ringMesh.position.copy(pos);
+      ringMesh.lookAt(0, 0, 0);
+      splashGlobeGroup.add(ringMesh);
+    });
+
+    // 4. Arcs connecting Global Tech Hubs
+    const connections = [
+      [0, 1], // India -> Singapore
+      [0, 2], // India -> Dubai
+      [2, 3], // Dubai -> London
+      [3, 4], // London -> NY
+      [4, 5], // NY -> San Francisco
+      [5, 6], // SF -> Tokyo
+      [1, 7]  // Singapore -> Sydney
+    ];
+
+    connections.forEach(([startIdx, endIdx]) => {
+      const p1 = latLongToVector3(globalTechHubs[startIdx].lat, globalTechHubs[startIdx].lon, radius);
+      const p2 = latLongToVector3(globalTechHubs[endIdx].lat, globalTechHubs[endIdx].lon, radius);
+
+      const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
+      const dist = p1.distanceTo(p2);
+      mid.normalize().multiplyScalar(radius + dist * 0.25);
+
+      const curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
+      const points = curve.getPoints(40);
+      const curveGeo = new THREE.BufferGeometry().setFromPoints(points);
+      const curveMat = new THREE.LineBasicMaterial({
+        color: 0x00F0FF,
+        transparent: true,
+        opacity: 0.65,
+        linewidth: 2
+      });
+      const arcLine = new THREE.Line(curveGeo, curveMat);
+      splashGlobeGroup.add(arcLine);
+    });
+
+    // 5. Orbital Ring
+    const orbitRingGeo = new THREE.RingGeometry(radius * 1.35, radius * 1.38, 64);
+    const orbitRingMat = new THREE.MeshBasicMaterial({
+      color: 0x3B82F6,
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.35
+    });
+    const orbitRing = new THREE.Mesh(orbitRingGeo, orbitRingMat);
+    orbitRing.rotation.x = Math.PI / 3.5;
+    splashGlobeGroup.add(orbitRing);
+
+    function animateSplashGlobe() {
+      splashAnimId = requestAnimationFrame(animateSplashGlobe);
+      if (splashGlobeGroup) {
+        splashGlobeGroup.rotation.y += 0.004;
+        splashGlobeGroup.rotation.x += 0.001;
+      }
+      splashRenderer.render(splashScene, splashCamera);
+    }
+    animateSplashGlobe();
   }
 
   let splashProgress = 0;
@@ -2980,8 +3309,8 @@
   const statusText = document.getElementById('splash-status-text');
 
   const statusMessages = [
-    'CONNECTING TO CLOUD MESH...',
-    'LOADING NEURAL ASSETS...',
+    'CONNECTING TO GLOBAL MESH...',
+    'SYNCING CLOUD NODES...',
     'CONFIGURING ARCHITECTURE...',
     'SYSTEM READY'
   ];
@@ -3002,9 +3331,9 @@
 
     if (splashProgress >= 100) {
       clearInterval(splashInterval);
-      setTimeout(dismissSplash, 300);
+      setTimeout(dismissSplash, 200);
     }
-  }, 40);
+  }, 35);
 
   function dismissSplash() {
     clearInterval(splashInterval);
@@ -3012,16 +3341,18 @@
     if (splash && !splash.classList.contains('hidden-splash')) {
       splash.classList.add('hidden-splash');
       setTimeout(() => {
-        if (splashGlobe) {
-          splashGlobe.destroy();
-          splashGlobe = null;
+        if (splashAnimId) cancelAnimationFrame(splashAnimId);
+        if (splashRenderer) {
+          splashRenderer.dispose();
+          const wrap = document.getElementById('vanta-globe-splash');
+          if (wrap) wrap.innerHTML = '';
         }
         initVantaClouds();
-      }, 800);
+      }, 700);
     }
   }
 
-  // Initialize globe immediately
+  // Initialize custom globe immediately
   initSplashGlobe();
 
   // ---- Vanta.js Clouds Background Init ----
