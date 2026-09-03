@@ -1115,12 +1115,168 @@
       0%, 100% { transform: translateY(-10%); }
       50% { transform: translateY(110vh); }
     }
+    /* Splash Screen Styles */
+    .splash-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100vh;
+      background: #050811;
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+    }
+    .splash-overlay.hidden-splash {
+      opacity: 0;
+      transform: scale(1.06);
+      pointer-events: none;
+      visibility: hidden;
+    }
+    .splash-vanta-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    .splash-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 32px 28px;
+      max-width: 440px;
+      width: 90%;
+      background: rgba(8, 12, 20, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 28px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(59, 130, 246, 0.15);
+      animation: splashCardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes splashCardIn {
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .splash-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #60A5FA;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+    .splash-pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #3B82F6;
+      box-shadow: 0 0 8px #3B82F6;
+      animation: pulse 1.5s infinite;
+    }
+    .splash-logo {
+      height: 40px;
+      width: auto;
+      margin-bottom: 12px;
+    }
+    .splash-tagline {
+      color: #94A3B8;
+      font-size: 13px;
+      margin-bottom: 24px;
+      letter-spacing: 0.02em;
+    }
+    .splash-loader-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 100px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .splash-loader-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #3B82F6, #00D2FF);
+      border-radius: 100px;
+      box-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
+      transition: width 0.1s linear;
+    }
+    .splash-status-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748B;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+    }
+    .splash-skip {
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #93C5FD;
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .splash-skip:hover {
+      background: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+      box-shadow: 0 0 16px rgba(59, 130, 246, 0.4);
+    }
   </style>
-  <!-- Three.js & Vanta.js Clouds Background -->
+  <!-- Three.js & Vanta.js (Globe + Clouds) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
 </head>
 <body class="grid-bg">
+
+<!-- ==================== 3D VANTA GLOBE SPLASH SCREEN ==================== -->
+<div id="splash-screen" class="splash-overlay">
+  <div id="vanta-globe-splash" class="splash-vanta-bg"></div>
+  <div class="splash-content">
+    <div class="splash-badge">
+      <span class="splash-pulse-dot"></span> GLOBAL INTELLIGENCE
+    </div>
+    <div class="splash-logo-container">
+      <img src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies" class="splash-logo" width="220" height="40" />
+    </div>
+    <p class="splash-tagline">Engineering Digital Transformation</p>
+    
+    <!-- Progress Bar -->
+    <div class="splash-loader-bar">
+      <div class="splash-loader-fill" id="splash-progress"></div>
+    </div>
+    <div class="splash-status-row">
+      <span id="splash-status-text">INITIALIZING SYSTEMS...</span>
+      <span id="splash-percent">0%</span>
+    </div>
+
+    <button id="splash-skip-btn" class="splash-skip" onclick="dismissSplash()">
+      Enter Studio <i class="bi bi-arrow-right"></i>
+    </button>
+  </div>
+</div>
 
 <!-- ==================== VANTA.JS CLOUDS BACKGROUND ==================== -->
 <div id="vanta-clouds-bg" style="position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none;opacity:1;"></div>
@@ -2793,6 +2949,80 @@
     localStorage.setItem('vsgrps_theme', newTheme);
     updateThemeIcon(newTheme);
   });
+
+  // ---- 3D Vanta Globe Splash Screen Logic ----
+  let splashGlobe = null;
+  function initSplashGlobe() {
+    if (typeof VANTA === 'undefined' || !VANTA.GLOBE) return;
+    try {
+      splashGlobe = VANTA.GLOBE({
+        el: "#vanta-globe-splash",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x3b82f6,
+        color2: 0x00d2ff,
+        size: 1.15,
+        backgroundColor: 0x050811
+      });
+    } catch (e) {
+      console.warn("Splash Globe fallback:", e);
+    }
+  }
+
+  let splashProgress = 0;
+  const progressBar = document.getElementById('splash-progress');
+  const percentText = document.getElementById('splash-percent');
+  const statusText = document.getElementById('splash-status-text');
+
+  const statusMessages = [
+    'CONNECTING TO CLOUD MESH...',
+    'LOADING NEURAL ASSETS...',
+    'CONFIGURING ARCHITECTURE...',
+    'SYSTEM READY'
+  ];
+
+  const splashInterval = setInterval(() => {
+    splashProgress += 4;
+    if (splashProgress > 100) splashProgress = 100;
+
+    if (progressBar) progressBar.style.width = splashProgress + '%';
+    if (percentText) percentText.textContent = splashProgress + '%';
+
+    if (statusText) {
+      if (splashProgress < 30) statusText.textContent = statusMessages[0];
+      else if (splashProgress < 65) statusText.textContent = statusMessages[1];
+      else if (splashProgress < 90) statusText.textContent = statusMessages[2];
+      else statusText.textContent = statusMessages[3];
+    }
+
+    if (splashProgress >= 100) {
+      clearInterval(splashInterval);
+      setTimeout(dismissSplash, 300);
+    }
+  }, 40);
+
+  function dismissSplash() {
+    clearInterval(splashInterval);
+    const splash = document.getElementById('splash-screen');
+    if (splash && !splash.classList.contains('hidden-splash')) {
+      splash.classList.add('hidden-splash');
+      setTimeout(() => {
+        if (splashGlobe) {
+          splashGlobe.destroy();
+          splashGlobe = null;
+        }
+        initVantaClouds();
+      }, 800);
+    }
+  }
+
+  // Initialize globe immediately
+  initSplashGlobe();
 
   // ---- Vanta.js Clouds Background Init ----
   let vantaEffect = null;
