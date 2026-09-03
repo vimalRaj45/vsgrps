@@ -332,12 +332,29 @@
     }
 
     /* 60FPS Hardware Acceleration & Layout Containment */
+    section {
+      scroll-margin-top: 88px;
+    }
+
     .card, .service-card, .project-card, .why-card, .ai-showcase-step, .glass, .testimonial-card, .blog-card {
       transform: translateZ(0);
       -webkit-transform: translateZ(0);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       contain: paint;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease !important;
+    }
+
+    .card:hover, .service-card:hover, .project-card:hover, .why-card:hover, .testimonial-card:hover, .blog-card:hover {
+      transform: translateY(-6px) !important;
+    }
+
+    /* Tactile Smooth Click Physics for All Action Elements */
+    .btn-primary, .btn-outline, .btn-enter, .calc-pill, .tech-pill, .theme-toggle, .mobile-nav-link {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .btn-primary:active, .btn-outline:active, .btn-enter:active, .calc-pill:active, .tech-pill:active, .theme-toggle:active {
+      transform: scale(0.96) translateY(1px) !important;
     }
 
     /* Particle Background */
@@ -1504,12 +1521,11 @@
       box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
       transform: translateY(-2px);
     }
-    /* ==================== INTERACTIVE MODAL & CALCULATOR STYLES ==================== */
     #info-modal {
       position: fixed;
       inset: 0;
       z-index: 100000;
-      background: rgba(2, 6, 23, 0.8);
+      background: rgba(2, 6, 23, 0.82);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       display: flex;
@@ -1518,7 +1534,7 @@
       padding: 24px;
       opacity: 0;
       pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.35s ease !important;
     }
     #info-modal.active {
       opacity: 1;
@@ -1534,11 +1550,13 @@
       overflow-y: auto;
       padding: 32px;
       box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(59, 130, 246, 0.2);
-      transform: scale(0.95) translateY(20px);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: scale(0.92) translateY(24px);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease !important;
     }
     #info-modal.active .modal-content-card {
       transform: scale(1) translateY(0);
+      opacity: 1;
     }
     [data-theme="light"] .modal-content-card {
       background: #FFFFFF !important;
@@ -1554,7 +1572,7 @@
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -1562,12 +1580,14 @@
     .calc-pill:hover {
       border-color: #3B82F6;
       color: #93C5FD;
+      transform: translateY(-2px);
     }
     .calc-pill.active {
       background: #2563EB !important;
       border-color: #60A5FA !important;
       color: #FFFFFF !important;
       box-shadow: 0 0 16px rgba(37, 99, 235, 0.4);
+      transform: translateY(-2px) scale(1.02);
     }
     [data-theme="light"] .calc-pill {
       background: #F1F5F9;
@@ -1675,6 +1695,9 @@
       <a href="#services" class="text-sm font-medium hover:text-accent transition-colors" style="color:var(--text-muted);text-decoration:none;">Services</a>
       <a href="#products" class="text-sm font-medium hover:text-accent transition-colors" style="color:var(--text-muted);text-decoration:none;">Products</a>
       <a href="#projects" class="text-sm font-medium hover:text-accent transition-colors" style="color:var(--text-muted);text-decoration:none;">Projects</a>
+      <a href="#why" class="text-sm font-medium hover:text-accent transition-colors flex items-center gap-1.5" style="color:var(--text-muted);text-decoration:none;">
+        Why VSGRPS <span style="background:rgba(59,130,246,0.12);color:var(--accent);font-size:10px;font-weight:700;padding:2px 7px;border-radius:100px;">PROVEN</span>
+      </a>
       <a href="#tech" class="text-sm font-medium hover:text-accent transition-colors" style="color:var(--text-muted);text-decoration:none;">Tech Stack</a>
       <a href="#contact" class="text-sm font-medium hover:text-accent transition-colors" style="color:var(--text-muted);text-decoration:none;">Contact</a>
     </div>
@@ -1713,6 +1736,12 @@
       </a>
       <a href="#projects" class="mobile-nav-link flex items-center gap-3" style="color:var(--text-muted);text-decoration:none;font-size:16px;font-weight:500;">
         <i class="bi bi-briefcase"></i> Projects
+      </a>
+      <a href="#why" class="mobile-nav-link flex items-center gap-3" style="color:var(--text-muted);text-decoration:none;font-size:16px;font-weight:500;">
+        <i class="bi bi-star"></i> Why VSGRPS
+      </a>
+      <a href="#tech" class="mobile-nav-link flex items-center gap-3" style="color:var(--text-muted);text-decoration:none;font-size:16px;font-weight:500;">
+        <i class="bi bi-stack"></i> Tech Stack
       </a>
       <a href="#contact" class="mobile-nav-link flex items-center gap-3" style="color:var(--text-muted);text-decoration:none;font-size:16px;font-weight:500;">
         <i class="bi bi-envelope"></i> Contact
@@ -2615,11 +2644,31 @@
         <i class="bi bi-star"></i> Why VSGRPS
       </div>
       <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center" data-aos="fade-up" data-aos-delay="100" style="font-family:'Outfit',sans-serif;">
-        Why Choose <span class="gradient-text">Us</span>
+        Why Choose <span class="gradient-text">VSGRPS</span>
       </h2>
-      <p class="text-base max-w-2xl mx-auto text-center" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
-        We build sustainable, high-performing software tailored to your specific business goals.
+      <p class="text-base max-w-2xl mx-auto text-center mb-8" data-aos="fade-up" data-aos-delay="200" style="color:var(--text-muted);">
+        We engineer mission-critical digital systems with enterprise security, rapid deployment sprints, and continuous architectural scalability.
       </p>
+
+      <!-- Impressive Engineering Impact Metrics Bar -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-14" data-aos="fade-up" data-aos-delay="250">
+        <div class="card p-4 text-center" style="background:rgba(59,130,246,0.04);border-color:rgba(59,130,246,0.2);">
+          <div class="text-2xl font-bold text-accent mb-1" style="font-family:'Syne',sans-serif;">99.9%</div>
+          <div class="text-xs" style="color:var(--text-muted);font-weight:600;">Production SLA</div>
+        </div>
+        <div class="card p-4 text-center" style="background:rgba(34,197,94,0.04);border-color:rgba(34,197,94,0.2);">
+          <div class="text-2xl font-bold text-emerald-500 mb-1" style="font-family:'Syne',sans-serif;">10x</div>
+          <div class="text-xs" style="color:var(--text-muted);font-weight:600;">Deploy Velocity</div>
+        </div>
+        <div class="card p-4 text-center" style="background:rgba(168,85,247,0.04);border-color:rgba(168,85,247,0.2);">
+          <div class="text-2xl font-bold text-purple-400 mb-1" style="font-family:'Syne',sans-serif;">4.9 / 5</div>
+          <div class="text-xs" style="color:var(--text-muted);font-weight:600;">Client Score</div>
+        </div>
+        <div class="card p-4 text-center" style="background:rgba(14,165,233,0.04);border-color:rgba(14,165,233,0.2);">
+          <div class="text-2xl font-bold text-sky-400 mb-1" style="font-family:'Syne',sans-serif;">Zero</div>
+          <div class="text-xs" style="color:var(--text-muted);font-weight:600;">Legacy Tech Debt</div>
+        </div>
+      </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="card p-8 text-center" data-aos="fade-up" data-aos-delay="100">
@@ -3189,21 +3238,48 @@
     }
   }, { passive: true });
 
-  // ---- Mobile menu ----
+  // ---- Mobile Menu Handlers ----
   function openMobileMenu() {
-    document.getElementById('mobile-menu').classList.add('open');
-    document.getElementById('menu-overlay').classList.remove('hidden');
+    const menu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('menu-overlay');
+    if (menu) menu.classList.add('open');
+    if (overlay) overlay.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
   }
   function closeMobileMenu() {
-    document.getElementById('mobile-menu').classList.remove('open');
-    document.getElementById('menu-overlay').classList.add('hidden');
+    const menu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('menu-overlay');
+    if (menu) menu.classList.remove('open');
+    if (overlay) overlay.classList.add('hidden');
     document.body.style.overflow = '';
   }
-  document.getElementById('menu-toggle').addEventListener('click', openMobileMenu);
-  document.getElementById('menu-close').addEventListener('click', closeMobileMenu);
+  const menuToggle = document.getElementById('menu-toggle');
+  const menuClose = document.getElementById('menu-close');
+  if (menuToggle) menuToggle.addEventListener('click', openMobileMenu);
+  if (menuClose) menuClose.addEventListener('click', closeMobileMenu);
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
     link.addEventListener('click', closeMobileMenu);
+  });
+
+  // ---- Silky Smooth Anchor Scroll Controller ----
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        const offset = 80;
+        const bodyTop = document.body.getBoundingClientRect().top;
+        const elTop = targetEl.getBoundingClientRect().top;
+        const targetPos = elTop - bodyTop - offset;
+
+        window.scrollTo({
+          top: targetPos,
+          behavior: 'smooth'
+        });
+      }
+    });
   });
 
   // ---- Ultra-Optimized Particle System (Zero-Lag Squared Math) ----
