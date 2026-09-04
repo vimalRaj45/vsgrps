@@ -1,49 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VSGRPS • Real Satellite Earth Splash Screen</title>
+  <title>VSGRPS • 3D Real Architectural Skyscrapers & Cloud Metropolis</title>
+  
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Three.js & Vanta.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #020617;
-      color: #F1F5F9;
-      font-family: 'Outfit', sans-serif;
-      overflow: hidden;
-      height: 100vh;
-      width: 100vw;
+    :root {
+      --bg: #050810;
+      --card: #0F172A;
+      --border: #1E293B;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --accent: #3B82F6;
+      --accent-blue: #60A5FA;
     }
 
-    /* Fullscreen Splash Screen */
-    #splash-container {
+    [data-theme="light"] {
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --border: #E2E8F0;
+      --text: #0F172A;
+      --text-muted: #475569;
+      --accent: #2563EB;
+      --accent-blue: #3B82F6;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    /* Vanta Clouds Canvas */
+    #vanta-canvas-bg {
       position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      padding: 36px 24px 44px;
-      z-index: 100;
-      background: radial-gradient(circle at 50% 50%, #081636 0%, #020617 75%);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    #splash-container.exit-anim {
-      opacity: 0;
-      transform: scale(1.08);
+      z-index: 0;
       pointer-events: none;
     }
 
-    /* Three.js Canvas Container */
-    #globe-canvas-wrap {
-      position: absolute;
+    /* 3D Realistic Skyscrapers Canvas */
+    #towers-canvas-wrap {
+      position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
@@ -51,502 +70,1018 @@
       pointer-events: none;
     }
 
-    /* Premium Glassmorphic Center Card */
-    .glass-center-card {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0;
-      max-width: 520px;
-      width: 90%;
-      background: transparent !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      border: none !important;
-      box-shadow: none !important;
-      animation: glassCardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    @keyframes glassCardIn {
-      from { opacity: 0; transform: translateY(24px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    /* Glass Panels */
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
     }
 
-    /* Glass Badge */
-    .glass-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(59, 130, 246, 0.15);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(59, 130, 246, 0.35);
-      border-radius: 100px;
-      padding: 6px 16px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: #93C5FD;
-      box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
-      margin-bottom: 16px;
-    }
-    .pulse-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #00F0FF;
-      box-shadow: 0 0 10px #00F0FF;
-      animation: pulseAnim 2s infinite;
-    }
-    @keyframes pulseAnim {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
+    [data-theme="light"] .glass-panel {
+      background: rgba(255, 255, 255, 0.88);
+      border-color: rgba(226, 232, 240, 0.95);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
     }
 
-    .brand-title {
-      font-size: clamp(32px, 5vw, 44px);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
-      margin-bottom: 6px;
-    }
-    .brand-subtitle {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #94A3B8;
-      margin-bottom: 24px;
-    }
-
-    /* Glass Progress Bar */
-    .loader-wrap {
-      width: 100%;
-      margin-bottom: 16px;
-    }
-    .loader-track {
-      width: 100%;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 100px;
-      overflow: hidden;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
-    }
-    .loader-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #2563EB, #00F0FF);
-      box-shadow: 0 0 16px #00F0FF;
-      transition: width 0.06s linear;
-      border-radius: 100px;
-    }
-    .status-row {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      font-size: 11px;
-      font-weight: 700;
-      color: #64748B;
-      letter-spacing: 0.08em;
-      font-family: 'Space Grotesk', sans-serif;
-      margin-top: 8px;
-    }
-
-    .btn-enter {
-      background: rgba(37, 99, 235, 0.2);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(59, 130, 246, 0.4);
-      color: #93C5FD;
-      padding: 10px 26px;
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
-    }
-    .btn-enter:hover {
-      background: #3B82F6;
+    /* Buttons */
+    .btn-primary {
+      background: linear-gradient(135deg, #3B82F6, #2563EB);
       color: #FFFFFF;
-      border-color: #3B82F6;
-      box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      font-weight: 600;
+      border: 1px solid var(--accent);
+      padding: 9px 22px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .btn-outline:hover {
+      background: rgba(59, 130, 246, 0.1);
       transform: translateY(-2px);
     }
 
-    /* Style Switcher Controls */
-    .controls-panel {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 200;
+    /* Theme Toggle */
+    .theme-toggle-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
       display: flex;
-      gap: 8px;
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(16px);
-      padding: 6px;
-      border-radius: 100px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .control-btn {
-      background: transparent;
-      border: none;
-      color: #94A3B8;
-      padding: 6px 14px;
-      border-radius: 100px;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .control-btn.active {
-      background: #3B82F6;
-      color: #FFFFFF;
-      box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
-    }
-
-    /* Replay Button */
-    .replay-btn {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 200;
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #E2E8F0;
-      padding: 8px 16px;
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s;
-    }
-    .replay-btn:hover {
-      border-color: #3B82F6;
-      color: #60A5FA;
-    }
-
-    /* Main Website Reveal Simulator */
-    .website-preview {
-      display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    .theme-toggle-btn:hover {
+      transform: scale(1.1);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Glowing Badge */
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #93C5FD;
+    }
+    [data-theme="light"] .section-badge {
+      background: rgba(37, 99, 235, 0.1);
+      color: #2563EB;
+      border-color: rgba(37, 99, 235, 0.25);
+    }
+
+    /* Tower Control Panel HUD */
+    .hud-card {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 50;
+      max-width: 320px;
+      width: calc(100vw - 48px);
+      padding: 18px;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
       text-align: center;
-      padding: 24px;
+    }
+    [data-theme="light"] .stat-box {
+      background: #FFFFFF;
+    }
+
+    .arch-chip {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(59, 130, 246, 0.15);
+      color: #93C5FD;
+      display: inline-block;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      border: 1px solid rgba(59, 130, 246, 0.25);
     }
   </style>
 </head>
 <body>
 
-  <!-- Controls Panel to test styles -->
-  <div class="controls-panel">
-    <button class="control-btn active" onclick="setGlobeMode('satellite')">1. NASA Satellite Night Earth</button>
-    <button class="control-btn" onclick="setGlobeMode('blue-marble')">2. Blue Marble Day Earth</button>
-  </div>
+  <!-- Layer 0: Vanta.js Clouds Background -->
+  <div id="vanta-canvas-bg"></div>
 
-  <!-- Replay Button -->
-  <button class="replay-btn" onclick="replaySplash()">
-    <i class="bi bi-arrow-counterclockwise"></i> Replay Splash
-  </button>
+  <!-- Layer 1: Three.js 3D Realistic Skyscrapers Canvas -->
+  <div id="towers-canvas-wrap"></div>
 
-  <!-- Main Website Mock (Behind Splash) -->
-  <div class="website-preview">
-    <h2 style="font-size:32px;font-weight:700;margin-bottom:12px;color:#FFFFFF;">Welcome to VSGRPS Technologies</h2>
-    <p style="color:#94A3B8;max-width:500px;margin-bottom:24px;">The real-world NASA satellite Earth splash screen dissolved seamlessly into your main website experience.</p>
-    <a href="index.html" style="color:#3B82F6;text-decoration:none;font-weight:600;"><i class="bi bi-arrow-left"></i> Return to Main Index</a>
-  </div>
-
-  <!-- Fullscreen Splash Screen -->
-  <div id="splash-container">
-    <div id="globe-canvas-wrap"></div>
-
-    <div></div> <!-- Top spacer -->
-
-    <!-- Glassmorphic Center Floating Card -->
-    <div class="glass-center-card">
-      <div class="glass-badge">
-        <span class="pulse-dot"></span> GLOBAL INTELLIGENCE NETWORK
-      </div>
-      <h1 class="brand-title">VSGRPS</h1>
-      <p class="brand-subtitle">Engineering Digital Transformation</p>
-
-      <div class="loader-wrap">
-        <div class="loader-track">
-          <div class="loader-bar" id="loader-fill"></div>
+  <!-- Layer 2: Main Website Interface Overlay -->
+  <div class="relative z-10 min-h-screen flex flex-col justify-between">
+    
+    <!-- Top Navigation -->
+    <header class="w-full px-6 py-4 flex items-center justify-between max-w-[1400px] mx-auto">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-[6px] flex items-center justify-center font-black text-white text-base bg-gradient-to-tr from-blue-600 to-cyan-400 shadow-md">
+          VS
         </div>
-        <div class="status-row">
-          <span id="status-text">INITIALIZING GLOBAL MESH...</span>
-          <span id="percent-text">0%</span>
+        <div>
+          <div class="font-extrabold text-base tracking-tight leading-none" style="color:var(--text);">VSGRPS</div>
+          <div class="text-[10px] font-bold tracking-widest uppercase" style="color:var(--accent);">REAL ARCHITECTURAL TOWERS</div>
         </div>
       </div>
 
-      <button class="btn-enter" onclick="dismissSplash()">
-        Enter Studio <i class="bi bi-arrow-right"></i>
-      </button>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light/dark theme">
+          <i class="bi bi-sun"></i>
+        </button>
+        <a href="index.html" class="btn-primary" style="font-size:13px;padding:8px 18px;">
+          <i class="bi bi-arrow-left"></i> Back to Main Site
+        </a>
+      </div>
+    </header>
+
+    <!-- Hero Content -->
+    <main class="w-full max-w-[1400px] mx-auto px-6 py-12 flex-1 flex flex-col justify-center">
+      <div class="max-w-2xl">
+        <div class="section-badge mb-4">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping inline-block"></span>
+          3D Street View • Manhattan Skyscraper Canyon
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15] mb-6" style="color:var(--text);">
+          Manhattan Street View<br/>
+          <span class="bg-gradient-to-r from-amber-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">Towering Skyscrapers</span>
+        </h1>
+
+        <p class="text-base sm:text-lg mb-6 leading-relaxed" style="color:var(--text-muted);">
+          Gaze up from street level into an authentic urban canyon lined with real rectangular corporate high-rises, the iconic 28-faceted sawtooth glass tower, illuminated storefronts, street lamps, and soaring corporate towers reaching into the clouds.
+        </p>
+
+        <!-- Landmark Architectural Tags -->
+        <div class="mb-8 flex flex-wrap gap-1">
+          <span class="arch-chip" style="background:rgba(245,158,11,0.25);border-color:rgba(245,158,11,0.6);color:#FDE68A;"><i class="bi bi-star-fill text-amber-400"></i> Sawtooth Pleated High-Rise (Photo Style)</span>
+          <span class="arch-chip"><i class="bi bi-building"></i> Stepped Setback Skyscraper</span>
+          <span class="arch-chip"><i class="bi bi-grid"></i> Modernist Glass Monolith</span>
+          <span class="arch-chip"><i class="bi bi-window"></i> Slender Grid Tower</span>
+          <span class="arch-chip"><i class="bi bi-signpost-split"></i> Paved Avenue & Street Lamps</span>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10">
+          <button onclick="triggerTowersRise()" class="btn-primary">
+            <i class="bi bi-building-up"></i> Animate Skyline Rise
+          </button>
+          <button onclick="regenerateCity()" class="btn-outline">
+            <i class="bi bi-arrow-repeat"></i> Regenerate Street
+          </button>
+        </div>
+
+        <!-- 4 Stat Pills -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xl">
+          <div class="stat-box">
+            <div class="text-2xl font-extrabold text-amber-400 font-display">Street Level</div>
+            <div class="text-xs font-semibold" style="color:var(--text-muted);">Worm's Eye View</div>
+          </div>
+          <div class="stat-box">
+            <div class="text-2xl font-extrabold text-blue-400 font-display">Rectangular</div>
+            <div class="text-xs font-semibold" style="color:var(--text-muted);">Manhattan Slabs</div>
+          </div>
+          <div class="stat-box">
+            <div class="text-2xl font-extrabold text-cyan-400 font-display">PBR Glass</div>
+            <div class="text-xs font-semibold" style="color:var(--text-muted);">Curtain Walls</div>
+          </div>
+          <div class="stat-box">
+            <div class="text-2xl font-extrabold text-amber-300 font-display">Lit Lobbies</div>
+            <div class="text-xs font-semibold" style="color:var(--text-muted);">Storefront Glass</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Note -->
+    <footer class="w-full px-6 py-4 text-center text-xs" style="color:var(--text-muted);">
+      Move your mouse or drag on touchscreens to explore the 3D landmark architectural metropolis.
+    </footer>
+  </div>
+
+  <!-- Interactive 3D HUD Controller -->
+  <div class="glass-panel hud-card">
+    <div class="flex items-center justify-between mb-3 border-b pb-2" style="border-color:var(--border);">
+      <div class="text-xs font-bold uppercase tracking-wider text-blue-400 flex items-center gap-1.5">
+        <i class="bi bi-sliders"></i> Architecture Controls
+      </div>
+      <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono">REAL PBR</span>
     </div>
+    
+    <div class="flex flex-col gap-3 text-xs">
+      <div>
+        <label class="flex justify-between font-semibold mb-1" style="color:var(--text);">
+          <span>Skyscraper Height</span>
+          <span id="height-val" class="text-blue-400">100%</span>
+        </label>
+        <input id="height-slider" type="range" min="40" max="170" value="100" class="w-full accent-blue-500" />
+      </div>
 
-    <div></div> <!-- Bottom spacer -->
+      <div>
+        <label class="flex justify-between font-semibold mb-1" style="color:var(--text);">
+          <span>Atmosphere / Cloud Blend</span>
+          <span id="fog-val" class="text-blue-400">Medium</span>
+        </label>
+        <input id="fog-slider" type="range" min="10" max="90" value="50" class="w-full accent-blue-500" />
+      </div>
+
+      <div class="flex items-center justify-between pt-1">
+        <span class="font-semibold" style="color:var(--text);">Window Office Lights</span>
+        <input id="windows-toggle" type="checkbox" checked class="w-4 h-4 accent-blue-500 cursor-pointer" />
+      </div>
+
+      <div class="flex items-center justify-between">
+        <span class="font-semibold" style="color:var(--text);">Aviation Beacon Strobe</span>
+        <input id="beacons-toggle" type="checkbox" checked class="w-4 h-4 accent-blue-500 cursor-pointer" />
+      </div>
+    </div>
   </div>
 
+  <!-- ==================== THREE.JS PROCEDURAL SKYSCRAPER & VANTA ENGINE ==================== -->
   <script>
-    // ---- Three.js Photorealistic Satellite Earth Engine ----
-    let scene, camera, renderer, globeGroup, animId;
-    let currentMode = 'satellite';
-    const container = document.getElementById('globe-canvas-wrap');
+    // ---- 1. Vanta Clouds Initialization ----
+    let vantaCloudsEffect = null;
 
-    const textureLoader = new THREE.TextureLoader();
+    function initVantaClouds(theme) {
+      const isDark = theme === 'dark';
+      if (vantaCloudsEffect) {
+        vantaCloudsEffect.destroy();
+        vantaCloudsEffect = null;
+      }
 
-    // High-Res Satellite Earth Textures
-    const textures = {
-      night: 'https://cdn.jsdelivr.net/gh/vasturiano/three-globe/example/img/earth-night.jpg',
-      day: 'https://cdn.jsdelivr.net/gh/vasturiano/three-globe/example/img/earth-blue-marble.jpg',
-      bump: 'https://cdn.jsdelivr.net/gh/vasturiano/three-globe/example/img/earth-topology.png'
-    };
-
-    function latLongToVector3(lat, lon, radius, alt = 0) {
-      const phi = (90 - lat) * (Math.PI / 180);
-      const theta = (lon + 180) * (Math.PI / 180);
-      const r = radius + alt;
-      return new THREE.Vector3(
-        -r * Math.sin(phi) * Math.cos(theta),
-        r * Math.cos(phi),
-        r * Math.sin(phi) * Math.sin(theta)
-      );
+      try {
+        vantaCloudsEffect = VANTA.CLOUDS({
+          el: "#vanta-canvas-bg",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          skyColor: isDark ? 0x050c1e : 0x5a9cf8,
+          cloudColor: isDark ? 0x1b3562 : 0xffffff,
+          cloudShadowColor: isDark ? 0x040814 : 0x225dc1,
+          sunColor: isDark ? 0x0066ff : 0xffaa00,
+          sunGlareColor: isDark ? 0x00d2ff : 0xffdd66,
+          sunlightColor: isDark ? 0x2563eb : 0xffffff,
+          speed: 0.85
+        });
+      } catch (err) {
+        console.warn("Vanta clouds initialization:", err);
+      }
     }
 
-    const hubs = [
-      { name: "India HQ", lat: 11.45, lon: 78.17 },
-      { name: "Singapore", lat: 1.35, lon: 103.82 },
-      { name: "Dubai", lat: 25.20, lon: 55.27 },
-      { name: "London", lat: 51.50, lon: -0.12 },
-      { name: "New York", lat: 40.71, lon: -74.00 },
-      { name: "San Francisco", lat: 37.77, lon: -122.41 },
-      { name: "Tokyo", lat: 35.67, lon: 139.65 },
-      { name: "Sydney", lat: -33.86, lon: 151.20 }
-    ];
+    // ---- 2. High-Resolution Curtain Wall & Storefront Texture Generator ----
+    function generateCurtainWallTexture(isDark, windowLightsEnabled = true) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 1024;
+      canvas.height = 2048;
+      const ctx = canvas.getContext('2d');
 
-    function initGlobe() {
-      if (!container) return;
-      container.innerHTML = '';
+      // Base Glass Reflective Gradient
+      const bgGrad = ctx.createLinearGradient(0, 0, 1024, 2048);
+      if (isDark) {
+        bgGrad.addColorStop(0, '#0a162b');
+        bgGrad.addColorStop(0.5, '#071020');
+        bgGrad.addColorStop(1, '#040914');
+      } else {
+        bgGrad.addColorStop(0, '#c2ddfd');
+        bgGrad.addColorStop(0.5, '#99c3fb');
+        bgGrad.addColorStop(1, '#6ea6f5');
+      }
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, 1024, 2048);
+
+      // Floor Panels & Window Grid System
+      const cols = 24;
+      const rows = 64;
+      const cellW = 1024 / cols;
+      const cellH = 2048 / rows;
+
+      for (let r = 0; r < rows; r++) {
+        const floorY = r * cellH;
+        const isPodium = r > rows - 8; // Double-height bottom street-level retail & lobby
+        const isMechanicalFloor = (r % 18 === 0 && r !== 0);
+
+        if (isPodium) {
+          // Street Level Warm Storefronts & Grand Lobby Glazing
+          ctx.fillStyle = isDark ? 'rgba(251, 191, 36, 0.85)' : 'rgba(255, 255, 255, 0.95)';
+          ctx.fillRect(0, floorY, 1024, cellH);
+          ctx.strokeStyle = '#d97706';
+          ctx.lineWidth = 3;
+          ctx.strokeRect(0, floorY, 1024, cellH);
+          continue;
+        }
+
+        if (isMechanicalFloor) {
+          ctx.fillStyle = isDark ? '#02050b' : '#334155';
+          ctx.fillRect(0, floorY, 1024, cellH);
+          for (let l = 0; l < cellH; l += 4) {
+            ctx.fillStyle = isDark ? 'rgba(30, 58, 138, 0.4)' : 'rgba(255, 255, 255, 0.3)';
+            ctx.fillRect(0, floorY + l, 1024, 1.5);
+          }
+          continue;
+        }
+
+        for (let c = 0; c < cols; c++) {
+          const x = c * cellW;
+          const y = floorY;
+
+          const isLit = windowLightsEnabled && (Math.random() > 0.40);
+          const isSkyReflection = Math.random() > 0.65;
+          const lightType = Math.random();
+
+          if (isDark) {
+            if (isLit) {
+              if (lightType > 0.6) {
+                ctx.fillStyle = 'rgba(224, 242, 254, 0.9)'; // Tech office blue
+              } else if (lightType > 0.25) {
+                ctx.fillStyle = 'rgba(254, 240, 138, 0.85)'; // Warm executive amber
+              } else {
+                ctx.fillStyle = 'rgba(56, 189, 248, 0.75)';  // Cyan glow
+              }
+            } else if (isSkyReflection) {
+              ctx.fillStyle = 'rgba(37, 99, 235, 0.35)';
+            } else {
+              ctx.fillStyle = 'rgba(8, 15, 28, 0.92)';
+            }
+          } else {
+            if (isLit) {
+              ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+            } else {
+              ctx.fillStyle = 'rgba(191, 219, 254, 0.65)';
+            }
+          }
+
+          ctx.fillRect(x + 2, y + 2, cellW - 4, cellH - 4);
+
+          // Aluminum Window Frames
+          ctx.strokeStyle = isDark ? 'rgba(30, 58, 138, 0.85)' : 'rgba(255, 255, 255, 0.85)';
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(x, y, cellW, cellH);
+        }
+
+        // Structural Floor Slab Edge
+        ctx.fillStyle = isDark ? '#1e3a8a' : '#1d4ed8';
+        ctx.fillRect(0, floorY + cellH - 3, 1024, 3);
+      }
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      return texture;
+    }
+
+    // ---- 3. Three.js Street View Urban Canyon Engine ----
+    let scene, camera, renderer;
+    let cityGroup;
+    let towerObjects = [];
+    let beaconLights = [];
+    let targetCameraX = 0, targetCameraY = 3.5, targetCameraZ = 20;
+    let targetLookAtY = 38, targetLookAtX = 0;
+    let currentHeightScale = 1.0;
+    let isRisingAnimation = true;
+    let viewMode = 'street'; // 'street' or 'aerial'
+
+    function initThreeCity() {
+      const container = document.getElementById('towers-canvas-wrap');
+      const width = window.innerWidth;
+      const height = window.innerHeight;
 
       scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.z = 245;
+      
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      scene.fog = new THREE.FogExp2(isDark ? 0x050c1e : 0x5a9cf8, 0.009);
 
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      // Wide angle Street View perspective camera
+      camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1600);
+      camera.position.set(0, 3.5, 22);
+
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+      renderer.setSize(width, height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.2;
       container.appendChild(renderer.domElement);
 
-      globeGroup = new THREE.Group();
-      scene.add(globeGroup);
+      // Dynamic Urban Street Lighting
+      const ambientLight = new THREE.AmbientLight(isDark ? 0x243b55 : 0xa5c9f5, 1.6);
+      scene.add(ambientLight);
 
-      buildGlobe(currentMode);
+      const sunLight = new THREE.DirectionalLight(0xffffff, 2.4);
+      sunLight.position.set(30, 90, 40);
+      scene.add(sunLight);
+
+      const cyanStreetRim = new THREE.DirectionalLight(0x38bdf8, 2.0);
+      cyanStreetRim.position.set(-40, 20, -10);
+      scene.add(cyanStreetRim);
+
+      const amberStreetGlow = new THREE.DirectionalLight(0xf59e0b, 1.8);
+      amberStreetGlow.position.set(0, -5, 20);
+      scene.add(amberStreetGlow);
+
+      // Build Street Level Urban Canyon
+      buildRealisticCity();
+
+      // Window & Mouse Handlers
+      window.addEventListener('resize', onWindowResize);
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('touchmove', onTouchMove, { passive: true });
+
       animate();
     }
 
-    function buildGlobe(mode) {
-      while (globeGroup.children.length > 0) {
-        const obj = globeGroup.children[0];
-        if (obj.geometry) obj.geometry.dispose();
-        if (obj.material) obj.material.dispose();
-        globeGroup.remove(obj);
+    // ---- 4. All Rectangular Modern Skyscraper & Street Constructors ----
+    function buildRealisticCity() {
+      if (cityGroup) {
+        scene.remove(cityGroup);
       }
 
-      const radius = 72;
-      const mapUrl = mode === 'satellite' ? textures.night : textures.day;
+      cityGroup = new THREE.Group();
+      towerObjects = [];
+      beaconLights = [];
 
-      // Real Satellite Earth Sphere
-      const earthGeo = new THREE.SphereGeometry(radius, 64, 64);
-      const earthMap = textureLoader.load(mapUrl);
-      
-      const earthMat = new THREE.MeshPhongMaterial({
-        map: earthMap,
-        specular: 0x3b82f6,
-        shininess: 12,
-        emissive: mode === 'satellite' ? 0x051535 : 0x000000,
-        emissiveIntensity: 0.4
-      });
-      const earthMesh = new THREE.Mesh(earthGeo, earthMat);
-      globeGroup.add(earthMesh);
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const windowsEnabled = document.getElementById('windows-toggle') ? document.getElementById('windows-toggle').checked : true;
+      const facadeTex = generateCurtainWallTexture(isDark, windowsEnabled);
 
-      // Atmospheric Lighting
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
-      globeGroup.add(ambientLight);
-      const dirLight = new THREE.DirectionalLight(0x38bdf8, 1.8);
-      dirLight.position.set(120, 60, 150);
-      globeGroup.add(dirLight);
-
-      // Outer Glowing Atmosphere Halo
-      const atmosGeo = new THREE.SphereGeometry(radius * 1.04, 32, 32);
-      const atmosMat = new THREE.MeshBasicMaterial({
-        color: 0x00d2ff,
+      // Materials
+      const glassMat = new THREE.MeshPhysicalMaterial({
+        map: facadeTex,
+        color: isDark ? 0x142850 : 0xe0efff,
+        metalness: 0.88,
+        roughness: 0.1,
+        reflectivity: 0.98,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.06,
         transparent: true,
-        opacity: 0.18,
-        side: THREE.BackSide
-      });
-      globeGroup.add(new THREE.Mesh(atmosGeo, atmosMat));
-
-      // Global Tech Hubs & Glowing Radar Beacons
-      hubs.forEach(hub => {
-        const pos = latLongToVector3(hub.lat, hub.lon, radius, 0.6);
-        
-        // Node dot
-        const nodeGeo = new THREE.SphereGeometry(1.3, 16, 16);
-        const nodeMat = new THREE.MeshBasicMaterial({ color: 0x00F0FF });
-        const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
-        nodeMesh.position.copy(pos);
-        globeGroup.add(nodeMesh);
-
-        // Pulsing Ring
-        const ringGeo = new THREE.RingGeometry(1.6, 2.3, 32);
-        const ringMat = new THREE.MeshBasicMaterial({ color: 0x60A5FA, side: THREE.DoubleSide, transparent: true, opacity: 0.7 });
-        const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-        ringMesh.position.copy(pos);
-        ringMesh.lookAt(0, 0, 0);
-        globeGroup.add(ringMesh);
+        opacity: 0.95
       });
 
-      // Photorealistic Tech Hub Curved Flight Arcs
-      const connections = [
-        [0, 1], // India -> Singapore
-        [0, 2], // India -> Dubai
-        [2, 3], // Dubai -> London
-        [3, 4], // London -> NY
-        [4, 5], // NY -> San Francisco
-        [5, 6], // SF -> Tokyo
-        [1, 7]  // Singapore -> Sydney
+      const bronzeGlassMat = new THREE.MeshPhysicalMaterial({
+        map: facadeTex,
+        color: isDark ? 0x161a24 : 0xd8e4f5,
+        metalness: 0.94,
+        roughness: 0.08,
+        reflectivity: 0.99,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.05,
+        transparent: true,
+        opacity: 0.96
+      });
+
+      const blackSteelMat = new THREE.MeshStandardMaterial({
+        color: isDark ? 0x0f172a : 0x334155,
+        metalness: 0.92,
+        roughness: 0.25
+      });
+
+      const goldAtriumMat = new THREE.MeshBasicMaterial({
+        color: 0xf59e0b,
+        transparent: true,
+        opacity: 0.88
+      });
+
+      const goldFrameMat = new THREE.MeshStandardMaterial({
+        color: 0xd97706,
+        metalness: 0.85,
+        roughness: 0.25
+      });
+
+      const redBeaconMat = new THREE.MeshBasicMaterial({ color: 0xff2a2a });
+      const cyanBeaconMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
+      const warmLampMat = new THREE.MeshBasicMaterial({ color: 0xfef08a });
+
+      // ---- 4A. Street Infrastructure (Asphalt Avenue, Sidewalks, Street Lamps) ----
+      function createStreetLevel() {
+        const streetGroup = new THREE.Group();
+        const streetLength = 220;
+        const streetWidth = 24;
+
+        // Asphalt Road Surface
+        const roadGeom = new THREE.PlaneGeometry(streetWidth, streetLength);
+        const roadMat = new THREE.MeshStandardMaterial({
+          color: isDark ? 0x090d16 : 0x1e293b,
+          roughness: 0.85,
+          metalness: 0.15
+        });
+        const road = new THREE.Mesh(roadGeom, roadMat);
+        road.rotation.x = -Math.PI / 2;
+        road.position.set(0, 0, -streetLength / 2 + 30);
+        streetGroup.add(road);
+
+        // Yellow Center Division Lines
+        for (let z = 25; z > -streetLength + 30; z -= 8) {
+          const lineGeom = new THREE.PlaneGeometry(0.3, 4.5);
+          const lineMat = new THREE.MeshBasicMaterial({ color: 0xfacc15 });
+          const line = new THREE.Mesh(lineGeom, lineMat);
+          line.rotation.x = -Math.PI / 2;
+          line.position.set(0, 0.02, z);
+          streetGroup.add(line);
+        }
+
+        // Left & Right Sidewalks
+        const sidewalkGeom = new THREE.BoxGeometry(8, 0.4, streetLength);
+        const sidewalkMat = new THREE.MeshStandardMaterial({
+          color: isDark ? 0x1e293b : 0x94a3b8,
+          roughness: 0.7
+        });
+
+        const leftSidewalk = new THREE.Mesh(sidewalkGeom, sidewalkMat);
+        leftSidewalk.position.set(-streetWidth / 2 - 4, 0.2, -streetLength / 2 + 30);
+        streetGroup.add(leftSidewalk);
+
+        const rightSidewalk = new THREE.Mesh(sidewalkGeom, sidewalkMat);
+        rightSidewalk.position.set(streetWidth / 2 + 4, 0.2, -streetLength / 2 + 30);
+        streetGroup.add(rightSidewalk);
+
+        // Street Lamps lining both sides of the avenue
+        for (let z = 20; z > -streetLength + 40; z -= 22) {
+          [-streetWidth / 2 - 1.2, streetWidth / 2 + 1.2].forEach(posX => {
+            // Pole
+            const poleGeom = new THREE.CylinderGeometry(0.08, 0.12, 5.5, 8);
+            const pole = new THREE.Mesh(poleGeom, blackSteelMat);
+            pole.position.set(posX, 2.75, z);
+            streetGroup.add(pole);
+
+            // Lamp Arm
+            const armGeom = new THREE.BoxGeometry(posX < 0 ? 1.2 : -1.2, 0.1, 0.1);
+            const arm = new THREE.Mesh(armGeom, blackSteelMat);
+            arm.position.set(posX + (posX < 0 ? 0.6 : -0.6), 5.5, z);
+            streetGroup.add(arm);
+
+            // Glowing Light Fixture
+            const lampGeom = new THREE.SphereGeometry(0.25, 12, 12);
+            const lamp = new THREE.Mesh(lampGeom, warmLampMat);
+            lamp.position.set(posX + (posX < 0 ? 1.1 : -1.1), 5.3, z);
+            streetGroup.add(lamp);
+          });
+        }
+
+        cityGroup.add(streetGroup);
+      }
+
+      createStreetLevel();
+
+      // ---- 4B. Rectangular Skyscraper Constructors ----
+
+      // 1. HERO: Sawtooth Pleated High-Rise (NYC Trump Tower Style)
+      function createSawtoothTower(x, z, width, depth, height) {
+        const group = new THREE.Group();
+        group.position.set(x, 0, z);
+
+        const teethCount = 7;
+        const toothDepth = width * 0.14;
+
+        function createSawtoothShape(w, d) {
+          const shape = new THREE.Shape();
+          const hw = w / 2;
+          const hd = d / 2;
+
+          shape.moveTo(-hw, -hd);
+          shape.lineTo(hw, -hd);
+          shape.lineTo(hw, hd - toothDepth);
+          shape.lineTo(hw + toothDepth * 0.4, hd - toothDepth * 0.5);
+          shape.lineTo(hw, hd);
+
+          const segW = w / teethCount;
+          for (let i = teethCount; i > 0; i--) {
+            const tx1 = -hw + i * segW;
+            const txMid = tx1 - segW * 0.5;
+            const tx2 = tx1 - segW;
+            shape.lineTo(txMid, hd + toothDepth);
+            shape.lineTo(tx2, hd);
+          }
+
+          shape.lineTo(-hw - toothDepth * 0.4, hd - toothDepth * 0.5);
+          shape.lineTo(-hw, -hd);
+          return shape;
+        }
+
+        const tiers = [
+          { w: width * 1.15, d: depth * 1.15, h: height * 0.14, y: 0, isPodium: true },
+          { w: width * 1.05, d: depth * 1.05, h: height * 0.18, y: height * 0.14, isTerrace: true },
+          { w: width * 0.95, d: depth * 0.95, h: height * 0.18, y: height * 0.32, isTerrace: true },
+          { w: width * 0.85, d: depth * 0.85, h: height * 0.44, y: height * 0.50, isMainShaft: true },
+          { w: width * 0.72, d: depth * 0.72, h: height * 0.06, y: height * 0.94, isCrown: true }
+        ];
+
+        tiers.forEach((tier) => {
+          const shape = createSawtoothShape(tier.w, tier.d);
+          const geom = new THREE.ExtrudeGeometry(shape, { depth: tier.h, bevelEnabled: true, bevelSegments: 1, bevelSize: 0.1, bevelThickness: 0.1 });
+          geom.rotateX(-Math.PI / 2);
+
+          const mesh = new THREE.Mesh(geom, bronzeGlassMat);
+          mesh.position.y = tier.y;
+          group.add(mesh);
+
+          const edges = new THREE.EdgesGeometry(geom);
+          const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: isDark ? 0x94a3b8 : 0x1e3a8a, linewidth: 1.5, transparent: true, opacity: 0.7 }));
+          lines.position.y = tier.y;
+          group.add(lines);
+
+          if (tier.isPodium) {
+            const atriumMesh = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 0.92, tier.h * 0.75, tier.d * 0.92), goldAtriumMat);
+            atriumMesh.position.set(0, tier.y + tier.h * 0.42, 0);
+            group.add(atriumMesh);
+
+            const frameMesh = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 0.5, 1.4, tier.d * 0.3), goldFrameMat);
+            frameMesh.position.set(0, 1.4, tier.d * 0.55);
+            group.add(frameMesh);
+          }
+
+          if (tier.isTerrace) {
+            const railMesh = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 1.02, 0.5, tier.d * 1.02), goldFrameMat);
+            railMesh.position.set(0, tier.y + tier.h, 0);
+            group.add(railMesh);
+          }
+        });
+
+        // Pleated Serrated Roof Crown
+        const crownShape = createSawtoothShape(width * 0.68, depth * 0.68);
+        const crownGeom = new THREE.ExtrudeGeometry(crownShape, { depth: 3.5, bevelEnabled: false });
+        crownGeom.rotateX(-Math.PI / 2);
+        const crownMesh = new THREE.Mesh(crownGeom, blackSteelMat);
+        crownMesh.position.y = height + 0.2;
+        group.add(crownMesh);
+
+        // Penthouse & Beacons
+        const penthouse = new THREE.Mesh(new THREE.BoxGeometry(width * 0.42, 2.5, depth * 0.42), blackSteelMat);
+        penthouse.position.set(0, height + 4.5, 0);
+        group.add(penthouse);
+
+        const b = new THREE.Mesh(new THREE.SphereGeometry(0.35, 16, 16), redBeaconMat);
+        b.position.set(0, height + 6.2, depth * 0.25);
+        group.add(b);
+        beaconLights.push(b);
+
+        return { group, height };
+      }
+
+      // 2. Rectangular Stepped Setback Skyscraper (Rockefeller / Midtown Style)
+      function createSteppedRectTower(x, z, width, depth, height) {
+        const group = new THREE.Group();
+        group.position.set(x, 0, z);
+
+        const tiers = [
+          { w: width, d: depth, h: height * 0.35, y: 0, isPodium: true },
+          { w: width * 0.82, d: depth * 0.85, h: height * 0.28, y: height * 0.35 },
+          { w: width * 0.65, d: depth * 0.70, h: height * 0.22, y: height * 0.63 },
+          { w: width * 0.48, d: depth * 0.55, h: height * 0.15, y: height * 0.85 }
+        ];
+
+        tiers.forEach((tier) => {
+          const geom = new THREE.BoxGeometry(tier.w, tier.h, tier.d);
+          const mesh = new THREE.Mesh(geom, glassMat);
+          mesh.position.y = tier.y + tier.h / 2;
+          group.add(mesh);
+
+          const edges = new THREE.EdgesGeometry(geom);
+          const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: isDark ? 0x60a5fa : 0x2563eb, linewidth: 1.5 }));
+          lines.position.y = tier.y + tier.h / 2;
+          group.add(lines);
+
+          // Illuminated Ground Floor Lobby Canopy
+          if (tier.isPodium) {
+            const canopy = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 0.6, 0.4, 2.5), blackSteelMat);
+            canopy.position.set(0, 4.0, tier.d / 2 + 1.25);
+            group.add(canopy);
+
+            const lobbyGlow = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 0.55, 3.5, 0.2), goldAtriumMat);
+            lobbyGlow.position.set(0, 2.0, tier.d / 2 + 0.05);
+            group.add(lobbyGlow);
+          }
+
+          // Terrace LED Railing
+          const rail = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 0.98, 0.4, tier.d * 0.98), blackSteelMat);
+          rail.position.y = tier.y + tier.h;
+          group.add(rail);
+        });
+
+        // Top Mechanical Crown
+        const crown = new THREE.Mesh(new THREE.BoxGeometry(width * 0.32, 4.0, depth * 0.38), blackSteelMat);
+        crown.position.y = height + 2.0;
+        group.add(crown);
+
+        const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.2, 8, 8), blackSteelMat);
+        mast.position.y = height + 8;
+        group.add(mast);
+
+        const beacon = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), redBeaconMat);
+        beacon.position.y = height + 12.2;
+        group.add(beacon);
+        beaconLights.push(beacon);
+
+        return { group, height };
+      }
+
+      // 3. Rectangular Glass Monolith (Seagram / Modernist Office High-Rise)
+      function createModernRectTower(x, z, width, depth, height) {
+        const group = new THREE.Group();
+        group.position.set(x, 0, z);
+
+        // Main Rectangular Slab
+        const geom = new THREE.BoxGeometry(width, height, depth);
+        const mesh = new THREE.Mesh(geom, bronzeGlassMat);
+        mesh.position.y = height / 2;
+        group.add(mesh);
+
+        const edges = new THREE.EdgesGeometry(geom);
+        const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: isDark ? 0x93c5fd : 0x3b82f6, linewidth: 2 }));
+        lines.position.y = height / 2;
+        group.add(lines);
+
+        // Vertical Aluminum Facade Mullion Fins
+        const finCount = 8;
+        for (let i = 0; i <= finCount; i++) {
+          const finX = -width / 2 + (i * (width / finCount));
+          const finGeom = new THREE.BoxGeometry(0.12, height * 0.98, 0.4);
+          const fin = new THREE.Mesh(finGeom, blackSteelMat);
+          fin.position.set(finX, height / 2, depth / 2 + 0.15);
+          group.add(fin);
+        }
+
+        // Ground Floor Glass Lobby
+        const lobby = new THREE.Mesh(new THREE.BoxGeometry(width * 0.95, 4.5, depth * 0.95), goldAtriumMat);
+        lobby.position.set(0, 2.3, 0);
+        group.add(lobby);
+
+        const marquee = new THREE.Mesh(new THREE.BoxGeometry(width * 0.6, 0.4, 3.0), blackSteelMat);
+        marquee.position.set(0, 4.6, depth / 2 + 1.5);
+        group.add(marquee);
+
+        // Rooftop Penthouse Louvers
+        const crown = new THREE.Mesh(new THREE.BoxGeometry(width * 0.75, 3.5, depth * 0.75), blackSteelMat);
+        crown.position.y = height + 1.75;
+        group.add(crown);
+
+        const b1 = new THREE.Mesh(new THREE.SphereGeometry(0.28, 16, 16), cyanBeaconMat);
+        b1.position.set(-width * 0.3, height + 4.0, -depth * 0.3);
+        group.add(b1);
+        beaconLights.push(b1);
+
+        const b2 = new THREE.Mesh(new THREE.SphereGeometry(0.28, 16, 16), cyanBeaconMat);
+        b2.position.set(width * 0.3, height + 4.0, depth * 0.3);
+        group.add(b2);
+        beaconLights.push(b2);
+
+        return { group, height };
+      }
+
+      // 4. Slender Rectangular Grid Tower (432 Park Ave Style)
+      function createSlenderRectTower(x, z, width, depth, height) {
+        const group = new THREE.Group();
+        group.position.set(x, 0, z);
+
+        const geom = new THREE.BoxGeometry(width, height, depth);
+        const mesh = new THREE.Mesh(geom, glassMat);
+        mesh.position.y = height / 2;
+        group.add(mesh);
+
+        const edges = new THREE.EdgesGeometry(geom);
+        const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: isDark ? 0xffffff : 0x1e3a8a, linewidth: 2 }));
+        lines.position.y = height / 2;
+        group.add(lines);
+
+        // Open-air mechanical drum cutouts every 12 floors
+        for (let y = height * 0.3; y < height; y += height * 0.32) {
+          const cut = new THREE.Mesh(new THREE.BoxGeometry(width * 1.02, 2.5, depth * 1.02), blackSteelMat);
+          cut.position.y = y;
+          group.add(cut);
+        }
+
+        // Top Crown
+        const crown = new THREE.Mesh(new THREE.BoxGeometry(width * 0.85, 2.8, depth * 0.85), blackSteelMat);
+        crown.position.y = height + 1.4;
+        group.add(crown);
+
+        const b = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), redBeaconMat);
+        b.position.set(0, height + 3.2, 0);
+        group.add(b);
+        beaconLights.push(b);
+
+        return { group, height };
+      }
+
+      // ---- 4C. Urban Avenue Layout (Skyscrapers Lining Both Sides of the Street) ----
+      const streetSkyscrapers = [
+        // RIGHT SIDE OF STREET CANYON (Looking down the avenue)
+        { type: 'sawtooth', x: 22, z: 0, w: 14, d: 13, h: 56 }, // HERO Sawtooth Skyscraper from photo
+        { type: 'stepped', x: 23, z: -28, w: 15, d: 14, h: 52 },
+        { type: 'modern', x: 24, z: -58, w: 16, d: 14, h: 62 },
+        { type: 'slender', x: 25, z: -88, w: 12, d: 12, h: 68 },
+        { type: 'stepped', x: 26, z: -118, w: 17, d: 15, h: 58 },
+
+        // LEFT SIDE OF STREET CANYON
+        { type: 'modern', x: -22, z: 2, w: 15, d: 13, h: 54 },
+        { type: 'slender', x: -23, z: -26, w: 13, d: 13, h: 64 },
+        { type: 'stepped', x: -24, z: -56, w: 16, d: 14, h: 50 },
+        { type: 'sawtooth', x: -25, z: -86, w: 15, d: 13, h: 60 },
+        { type: 'modern', x: -26, z: -116, w: 17, d: 15, h: 56 },
+
+        // VISTA ANCHOR (End of Avenue Vista)
+        { type: 'stepped', x: 0, z: -145, w: 22, d: 18, h: 72 }
       ];
 
-      connections.forEach(([startIdx, endIdx]) => {
-        const p1 = latLongToVector3(hubs[startIdx].lat, hubs[startIdx].lon, radius);
-        const p2 = latLongToVector3(hubs[endIdx].lat, hubs[endIdx].lon, radius);
+      streetSkyscrapers.forEach((item, idx) => {
+        let created;
+        if (item.type === 'sawtooth') created = createSawtoothTower(item.x, item.z, item.w, item.d, item.h);
+        else if (item.type === 'stepped') created = createSteppedRectTower(item.x, item.z, item.w, item.d, item.h);
+        else if (item.type === 'modern') created = createModernRectTower(item.x, item.z, item.w, item.d, item.h);
+        else if (item.type === 'slender') created = createSlenderRectTower(item.x, item.z, item.w, item.d, item.h);
 
-        const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
-        const dist = p1.distanceTo(p2);
-        mid.normalize().multiplyScalar(radius + dist * 0.28);
+        if (created) {
+          const obj = created.group;
+          obj.userData = {
+            targetY: 0,
+            initialY: -created.height - 20,
+            speed: 0.045 + (idx * 0.003)
+          };
+          obj.position.y = obj.userData.initialY;
+          towerObjects.push(obj);
+          cityGroup.add(obj);
+        }
+      });
 
-        const curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
-        const points = curve.getPoints(40);
-        const curveGeo = new THREE.BufferGeometry().setFromPoints(points);
-        const curveMat = new THREE.LineBasicMaterial({
-          color: 0x00F0FF,
-          transparent: true,
-          opacity: 0.65,
-          linewidth: 2
-        });
-        const arcLine = new THREE.Line(curveGeo, curveMat);
-        globeGroup.add(arcLine);
+      scene.add(cityGroup);
+      triggerTowersRise();
+    }
+
+    function triggerTowersRise() {
+      isRisingAnimation = true;
+      towerObjects.forEach(t => {
+        t.position.y = t.userData.initialY;
       });
     }
 
-    let mouseX = 0, mouseY = 0;
-    window.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX - window.innerWidth / 2) * 0.0005;
-      mouseY = (e.clientY - window.innerHeight / 2) * 0.0005;
-    });
+    function regenerateCity() {
+      buildRealisticCity();
+    }
+
+    function onMouseMove(e) {
+      const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+
+      // Street View Upward Pan/Tilt
+      targetCameraX = mouseX * 5;
+      targetCameraY = 3.5 + (mouseY * 2.5);
+      targetLookAtX = mouseX * 18;
+      targetLookAtY = 36 + (mouseY * 18);
+    }
+
+    function onTouchMove(e) {
+      if (e.touches.length > 0) {
+        const mouseX = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+        const mouseY = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
+        targetCameraX = mouseX * 5;
+        targetCameraY = 3.5 + (mouseY * 2.5);
+        targetLookAtX = mouseX * 18;
+        targetLookAtY = 36 + (mouseY * 18);
+      }
+    }
+
+    function onWindowResize() {
+      if (!camera || !renderer) return;
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    // ---- 5. High-Performance Render Loop ----
+    let clock = new THREE.Clock();
 
     function animate() {
-      animId = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
 
-      if (globeGroup) {
-        globeGroup.rotation.y += 0.0035;
-        globeGroup.rotation.y += mouseX * 0.3;
-        globeGroup.rotation.x += mouseY * 0.3;
+      const elapsedTime = clock.getElapsedTime();
+
+      // Smooth Street View Camera Floating & Tilt
+      camera.position.x += (targetCameraX - camera.position.x) * 0.04;
+      camera.position.y += (targetCameraY - camera.position.y) * 0.04;
+      camera.lookAt(targetLookAtX, targetLookAtY, -35);
+
+      // Towers Rise Emerging From Clouds
+      if (isRisingAnimation) {
+        let allSettled = true;
+        towerObjects.forEach(t => {
+          const dy = t.userData.targetY - t.position.y;
+          if (Math.abs(dy) > 0.08) {
+            t.position.y += dy * t.userData.speed;
+            allSettled = false;
+          } else {
+            t.position.y = t.userData.targetY;
+          }
+        });
+        if (allSettled) isRisingAnimation = false;
       }
+
+      // Height Slider Scaling
+      cityGroup.scale.y = currentHeightScale;
+
+      // Pulsing Strobe Beacons
+      const beaconPulse = Math.sin(elapsedTime * 5) * 0.5 + 0.5;
+      beaconLights.forEach((beacon) => {
+        beacon.scale.setScalar(0.75 + beaconPulse * 0.45);
+      });
 
       renderer.render(scene, camera);
     }
 
-    window.addEventListener('resize', () => {
-      if (camera && renderer) {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      }
+    // ---- 6. HUD Sliders & Theme Controller ----
+    document.addEventListener('DOMContentLoaded', () => {
+      initVantaClouds('dark');
+      initThreeCity();
+
+      // Theme Toggle
+      const themeBtn = document.getElementById('theme-toggle');
+      themeBtn.addEventListener('click', () => {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', newTheme);
+        
+        themeBtn.querySelector('i').className = newTheme === 'dark' ? 'bi bi-sun' : 'bi bi-moon-stars';
+        
+        initVantaClouds(newTheme);
+        if (scene && scene.fog) {
+          scene.fog.color.setHex(newTheme === 'dark' ? 0x050c1e : 0x5a9cf8);
+        }
+        buildRealisticCity();
+      });
+
+      // Height Slider
+      const heightSlider = document.getElementById('height-slider');
+      const heightVal = document.getElementById('height-val');
+      heightSlider.addEventListener('input', (e) => {
+        currentHeightScale = e.target.value / 100;
+        heightVal.textContent = e.target.value + '%';
+      });
+
+      // Fog Slider
+      const fogSlider = document.getElementById('fog-slider');
+      const fogVal = document.getElementById('fog-val');
+      fogSlider.addEventListener('input', (e) => {
+        const val = e.target.value;
+        const density = 0.003 + (val / 100) * 0.016;
+        if (scene && scene.fog) {
+          scene.fog.density = density;
+        }
+        fogVal.textContent = val < 35 ? 'Low' : val < 70 ? 'Medium' : 'Dense';
+      });
+
+      // Beacons Toggle
+      const beaconsToggle = document.getElementById('beacons-toggle');
+      beaconsToggle.addEventListener('change', (e) => {
+        beaconLights.forEach(b => b.visible = e.target.checked);
+      });
+
+      // Window Lights Toggle
+      const windowsToggle = document.getElementById('windows-toggle');
+      windowsToggle.addEventListener('change', (e) => {
+        buildRealisticCity();
+      });
     });
-
-    function setGlobeMode(mode) {
-      currentMode = mode;
-      document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      buildGlobe(mode);
-    }
-
-    // ---- Progress Loader Simulation ----
-    let progress = 0;
-    const loaderFill = document.getElementById('loader-fill');
-    const percentText = document.getElementById('percent-text');
-    const statusText = document.getElementById('status-text');
-    const statusList = [
-      'CONNECTING TO SATELLITE MESH...',
-      'SYNCING GLOBAL NODES...',
-      'CONFIGURING ARCHITECTURE...',
-      'SYSTEM READY'
-    ];
-
-    let interval = setInterval(() => {
-      progress += 4;
-      if (progress > 100) progress = 100;
-
-      if (loaderFill) loaderFill.style.width = progress + '%';
-      if (percentText) percentText.textContent = progress + '%';
-
-      if (statusText) {
-        if (progress < 30) statusText.textContent = statusList[0];
-        else if (progress < 60) statusText.textContent = statusList[1];
-        else if (progress < 90) statusText.textContent = statusList[2];
-        else statusText.textContent = statusList[3];
-      }
-
-      if (progress >= 100) clearInterval(interval);
-    }, 40);
-
-    function dismissSplash() {
-      const splash = document.getElementById('splash-container');
-      if (splash) splash.classList.add('exit-anim');
-    }
-
-    function replaySplash() {
-      const splash = document.getElementById('splash-container');
-      if (splash) {
-        splash.classList.remove('exit-anim');
-        progress = 0;
-        clearInterval(interval);
-        interval = setInterval(() => {
-          progress += 4;
-          if (progress > 100) progress = 100;
-
-          if (loaderFill) loaderFill.style.width = progress + '%';
-          if (percentText) percentText.textContent = progress + '%';
-
-          if (statusText) {
-            if (progress < 30) statusText.textContent = statusList[0];
-            else if (progress < 60) statusText.textContent = statusList[1];
-            else if (progress < 90) statusText.textContent = statusList[2];
-            else statusText.textContent = statusList[3];
-          }
-
-          if (progress >= 100) clearInterval(interval);
-        }, 40);
-      }
-    }
-
-    // Init on load
-    window.addEventListener('load', initGlobe);
   </script>
+
 </body>
 </html>

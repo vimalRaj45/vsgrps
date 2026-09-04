@@ -644,13 +644,441 @@
       background-clip: text;
     }
 
-    /* Mobile menu */
+    /* ==================== PREMIUM FLUID RESPONSIVE MOBILE SIDEBAR DRAWER ==================== */
     #mobile-menu {
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      height: 100vh;
+      height: 100dvh;
+      width: clamp(280px, 86vw, 360px);
+      max-width: calc(100vw - 20px);
+      z-index: 10000;
+      background: var(--nav-bg);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-left: 1px solid var(--border);
+      box-shadow: -15px 0 45px rgba(0, 0, 0, 0.4);
+      transform: translateX(105%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
+
+    [data-theme="light"] #mobile-menu {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: -15px 0 40px rgba(0, 0, 0, 0.12);
+    }
+
+    [data-theme="dark"] #mobile-menu {
+      background: rgba(8, 12, 22, 0.97);
+      box-shadow: -15px 0 50px rgba(0, 0, 0, 0.7);
+    }
+
     #mobile-menu.open {
       transform: translateX(0);
+    }
+
+    #menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(2, 6, 23, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #menu-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Sidebar Close Button */
+    .sidebar-close-btn {
+      width: clamp(34px, 4vw, 38px);
+      height: clamp(34px, 4vw, 38px);
+      border-radius: 6px !important;
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      font-size: clamp(14px, 2vw, 16px);
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+
+    .sidebar-close-btn:hover {
+      transform: rotate(90deg) scale(1.08);
+      box-shadow: 0 6px 20px rgba(217, 119, 6, 0.55);
+    }
+
+    /* Staggered Navigation Items */
+    .sidebar-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: calc(6px + 0.3vw);
+      padding: calc(10px + 0.5vw) clamp(12px, 3vw, 20px);
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .sidebar-nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: calc(8px + 0.2vw) clamp(10px, 2vw, 14px);
+      border-radius: 6px !important;
+      text-decoration: none;
+      background: transparent;
+      border: 1px solid transparent;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+      transform: translateX(35px);
+    }
+
+    #mobile-menu.open .sidebar-nav-item {
+      animation: sidebarItemIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: calc(var(--delay, 1) * 45ms + 75ms);
+    }
+
+    @keyframes sidebarItemIn {
+      0% {
+        opacity: 0;
+        transform: translateX(35px) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    .sidebar-nav-item:hover,
+    .sidebar-nav-item:active {
+      background: rgba(59, 130, 246, 0.08);
+      border-color: rgba(59, 130, 246, 0.2);
+      transform: translateX(-4px);
+    }
+
+    [data-theme="light"] .sidebar-nav-item:hover {
+      background: rgba(37, 99, 235, 0.06);
+      border-color: rgba(37, 99, 235, 0.15);
+    }
+
+    .sidebar-item-left {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 2.5vw, 14px);
+    }
+
+    .sidebar-icon-box {
+      width: clamp(36px, 5vw, 40px);
+      height: clamp(36px, 5vw, 40px);
+      border-radius: 6px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(15px, 2vw, 18px);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    [data-theme="light"] .sidebar-icon-box {
+      background: #F1F5F9;
+      border-color: #E2E8F0;
+      color: #2563EB;
+    }
+
+    .sidebar-nav-item:hover .sidebar-icon-box {
+      background: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .sidebar-item-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(14px, 2vw + 6px, 16px);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      transition: color 0.2s ease;
+    }
+
+    .sidebar-chevron {
+      font-size: clamp(12px, 1.5vw, 14px);
+      color: var(--text-muted);
+      opacity: 0.6;
+      transition: all 0.25s ease;
+    }
+
+    .sidebar-nav-item:hover .sidebar-chevron {
+      color: var(--accent);
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    /* Bottom Assistance Banner */
+    .sidebar-assistance-card {
+      margin: calc(10px + 0.4vw) clamp(12px, 3vw, 18px) calc(14px + 0.4vw);
+      background: linear-gradient(135deg, #0F2042 0%, #0A1428 100%) !important;
+      border: 1px solid rgba(59, 130, 246, 0.35) !important;
+      border-radius: 6px !important;
+      padding: clamp(12px, 2.5vw, 16px);
+      position: relative;
+      overflow: visible;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(20px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    [data-theme="light"] .sidebar-assistance-card {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%) !important;
+      border-color: rgba(37, 99, 235, 0.35) !important;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
+    }
+
+    #mobile-menu.open .sidebar-assistance-card {
+      animation: sidebarCardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: calc(8 * 45ms + 100ms);
+    }
+
+    @keyframes sidebarCardIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .sidebar-assistance-info h4,
+    [data-theme="light"] .sidebar-assistance-info h4,
+    [data-theme="dark"] .sidebar-assistance-info h4 {
+      font-family: 'Outfit', sans-serif !important;
+      font-size: clamp(13.5px, 2vw, 15px) !important;
+      font-weight: 700 !important;
+      color: #FFFFFF !important;
+      margin-bottom: 2px !important;
+      line-height: 1.3 !important;
+    }
+
+    .sidebar-assistance-info p,
+    [data-theme="light"] .sidebar-assistance-info p,
+    [data-theme="dark"] .sidebar-assistance-info p {
+      font-size: clamp(11px, 1.6vw, 12px) !important;
+      color: #94A3B8 !important;
+      margin: 0 !important;
+      line-height: 1.4 !important;
+    }
+
+    .sidebar-whatsapp-btn {
+      width: clamp(38px, 4.5vw, 44px);
+      height: clamp(38px, 4.5vw, 44px);
+      border-radius: 6px !important;
+      background: #25D366;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(18px, 2.2vw, 22px);
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
+      flex-shrink: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .sidebar-whatsapp-btn:hover {
+      transform: scale(1.08) rotate(5deg);
+      box-shadow: 0 6px 22px rgba(37, 211, 102, 0.65);
+      color: #FFFFFF;
+    }
+
+    /* ==================== DESKTOP NAV WITH ICONS & DROPDOWNS ==================== */
+    .desktop-nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: clamp(4px, 0.4vw, 6px);
+      font-size: clamp(12.5px, 0.7vw + 2.5px, 13.5px);
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: calc(4px + 0.15vw) clamp(6px, 0.6vw, 10px);
+      border-radius: 6px !important;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    @media (min-width: 1360px) {
+      .desktop-nav-link {
+        font-size: 14px;
+        padding: 6px 12px;
+        gap: 6px;
+      }
+    }
+    .desktop-nav-link:hover {
+      color: var(--accent);
+      background: rgba(59, 130, 246, 0.08);
+    }
+    [data-theme="light"] .desktop-nav-link:hover {
+      background: rgba(37, 99, 235, 0.06);
+      color: var(--accent);
+    }
+    .desktop-nav-link i {
+      font-size: clamp(13px, 0.8vw + 2px, 15px);
+      color: var(--accent);
+    }
+
+    /* Nav Dropdown Container */
+    .nav-dropdown-group {
+      position: relative;
+    }
+    .nav-dropdown-group:hover .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      min-width: calc(240px + 2vw);
+      max-width: 90vw;
+      background: var(--nav-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border);
+      border-radius: 6px !important;
+      padding: 8px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    [data-theme="light"] .nav-dropdown-menu {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      border-color: #E2E8F0;
+    }
+    [data-theme="dark"] .nav-dropdown-menu {
+      background: rgba(10, 16, 29, 0.98);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    .nav-dropdown-group:hover .nav-dropdown-menu,
+    .nav-dropdown-group:focus-within .nav-dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 6px !important;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .dropdown-item:hover {
+      background: rgba(59, 130, 246, 0.08);
+      transform: translateX(3px);
+    }
+    [data-theme="light"] .dropdown-item:hover {
+      background: #F1F5F9;
+    }
+    .dropdown-icon-box {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px !important;
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .dropdown-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .dropdown-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+    .badge-mini {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px !important;
+      background: rgba(34, 197, 94, 0.15);
+      color: #22C55E;
+      letter-spacing: 0.05em;
+    }
+
+    /* Mobile Accordion Subitems */
+    .sidebar-submenu {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      padding: 4px 0 8px clamp(36px, 10vw, 50px);
+    }
+    .sidebar-submenu.open {
+      display: flex;
+      animation: submenuIn 0.25s ease forwards;
+    }
+    @keyframes submenuIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .sidebar-subitem {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 6px !important;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .sidebar-subitem:hover,
+    .sidebar-subitem:active {
+      color: var(--accent);
+      background: rgba(59, 130, 246, 0.06);
+    }
+    .sidebar-subitem i {
+      font-size: 13px;
+      color: var(--accent);
     }
 
     /* Lottie containers */
@@ -1679,80 +2107,227 @@
 
 <!-- ==================== BACKGROUND PARTICLES ==================== -->
 <canvas id="particle-canvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0.35;"></canvas>
-
-
-<!-- ==================== NAVBAR ==================== -->
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-2 md:py-4">
-  <div class="max-w-7xl mx-auto flex items-center justify-between">
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-2 md:py-3">
+  <div class="max-w-[1400px] mx-auto flex items-center justify-between gap-4">
     <!-- Logo -->
-    <a href="#" class="flex items-center gap-3 text-decoration-none" aria-label="VSGRPS Home">
-      <img id="nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies Logo" class="logo-img h-[28px] md:h-[38px] w-auto rounded-[4px]" width="180" height="38" fetchpriority="high" />
+    <a href="#" class="flex items-center text-decoration-none flex-shrink-0" aria-label="VSGRPS Home">
+      <img id="nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies Logo" class="logo-img h-[26px] md:h-[34px] w-auto rounded-[6px]" width="160" height="34" fetchpriority="high" />
     </a>
 
-    <!-- Desktop Nav -->
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#about" class="text-sm font-medium hover:text-accent transition-colors" style="color:var(--text-muted);text-decoration:none;">About</a>
-      <a href="#services" class="text-sm font-medium hover:text-accent transition-colors" style="color:var(--text-muted);text-decoration:none;">Services</a>
-      <a href="#products" class="text-sm font-medium hover:text-accent transition-colors" style="color:var(--text-muted);text-decoration:none;">Products</a>
-      <a href="#projects" class="text-sm font-medium hover:text-accent transition-colors" style="color:var(--text-muted);text-decoration:none;">Projects</a>
-      <a href="#why" class="text-sm font-medium hover:text-accent transition-colors flex items-center gap-1.5" style="color:var(--text-muted);text-decoration:none;">
-        Why VSGRPS <span style="background:rgba(59,130,246,0.12);color:var(--accent);font-size:10px;font-weight:700;padding:2px 7px;border-radius:100px;">PROVEN</span>
+    <!-- Desktop Nav with Icons & Dropdowns -->
+    <div class="hidden lg:flex items-center gap-1 xl:gap-2 flex-nowrap">
+      <a href="#hero" class="desktop-nav-link">
+        <i class="bi bi-house-door"></i> <span>Home</span>
       </a>
-      <a href="#tech" class="text-sm font-medium hover:text-accent transition-colors" style="color:var(--text-muted);text-decoration:none;">Tech Stack</a>
-      <a href="#contact" class="text-sm font-medium hover:text-accent transition-colors" style="color:var(--text-muted);text-decoration:none;">Contact</a>
+      
+      <a href="#about" class="desktop-nav-link">
+        <i class="bi bi-info-circle"></i> <span>About</span>
+      </a>
+      
+      <!-- Services with Subitems Dropdown -->
+      <div class="nav-dropdown-group">
+        <a href="#services" class="desktop-nav-link">
+          <i class="bi bi-cpu"></i> <span>Services</span>
+          <i class="bi bi-chevron-down dropdown-arrow text-[10px] opacity-70 transition-transform"></i>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a href="#services" onclick="openServiceModal('web')" class="dropdown-item">
+            <div class="dropdown-icon-box"><i class="bi bi-laptop"></i></div>
+            <div>
+              <div class="dropdown-title">Web Development</div>
+              <div class="dropdown-desc">React, Next.js & Full Stack</div>
+            </div>
+          </a>
+          <a href="#services" onclick="openServiceModal('saas')" class="dropdown-item">
+            <div class="dropdown-icon-box"><i class="bi bi-cloud-check"></i></div>
+            <div>
+              <div class="dropdown-title">SaaS Platforms</div>
+              <div class="dropdown-desc">Scalable Multi-Tenant Systems</div>
+            </div>
+          </a>
+          <a href="#services" onclick="openServiceModal('automation')" class="dropdown-item">
+            <div class="dropdown-icon-box"><i class="bi bi-gear-wide-connected"></i></div>
+            <div>
+              <div class="dropdown-title">Business Automation</div>
+              <div class="dropdown-desc">CRMs & Cloud Integrations</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Products with Subitems Dropdown -->
+      <div class="nav-dropdown-group">
+        <a href="#products" class="desktop-nav-link">
+          <i class="bi bi-box-seam"></i> <span>Products</span>
+          <i class="bi bi-chevron-down dropdown-arrow text-[10px] opacity-70 transition-transform"></i>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a href="https://certifypro.vsgrps.com" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+            <div class="dropdown-icon-box" style="background:rgba(59,130,246,0.12);color:#3B82F6;"><i class="bi bi-patch-check-fill"></i></div>
+            <div>
+              <div class="dropdown-title flex items-center gap-2">CertLock <span class="badge-mini">LIVE</span></div>
+              <div class="dropdown-desc">Batch Certificate Engine</div>
+            </div>
+          </a>
+          <a href="https://agile.vsgrps.com" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+            <div class="dropdown-icon-box" style="background:rgba(168,85,247,0.12);color:#A855F7;"><i class="bi bi-kanban"></i></div>
+            <div>
+              <div class="dropdown-title flex items-center gap-2">Sprintora <span class="badge-mini" style="background:rgba(168,85,247,0.15);color:#C084FC;">SUITE</span></div>
+              <div class="dropdown-desc">Agile Workspace & Governance</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="#projects" class="desktop-nav-link">
+        <i class="bi bi-briefcase"></i> <span>Projects</span>
+      </a>
+
+      <a href="#why" class="desktop-nav-link">
+        <i class="bi bi-star"></i> <span>Why Us</span>
+        <span style="background:rgba(59,130,246,0.12);color:var(--accent);font-size:9px;font-weight:700;padding:1px 5px;border-radius:4px;">PROVEN</span>
+      </a>
+
+      <a href="#tech" class="desktop-nav-link">
+        <i class="bi bi-calculator"></i> <span>Estimation</span>
+      </a>
+
+      <a href="#contact" class="desktop-nav-link">
+        <i class="bi bi-envelope"></i> <span>Contact</span>
+      </a>
     </div>
 
     <!-- CTA + Mobile -->
-    <div class="flex items-center gap-3">
-      <button id="theme-toggle" class="theme-toggle" title="Toggle Theme" aria-label="Toggle light/dark theme">
-        <i class="bi bi-moon-stars" aria-hidden="true"></i>
+    <div class="flex items-center gap-2.5 flex-shrink-0">
+      <button id="theme-toggle" class="theme-toggle" title="Toggle Theme" aria-label="Toggle light/dark theme" style="width:36px;height:36px;border-radius:50%;">
+        <i class="bi bi-sun text-sm"></i>
       </button>
-      <a href="#contact" class="btn-primary hidden md:flex" style="padding:10px 22px;font-size:14px;">
-        <i class="bi bi-rocket-takeoff"></i> Get a Quote
+      <a href="#contact" class="btn-primary hidden md:flex" style="padding:8px 18px;font-size:13px;border-radius:6px;gap:6px;">
+        <i class="bi bi-rocket-takeoff text-sm"></i> Get a Quote
       </a>
-      <button id="menu-toggle" class="md:hidden" aria-label="Open navigation menu" style="background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;">
+      <button id="menu-toggle" class="lg:hidden" aria-label="Open navigation menu" style="background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;">
         <i class="bi bi-list" aria-hidden="true"></i>
       </button>
     </div>
   </div>
 </nav>
 
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 z-50" style="background:var(--nav-bg);border-left:1px solid var(--border);backdrop-filter:blur(20px);">
-  <div class="p-6">
-    <div class="flex justify-between items-center mb-8">
-      <img id="mobile-nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies" class="logo-img h-[24px] w-auto" width="120" height="24" />
-      <button id="menu-close" aria-label="Close navigation menu" style="background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+<!-- Mobile Menu Sidebar Drawer -->
+<div id="mobile-menu" aria-label="Mobile Navigation Sidebar" role="dialog" aria-modal="true">
+  <!-- Header -->
+  <div class="flex justify-between items-center px-6 pt-6 pb-4 border-b" style="border-color:var(--border);">
+    <a href="#" onclick="closeMobileMenu()" class="flex items-center text-decoration-none" aria-label="VSGRPS Home">
+      <img id="mobile-nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies" class="logo-img h-[28px] w-auto rounded-[4px]" width="140" height="28" />
+    </a>
+    <button id="menu-close" class="sidebar-close-btn" aria-label="Close navigation menu">
+      <i class="bi bi-x-lg" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <!-- Staggered Navigation Items -->
+  <div class="sidebar-nav-list pt-4">
+    <a href="#hero" class="sidebar-nav-item mobile-nav-link" style="--delay: 1;">
+      <div class="sidebar-item-left">
+        <div class="sidebar-icon-box"><i class="bi bi-house-door"></i></div>
+        <span class="sidebar-item-label">Home</span>
+      </div>
+      <i class="bi bi-chevron-right sidebar-chevron"></i>
+    </a>
+
+    <a href="#about" class="sidebar-nav-item mobile-nav-link" style="--delay: 2;">
+      <div class="sidebar-item-left">
+        <div class="sidebar-icon-box"><i class="bi bi-info-circle"></i></div>
+        <span class="sidebar-item-label">About</span>
+      </div>
+      <i class="bi bi-chevron-right sidebar-chevron"></i>
+    </a>
+
+    <!-- Services Item with Expandable Subitems -->
+    <div>
+      <div class="sidebar-nav-item cursor-pointer" style="--delay: 3;" onclick="toggleSidebarSubmenu('services-sub')">
+        <div class="sidebar-item-left">
+          <div class="sidebar-icon-box"><i class="bi bi-tools"></i></div>
+          <span class="sidebar-item-label">Services</span>
+        </div>
+        <i id="services-sub-arrow" class="bi bi-chevron-down sidebar-chevron transition-transform"></i>
+      </div>
+      <div id="services-sub" class="sidebar-submenu">
+        <a href="#services" onclick="closeMobileMenu(); openServiceModal('web');" class="sidebar-subitem">
+          <i class="bi bi-laptop"></i> <span>Web Development</span>
+        </a>
+        <a href="#services" onclick="closeMobileMenu(); openServiceModal('saas');" class="sidebar-subitem">
+          <i class="bi bi-cloud-check"></i> <span>SaaS Platforms</span>
+        </a>
+        <a href="#services" onclick="closeMobileMenu(); openServiceModal('automation');" class="sidebar-subitem">
+          <i class="bi bi-gear-wide-connected"></i> <span>Business Automation</span>
+        </a>
+      </div>
     </div>
-    <div class="flex flex-col gap-6">
-      <a href="#about" class="mobile-nav-link flex items-center gap-3" style="color:var(--text-muted);text-decoration:none;font-size:16px;font-weight:500;">
-        <i class="bi bi-info-circle"></i> About
-      </a>
-      <a href="#services" class="mobile-nav-link flex items-center gap-3" style="color:var(--text-muted);text-decoration:none;font-size:16px;font-weight:500;">
-        <i class="bi bi-cpu"></i> Services
-      </a>
-      <a href="#products" class="mobile-nav-link flex items-center gap-3" style="color:var(--text-muted);text-decoration:none;font-size:16px;font-weight:500;">
-        <i class="bi bi-box-seam"></i> Products
-      </a>
-      <a href="#projects" class="mobile-nav-link flex items-center gap-3" style="color:var(--text-muted);text-decoration:none;font-size:16px;font-weight:500;">
-        <i class="bi bi-briefcase"></i> Projects
-      </a>
-      <a href="#why" class="mobile-nav-link flex items-center gap-3" style="color:var(--text-muted);text-decoration:none;font-size:16px;font-weight:500;">
-        <i class="bi bi-star"></i> Why VSGRPS
-      </a>
-      <a href="#tech" class="mobile-nav-link flex items-center gap-3" style="color:var(--text-muted);text-decoration:none;font-size:16px;font-weight:500;">
-        <i class="bi bi-stack"></i> Tech Stack
-      </a>
-      <a href="#contact" class="mobile-nav-link flex items-center gap-3" style="color:var(--text-muted);text-decoration:none;font-size:16px;font-weight:500;">
-        <i class="bi bi-envelope"></i> Contact
-      </a>
-      <a href="#contact" class="btn-primary mt-4" style="justify-content:center;">
-        <i class="bi bi-rocket-takeoff"></i> Get a Quote
-      </a>
+
+    <!-- Products Item with Expandable Subitems -->
+    <div>
+      <div class="sidebar-nav-item cursor-pointer" style="--delay: 4;" onclick="toggleSidebarSubmenu('products-sub')">
+        <div class="sidebar-item-left">
+          <div class="sidebar-icon-box"><i class="bi bi-box-seam"></i></div>
+          <span class="sidebar-item-label">Products</span>
+        </div>
+        <i id="products-sub-arrow" class="bi bi-chevron-down sidebar-chevron transition-transform"></i>
+      </div>
+      <div id="products-sub" class="sidebar-submenu">
+        <a href="https://certifypro.vsgrps.com" target="_blank" rel="noopener noreferrer" class="sidebar-subitem">
+          <i class="bi bi-patch-check-fill" style="color:#3B82F6;"></i> <span>CertLock</span>
+        </a>
+        <a href="https://agile.vsgrps.com" target="_blank" rel="noopener noreferrer" class="sidebar-subitem">
+          <i class="bi bi-kanban" style="color:#A855F7;"></i> <span>Sprintora</span>
+        </a>
+      </div>
     </div>
+
+    <a href="#projects" class="sidebar-nav-item mobile-nav-link" style="--delay: 5;">
+      <div class="sidebar-item-left">
+        <div class="sidebar-icon-box"><i class="bi bi-building"></i></div>
+        <span class="sidebar-item-label">Projects</span>
+      </div>
+      <i class="bi bi-chevron-right sidebar-chevron"></i>
+    </a>
+
+    <a href="#why" class="sidebar-nav-item mobile-nav-link" style="--delay: 6;">
+      <div class="sidebar-item-left">
+        <div class="sidebar-icon-box"><i class="bi bi-people"></i></div>
+        <span class="sidebar-item-label">Team & Why Us</span>
+      </div>
+      <i class="bi bi-chevron-right sidebar-chevron"></i>
+    </a>
+
+    <a href="#tech" class="sidebar-nav-item mobile-nav-link" style="--delay: 7;">
+      <div class="sidebar-item-left">
+        <div class="sidebar-icon-box"><i class="bi bi-calculator"></i></div>
+        <span class="sidebar-item-label">Estimation</span>
+      </div>
+      <i class="bi bi-chevron-right sidebar-chevron"></i>
+    </a>
+
+    <a href="#contact" class="sidebar-nav-item mobile-nav-link" style="--delay: 8;">
+      <div class="sidebar-item-left">
+        <div class="sidebar-icon-box"><i class="bi bi-envelope"></i></div>
+        <span class="sidebar-item-label">Contact</span>
+      </div>
+      <i class="bi bi-chevron-right sidebar-chevron"></i>
+    </a>
+  </div>
+
+  <!-- Bottom Assistance Card -->
+  <div class="sidebar-assistance-card">
+    <div class="sidebar-assistance-info">
+      <h4>Need Assistance?</h4>
+      <p>Chat with our engineers</p>
+    </div>
+    <a href="https://wa.me/918807099288?text=Hello%20VSGRPS,%20I%20would%20like%20to%20know%20more%20about%20your%20services" target="_blank" rel="noopener noreferrer" class="sidebar-whatsapp-btn" aria-label="Chat on WhatsApp">
+      <i class="bi bi-whatsapp"></i>
+    </a>
   </div>
 </div>
-<div id="menu-overlay" class="fixed inset-0 z-40 hidden" style="background:rgba(0,0,0,0.5);" onclick="closeMobileMenu()"></div>
+<div id="menu-overlay" onclick="closeMobileMenu()"></div>
 
 <!-- ==================== HERO ==================== -->
 <section id="hero" class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
@@ -3243,15 +3818,28 @@
     const menu = document.getElementById('mobile-menu');
     const overlay = document.getElementById('menu-overlay');
     if (menu) menu.classList.add('open');
-    if (overlay) overlay.classList.remove('hidden');
+    if (overlay) overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
   function closeMobileMenu() {
     const menu = document.getElementById('mobile-menu');
     const overlay = document.getElementById('menu-overlay');
     if (menu) menu.classList.remove('open');
-    if (overlay) overlay.classList.add('hidden');
+    if (overlay) overlay.classList.remove('active');
     document.body.style.overflow = '';
+  }
+  function toggleSidebarSubmenu(id) {
+    const sub = document.getElementById(id);
+    const arrow = document.getElementById(id + '-arrow');
+    if (!sub) return;
+    const isOpen = sub.classList.contains('open');
+    if (isOpen) {
+      sub.classList.remove('open');
+      if (arrow) arrow.style.transform = 'rotate(0deg)';
+    } else {
+      sub.classList.add('open');
+      if (arrow) arrow.style.transform = 'rotate(180deg)';
+    }
   }
   const menuToggle = document.getElementById('menu-toggle');
   const menuClose = document.getElementById('menu-close');
@@ -3259,6 +3847,9 @@
   if (menuClose) menuClose.addEventListener('click', closeMobileMenu);
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
     link.addEventListener('click', closeMobileMenu);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMobileMenu();
   });
 
   // ---- Silky Smooth Anchor Scroll Controller ----
