@@ -1612,6 +1612,12 @@
 
     .logo-img {
       transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: block;
+      background: transparent !important;
+    }
+    [data-theme="light"] .logo-img {
+      mix-blend-mode: multiply;
+      background: transparent !important;
     }
     .logo-fade {
       opacity: 0;
@@ -2498,7 +2504,7 @@
   <div class="max-w-[1400px] mx-auto flex items-center justify-between gap-4">
     <!-- Logo -->
     <a href="#" class="flex items-center text-decoration-none flex-shrink-0" aria-label="VSGRPS Home">
-      <img id="nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies Logo" class="logo-img h-[26px] md:h-[34px] w-auto rounded-[6px]" width="160" height="34" fetchpriority="high" />
+      <img id="nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies Logo" class="logo-img h-[26px] md:h-[34px] w-auto" width="160" height="34" fetchpriority="high" />
     </a>
 
     <!-- Desktop Nav with Icons & Dropdowns -->
@@ -2604,7 +2610,7 @@
   <!-- Header -->
   <div class="flex justify-between items-center px-6 pt-6 pb-4 border-b" style="border-color:var(--border);">
     <a href="#" onclick="closeMobileMenu()" class="flex items-center text-decoration-none" aria-label="VSGRPS Home">
-      <img id="mobile-nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies" class="logo-img h-[28px] w-auto rounded-[4px]" width="140" height="28" />
+      <img id="mobile-nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies" class="logo-img h-[28px] w-auto" width="140" height="28" />
     </a>
     <button id="menu-close" class="sidebar-close-btn" aria-label="Close navigation menu">
       <i class="bi bi-x-lg" aria-hidden="true"></i>

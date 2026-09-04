@@ -163,6 +163,12 @@
 
     .logo-img {
       transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: block;
+      background: transparent !important;
+    }
+    [data-theme="light"] .logo-img {
+      mix-blend-mode: multiply;
+      background: transparent !important;
     }
     .logo-fade {
       opacity: 0;
@@ -175,7 +181,7 @@
   <!-- Header -->
   <header class="py-4 md:py-8 px-6 max-w-7xl mx-auto flex justify-between items-center relative z-10">
     <a href="index.html" class="flex items-center gap-3 text-decoration-none" aria-label="Back to VSGRPS Home">
-      <img id="nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies" class="logo-img h-[28px] md:h-[38px] w-auto rounded-[4px]" width="180" height="38" fetchpriority="high" />
+      <img id="nav-logo" src="assets/vsgrps_navbar_dark_banner.webp" alt="VSGRPS Technologies" class="logo-img h-[28px] md:h-[38px] w-auto" width="180" height="38" fetchpriority="high" />
     </a>
     
     <div class="flex items-center gap-4">
