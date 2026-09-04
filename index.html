@@ -5060,29 +5060,50 @@
   }
 
   let cityClock = typeof THREE !== 'undefined' ? new THREE.Clock() : null;
+  let cityCurrentLook = null;
+
   function animateCity() {
     requestAnimationFrame(animateCity);
     if (!cityRenderer || !cityScene || !cityCamera) return;
 
+    const delta = cityClock ? Math.min(cityClock.getDelta(), 0.1) : 0.016;
     const elapsedTime = cityClock ? cityClock.getElapsedTime() : 0;
     
-    // Automatic smooth cinematic camera drift & sway
-    const autoCamX = Math.sin(elapsedTime * 0.35) * 3.2;
-    const autoCamY = 3.5 + Math.cos(elapsedTime * 0.28) * 1.1;
-    const autoLookX = Math.sin(elapsedTime * 0.35) * 10;
-    const autoLookY = 36 + Math.sin(elapsedTime * 0.22) * 5;
+    // Ultra-smooth, elegant, harmonic cinematic drone drift
+    const t = elapsedTime * 0.18;
+    const targetCamX = Math.sin(t) * 2.8 + Math.sin(t * 0.43) * 0.8;
+    const targetCamY = 3.6 + Math.cos(t * 0.75) * 0.9;
+    const targetCamZ = 22 + Math.sin(t * 0.35) * 1.5;
 
-    cityCamera.position.x += (autoCamX - cityCamera.position.x) * 0.035;
-    cityCamera.position.y += (autoCamY - cityCamera.position.y) * 0.035;
-    cityCamera.lookAt(autoLookX, autoLookY, -35);
+    const targetLookX = Math.sin(t * 0.85) * 7.5;
+    const targetLookY = 36 + Math.sin(t * 0.55) * 3.5;
+    const targetLookZ = -38;
 
-    // Towers Rise Emerging From Clouds
+    // Delta-time based smooth damping (silky 60fps / 120fps / 144fps)
+    const smoothFactor = 1 - Math.exp(-2.5 * delta);
+    
+    cityCamera.position.x += (targetCamX - cityCamera.position.x) * smoothFactor;
+    cityCamera.position.y += (targetCamY - cityCamera.position.y) * smoothFactor;
+    cityCamera.position.z += (targetCamZ - cityCamera.position.z) * smoothFactor;
+
+    if (!cityCurrentLook && typeof THREE !== 'undefined') {
+      cityCurrentLook = new THREE.Vector3(0, 36, -38);
+    }
+    if (cityCurrentLook) {
+      cityCurrentLook.x += (targetLookX - cityCurrentLook.x) * smoothFactor;
+      cityCurrentLook.y += (targetLookY - cityCurrentLook.y) * smoothFactor;
+      cityCurrentLook.z += (targetLookZ - cityCurrentLook.z) * smoothFactor;
+      cityCamera.lookAt(cityCurrentLook);
+    }
+
+    // Towers Rise Emerging From Clouds - Butter smooth interpolation
     if (isRisingAnimation) {
       let allSettled = true;
+      const riseFactor = 1 - Math.exp(-3.2 * delta);
       towerObjects.forEach(t => {
         const dy = t.userData.targetY - t.position.y;
-        if (Math.abs(dy) > 0.06) {
-          t.position.y += dy * t.userData.speed;
+        if (Math.abs(dy) > 0.02) {
+          t.position.y += dy * (t.userData.speed * 40 * delta + riseFactor * 0.1);
           allSettled = false;
         } else {
           t.position.y = t.userData.targetY;
@@ -5091,9 +5112,9 @@
       if (allSettled) isRisingAnimation = false;
     }
 
-    const beaconPulse = Math.sin(elapsedTime * 5) * 0.5 + 0.5;
+    const beaconPulse = Math.sin(elapsedTime * 4) * 0.5 + 0.5;
     beaconLights.forEach(beacon => {
-      beacon.scale.setScalar(0.75 + beaconPulse * 0.45);
+      beacon.scale.setScalar(0.8 + beaconPulse * 0.4);
     });
 
     cityRenderer.render(cityScene, cityCamera);

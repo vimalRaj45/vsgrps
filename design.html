@@ -1180,29 +1180,49 @@
 
     // ---- 5. High-Performance Render Loop ----
     let clock = new THREE.Clock();
+    let designCurrentLook = null;
 
     function animate() {
       requestAnimationFrame(animate);
 
+      const delta = Math.min(clock.getDelta(), 0.1);
       const elapsedTime = clock.getElapsedTime();
 
-      // Smooth Street View Automatic Floating & Tilt
-      const autoCamX = Math.sin(elapsedTime * 0.35) * 3.2;
-      const autoCamY = 3.5 + Math.cos(elapsedTime * 0.28) * 1.1;
-      const autoLookX = Math.sin(elapsedTime * 0.35) * 10;
-      const autoLookY = 36 + Math.sin(elapsedTime * 0.22) * 5;
+      // Ultra-smooth, elegant, harmonic cinematic drone drift
+      const t = elapsedTime * 0.18;
+      const targetCamX = Math.sin(t) * 2.8 + Math.sin(t * 0.43) * 0.8;
+      const targetCamY = 3.6 + Math.cos(t * 0.75) * 0.9;
+      const targetCamZ = 22 + Math.sin(t * 0.35) * 1.5;
 
-      camera.position.x += (autoCamX - camera.position.x) * 0.035;
-      camera.position.y += (autoCamY - camera.position.y) * 0.035;
-      camera.lookAt(autoLookX, autoLookY, -35);
+      const targetLookX = Math.sin(t * 0.85) * 7.5;
+      const targetLookY = 36 + Math.sin(t * 0.55) * 3.5;
+      const targetLookZ = -38;
+
+      // Delta-time based smooth damping (silky 60fps / 120fps / 144fps)
+      const smoothFactor = 1 - Math.exp(-2.5 * delta);
+
+      camera.position.x += (targetCamX - camera.position.x) * smoothFactor;
+      camera.position.y += (targetCamY - camera.position.y) * smoothFactor;
+      camera.position.z += (targetCamZ - camera.position.z) * smoothFactor;
+
+      if (!designCurrentLook && typeof THREE !== 'undefined') {
+        designCurrentLook = new THREE.Vector3(0, 36, -38);
+      }
+      if (designCurrentLook) {
+        designCurrentLook.x += (targetLookX - designCurrentLook.x) * smoothFactor;
+        designCurrentLook.y += (targetLookY - designCurrentLook.y) * smoothFactor;
+        designCurrentLook.z += (targetLookZ - designCurrentLook.z) * smoothFactor;
+        camera.lookAt(designCurrentLook);
+      }
 
       // Towers Rise Emerging From Clouds
       if (isRisingAnimation) {
         let allSettled = true;
+        const riseFactor = 1 - Math.exp(-3.2 * delta);
         towerObjects.forEach(t => {
           const dy = t.userData.targetY - t.position.y;
-          if (Math.abs(dy) > 0.08) {
-            t.position.y += dy * t.userData.speed;
+          if (Math.abs(dy) > 0.02) {
+            t.position.y += dy * (t.userData.speed * 40 * delta + riseFactor * 0.1);
             allSettled = false;
           } else {
             t.position.y = t.userData.targetY;
@@ -1212,12 +1232,14 @@
       }
 
       // Height Slider Scaling
-      cityGroup.scale.y = currentHeightScale;
+      if (cityGroup) {
+        cityGroup.scale.y = currentHeightScale;
+      }
 
       // Pulsing Strobe Beacons
-      const beaconPulse = Math.sin(elapsedTime * 5) * 0.5 + 0.5;
+      const beaconPulse = Math.sin(elapsedTime * 4) * 0.5 + 0.5;
       beaconLights.forEach((beacon) => {
-        beacon.scale.setScalar(0.75 + beaconPulse * 0.45);
+        beacon.scale.setScalar(0.8 + beaconPulse * 0.4);
       });
 
       renderer.render(scene, camera);
