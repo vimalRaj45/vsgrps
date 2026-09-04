@@ -4151,6 +4151,9 @@
     });
   });
 
+  // Global Hero Visibility State for Performance Rendering Loop
+  let isHeroVisible = true;
+
   // ---- Ultra-Optimized Particle System (Zero-Lag Squared Math) ----
   const canvas = document.getElementById('particle-canvas');
   const ctx = canvas.getContext('2d');
@@ -4174,73 +4177,41 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     particles = [];
-    for (let i = 0; i < particleCount; i++) {
+    const count = window.innerWidth < 768 ? 16 : 32;
+    for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 1.8 + 1,
-        speedX: (Math.random() - 0.5) * 0.4,
-        speedY: (Math.random() - 0.5) * 0.4
+        size: Math.random() * 1.6 + 0.8,
+        speedX: (Math.random() - 0.5) * 0.3,
+        speedY: (Math.random() - 0.5) * 0.3
       });
     }
   }
 
   function animateParticles() {
-    if (document.hidden) {
+    if (document.hidden || !isHeroVisible) {
       particleAnimId = requestAnimationFrame(animateParticles);
       return;
     }
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const fillStyle = isDark ? 'rgba(59, 130, 246, 0.35)' : 'rgba(37, 99, 235, 0.35)';
-    const strokePrefix = isDark ? 'rgba(59, 130, 246,' : 'rgba(37, 99, 235,';
+    ctx.fillStyle = isDark ? 'rgba(96, 165, 250, 0.45)' : 'rgba(37, 99, 235, 0.45)';
 
     for (let i = 0; i < particles.length; i++) {
       let p = particles[i];
       p.x += p.speedX;
       p.y += p.speedY;
 
-      if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+      if (p.x < 0) p.x = canvas.width;
+      else if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      else if (p.y > canvas.height) p.y = 0;
 
-      ctx.fillStyle = fillStyle;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       ctx.fill();
-
-      // Squared Distance Math (Avoids Math.sqrt bottleneck)
-      for (let j = i + 1; j < particles.length; j++) {
-        let p2 = particles[j];
-        let dx = p.x - p2.x;
-        let dy = p.y - p2.y;
-        let distSq = dx * dx + dy * dy;
-
-        if (distSq < 12100) { // 110px squared
-          let alpha = 0.15 * (1 - distSq / 12100);
-          ctx.strokeStyle = `${strokePrefix} ${alpha})`;
-          ctx.lineWidth = 0.5;
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
-        }
-      }
-
-      // Mouse Proximity Squared Check
-      if (mouse.x !== null) {
-        let dx = p.x - mouse.x;
-        let dy = p.y - mouse.y;
-        let distSq = dx * dx + dy * dy;
-        if (distSq < mouse.radiusSq) {
-          let alpha = 0.2 * (1 - distSq / mouse.radiusSq);
-          ctx.strokeStyle = `${strokePrefix} ${alpha})`;
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.stroke();
-        }
-      }
     }
     particleAnimId = requestAnimationFrame(animateParticles);
   }
@@ -4440,8 +4411,8 @@
     try {
       vantaEffect = VANTA.CLOUDS({
         el: "#vanta-clouds-bg",
-        mouseControls: true,
-        touchControls: true,
+        mouseControls: false,
+        touchControls: false,
         gyroControls: false,
         minHeight: 200.00,
         minWidth: 200.00,
@@ -4451,7 +4422,7 @@
         sunColor: isDark ? 0x0066ff : 0xffaa00,
         sunGlareColor: isDark ? 0x00d2ff : 0xffdd66,
         sunlightColor: isDark ? 0x2563eb : 0xffffff,
-        speed: 0.85
+        speed: 0.65
       });
     } catch(e) {
       console.warn("Vanta Clouds initialization fallback:", e);
@@ -4665,9 +4636,13 @@
   let targetCamX = 0, targetCamY = 3.5;
   let targetLookX = 0, targetLookY = 38;
 
+  let isCityInitialized = false;
+
   function initThreeCity() {
+    if (isCityInitialized) return;
     const container = document.getElementById('towers-canvas-wrap');
     if (!container || typeof THREE === 'undefined') return;
+    isCityInitialized = true;
 
     const width = window.innerWidth;
     const height = window.innerHeight;
@@ -4679,13 +4654,24 @@
     cityCamera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1600);
     cityCamera.position.set(0, 3.5, 22);
 
-    cityRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+    cityRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance", precision: "mediump" });
     cityRenderer.setSize(width, height);
-    cityRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    cityRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     cityRenderer.toneMapping = THREE.ACESFilmicToneMapping;
     cityRenderer.toneMappingExposure = isDark ? 1.15 : 1.25;
     container.innerHTML = '';
     container.appendChild(cityRenderer.domElement);
+
+    // Hero Visibility Observer to sleep render loop when scrolled past hero
+    if ('IntersectionObserver' in window) {
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          isHeroVisible = entry.isIntersecting;
+        });
+      }, { threshold: 0.02 });
+      const heroSection = document.getElementById('hero');
+      if (heroSection) heroObserver.observe(heroSection);
+    }
 
     // Dynamic Environment Reflection Map
     const envTexture = generateProceduralSkyEnv(isDark);
@@ -5133,7 +5119,7 @@
 
   function animateCity() {
     requestAnimationFrame(animateCity);
-    if (!cityRenderer || !cityScene || !cityCamera) return;
+    if (!cityRenderer || !cityScene || !cityCamera || !isHeroVisible || document.hidden) return;
 
     const delta = cityClock ? Math.min(cityClock.getDelta(), 0.1) : 0.016;
     const elapsedTime = cityClock ? cityClock.getElapsedTime() : 0;
@@ -5189,12 +5175,16 @@
     cityRenderer.render(cityScene, cityCamera);
   }
 
-  window.addEventListener('load', () => {
+  // Single clean initialization on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initVantaClouds();
+      initThreeCity();
+    });
+  } else {
     initVantaClouds();
     initThreeCity();
-  });
-  initVantaClouds();
-  setTimeout(initThreeCity, 100);
+  }
 
   function updateThemeIcon(theme) {
     const icon = themeToggle.querySelector('i');
