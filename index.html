@@ -176,13 +176,13 @@
     }
 
     [data-theme="light"] #hero h1 {
-      color: #0B132B !important;
-      text-shadow: 0 2px 14px rgba(255, 255, 255, 0.95), 0 0 28px rgba(255, 255, 255, 0.9);
+      color: #F1F5F9 !important;
+      text-shadow: none !important;
     }
 
     [data-theme="light"] #hero p {
-      color: #0F172A !important;
-      text-shadow: 0 1px 8px rgba(255, 255, 255, 0.95);
+      color: #CBD5E1 !important;
+      text-shadow: none !important;
     }
 
     [data-theme="light"] .gradient-text {
@@ -190,7 +190,7 @@
       -webkit-background-clip: text !important;
       background-clip: text !important;
       -webkit-text-fill-color: transparent !important;
-      filter: drop-shadow(0 1px 4px rgba(217, 119, 6, 0.25));
+      filter: none !important;
     }
 
     [data-theme="light"] .glass {
@@ -276,18 +276,19 @@
     }
 
     #hero h1 {
-      text-shadow: 0 4px 28px rgba(0, 0, 0, 0.95), 0 1px 8px rgba(0, 0, 0, 0.85);
+      color: #F1F5F9 !important;
+      text-shadow: none !important;
     }
 
     #hero p {
-      color: #F8FAFC !important;
-      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95);
+      color: #CBD5E1 !important;
+      text-shadow: none !important;
       font-weight: 500;
     }
 
     [data-theme="light"] #hero p {
-      color: #0F172A !important;
-      text-shadow: 0 1px 8px rgba(255, 255, 255, 0.95);
+      color: #CBD5E1 !important;
+      text-shadow: none !important;
       font-weight: 500;
     }
 
@@ -562,6 +563,18 @@
       transform: scale(0.96) translateY(1px) !important;
     }
 
+    /* ==================== 3D CANVAS & CELESTIAL BACKGROUND (0 BLUR) ==================== */
+    #towers-canvas-wrap {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      filter: none;
+      -webkit-filter: none;
+    }
+
     /* ==================== CELESTIAL STARFIELD & CONSTELLATION BACKGROUND ==================== */
     #starfield-bg {
       position: fixed;
@@ -571,6 +584,8 @@
       z-index: -2;
       pointer-events: none;
       overflow: hidden;
+      filter: none;
+      -webkit-filter: none;
       background: radial-gradient(ellipse at 50% 18%, #0d214a 0%, #061128 45%, #030712 100%);
       transition: background 0.5s ease;
     }
@@ -693,16 +708,16 @@
 
     /* Glow effects */
     .glow-accent { box-shadow: 0 0 30px rgba(245, 158, 11, 0.2); }
-    .glow-text { text-shadow: 0 0 35px rgba(245, 158, 11, 0.45); }
+    .glow-text { text-shadow: none; }
     .glow-blue { box-shadow: 0 0 30px rgba(96,165,250,0.15); }
 
-    /* Gradient text - Warm Amber-Gold High Contrast */
+    /* Gradient text - Warm Amber-Gold High Contrast (Crisp Edge) */
     .gradient-text {
       background: linear-gradient(135deg, #F59E0B 0%, #F97316 50%, #EA580C 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 2px 14px rgba(245, 158, 11, 0.35));
+      filter: none;
     }
 
     /* Navbar */
@@ -2470,7 +2485,7 @@
 <div id="starfield-bg"></div>
 
 <!-- ==================== 3D REALISTIC MANHATTAN STREET CANYON ==================== -->
-<div id="towers-canvas-wrap" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;"></div>
+<div id="towers-canvas-wrap"></div>
 
 <!-- ==================== BACKGROUND PARTICLES ==================== -->
 <canvas id="particle-canvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0.35;"></canvas>
