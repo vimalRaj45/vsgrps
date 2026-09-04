@@ -224,17 +224,6 @@
     /* Hero Content Readability Shield */
     .hero-content-shield {
       position: relative;
-      background: radial-gradient(circle at 35% 45%, rgba(2, 6, 23, 0.82) 0%, rgba(3, 7, 22, 0.58) 70%, transparent 100%);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55);
-    }
-
-    [data-theme="light"] .hero-content-shield {
-      background: radial-gradient(circle at 35% 45%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.68) 70%, transparent 100%);
-      border: 1px solid rgba(203, 213, 225, 0.85);
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
     }
 
     /* Theme Toggle */
@@ -369,7 +358,7 @@
 
     <!-- Hero Content -->
     <main class="w-full max-w-[1400px] mx-auto px-6 py-12 flex-1 flex flex-col justify-center">
-      <div class="max-w-2xl hero-content-shield p-6 sm:p-8 md:p-10 rounded-3xl">
+      <div class="max-w-2xl hero-content-shield">
         <div class="section-badge mb-4">
           <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping inline-block"></span>
           3D Street View • Manhattan Skyscraper Canyon

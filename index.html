@@ -271,17 +271,6 @@
     /* ==================== HERO CONTENT READABILITY & CONTRAST SHIELD ==================== */
     .hero-content-shield {
       position: relative;
-      background: radial-gradient(circle at 35% 45%, rgba(2, 6, 23, 0.78) 0%, rgba(3, 7, 22, 0.55) 70%, transparent 100%);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5);
-    }
-
-    [data-theme="light"] .hero-content-shield {
-      background: radial-gradient(circle at 35% 45%, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.65) 70%, transparent 100%);
-      border: 1px solid rgba(203, 213, 225, 0.85);
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
     }
 
     #hero h1 {
@@ -2569,7 +2558,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
       <!-- Left -->
       <div class="text-left order-2 lg:order-1 lg:col-span-7">
-        <div class="hero-content-shield p-6 sm:p-8 md:p-10 rounded-3xl">
+        <div class="hero-content-shield">
           <div class="section-tag" data-aos="fade-up" data-aos-delay="100">
             <span style="width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block;margin-right:8px;animation:pulse 2s infinite;"></span>
             Enterprise Software & UI/UX Studio
