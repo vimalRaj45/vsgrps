@@ -29,14 +29,97 @@
       --accent-blue: #60A5FA;
     }
 
+    /* ==================== HIGH-CONTRAST LIGHT THEME RULES ==================== */
     [data-theme="light"] {
       --bg: #F8FAFC;
       --card: #FFFFFF;
-      --border: #E2E8F0;
+      --border: #CBD5E1;
       --text: #0F172A;
-      --text-muted: #475569;
-      --accent: #2563EB;
-      --accent-blue: #3B82F6;
+      --text-muted: #334155;
+      --accent: #1D4ED8;
+      --accent-blue: #2563EB;
+    }
+
+    [data-theme="light"] h1,
+    [data-theme="light"] h2,
+    [data-theme="light"] h3,
+    [data-theme="light"] h4 {
+      color: #0F172A !important;
+    }
+
+    [data-theme="light"] p {
+      color: #334155 !important;
+    }
+
+    [data-theme="light"] .glass-panel {
+      background: rgba(255, 255, 255, 0.94) !important;
+      border-color: rgba(203, 213, 225, 0.9) !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    [data-theme="light"] .section-badge {
+      background: rgba(255, 255, 255, 0.9) !important;
+      color: #1D4ED8 !important;
+      border: 1px solid rgba(29, 78, 216, 0.25) !important;
+    }
+
+    /* ==================== CINEMATIC BUILDING-FIRST ENTRANCE CASCADE ==================== */
+    body:not(.page-revealed) header {
+      transform: translateY(-100%) !important;
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+    header {
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease !important;
+    }
+
+    body:not(.page-revealed) main .section-badge,
+    body:not(.page-revealed) main h1,
+    body:not(.page-revealed) main p,
+    body:not(.page-revealed) main .btn-primary,
+    body:not(.page-revealed) main .btn-outline,
+    body:not(.page-revealed) main .grid,
+    body:not(.page-revealed) .hud-card {
+      opacity: 0 !important;
+      transform: translateY(28px) !important;
+      pointer-events: none;
+    }
+
+    main .section-badge {
+      transition: opacity 0.75s ease 0.05s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+    }
+    main h1 {
+      transition: opacity 0.8s ease 0.18s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
+    }
+    main p {
+      transition: opacity 0.8s ease 0.32s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.32s;
+    }
+    main .btn-primary, main .btn-outline {
+      transition: opacity 0.8s ease 0.46s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.46s, background 0.3s ease !important;
+    }
+    main .grid {
+      transition: opacity 0.85s ease 0.6s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+    }
+    .hud-card {
+      transition: opacity 0.9s ease 0.7s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.7s;
+    }
+
+    body.page-revealed header {
+      transform: translateY(0) !important;
+      opacity: 1 !important;
+      pointer-events: auto;
+    }
+
+    body.page-revealed main .section-badge,
+    body.page-revealed main h1,
+    body.page-revealed main p,
+    body.page-revealed main .btn-primary,
+    body.page-revealed main .btn-outline,
+    body.page-revealed main .grid,
+    body.page-revealed .hud-card {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      pointer-events: auto;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -92,7 +175,7 @@
       color: #FFFFFF;
       font-weight: 700;
       padding: 10px 24px;
-      border-radius: 6px;
+      border-radius: 8px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -100,30 +183,58 @@
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.5);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.55);
     }
 
     .btn-outline {
-      background: transparent;
-      color: var(--accent);
+      background: rgba(4, 9, 24, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #93C5FD;
       font-weight: 600;
-      border: 1px solid var(--accent);
+      border: 1.5px solid #3B82F6;
       padding: 9px 22px;
-      border-radius: 6px;
+      border-radius: 8px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
     .btn-outline:hover {
-      background: rgba(59, 130, 246, 0.1);
+      background: rgba(59, 130, 246, 0.25);
+      color: #FFFFFF;
+      border-color: #60A5FA;
       transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+    }
+    [data-theme="light"] .btn-outline {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: #2563EB;
+      color: #2563EB;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Hero Content Readability Shield */
+    .hero-content-shield {
+      position: relative;
+      background: radial-gradient(circle at 35% 45%, rgba(2, 6, 23, 0.82) 0%, rgba(3, 7, 22, 0.58) 70%, transparent 100%);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55);
+    }
+
+    [data-theme="light"] .hero-content-shield {
+      background: radial-gradient(circle at 35% 45%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.68) 70%, transparent 100%);
+      border: 1px solid rgba(203, 213, 225, 0.85);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
     }
 
     /* Theme Toggle */
@@ -152,20 +263,23 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 5px 14px;
-      border-radius: 6px;
+      padding: 6px 14px;
+      border-radius: 8px;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      background: rgba(59, 130, 246, 0.12);
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      background: rgba(3, 8, 24, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(59, 130, 246, 0.35);
       color: #93C5FD;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
     }
     [data-theme="light"] .section-badge {
-      background: rgba(37, 99, 235, 0.1);
+      background: rgba(255, 255, 255, 0.95);
       color: #2563EB;
-      border-color: rgba(37, 99, 235, 0.25);
+      border-color: rgba(37, 99, 235, 0.3);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
     /* Tower Control Panel HUD */
@@ -180,27 +294,43 @@
     }
 
     .stat-box {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      border-radius: 6px;
+      background: rgba(3, 8, 24, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(59, 130, 246, 0.32);
+      border-radius: 10px;
       padding: 12px;
       text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+    .stat-box div:last-child {
+      color: #CBD5E1 !important;
+      font-weight: 600;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
     }
     [data-theme="light"] .stat-box {
-      background: #FFFFFF;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #CBD5E1;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    }
+    [data-theme="light"] .stat-box div:last-child {
+      color: #475569 !important;
+      text-shadow: none;
     }
 
     .arch-chip {
       font-size: 10px;
       font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 4px;
-      background: rgba(59, 130, 246, 0.15);
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(3, 8, 24, 0.85);
+      backdrop-filter: blur(8px);
       color: #93C5FD;
       display: inline-block;
       margin-right: 4px;
       margin-bottom: 4px;
-      border: 1px solid rgba(59, 130, 246, 0.25);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
   </style>
 </head>
@@ -239,7 +369,7 @@
 
     <!-- Hero Content -->
     <main class="w-full max-w-[1400px] mx-auto px-6 py-12 flex-1 flex flex-col justify-center">
-      <div class="max-w-2xl">
+      <div class="max-w-2xl hero-content-shield p-6 sm:p-8 md:p-10 rounded-3xl">
         <div class="section-badge mb-4">
           <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping inline-block"></span>
           3D Street View • Manhattan Skyscraper Canyon
@@ -371,104 +501,201 @@
       }
     }
 
-    // ---- 2. High-Resolution Curtain Wall & Storefront Texture Generator ----
-    function generateCurtainWallTexture(isDark, windowLightsEnabled = true) {
+    // ---- 2. High-Dynamic Procedural Sky & City Environment Map (Shining Sapphire Reflections) ----
+    function generateProceduralSkyEnv(isDark) {
       const canvas = document.createElement('canvas');
       canvas.width = 1024;
-      canvas.height = 2048;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+      
+      // Sky Gradient with vibrant sapphire reflection bands
+      const skyGrad = ctx.createLinearGradient(0, 0, 0, 512);
+      if (isDark) {
+        skyGrad.addColorStop(0, '#020817');
+        skyGrad.addColorStop(0.22, '#081e46');
+        skyGrad.addColorStop(0.40, '#103778');
+        skyGrad.addColorStop(0.48, '#1d4ed8');
+        skyGrad.addColorStop(0.53, '#38bdf8');
+        skyGrad.addColorStop(0.60, '#1e3a8a');
+        skyGrad.addColorStop(0.78, '#0a1636');
+        skyGrad.addColorStop(1, '#020617');
+      } else {
+        skyGrad.addColorStop(0, '#60a5fa');
+        skyGrad.addColorStop(0.42, '#bae6fd');
+        skyGrad.addColorStop(0.52, '#ffffff');
+        skyGrad.addColorStop(0.62, '#cbd5e1');
+        skyGrad.addColorStop(1, '#94a3b8');
+      }
+      ctx.fillStyle = skyGrad;
+      ctx.fillRect(0, 0, 1024, 512);
+
+      // Sun / Moon radiant specular flare
+      const sunGrad = ctx.createRadialGradient(720, 240, 2, 720, 240, 220);
+      if (isDark) {
+        sunGrad.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
+        sunGrad.addColorStop(0.12, 'rgba(147, 197, 253, 0.9)');
+        sunGrad.addColorStop(0.35, 'rgba(37, 99, 235, 0.6)');
+        sunGrad.addColorStop(0.7, 'rgba(14, 165, 233, 0.2)');
+        sunGrad.addColorStop(1, 'transparent');
+      } else {
+        sunGrad.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
+        sunGrad.addColorStop(0.3, 'rgba(254, 240, 138, 0.5)');
+        sunGrad.addColorStop(1, 'transparent');
+      }
+      ctx.fillStyle = sunGrad;
+      ctx.beginPath();
+      ctx.arc(720, 240, 220, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Distant skyline silhouette along horizon for rich architectural reflections
+      ctx.fillStyle = isDark ? 'rgba(4, 14, 38, 0.75)' : 'rgba(203, 213, 225, 0.65)';
+      for (let x = 0; x < 1024; x += 14) {
+        const bh = 18 + Math.sin(x * 0.05) * 16 + (x % 32);
+        ctx.fillRect(x, 260 - bh, 12, bh + 45);
+      }
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.mapping = THREE.EquirectangularReflectionMapping;
+      return texture;
+    }
+
+    // ---- 2B. Architectural Curtain Wall Texture Generator (Glossy Sapphire Glass & Faint Office Lights) ----
+    function generateCurtainWallTexture(isDark, windowLightsEnabled = true) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 1536;
+      canvas.height = 3072;
       const ctx = canvas.getContext('2d');
 
-      // Base Glass Reflective Gradient
-      const bgGrad = ctx.createLinearGradient(0, 0, 1024, 2048);
-      if (isDark) {
-        bgGrad.addColorStop(0, '#0a162b');
-        bgGrad.addColorStop(0.5, '#071020');
-        bgGrad.addColorStop(1, '#040914');
-      } else {
-        bgGrad.addColorStop(0, '#c2ddfd');
-        bgGrad.addColorStop(0.5, '#99c3fb');
-        bgGrad.addColorStop(1, '#6ea6f5');
-      }
-      ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, 1024, 2048);
+      // Base Structure: Deep Sapphire Obsidian Slate
+      ctx.fillStyle = isDark ? '#030a1c' : '#cbd5e1';
+      ctx.fillRect(0, 0, 1536, 3072);
 
-      // Floor Panels & Window Grid System
-      const cols = 24;
-      const rows = 64;
-      const cellW = 1024 / cols;
-      const cellH = 2048 / rows;
+      const cols = 28;
+      const rows = 68;
+      const cellW = 1536 / cols; // ~54.8px
+      const cellH = 3072 / rows; // ~45.1px
+      const mullionThick = 2.0;
 
       for (let r = 0; r < rows; r++) {
         const floorY = r * cellH;
-        const isPodium = r > rows - 8; // Double-height bottom street-level retail & lobby
         const isMechanicalFloor = (r % 18 === 0 && r !== 0);
 
-        if (isPodium) {
-          // Street Level Warm Storefronts & Grand Lobby Glazing
-          ctx.fillStyle = isDark ? 'rgba(251, 191, 36, 0.85)' : 'rgba(255, 255, 255, 0.95)';
-          ctx.fillRect(0, floorY, 1024, cellH);
-          ctx.strokeStyle = '#d97706';
-          ctx.lineWidth = 3;
-          ctx.strokeRect(0, floorY, 1024, cellH);
-          continue;
-        }
+        // Floor Spandrel Divider
+        const spandrelH = 5.0;
+        ctx.fillStyle = isDark ? '#020612' : '#64748b';
+        ctx.fillRect(0, floorY + cellH - spandrelH, 1536, spandrelH);
+
+        // Thin Sapphire Trim Line
+        ctx.fillStyle = isDark ? 'rgba(96, 165, 250, 0.35)' : 'rgba(255, 255, 255, 0.5)';
+        ctx.fillRect(0, floorY + cellH - spandrelH, 1536, 0.6);
 
         if (isMechanicalFloor) {
-          ctx.fillStyle = isDark ? '#02050b' : '#334155';
-          ctx.fillRect(0, floorY, 1024, cellH);
-          for (let l = 0; l < cellH; l += 4) {
-            ctx.fillStyle = isDark ? 'rgba(30, 58, 138, 0.4)' : 'rgba(255, 255, 255, 0.3)';
-            ctx.fillRect(0, floorY + l, 1024, 1.5);
+          ctx.fillStyle = isDark ? '#030816' : '#334155';
+          ctx.fillRect(0, floorY, 1536, cellH - spandrelH);
+          for (let l = 0; l < cellH - spandrelH; l += 3.5) {
+            ctx.fillStyle = isDark ? 'rgba(15, 23, 42, 0.9)' : 'rgba(148, 163, 184, 0.5)';
+            ctx.fillRect(0, floorY + l, 1536, 1.2);
           }
           continue;
         }
 
+        // Standard Floors: Glossy Sapphire Glass with Rich Night Office Lights (~28% lit)
         for (let c = 0; c < cols; c++) {
           const x = c * cellW;
           const y = floorY;
+          const boxW = cellW - mullionThick;
+          const boxH = cellH - spandrelH - 0.8;
 
-          const isLit = windowLightsEnabled && (Math.random() > 0.40);
-          const isSkyReflection = Math.random() > 0.65;
-          const lightType = Math.random();
+          // Realistic urban night office occupancy (~28% lit with occasional busy floor clusters)
+          const isBusyFloor = (r % 6 === 2 || r % 9 === 4);
+          const isLit = windowLightsEnabled && (Math.random() < (isBusyFloor ? 0.48 : 0.26));
+          const randTone = Math.random();
 
           if (isDark) {
             if (isLit) {
-              if (lightType > 0.6) {
-                ctx.fillStyle = 'rgba(224, 242, 254, 0.9)'; // Tech office blue
-              } else if (lightType > 0.25) {
-                ctx.fillStyle = 'rgba(254, 240, 138, 0.85)'; // Warm executive amber
+              // Warm & vibrant interior office room light
+              const roomGrad = ctx.createLinearGradient(x, y, x, y + boxH);
+              if (randTone > 0.65) {
+                // Vibrant Ice-Blue Tech Glow
+                roomGrad.addColorStop(0, 'rgba(224, 242, 254, 0.75)');
+                roomGrad.addColorStop(0.45, 'rgba(147, 197, 253, 0.45)');
+                roomGrad.addColorStop(1, 'rgba(56, 189, 248, 0.20)');
+              } else if (randTone > 0.32) {
+                // Crisp Modern Daylight White
+                roomGrad.addColorStop(0, 'rgba(255, 255, 255, 0.82)');
+                roomGrad.addColorStop(0.45, 'rgba(226, 232, 240, 0.48)');
+                roomGrad.addColorStop(1, 'rgba(148, 163, 184, 0.22)');
               } else {
-                ctx.fillStyle = 'rgba(56, 189, 248, 0.75)';  // Cyan glow
+                // Warm Golden Amber Executive Glow
+                roomGrad.addColorStop(0, 'rgba(254, 240, 138, 0.78)');
+                roomGrad.addColorStop(0.45, 'rgba(251, 191, 36, 0.46)');
+                roomGrad.addColorStop(1, 'rgba(217, 119, 6, 0.20)');
               }
-            } else if (isSkyReflection) {
-              ctx.fillStyle = 'rgba(37, 99, 235, 0.35)';
+
+              ctx.fillStyle = roomGrad;
+              ctx.fillRect(x + mullionThick / 2, y + 0.6, boxW, boxH);
+
+              // Luminous Ceiling Troffer Fixture
+              ctx.fillStyle = 'rgba(255, 255, 255, 0.68)';
+              ctx.fillRect(x + mullionThick / 2 + boxW * 0.15, y + 1.8, boxW * 0.7, 1.2);
+
+              // Workstation Desk & Interior Depth Silhouette
+              if (randTone > 0.25) {
+                ctx.fillStyle = 'rgba(3, 7, 22, 0.55)';
+                ctx.fillRect(x + mullionThick / 2, y + boxH - 3.2, boxW, 3.2);
+              }
             } else {
-              ctx.fillStyle = 'rgba(8, 15, 28, 0.92)';
+              // Shining Sapphire Crystal Glass Facade Panel
+              const darkGrad = ctx.createLinearGradient(x, y, x + boxW, y + boxH);
+              darkGrad.addColorStop(0, '#123164');
+              darkGrad.addColorStop(0.35, '#0c2249');
+              darkGrad.addColorStop(0.70, '#071530');
+              darkGrad.addColorStop(1, '#030b1c');
+              ctx.fillStyle = darkGrad;
+              ctx.fillRect(x + mullionThick / 2, y + 0.6, boxW, boxH);
+
+              // Sleek Crystal Sapphire Specular Diagonal Ray
+              if (randTone > 0.35) {
+                const rayGrad = ctx.createLinearGradient(x, y, x + boxW * 0.6, y + boxH * 0.8);
+                rayGrad.addColorStop(0, 'rgba(147, 197, 253, 0.26)');
+                rayGrad.addColorStop(0.4, 'rgba(96, 165, 250, 0.14)');
+                rayGrad.addColorStop(1, 'transparent');
+                ctx.fillStyle = rayGrad;
+                ctx.beginPath();
+                ctx.moveTo(x + mullionThick / 2, y + 0.6);
+                ctx.lineTo(x + mullionThick / 2 + boxW * 0.55, y + 0.6);
+                ctx.lineTo(x + mullionThick / 2, y + 0.6 + boxH * 0.75);
+                ctx.closePath();
+                ctx.fill();
+              }
             }
           } else {
+            // Light Mode: Clean Daylight Crystal Glass
+            const lightGrad = ctx.createLinearGradient(x, y, x + boxW * 0.6, y + boxH);
             if (isLit) {
-              ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+              lightGrad.addColorStop(0, '#ffffff');
+              lightGrad.addColorStop(0.4, '#e0f2fe');
+              lightGrad.addColorStop(1, '#bae6fd');
             } else {
-              ctx.fillStyle = 'rgba(191, 219, 254, 0.65)';
+              lightGrad.addColorStop(0, '#f8fafc');
+              lightGrad.addColorStop(0.5, '#e2e8f0');
+              lightGrad.addColorStop(1, '#cbd5e1');
             }
+            ctx.fillStyle = lightGrad;
+            ctx.fillRect(x + mullionThick / 2, y + 0.6, boxW, boxH);
           }
 
-          ctx.fillRect(x + 2, y + 2, cellW - 4, cellH - 4);
-
-          // Aluminum Window Frames
-          ctx.strokeStyle = isDark ? 'rgba(30, 58, 138, 0.85)' : 'rgba(255, 255, 255, 0.85)';
-          ctx.lineWidth = 1.5;
-          ctx.strokeRect(x, y, cellW, cellH);
+          // Crisp Structural Mullion Grid
+          ctx.strokeStyle = isDark ? '#02050f' : 'rgba(71, 85, 105, 0.9)';
+          ctx.lineWidth = mullionThick;
+          ctx.strokeRect(x + mullionThick / 2, y + 0.6, boxW, boxH);
         }
-
-        // Structural Floor Slab Edge
-        ctx.fillStyle = isDark ? '#1e3a8a' : '#1d4ed8';
-        ctx.fillRect(0, floorY + cellH - 3, 1024, 3);
       }
 
       const texture = new THREE.CanvasTexture(canvas);
       texture.wrapS = THREE.RepeatWrapping;
       texture.wrapT = THREE.RepeatWrapping;
+      texture.anisotropy = 16;
       return texture;
     }
 
@@ -481,7 +708,7 @@
     let targetLookAtY = 38, targetLookAtX = 0;
     let currentHeightScale = 1.0;
     let isRisingAnimation = true;
-    let viewMode = 'street'; // 'street' or 'aerial'
+    let viewMode = 'street';
 
     function initThreeCity() {
       const container = document.getElementById('towers-canvas-wrap');
@@ -490,10 +717,9 @@
 
       scene = new THREE.Scene();
       
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      scene.fog = new THREE.FogExp2(isDark ? 0x050c1e : 0x5a9cf8, 0.009);
+      const isDark = (document.documentElement.getAttribute('data-theme') || 'dark') !== 'light';
+      scene.fog = new THREE.FogExp2(isDark ? 0x030a1c : 0x7bb1f9, 0.0062);
 
-      // Wide angle Street View perspective camera
       camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1600);
       camera.position.set(0, 3.5, 22);
 
@@ -501,29 +727,31 @@
       renderer.setSize(width, height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.2;
+      renderer.toneMappingExposure = isDark ? 1.15 : 1.25;
+      container.innerHTML = '';
       container.appendChild(renderer.domElement);
 
-      // Dynamic Urban Street Lighting
-      const ambientLight = new THREE.AmbientLight(isDark ? 0x243b55 : 0xa5c9f5, 1.6);
+      // Environment Reflection
+      const envTexture = generateProceduralSkyEnv(isDark);
+      scene.environment = envTexture;
+
+      const ambientLight = new THREE.AmbientLight(isDark ? 0x142b54 : 0xffffff, isDark ? 1.4 : 2.2);
       scene.add(ambientLight);
 
-      const sunLight = new THREE.DirectionalLight(0xffffff, 2.4);
-      sunLight.position.set(30, 90, 40);
+      const sunLight = new THREE.DirectionalLight(0xffffff, isDark ? 2.4 : 3.2);
+      sunLight.position.set(35, 95, 45);
       scene.add(sunLight);
 
-      const cyanStreetRim = new THREE.DirectionalLight(0x38bdf8, 2.0);
-      cyanStreetRim.position.set(-40, 20, -10);
-      scene.add(cyanStreetRim);
+      const sapphireSpecularLight = new THREE.DirectionalLight(0x60a5fa, isDark ? 2.2 : 2.0);
+      sapphireSpecularLight.position.set(-45, 40, -10);
+      scene.add(sapphireSpecularLight);
 
-      const amberStreetGlow = new THREE.DirectionalLight(0xf59e0b, 1.8);
-      amberStreetGlow.position.set(0, -5, 20);
-      scene.add(amberStreetGlow);
+      const streetBounceLight = new THREE.DirectionalLight(0x2563eb, isDark ? 1.2 : 1.8);
+      streetBounceLight.position.set(0, -6, 25);
+      scene.add(streetBounceLight);
 
-      // Build Street Level Urban Canyon
       buildRealisticCity();
 
-      // Window & Mouse Handlers
       window.addEventListener('resize', onWindowResize);
       window.addEventListener('mousemove', onMouseMove);
       window.addEventListener('touchmove', onTouchMove, { passive: true });
@@ -541,45 +769,59 @@
       towerObjects = [];
       beaconLights = [];
 
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const isDark = (document.documentElement.getAttribute('data-theme') || 'dark') !== 'light';
       const windowsEnabled = document.getElementById('windows-toggle') ? document.getElementById('windows-toggle').checked : true;
       const facadeTex = generateCurtainWallTexture(isDark, windowsEnabled);
 
-      // Materials
+      // High-Fidelity Shining Sapphire Glass Materials with Night Window Radiance
       const glassMat = new THREE.MeshPhysicalMaterial({
         map: facadeTex,
-        color: isDark ? 0x142850 : 0xe0efff,
-        metalness: 0.88,
-        roughness: 0.1,
-        reflectivity: 0.98,
+        emissive: new THREE.Color(isDark ? 0x2563eb : 0x000000),
+        emissiveMap: facadeTex,
+        emissiveIntensity: isDark ? 0.36 : 0.0,
+        color: isDark ? 0x0f2e63 : 0xffffff,
+        metalness: isDark ? 0.38 : 0.20,
+        roughness: isDark ? 0.04 : 0.08,
+        reflectivity: 1.0,
         clearcoat: 1.0,
-        clearcoatRoughness: 0.06,
+        clearcoatRoughness: 0.02,
+        ior: 1.54,
+        sheen: isDark ? 1.0 : 0.25,
+        sheenColor: new THREE.Color(isDark ? 0x60a5fa : 0xffffff),
+        sheenRoughness: 0.06,
         transparent: true,
-        opacity: 0.95
+        opacity: 0.98
       });
 
       const bronzeGlassMat = new THREE.MeshPhysicalMaterial({
         map: facadeTex,
-        color: isDark ? 0x161a24 : 0xd8e4f5,
-        metalness: 0.94,
-        roughness: 0.08,
-        reflectivity: 0.99,
+        emissive: new THREE.Color(isDark ? 0x1d4ed8 : 0x000000),
+        emissiveMap: facadeTex,
+        emissiveIntensity: isDark ? 0.36 : 0.0,
+        color: isDark ? 0x0b2046 : 0xf1f5f9,
+        metalness: isDark ? 0.42 : 0.22,
+        roughness: isDark ? 0.05 : 0.09,
+        reflectivity: 1.0,
         clearcoat: 1.0,
-        clearcoatRoughness: 0.05,
+        clearcoatRoughness: 0.02,
+        ior: 1.54,
+        sheen: isDark ? 1.0 : 0.25,
+        sheenColor: new THREE.Color(isDark ? 0x38bdf8 : 0xffffff),
+        sheenRoughness: 0.06,
         transparent: true,
-        opacity: 0.96
+        opacity: 0.98
       });
 
       const blackSteelMat = new THREE.MeshStandardMaterial({
-        color: isDark ? 0x0f172a : 0x334155,
+        color: isDark ? 0x0f172a : 0x64748b,
         metalness: 0.92,
         roughness: 0.25
       });
 
-      const goldAtriumMat = new THREE.MeshBasicMaterial({
-        color: 0xf59e0b,
-        transparent: true,
-        opacity: 0.88
+      const louverMat = new THREE.MeshStandardMaterial({
+        color: isDark ? 0x070d1a : 0x475569,
+        metalness: 0.85,
+        roughness: 0.4
       });
 
       const goldFrameMat = new THREE.MeshStandardMaterial({
@@ -591,144 +833,199 @@
       const redBeaconMat = new THREE.MeshBasicMaterial({ color: 0xff2a2a });
       const cyanBeaconMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
       const warmLampMat = new THREE.MeshBasicMaterial({ color: 0xfef08a });
+      const curbMat = new THREE.MeshStandardMaterial({ color: isDark ? 0x334155 : 0xcbd5e1, roughness: 0.8 });
+      const bollardMat = new THREE.MeshStandardMaterial({ color: isDark ? 0x1e293b : 0x94a3b8, metalness: 0.85, roughness: 0.2 });
 
-      // ---- 4A. Street Infrastructure (Asphalt Avenue, Sidewalks, Street Lamps) ----
-      function createStreetLevel() {
-        const streetGroup = new THREE.Group();
-        const streetLength = 220;
-        const streetWidth = 24;
+      // ---- 4A. Ultra-Realistic Wet Reflective Metropolis Avenue ----
+      function createRealisticWetBoulevard() {
+        const boulevardGroup = new THREE.Group();
+        const streetLength = 260;
+        const streetWidth = 26;
 
-        // Asphalt Road Surface
-        const roadGeom = new THREE.PlaneGeometry(streetWidth, streetLength);
-        const roadMat = new THREE.MeshStandardMaterial({
-          color: isDark ? 0x090d16 : 0x1e293b,
-          roughness: 0.85,
-          metalness: 0.15
+        // 1. Wet Glossy Rain-Slicked Asphalt Surface
+        const roadGeom = new THREE.PlaneGeometry(streetWidth, streetLength, 16, 16);
+        const roadMat = new THREE.MeshPhysicalMaterial({
+          color: isDark ? 0x050913 : 0x1e293b,
+          roughness: isDark ? 0.12 : 0.25,
+          metalness: isDark ? 0.78 : 0.35,
+          clearcoat: 1.0,
+          clearcoatRoughness: 0.04,
+          reflectivity: 1.0,
+          ior: 1.52
         });
         const road = new THREE.Mesh(roadGeom, roadMat);
         road.rotation.x = -Math.PI / 2;
-        road.position.set(0, 0, -streetLength / 2 + 30);
-        streetGroup.add(road);
+        road.position.set(0, 0, -streetLength / 2 + 35);
+        boulevardGroup.add(road);
 
-        // Yellow Center Division Lines
-        for (let z = 25; z > -streetLength + 30; z -= 8) {
-          const lineGeom = new THREE.PlaneGeometry(0.3, 4.5);
-          const lineMat = new THREE.MeshBasicMaterial({ color: 0xfacc15 });
-          const line = new THREE.Mesh(lineGeom, lineMat);
-          line.rotation.x = -Math.PI / 2;
-          line.position.set(0, 0.02, z);
-          streetGroup.add(line);
+        // 2. Elegant Modern Dashed Center Divider Line
+        for (let z = 30; z > -streetLength + 35; z -= 8) {
+          const dashGeom = new THREE.PlaneGeometry(0.18, 4.2);
+          const dashMat = new THREE.MeshBasicMaterial({
+            color: isDark ? 0xe0f2fe : 0xf8fafc,
+            transparent: true,
+            opacity: 0.8
+          });
+          const dash = new THREE.Mesh(dashGeom, dashMat);
+          dash.rotation.x = -Math.PI / 2;
+          dash.position.set(0, 0.02, z);
+          boulevardGroup.add(dash);
         }
 
-        // Left & Right Sidewalks
-        const sidewalkGeom = new THREE.BoxGeometry(8, 0.4, streetLength);
-        const sidewalkMat = new THREE.MeshStandardMaterial({
-          color: isDark ? 0x1e293b : 0x94a3b8,
-          roughness: 0.7
+        // Road Shoulder Clean Boundary Lines
+        [-streetWidth / 2 + 0.6, streetWidth / 2 - 0.6].forEach(posX => {
+          const edgeGeom = new THREE.PlaneGeometry(0.14, streetLength);
+          const edgeMat = new THREE.MeshBasicMaterial({
+            color: isDark ? 0x93c5fd : 0xcbd5e1,
+            transparent: true,
+            opacity: 0.65
+          });
+          const edge = new THREE.Mesh(edgeGeom, edgeMat);
+          edge.rotation.x = -Math.PI / 2;
+          edge.position.set(posX, 0.02, -streetLength / 2 + 35);
+          boulevardGroup.add(edge);
+        });
+
+        // 3. Polished Granite Sidewalk Slabs
+        const sidewalkGeom = new THREE.BoxGeometry(9.5, 0.38, streetLength);
+        const sidewalkMat = new THREE.MeshPhysicalMaterial({
+          color: isDark ? 0x0a101d : 0xe2e8f0,
+          roughness: 0.22,
+          metalness: 0.5,
+          clearcoat: 0.75,
+          clearcoatRoughness: 0.08
         });
 
         const leftSidewalk = new THREE.Mesh(sidewalkGeom, sidewalkMat);
-        leftSidewalk.position.set(-streetWidth / 2 - 4, 0.2, -streetLength / 2 + 30);
-        streetGroup.add(leftSidewalk);
+        leftSidewalk.position.set(-streetWidth / 2 - 4.75, 0.19, -streetLength / 2 + 35);
+        boulevardGroup.add(leftSidewalk);
 
         const rightSidewalk = new THREE.Mesh(sidewalkGeom, sidewalkMat);
-        rightSidewalk.position.set(streetWidth / 2 + 4, 0.2, -streetLength / 2 + 30);
-        streetGroup.add(rightSidewalk);
+        rightSidewalk.position.set(streetWidth / 2 + 4.75, 0.19, -streetLength / 2 + 35);
+        boulevardGroup.add(rightSidewalk);
 
-        // Street Lamps lining both sides of the avenue
-        for (let z = 20; z > -streetLength + 40; z -= 22) {
+        // 4. Sleek Linear LED Curb Trim Strip
+        const curbStripGeom = new THREE.BoxGeometry(0.12, 0.06, streetLength);
+        const curbStripMat = new THREE.MeshBasicMaterial({
+          color: isDark ? 0x38bdf8 : 0x2563eb,
+          transparent: true,
+          opacity: 0.85
+        });
+
+        const leftCurbStrip = new THREE.Mesh(curbStripGeom, curbStripMat);
+        leftCurbStrip.position.set(-streetWidth / 2, 0.39, -streetLength / 2 + 35);
+        boulevardGroup.add(leftCurbStrip);
+
+        const rightCurbStrip = new THREE.Mesh(curbStripGeom, curbStripMat);
+        rightCurbStrip.position.set(streetWidth / 2, 0.39, -streetLength / 2 + 35);
+        boulevardGroup.add(rightCurbStrip);
+
+        // 5. Minimalist Brushed Titanium Bollards & Cantilevered Street Lamps
+        for (let z = 24; z > -streetLength + 45; z -= 22) {
           [-streetWidth / 2 - 1.2, streetWidth / 2 + 1.2].forEach(posX => {
-            // Pole
-            const poleGeom = new THREE.CylinderGeometry(0.08, 0.12, 5.5, 8);
-            const pole = new THREE.Mesh(poleGeom, blackSteelMat);
-            pole.position.set(posX, 2.75, z);
-            streetGroup.add(pole);
+            // Slender Lamp Post
+            const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.1, 6.2, 8), blackSteelMat);
+            pole.position.set(posX, 3.1, z);
+            boulevardGroup.add(pole);
 
-            // Lamp Arm
-            const armGeom = new THREE.BoxGeometry(posX < 0 ? 1.2 : -1.2, 0.1, 0.1);
-            const arm = new THREE.Mesh(armGeom, blackSteelMat);
-            arm.position.set(posX + (posX < 0 ? 0.6 : -0.6), 5.5, z);
-            streetGroup.add(arm);
+            // Sleek Horizontal Arm
+            const arm = new THREE.Mesh(new THREE.BoxGeometry(posX < 0 ? 1.4 : -1.4, 0.08, 0.08), blackSteelMat);
+            arm.position.set(posX + (posX < 0 ? 0.7 : -0.7), 6.15, z);
+            boulevardGroup.add(arm);
 
-            // Glowing Light Fixture
-            const lampGeom = new THREE.SphereGeometry(0.25, 12, 12);
-            const lamp = new THREE.Mesh(lampGeom, warmLampMat);
-            lamp.position.set(posX + (posX < 0 ? 1.1 : -1.1), 5.3, z);
-            streetGroup.add(lamp);
+            // Downward Luminaire Glow
+            const lampGlow = new THREE.Mesh(new THREE.SphereGeometry(0.18, 12, 12), isDark ? cyanBeaconMat : warmLampMat);
+            lampGlow.position.set(posX + (posX < 0 ? 1.3 : -1.3), 6.0, z);
+            boulevardGroup.add(lampGlow);
+
+            // Architectural Bollard with illuminated ring
+            const bollard = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.85, 12), bollardMat);
+            bollard.position.set(posX < 0 ? -streetWidth / 2 - 0.6 : streetWidth / 2 + 0.6, 0.6, z + 7);
+            boulevardGroup.add(bollard);
+
+            const ring = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.02, 8, 16), curbStripMat);
+            ring.rotation.x = Math.PI / 2;
+            ring.position.set(posX < 0 ? -streetWidth / 2 - 0.6 : streetWidth / 2 + 0.6, 0.95, z + 7);
+            boulevardGroup.add(ring);
           });
         }
 
-        cityGroup.add(streetGroup);
+        return boulevardGroup;
       }
 
-      createStreetLevel();
+      cityGroup.add(createRealisticWetBoulevard());
 
-      // ---- 4B. Rectangular Skyscraper Constructors ----
+      function addRooftopEquipment(group, w, d, topY, hasCrane = true) {
+        const mechBox = new THREE.Mesh(new THREE.BoxGeometry(w * 0.45, 3.2, d * 0.45), louverMat);
+        mechBox.position.set(0, topY + 1.6, 0);
+        group.add(mechBox);
 
-      // 1. HERO: Sawtooth Pleated High-Rise (NYC Trump Tower Style)
+        [-w * 0.15, w * 0.15].forEach(offX => {
+          const chiller = new THREE.Mesh(new THREE.CylinderGeometry(w * 0.1, w * 0.1, 1.4, 16), blackSteelMat);
+          chiller.position.set(offX, topY + 0.7, d * 0.15);
+          group.add(chiller);
+
+          const fanGrille = new THREE.Mesh(new THREE.CylinderGeometry(w * 0.08, w * 0.08, 0.2, 12), louverMat);
+          fanGrille.position.set(offX, topY + 1.45, d * 0.15);
+          group.add(fanGrille);
+        });
+
+        if (hasCrane) {
+          const bmuBase = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.8, 0.8), blackSteelMat);
+          bmuBase.position.set(-w * 0.18, topY + 0.4, -d * 0.18);
+          group.add(bmuBase);
+
+          const bmuArm = new THREE.Mesh(new THREE.BoxGeometry(w * 0.35, 0.18, 0.18), goldFrameMat);
+          bmuArm.position.set(-w * 0.05, topY + 1.1, -d * 0.18);
+          group.add(bmuArm);
+        }
+
+        const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.18, 9.5, 8), blackSteelMat);
+        mast.position.set(0, topY + 6.0, 0);
+        group.add(mast);
+
+        const beacon = new THREE.Mesh(new THREE.SphereGeometry(0.32, 16, 16), redBeaconMat);
+        beacon.position.set(0, topY + 10.8, 0);
+        group.add(beacon);
+        beaconLights.push(beacon);
+      }
+
+      function addFacadeVerticalFins(group, w, d, h, finCount = 6) {
+        for (let i = 0; i <= finCount; i++) {
+          const fx = -w / 2 + (i * (w / finCount));
+          const fin = new THREE.Mesh(new THREE.BoxGeometry(0.15, h * 0.98, 0.5), blackSteelMat);
+          fin.position.set(fx, h / 2, d / 2 + 0.2);
+          group.add(fin);
+        }
+      }
+
+      // 4B. Skyscraper Constructors with Crisp Modular Box Facades
       function createSawtoothTower(x, z, width, depth, height) {
         const group = new THREE.Group();
         group.position.set(x, 0, z);
 
-        const teethCount = 7;
-        const toothDepth = width * 0.14;
-
-        function createSawtoothShape(w, d) {
-          const shape = new THREE.Shape();
-          const hw = w / 2;
-          const hd = d / 2;
-
-          shape.moveTo(-hw, -hd);
-          shape.lineTo(hw, -hd);
-          shape.lineTo(hw, hd - toothDepth);
-          shape.lineTo(hw + toothDepth * 0.4, hd - toothDepth * 0.5);
-          shape.lineTo(hw, hd);
-
-          const segW = w / teethCount;
-          for (let i = teethCount; i > 0; i--) {
-            const tx1 = -hw + i * segW;
-            const txMid = tx1 - segW * 0.5;
-            const tx2 = tx1 - segW;
-            shape.lineTo(txMid, hd + toothDepth);
-            shape.lineTo(tx2, hd);
-          }
-
-          shape.lineTo(-hw - toothDepth * 0.4, hd - toothDepth * 0.5);
-          shape.lineTo(-hw, -hd);
-          return shape;
-        }
-
         const tiers = [
-          { w: width * 1.15, d: depth * 1.15, h: height * 0.14, y: 0, isPodium: true },
-          { w: width * 1.05, d: depth * 1.05, h: height * 0.18, y: height * 0.14, isTerrace: true },
-          { w: width * 0.95, d: depth * 0.95, h: height * 0.18, y: height * 0.32, isTerrace: true },
-          { w: width * 0.85, d: depth * 0.85, h: height * 0.44, y: height * 0.50, isMainShaft: true },
-          { w: width * 0.72, d: depth * 0.72, h: height * 0.06, y: height * 0.94, isCrown: true }
+          { w: width * 1.12, d: depth * 1.12, h: height * 0.16, y: 0, isPodium: true },
+          { w: width * 1.02, d: depth * 1.02, h: height * 0.22, y: height * 0.16, isTerrace: true },
+          { w: width * 0.92, d: depth * 0.92, h: height * 0.28, y: height * 0.38, isTerrace: true },
+          { w: width * 0.80, d: depth * 0.80, h: height * 0.34, y: height * 0.66, isMainShaft: true }
         ];
 
         tiers.forEach((tier) => {
-          const shape = createSawtoothShape(tier.w, tier.d);
-          const geom = new THREE.ExtrudeGeometry(shape, { depth: tier.h, bevelEnabled: true, bevelSegments: 1, bevelSize: 0.1, bevelThickness: 0.1 });
-          geom.rotateX(-Math.PI / 2);
-
+          const geom = new THREE.BoxGeometry(tier.w, tier.h, tier.d);
           const mesh = new THREE.Mesh(geom, bronzeGlassMat);
-          mesh.position.y = tier.y;
+          mesh.position.y = tier.y + tier.h / 2;
           group.add(mesh);
 
           const edges = new THREE.EdgesGeometry(geom);
-          const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: isDark ? 0x94a3b8 : 0x1e3a8a, linewidth: 1.5, transparent: true, opacity: 0.7 }));
-          lines.position.y = tier.y;
+          const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({
+            color: isDark ? 0x94a3b8 : 0x475569,
+            linewidth: 1.5,
+            transparent: true,
+            opacity: 0.8
+          }));
+          lines.position.y = tier.y + tier.h / 2;
           group.add(lines);
-
-          if (tier.isPodium) {
-            const atriumMesh = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 0.92, tier.h * 0.75, tier.d * 0.92), goldAtriumMat);
-            atriumMesh.position.set(0, tier.y + tier.h * 0.42, 0);
-            group.add(atriumMesh);
-
-            const frameMesh = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 0.5, 1.4, tier.d * 0.3), goldFrameMat);
-            frameMesh.position.set(0, 1.4, tier.d * 0.55);
-            group.add(frameMesh);
-          }
 
           if (tier.isTerrace) {
             const railMesh = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 1.02, 0.5, tier.d * 1.02), goldFrameMat);
@@ -737,28 +1034,15 @@
           }
         });
 
-        // Pleated Serrated Roof Crown
-        const crownShape = createSawtoothShape(width * 0.68, depth * 0.68);
-        const crownGeom = new THREE.ExtrudeGeometry(crownShape, { depth: 3.5, bevelEnabled: false });
-        crownGeom.rotateX(-Math.PI / 2);
-        const crownMesh = new THREE.Mesh(crownGeom, blackSteelMat);
-        crownMesh.position.y = height + 0.2;
-        group.add(crownMesh);
+        const crown = new THREE.Mesh(new THREE.BoxGeometry(width * 0.72, 3.5, depth * 0.72), blackSteelMat);
+        crown.position.y = height + 1.75;
+        group.add(crown);
 
-        // Penthouse & Beacons
-        const penthouse = new THREE.Mesh(new THREE.BoxGeometry(width * 0.42, 2.5, depth * 0.42), blackSteelMat);
-        penthouse.position.set(0, height + 4.5, 0);
-        group.add(penthouse);
-
-        const b = new THREE.Mesh(new THREE.SphereGeometry(0.35, 16, 16), redBeaconMat);
-        b.position.set(0, height + 6.2, depth * 0.25);
-        group.add(b);
-        beaconLights.push(b);
+        addRooftopEquipment(group, width * 0.72, depth * 0.72, height + 3.5, true);
 
         return { group, height };
       }
 
-      // 2. Rectangular Stepped Setback Skyscraper (Rockefeller / Midtown Style)
       function createSteppedRectTower(x, z, width, depth, height) {
         const group = new THREE.Group();
         group.position.set(x, 0, z);
@@ -777,50 +1061,24 @@
           group.add(mesh);
 
           const edges = new THREE.EdgesGeometry(geom);
-          const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: isDark ? 0x60a5fa : 0x2563eb, linewidth: 1.5 }));
+          const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: isDark ? 0x60a5fa : 0x3b82f6, linewidth: 1.5 }));
           lines.position.y = tier.y + tier.h / 2;
           group.add(lines);
 
-          // Illuminated Ground Floor Lobby Canopy
-          if (tier.isPodium) {
-            const canopy = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 0.6, 0.4, 2.5), blackSteelMat);
-            canopy.position.set(0, 4.0, tier.d / 2 + 1.25);
-            group.add(canopy);
-
-            const lobbyGlow = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 0.55, 3.5, 0.2), goldAtriumMat);
-            lobbyGlow.position.set(0, 2.0, tier.d / 2 + 0.05);
-            group.add(lobbyGlow);
-          }
-
-          // Terrace LED Railing
           const rail = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 0.98, 0.4, tier.d * 0.98), blackSteelMat);
           rail.position.y = tier.y + tier.h;
           group.add(rail);
         });
 
-        // Top Mechanical Crown
-        const crown = new THREE.Mesh(new THREE.BoxGeometry(width * 0.32, 4.0, depth * 0.38), blackSteelMat);
-        crown.position.y = height + 2.0;
-        group.add(crown);
-
-        const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.2, 8, 8), blackSteelMat);
-        mast.position.y = height + 8;
-        group.add(mast);
-
-        const beacon = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), redBeaconMat);
-        beacon.position.y = height + 12.2;
-        group.add(beacon);
-        beaconLights.push(beacon);
+        addRooftopEquipment(group, width * 0.48, depth * 0.55, height, false);
 
         return { group, height };
       }
 
-      // 3. Rectangular Glass Monolith (Seagram / Modernist Office High-Rise)
       function createModernRectTower(x, z, width, depth, height) {
         const group = new THREE.Group();
         group.position.set(x, 0, z);
 
-        // Main Rectangular Slab
         const geom = new THREE.BoxGeometry(width, height, depth);
         const mesh = new THREE.Mesh(geom, bronzeGlassMat);
         mesh.position.y = height / 2;
@@ -831,44 +1089,17 @@
         lines.position.y = height / 2;
         group.add(lines);
 
-        // Vertical Aluminum Facade Mullion Fins
-        const finCount = 8;
-        for (let i = 0; i <= finCount; i++) {
-          const finX = -width / 2 + (i * (width / finCount));
-          const finGeom = new THREE.BoxGeometry(0.12, height * 0.98, 0.4);
-          const fin = new THREE.Mesh(finGeom, blackSteelMat);
-          fin.position.set(finX, height / 2, depth / 2 + 0.15);
-          group.add(fin);
-        }
+        addFacadeVerticalFins(group, width, depth, height, 8);
 
-        // Ground Floor Glass Lobby
-        const lobby = new THREE.Mesh(new THREE.BoxGeometry(width * 0.95, 4.5, depth * 0.95), goldAtriumMat);
-        lobby.position.set(0, 2.3, 0);
-        group.add(lobby);
-
-        const marquee = new THREE.Mesh(new THREE.BoxGeometry(width * 0.6, 0.4, 3.0), blackSteelMat);
-        marquee.position.set(0, 4.6, depth / 2 + 1.5);
-        group.add(marquee);
-
-        // Rooftop Penthouse Louvers
         const crown = new THREE.Mesh(new THREE.BoxGeometry(width * 0.75, 3.5, depth * 0.75), blackSteelMat);
         crown.position.y = height + 1.75;
         group.add(crown);
 
-        const b1 = new THREE.Mesh(new THREE.SphereGeometry(0.28, 16, 16), cyanBeaconMat);
-        b1.position.set(-width * 0.3, height + 4.0, -depth * 0.3);
-        group.add(b1);
-        beaconLights.push(b1);
-
-        const b2 = new THREE.Mesh(new THREE.SphereGeometry(0.28, 16, 16), cyanBeaconMat);
-        b2.position.set(width * 0.3, height + 4.0, depth * 0.3);
-        group.add(b2);
-        beaconLights.push(b2);
+        addRooftopEquipment(group, width * 0.75, depth * 0.75, height + 3.5, true);
 
         return { group, height };
       }
 
-      // 4. Slender Rectangular Grid Tower (432 Park Ave Style)
       function createSlenderRectTower(x, z, width, depth, height) {
         const group = new THREE.Group();
         group.position.set(x, 0, z);
@@ -879,47 +1110,39 @@
         group.add(mesh);
 
         const edges = new THREE.EdgesGeometry(geom);
-        const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: isDark ? 0xffffff : 0x1e3a8a, linewidth: 2 }));
+        const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: isDark ? 0xffffff : 0x3b82f6, linewidth: 2 }));
         lines.position.y = height / 2;
         group.add(lines);
 
-        // Open-air mechanical drum cutouts every 12 floors
         for (let y = height * 0.3; y < height; y += height * 0.32) {
           const cut = new THREE.Mesh(new THREE.BoxGeometry(width * 1.02, 2.5, depth * 1.02), blackSteelMat);
           cut.position.y = y;
           group.add(cut);
         }
 
-        // Top Crown
         const crown = new THREE.Mesh(new THREE.BoxGeometry(width * 0.85, 2.8, depth * 0.85), blackSteelMat);
         crown.position.y = height + 1.4;
         group.add(crown);
 
-        const b = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), redBeaconMat);
-        b.position.set(0, height + 3.2, 0);
-        group.add(b);
-        beaconLights.push(b);
+        addRooftopEquipment(group, width * 0.85, depth * 0.85, height + 2.8, false);
 
         return { group, height };
       }
 
-      // ---- 4C. Urban Avenue Layout (Skyscrapers Lining Both Sides of the Street) ----
+      // 4C. Urban Avenue Layout
       const streetSkyscrapers = [
-        // RIGHT SIDE OF STREET CANYON (Looking down the avenue)
-        { type: 'sawtooth', x: 22, z: 0, w: 14, d: 13, h: 56 }, // HERO Sawtooth Skyscraper from photo
+        { type: 'sawtooth', x: 22, z: 0, w: 14, d: 13, h: 56 },
         { type: 'stepped', x: 23, z: -28, w: 15, d: 14, h: 52 },
         { type: 'modern', x: 24, z: -58, w: 16, d: 14, h: 62 },
         { type: 'slender', x: 25, z: -88, w: 12, d: 12, h: 68 },
         { type: 'stepped', x: 26, z: -118, w: 17, d: 15, h: 58 },
 
-        // LEFT SIDE OF STREET CANYON
         { type: 'modern', x: -22, z: 2, w: 15, d: 13, h: 54 },
         { type: 'slender', x: -23, z: -26, w: 13, d: 13, h: 64 },
         { type: 'stepped', x: -24, z: -56, w: 16, d: 14, h: 50 },
         { type: 'sawtooth', x: -25, z: -86, w: 15, d: 13, h: 60 },
         { type: 'modern', x: -26, z: -116, w: 17, d: 15, h: 56 },
 
-        // VISTA ANCHOR (End of Avenue Vista)
         { type: 'stepped', x: 0, z: -145, w: 22, d: 18, h: 72 }
       ];
 
@@ -934,7 +1157,7 @@
           const obj = created.group;
           obj.userData = {
             targetY: 0,
-            initialY: -created.height - 20,
+            initialY: -created.height - 25,
             speed: 0.045 + (idx * 0.003)
           };
           obj.position.y = obj.userData.initialY;
@@ -952,6 +1175,9 @@
       towerObjects.forEach(t => {
         t.position.y = t.userData.initialY;
       });
+      setTimeout(() => {
+        document.body.classList.add('page-revealed');
+      }, 650);
     }
 
     function regenerateCity() {
@@ -1044,7 +1270,7 @@
         
         initVantaClouds(newTheme);
         if (scene && scene.fog) {
-          scene.fog.color.setHex(newTheme === 'dark' ? 0x050c1e : 0x5a9cf8);
+          scene.fog.color.setHex(newTheme === 'dark' ? 0x050c1e : 0x6ca3f7);
         }
         buildRealisticCity();
       });

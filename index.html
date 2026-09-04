@@ -149,15 +149,16 @@
     [data-theme="light"] {
       --bg: #F8FAFC;
       --card: #FFFFFF;
-      --border: #E2E8F0;
+      --border: #CBD5E1;
       --text: #0F172A;
-      --text-muted: #475569;
-      --nav-bg: rgba(255, 255, 255, 0.95);
-      --accent: #2563EB;
-      --accent-blue: #3B82F6;
+      --text-muted: #334155;
+      --nav-bg: rgba(255, 255, 255, 0.96);
+      --accent: #1D4ED8;
+      --accent-blue: #2563EB;
     }
 
     [data-theme="light"] body {
+      background-color: #F8FAFC !important;
       color: #0F172A !important;
     }
 
@@ -174,14 +175,48 @@
       color: #334155 !important;
     }
 
+    [data-theme="light"] #hero h1 {
+      color: #0F172A !important;
+      text-shadow: 0 2px 14px rgba(255, 255, 255, 0.9), 0 0 28px rgba(255, 255, 255, 0.7);
+    }
+
+    [data-theme="light"] #hero p {
+      color: #1E293B !important;
+      text-shadow: 0 1px 8px rgba(255, 255, 255, 0.8);
+    }
+
+    [data-theme="light"] .gradient-text {
+      background: linear-gradient(135deg, #1D4ED8 0%, #0284C7 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+
     [data-theme="light"] .glass {
-      background: rgba(255, 255, 255, 0.92) !important;
-      border-color: rgba(226, 232, 240, 0.9) !important;
+      background: rgba(255, 255, 255, 0.96) !important;
+      border-color: #CBD5E1 !important;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
     }
 
     [data-theme="light"] .glass * {
       color: #0F172A !important;
+    }
+
+    [data-theme="light"] .desktop-nav-link {
+      color: #1E293B !important;
+    }
+    [data-theme="light"] .desktop-nav-link:hover {
+      color: #1D4ED8 !important;
+    }
+    [data-theme="light"] .nav-dropdown-menu {
+      background: #FFFFFF !important;
+      border-color: #CBD5E1 !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12) !important;
+    }
+    [data-theme="light"] .dropdown-title {
+      color: #0F172A !important;
+    }
+    [data-theme="light"] .dropdown-desc {
+      color: #475569 !important;
     }
 
     [data-theme="light"] .card,
@@ -190,9 +225,10 @@
     [data-theme="light"] .why-card,
     [data-theme="light"] .ai-showcase-step,
     [data-theme="light"] .review-card,
-    [data-theme="light"] .blog-card {
+    [data-theme="light"] .blog-card,
+    [data-theme="light"] .testimonial-card {
       background: #FFFFFF !important;
-      border-color: #E2E8F0 !important;
+      border-color: #CBD5E1 !important;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05) !important;
     }
 
@@ -211,7 +247,7 @@
     [data-theme="light"] .why-card p,
     [data-theme="light"] .ai-showcase-step p,
     [data-theme="light"] .blog-card p {
-      color: #475569 !important;
+      color: #334155 !important;
     }
 
     [data-theme="light"] .ai-showcase-step.active {
@@ -226,19 +262,196 @@
     }
 
     [data-theme="light"] .section-tag {
-      background: transparent !important;
-      color: #2563EB !important;
-      border: none !important;
-      box-shadow: none !important;
+      background: rgba(255, 255, 255, 0.95) !important;
+      color: #1D4ED8 !important;
+      border: 1px solid rgba(29, 78, 216, 0.25) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+    }
+
+    /* ==================== HERO CONTENT READABILITY & CONTRAST SHIELD ==================== */
+    .hero-content-shield {
+      position: relative;
+      background: radial-gradient(circle at 35% 45%, rgba(2, 6, 23, 0.78) 0%, rgba(3, 7, 22, 0.55) 70%, transparent 100%);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="light"] .hero-content-shield {
+      background: radial-gradient(circle at 35% 45%, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.65) 70%, transparent 100%);
+      border: 1px solid rgba(203, 213, 225, 0.85);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+    }
+
+    #hero h1 {
+      text-shadow: 0 3px 20px rgba(0, 0, 0, 0.85);
+    }
+
+    #hero p {
+      color: #E2E8F0 !important;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+      font-weight: 500;
+    }
+
+    [data-theme="light"] #hero p {
+      color: #1E293B !important;
+      text-shadow: 0 1px 4px rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+    }
+
+    /* Button Outline Contrast & Frosted Backing */
+    .btn-outline {
+      background: rgba(3, 7, 22, 0.78) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid #3B82F6 !important;
+      color: #93C5FD !important;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      padding: 10px 22px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-outline:hover {
+      background: rgba(59, 130, 246, 0.25) !important;
+      color: #FFFFFF !important;
+      border-color: #60A5FA !important;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
     }
 
     [data-theme="light"] .btn-outline {
-      border-color: #2563EB !important;
+      border: 1.5px solid #2563EB !important;
       color: #2563EB !important;
-      background: #FFFFFF !important;
+      background: rgba(255, 255, 255, 0.95) !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     }
+
     [data-theme="light"] .btn-outline:hover {
       background: #EFF6FF !important;
+      color: #1D4ED8 !important;
+    }
+
+    /* Hero Stats Card Glassmorphism & High Contrast */
+    .glass {
+      background: rgba(4, 9, 26, 0.82) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(59, 130, 246, 0.32) !important;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55) !important;
+    }
+
+    #hero .hero-stats .glass {
+      background: rgba(3, 8, 24, 0.86) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(59, 130, 246, 0.38) !important;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6) !important;
+    }
+
+    #hero .hero-stats .glass div:last-child {
+      color: #CBD5E1 !important;
+      font-weight: 600;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+    }
+
+    [data-theme="light"] #hero .hero-stats .glass {
+      background: rgba(255, 255, 255, 0.96) !important;
+      border: 1px solid #CBD5E1 !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+    }
+
+    [data-theme="light"] #hero .hero-stats .glass div:last-child {
+      color: #475569 !important;
+      text-shadow: none;
+    }
+
+    /* Scroll Indicator Pill */
+    .hero-scroll-pill {
+      background: rgba(3, 7, 22, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 8px 18px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="light"] .hero-scroll-pill {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid #CBD5E1;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ==================== CINEMATIC BUILDING-FIRST ENTRANCE SEQUENCE ==================== */
+    body:not(.page-revealed) #navbar {
+      transform: translateY(-100%) !important;
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+    #navbar {
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease !important;
+    }
+
+    body:not(.page-revealed) #hero .hero-content-shield,
+    body:not(.page-revealed) #hero .section-tag,
+    body:not(.page-revealed) #hero h1,
+    body:not(.page-revealed) #hero p,
+    body:not(.page-revealed) #hero .btn-primary,
+    body:not(.page-revealed) #hero .btn-outline,
+    body:not(.page-revealed) #hero .hero-stats,
+    body:not(.page-revealed) #hero dotlottie-wc {
+      opacity: 0 !important;
+      transform: translateY(28px) !important;
+      pointer-events: none;
+    }
+
+    #hero .hero-content-shield {
+      transition: opacity 0.85s ease 0.05s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+    }
+    #hero .section-tag {
+      transition: opacity 0.75s ease 0.05s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+    }
+    #hero h1 {
+      transition: opacity 0.8s ease 0.18s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
+    }
+    #hero p {
+      transition: opacity 0.8s ease 0.32s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.32s;
+    }
+    #hero .btn-primary,
+    #hero .btn-outline {
+      transition: opacity 0.8s ease 0.46s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.46s, background 0.3s ease, border-color 0.3s ease !important;
+    }
+    #hero .hero-stats {
+      transition: opacity 0.85s ease 0.6s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+    }
+    #hero dotlottie-wc {
+      transition: opacity 0.9s ease 0.4s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+    }
+
+    body.page-revealed #navbar {
+      transform: translateY(0) !important;
+      opacity: 1 !important;
+      pointer-events: auto;
+    }
+
+    body.page-revealed #hero .hero-content-shield,
+    body.page-revealed #hero .section-tag,
+    body.page-revealed #hero h1,
+    body.page-revealed #hero p,
+    body.page-revealed #hero .btn-primary,
+    body.page-revealed #hero .btn-outline,
+    body.page-revealed #hero .hero-stats,
+    body.page-revealed #hero dotlottie-wc {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      pointer-events: auto;
     }
 
     [data-theme="light"] #chatbot-window {
@@ -2105,6 +2318,9 @@
 <!-- ==================== VANTA.JS CLOUDS BACKGROUND ==================== -->
 <div id="vanta-clouds-bg" style="position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none;opacity:1;"></div>
 
+<!-- ==================== 3D REALISTIC MANHATTAN STREET CANYON ==================== -->
+<div id="towers-canvas-wrap" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;"></div>
+
 <!-- ==================== BACKGROUND PARTICLES ==================== -->
 <canvas id="particle-canvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0.35;"></canvas>
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-2 md:py-3">
@@ -2353,44 +2569,46 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
       <!-- Left -->
       <div class="text-left order-2 lg:order-1 lg:col-span-7">
-        <div class="section-tag" data-aos="fade-up" data-aos-delay="100">
-          <span style="width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block;margin-right:8px;animation:pulse 2s infinite;"></span>
-          Enterprise Software & UI/UX Studio
-        </div>
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-left" data-aos="fade-up" data-aos-delay="200" style="font-family:'Outfit',sans-serif;">
-          Engineering<br/>
-          <span class="gradient-text glow-text">Digital</span><br/>
-          <span id="typing-text">Transformation</span><span class="cursor"></span>
-        </h1>
-        <p class="text-lg mb-8 leading-relaxed text-left" data-aos="fade-up" data-aos-delay="300" style="color:var(--text-muted);max-width:540px;">
-          VSGRPS designs and builds mission-critical web applications, enterprise SaaS architectures, and automated cloud systems for growing businesses and forward-thinking enterprises.
-        </p>
-        <div class="flex flex-wrap gap-4 justify-start" data-aos="fade-up" data-aos-delay="400">
-          <a href="#services" class="btn-primary">
-            Explore Capabilities <i class="bi bi-arrow-right"></i>
-          </a>
-          <a href="#projects" class="btn-outline">
-            <i class="bi bi-briefcase"></i> View Engagements
-          </a>
-        </div>
+        <div class="hero-content-shield p-6 sm:p-8 md:p-10 rounded-3xl">
+          <div class="section-tag" data-aos="fade-up" data-aos-delay="100">
+            <span style="width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block;margin-right:8px;animation:pulse 2s infinite;"></span>
+            Enterprise Software & UI/UX Studio
+          </div>
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-left" data-aos="fade-up" data-aos-delay="200" style="font-family:'Outfit',sans-serif;">
+            Engineering<br/>
+            <span class="gradient-text glow-text">Digital</span><br/>
+            <span id="typing-text">Transformation</span><span class="cursor"></span>
+          </h1>
+          <p class="text-lg mb-8 leading-relaxed text-left" data-aos="fade-up" data-aos-delay="300" style="max-width:540px;">
+            VSGRPS designs and builds mission-critical web applications, enterprise SaaS architectures, and automated cloud systems for growing businesses and forward-thinking enterprises.
+          </p>
+          <div class="flex flex-wrap gap-4 justify-start" data-aos="fade-up" data-aos-delay="400">
+            <a href="#services" class="btn-primary">
+              Explore Capabilities <i class="bi bi-arrow-right"></i>
+            </a>
+            <a href="#projects" class="btn-outline">
+              <i class="bi bi-briefcase"></i> View Engagements
+            </a>
+          </div>
 
-        <!-- Mini stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 hero-stats" data-aos="fade-up" data-aos-delay="500">
-          <div class="glass p-4 rounded-xl border border-slate-800/50 text-center">
-            <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">7+</div>
-            <div style="color:var(--text-muted);font-size:12px;margin-top:4px;">Delivered Projects</div>
-          </div>
-          <div class="glass p-4 rounded-xl border border-slate-800/50 text-center">
-            <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">2</div>
-            <div style="color:var(--text-muted);font-size:12px;margin-top:4px;">SaaS Platforms</div>
-          </div>
-          <div class="glass p-4 rounded-xl border border-slate-800/50 text-center">
-            <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Cloud</div>
-            <div style="color:var(--text-muted);font-size:12px;margin-top:4px;">Architecture</div>
-          </div>
-          <div class="glass p-4 rounded-xl border border-slate-800/50 text-center">
-            <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">100%</div>
-            <div style="color:var(--text-muted);font-size:12px;margin-top:4px;">Commitment</div>
+          <!-- Mini stats -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 hero-stats" data-aos="fade-up" data-aos-delay="500">
+            <div class="glass p-4 rounded-xl text-center">
+              <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">7+</div>
+              <div style="font-size:12px;margin-top:4px;">Delivered Projects</div>
+            </div>
+            <div class="glass p-4 rounded-xl text-center">
+              <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">2</div>
+              <div style="font-size:12px;margin-top:4px;">SaaS Platforms</div>
+            </div>
+            <div class="glass p-4 rounded-xl text-center">
+              <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Cloud</div>
+              <div style="font-size:12px;margin-top:4px;">Architecture</div>
+            </div>
+            <div class="glass p-4 rounded-xl text-center">
+              <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">100%</div>
+              <div style="font-size:12px;margin-top:4px;">Commitment</div>
+            </div>
           </div>
         </div>
       </div>
@@ -2406,9 +2624,11 @@
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2" style="color:var(--text-muted);">
-    <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;">Scroll</span>
-    <div style="width:1px;height:30px;background:linear-gradient(to bottom,var(--accent),transparent);animation:pulse 2s infinite;"></div>
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2">
+    <div class="hero-scroll-pill flex items-center gap-2">
+      <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);">Scroll</span>
+      <div style="width:1px;height:18px;background:linear-gradient(to bottom,var(--accent),transparent);animation:pulse 2s infinite;"></div>
+    </div>
   </div>
 </section>
 
@@ -4141,11 +4361,13 @@
       setTimeout(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         initVantaClouds();
-      }, 600);
+        document.body.classList.add('page-revealed');
+        if (typeof AOS !== 'undefined') AOS.refresh();
+      }, 500);
     }
   }
 
-  // ---- Vanta.js Clouds Background Init ----
+  // ==================== 3D REALISTIC MANHATTAN STREET CANYON & VANTA CLOUDS ====================
   let vantaEffect = null;
   function initVantaClouds() {
     if (typeof VANTA === 'undefined' || !VANTA.CLOUDS) return;
@@ -4171,25 +4393,753 @@
         sunColor: isDark ? 0x0066ff : 0xffaa00,
         sunGlareColor: isDark ? 0x00d2ff : 0xffdd66,
         sunlightColor: isDark ? 0x2563eb : 0xffffff,
-        speed: 1.0
+        speed: 0.85
       });
     } catch(e) {
       console.warn("Vanta Clouds initialization fallback:", e);
     }
   }
 
-  window.addEventListener('load', initVantaClouds);
+  // ---- High-Dynamic Procedural Sky & City Environment Map ----
+  function generateProceduralSkyEnv(isDark) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1024;
+    canvas.height = 512;
+    const ctx = canvas.getContext('2d');
+    
+    // Sky Gradient with vibrant sapphire reflection bands
+    const skyGrad = ctx.createLinearGradient(0, 0, 0, 512);
+    if (isDark) {
+      skyGrad.addColorStop(0, '#020817');
+      skyGrad.addColorStop(0.22, '#081e46');
+      skyGrad.addColorStop(0.40, '#103778');
+      skyGrad.addColorStop(0.48, '#1d4ed8');
+      skyGrad.addColorStop(0.53, '#38bdf8');
+      skyGrad.addColorStop(0.60, '#1e3a8a');
+      skyGrad.addColorStop(0.78, '#0a1636');
+      skyGrad.addColorStop(1, '#020617');
+    } else {
+      skyGrad.addColorStop(0, '#60a5fa');
+      skyGrad.addColorStop(0.42, '#bae6fd');
+      skyGrad.addColorStop(0.52, '#ffffff');
+      skyGrad.addColorStop(0.62, '#cbd5e1');
+      skyGrad.addColorStop(1, '#94a3b8');
+    }
+    ctx.fillStyle = skyGrad;
+    ctx.fillRect(0, 0, 1024, 512);
+
+    // Sun / Moon radiant specular flare
+    const sunGrad = ctx.createRadialGradient(720, 240, 2, 720, 240, 220);
+    if (isDark) {
+      sunGrad.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
+      sunGrad.addColorStop(0.12, 'rgba(147, 197, 253, 0.9)');
+      sunGrad.addColorStop(0.35, 'rgba(37, 99, 235, 0.6)');
+      sunGrad.addColorStop(0.7, 'rgba(14, 165, 233, 0.2)');
+      sunGrad.addColorStop(1, 'transparent');
+    } else {
+      sunGrad.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
+      sunGrad.addColorStop(0.3, 'rgba(254, 240, 138, 0.5)');
+      sunGrad.addColorStop(1, 'transparent');
+    }
+    ctx.fillStyle = sunGrad;
+    ctx.beginPath();
+    ctx.arc(720, 240, 220, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Distant skyline silhouette along horizon for rich architectural reflections
+    ctx.fillStyle = isDark ? 'rgba(4, 14, 38, 0.75)' : 'rgba(203, 213, 225, 0.65)';
+    for (let x = 0; x < 1024; x += 14) {
+      const bh = 18 + Math.sin(x * 0.05) * 16 + (x % 32);
+      ctx.fillRect(x, 260 - bh, 12, bh + 45);
+    }
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    return texture;
+  }
+
+  // ---- 2B. Architectural Curtain Wall Texture Generator (Glossy Sapphire Glass & Faint Office Lights) ----
+  function generateCurtainWallTexture(isDark, windowLightsEnabled = true) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1536;
+    canvas.height = 3072;
+    const ctx = canvas.getContext('2d');
+
+    // Base Structure: Deep Sapphire Obsidian Slate
+    ctx.fillStyle = isDark ? '#030a1c' : '#cbd5e1';
+    ctx.fillRect(0, 0, 1536, 3072);
+
+    const cols = 28;
+    const rows = 68;
+    const cellW = 1536 / cols; // ~54.8px
+    const cellH = 3072 / rows; // ~45.1px
+    const mullionThick = 2.0;
+
+    for (let r = 0; r < rows; r++) {
+      const floorY = r * cellH;
+      const isMechanicalFloor = (r % 18 === 0 && r !== 0);
+
+      // Floor Spandrel Divider
+      const spandrelH = 5.0;
+      ctx.fillStyle = isDark ? '#020612' : '#64748b';
+      ctx.fillRect(0, floorY + cellH - spandrelH, 1536, spandrelH);
+
+      // Thin Sapphire Trim Line
+      ctx.fillStyle = isDark ? 'rgba(96, 165, 250, 0.35)' : 'rgba(255, 255, 255, 0.5)';
+      ctx.fillRect(0, floorY + cellH - spandrelH, 1536, 0.6);
+
+      if (isMechanicalFloor) {
+        ctx.fillStyle = isDark ? '#030816' : '#334155';
+        ctx.fillRect(0, floorY, 1536, cellH - spandrelH);
+        for (let l = 0; l < cellH - spandrelH; l += 3.5) {
+          ctx.fillStyle = isDark ? 'rgba(15, 23, 42, 0.9)' : 'rgba(148, 163, 184, 0.5)';
+          ctx.fillRect(0, floorY + l, 1536, 1.2);
+        }
+        continue;
+      }
+
+      // Standard Floors: Glossy Sapphire Glass with Rich Night Office Lights (~28% lit)
+      for (let c = 0; c < cols; c++) {
+        const x = c * cellW;
+        const y = floorY;
+        const boxW = cellW - mullionThick;
+        const boxH = cellH - spandrelH - 0.8;
+
+        // Realistic urban night office occupancy (~28% lit with occasional busy floor clusters)
+        const isBusyFloor = (r % 6 === 2 || r % 9 === 4);
+        const isLit = windowLightsEnabled && (Math.random() < (isBusyFloor ? 0.48 : 0.26));
+        const randTone = Math.random();
+
+        if (isDark) {
+          if (isLit) {
+            // Warm & vibrant interior office room light
+            const roomGrad = ctx.createLinearGradient(x, y, x, y + boxH);
+            if (randTone > 0.65) {
+              // Vibrant Ice-Blue Tech Glow
+              roomGrad.addColorStop(0, 'rgba(224, 242, 254, 0.75)');
+              roomGrad.addColorStop(0.45, 'rgba(147, 197, 253, 0.45)');
+              roomGrad.addColorStop(1, 'rgba(56, 189, 248, 0.20)');
+            } else if (randTone > 0.32) {
+              // Crisp Modern Daylight White
+              roomGrad.addColorStop(0, 'rgba(255, 255, 255, 0.82)');
+              roomGrad.addColorStop(0.45, 'rgba(226, 232, 240, 0.48)');
+              roomGrad.addColorStop(1, 'rgba(148, 163, 184, 0.22)');
+            } else {
+              // Warm Golden Amber Executive Glow
+              roomGrad.addColorStop(0, 'rgba(254, 240, 138, 0.78)');
+              roomGrad.addColorStop(0.45, 'rgba(251, 191, 36, 0.46)');
+              roomGrad.addColorStop(1, 'rgba(217, 119, 6, 0.20)');
+            }
+
+            ctx.fillStyle = roomGrad;
+            ctx.fillRect(x + mullionThick / 2, y + 0.6, boxW, boxH);
+
+            // Luminous Ceiling Troffer Fixture
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.68)';
+            ctx.fillRect(x + mullionThick / 2 + boxW * 0.15, y + 1.8, boxW * 0.7, 1.2);
+
+            // Workstation Desk & Interior Depth Silhouette
+            if (randTone > 0.25) {
+              ctx.fillStyle = 'rgba(3, 7, 22, 0.55)';
+              ctx.fillRect(x + mullionThick / 2, y + boxH - 3.2, boxW, 3.2);
+            }
+          } else {
+            // Shining Sapphire Crystal Glass Facade Panel
+            const darkGrad = ctx.createLinearGradient(x, y, x + boxW, y + boxH);
+            darkGrad.addColorStop(0, '#123164');
+            darkGrad.addColorStop(0.35, '#0c2249');
+            darkGrad.addColorStop(0.70, '#071530');
+            darkGrad.addColorStop(1, '#030b1c');
+            ctx.fillStyle = darkGrad;
+            ctx.fillRect(x + mullionThick / 2, y + 0.6, boxW, boxH);
+
+            // Sleek Crystal Sapphire Specular Diagonal Ray
+            if (randTone > 0.35) {
+              const rayGrad = ctx.createLinearGradient(x, y, x + boxW * 0.6, y + boxH * 0.8);
+              rayGrad.addColorStop(0, 'rgba(147, 197, 253, 0.26)');
+              rayGrad.addColorStop(0.4, 'rgba(96, 165, 250, 0.14)');
+              rayGrad.addColorStop(1, 'transparent');
+              ctx.fillStyle = rayGrad;
+              ctx.beginPath();
+              ctx.moveTo(x + mullionThick / 2, y + 0.6);
+              ctx.lineTo(x + mullionThick / 2 + boxW * 0.55, y + 0.6);
+              ctx.lineTo(x + mullionThick / 2, y + 0.6 + boxH * 0.75);
+              ctx.closePath();
+              ctx.fill();
+            }
+          }
+        } else {
+          // Light Mode: Clean Daylight Crystal Glass
+          const lightGrad = ctx.createLinearGradient(x, y, x + boxW * 0.6, y + boxH);
+          if (isLit) {
+            lightGrad.addColorStop(0, '#ffffff');
+            lightGrad.addColorStop(0.4, '#e0f2fe');
+            lightGrad.addColorStop(1, '#bae6fd');
+          } else {
+            lightGrad.addColorStop(0, '#f8fafc');
+            lightGrad.addColorStop(0.5, '#e2e8f0');
+            lightGrad.addColorStop(1, '#cbd5e1');
+          }
+          ctx.fillStyle = lightGrad;
+          ctx.fillRect(x + mullionThick / 2, y + 0.6, boxW, boxH);
+        }
+
+        // Crisp Structural Mullion Grid
+        ctx.strokeStyle = isDark ? '#02050f' : 'rgba(71, 85, 105, 0.9)';
+        ctx.lineWidth = mullionThick;
+        ctx.strokeRect(x + mullionThick / 2, y + 0.6, boxW, boxH);
+      }
+    }
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.anisotropy = 16;
+    return texture;
+  }
+
+  // ---- Three.js Street View Engine ----
+  let cityScene, cityCamera, cityRenderer;
+  let cityGroup;
+  let towerObjects = [];
+  let beaconLights = [];
+  let isRisingAnimation = true;
+  let targetCamX = 0, targetCamY = 3.5;
+  let targetLookX = 0, targetLookY = 38;
+
+  function initThreeCity() {
+    const container = document.getElementById('towers-canvas-wrap');
+    if (!container || typeof THREE === 'undefined') return;
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    cityScene = new THREE.Scene();
+    const isDark = (document.documentElement.getAttribute('data-theme') || 'dark') !== 'light';
+    cityScene.fog = new THREE.FogExp2(isDark ? 0x030a1c : 0x7bb1f9, 0.0062);
+
+    cityCamera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1600);
+    cityCamera.position.set(0, 3.5, 22);
+
+    cityRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+    cityRenderer.setSize(width, height);
+    cityRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    cityRenderer.toneMapping = THREE.ACESFilmicToneMapping;
+    cityRenderer.toneMappingExposure = isDark ? 1.15 : 1.25;
+    container.innerHTML = '';
+    container.appendChild(cityRenderer.domElement);
+
+    // Dynamic Environment Reflection Map
+    const envTexture = generateProceduralSkyEnv(isDark);
+    cityScene.environment = envTexture;
+
+    const ambient = new THREE.AmbientLight(isDark ? 0x142b54 : 0xffffff, isDark ? 1.4 : 2.2);
+    cityScene.add(ambient);
+
+    const sun = new THREE.DirectionalLight(0xffffff, isDark ? 2.4 : 3.2);
+    sun.position.set(35, 95, 45);
+    cityScene.add(sun);
+
+    const sapphireSpecular = new THREE.DirectionalLight(0x60a5fa, isDark ? 2.2 : 2.0);
+    sapphireSpecular.position.set(-45, 40, -10);
+    cityScene.add(sapphireSpecular);
+
+    const streetBounce = new THREE.DirectionalLight(0x2563eb, isDark ? 1.2 : 1.8);
+    streetBounce.position.set(0, -6, 25);
+    cityScene.add(streetBounce);
+
+    buildRealisticCity();
+
+    window.addEventListener('resize', onCityResize, { passive: true });
+    window.addEventListener('mousemove', onCityMouseMove, { passive: true });
+    window.addEventListener('touchmove', onCityTouchMove, { passive: true });
+
+    animateCity();
+  }
+
+  function buildRealisticCity() {
+    if (!cityScene) return;
+    if (cityGroup) cityScene.remove(cityGroup);
+
+    cityGroup = new THREE.Group();
+    towerObjects = [];
+    beaconLights = [];
+
+    const isDark = (document.documentElement.getAttribute('data-theme') || 'dark') !== 'light';
+    const facadeTex = generateCurtainWallTexture(isDark, true);
+
+    // High-Fidelity Shining Sapphire Glass Materials with Night Window Radiance
+    const glassMat = new THREE.MeshPhysicalMaterial({
+      map: facadeTex,
+      emissive: new THREE.Color(isDark ? 0x2563eb : 0x000000),
+      emissiveMap: facadeTex,
+      emissiveIntensity: isDark ? 0.36 : 0.0,
+      color: isDark ? 0x0f2e63 : 0xffffff,
+      metalness: isDark ? 0.38 : 0.20,
+      roughness: isDark ? 0.04 : 0.08,
+      reflectivity: 1.0,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.02,
+      ior: 1.54,
+      sheen: isDark ? 1.0 : 0.25,
+      sheenColor: new THREE.Color(isDark ? 0x60a5fa : 0xffffff),
+      sheenRoughness: 0.06,
+      transparent: true,
+      opacity: 0.98
+    });
+
+    const bronzeGlassMat = new THREE.MeshPhysicalMaterial({
+      map: facadeTex,
+      emissive: new THREE.Color(isDark ? 0x1d4ed8 : 0x000000),
+      emissiveMap: facadeTex,
+      emissiveIntensity: isDark ? 0.36 : 0.0,
+      color: isDark ? 0x0b2046 : 0xf1f5f9,
+      metalness: isDark ? 0.42 : 0.22,
+      roughness: isDark ? 0.05 : 0.09,
+      reflectivity: 1.0,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.02,
+      ior: 1.54,
+      sheen: isDark ? 1.0 : 0.25,
+      sheenColor: new THREE.Color(isDark ? 0x38bdf8 : 0xffffff),
+      sheenRoughness: 0.06,
+      transparent: true,
+      opacity: 0.98
+    });
+
+    const blackSteelMat = new THREE.MeshStandardMaterial({
+      color: isDark ? 0x0f172a : 0x64748b,
+      metalness: 0.92,
+      roughness: 0.25
+    });
+
+    const louverMat = new THREE.MeshStandardMaterial({
+      color: isDark ? 0x070d1a : 0x475569,
+      metalness: 0.85,
+      roughness: 0.4
+    });
+
+    const goldFrameMat = new THREE.MeshStandardMaterial({ color: 0xd97706, metalness: 0.85, roughness: 0.25 });
+    const redBeaconMat = new THREE.MeshBasicMaterial({ color: 0xff2a2a });
+    const cyanBeaconMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
+    const warmLampMat = new THREE.MeshBasicMaterial({ color: 0xfef08a });
+    const curbMat = new THREE.MeshStandardMaterial({ color: isDark ? 0x334155 : 0xcbd5e1, roughness: 0.8 });
+    const bollardMat = new THREE.MeshStandardMaterial({ color: isDark ? 0x1e293b : 0x94a3b8, metalness: 0.85, roughness: 0.2 });
+
+    // ---- 4A. Ultra-Realistic Wet Reflective Metropolis Avenue ----
+    function createRealisticWetBoulevard() {
+      const boulevardGroup = new THREE.Group();
+      const streetLength = 260;
+      const streetWidth = 26;
+
+      // 1. Wet Glossy Rain-Slicked Asphalt Surface
+      const roadGeom = new THREE.PlaneGeometry(streetWidth, streetLength, 16, 16);
+      const roadMat = new THREE.MeshPhysicalMaterial({
+        color: isDark ? 0x050913 : 0x1e293b,
+        roughness: isDark ? 0.12 : 0.25,
+        metalness: isDark ? 0.78 : 0.35,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.04,
+        reflectivity: 1.0,
+        ior: 1.52
+      });
+      const road = new THREE.Mesh(roadGeom, roadMat);
+      road.rotation.x = -Math.PI / 2;
+      road.position.set(0, 0, -streetLength / 2 + 35);
+      boulevardGroup.add(road);
+
+      // 2. Elegant Modern Dashed Center Divider Line
+      for (let z = 30; z > -streetLength + 35; z -= 8) {
+        const dashGeom = new THREE.PlaneGeometry(0.18, 4.2);
+        const dashMat = new THREE.MeshBasicMaterial({
+          color: isDark ? 0xe0f2fe : 0xf8fafc,
+          transparent: true,
+          opacity: 0.8
+        });
+        const dash = new THREE.Mesh(dashGeom, dashMat);
+        dash.rotation.x = -Math.PI / 2;
+        dash.position.set(0, 0.02, z);
+        boulevardGroup.add(dash);
+      }
+
+      // Road Shoulder Clean Boundary Lines
+      [-streetWidth / 2 + 0.6, streetWidth / 2 - 0.6].forEach(posX => {
+        const edgeGeom = new THREE.PlaneGeometry(0.14, streetLength);
+        const edgeMat = new THREE.MeshBasicMaterial({
+          color: isDark ? 0x93c5fd : 0xcbd5e1,
+          transparent: true,
+          opacity: 0.65
+        });
+        const edge = new THREE.Mesh(edgeGeom, edgeMat);
+        edge.rotation.x = -Math.PI / 2;
+        edge.position.set(posX, 0.02, -streetLength / 2 + 35);
+        boulevardGroup.add(edge);
+      });
+
+      // 3. Polished Granite Sidewalk Slabs
+      const sidewalkGeom = new THREE.BoxGeometry(9.5, 0.38, streetLength);
+      const sidewalkMat = new THREE.MeshPhysicalMaterial({
+        color: isDark ? 0x0a101d : 0xe2e8f0,
+        roughness: 0.22,
+        metalness: 0.5,
+        clearcoat: 0.75,
+        clearcoatRoughness: 0.08
+      });
+
+      const leftSidewalk = new THREE.Mesh(sidewalkGeom, sidewalkMat);
+      leftSidewalk.position.set(-streetWidth / 2 - 4.75, 0.19, -streetLength / 2 + 35);
+      boulevardGroup.add(leftSidewalk);
+
+      const rightSidewalk = new THREE.Mesh(sidewalkGeom, sidewalkMat);
+      rightSidewalk.position.set(streetWidth / 2 + 4.75, 0.19, -streetLength / 2 + 35);
+      boulevardGroup.add(rightSidewalk);
+
+      // 4. Sleek Linear LED Curb Trim Strip
+      const curbStripGeom = new THREE.BoxGeometry(0.12, 0.06, streetLength);
+      const curbStripMat = new THREE.MeshBasicMaterial({
+        color: isDark ? 0x38bdf8 : 0x2563eb,
+        transparent: true,
+        opacity: 0.85
+      });
+
+      const leftCurbStrip = new THREE.Mesh(curbStripGeom, curbStripMat);
+      leftCurbStrip.position.set(-streetWidth / 2, 0.39, -streetLength / 2 + 35);
+      boulevardGroup.add(leftCurbStrip);
+
+      const rightCurbStrip = new THREE.Mesh(curbStripGeom, curbStripMat);
+      rightCurbStrip.position.set(streetWidth / 2, 0.39, -streetLength / 2 + 35);
+      boulevardGroup.add(rightCurbStrip);
+
+      // 5. Minimalist Brushed Titanium Bollards & Cantilevered Street Lamps
+      for (let z = 24; z > -streetLength + 45; z -= 22) {
+        [-streetWidth / 2 - 1.2, streetWidth / 2 + 1.2].forEach(posX => {
+          // Slender Lamp Post
+          const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.1, 6.2, 8), blackSteelMat);
+          pole.position.set(posX, 3.1, z);
+          boulevardGroup.add(pole);
+
+          // Sleek Horizontal Arm
+          const arm = new THREE.Mesh(new THREE.BoxGeometry(posX < 0 ? 1.4 : -1.4, 0.08, 0.08), blackSteelMat);
+          arm.position.set(posX + (posX < 0 ? 0.7 : -0.7), 6.15, z);
+          boulevardGroup.add(arm);
+
+          // Downward Luminaire Glow
+          const lampGlow = new THREE.Mesh(new THREE.SphereGeometry(0.18, 12, 12), isDark ? cyanBeaconMat : warmLampMat);
+          lampGlow.position.set(posX + (posX < 0 ? 1.3 : -1.3), 6.0, z);
+          boulevardGroup.add(lampGlow);
+
+          // Architectural Bollard with illuminated ring
+          const bollard = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.85, 12), bollardMat);
+          bollard.position.set(posX < 0 ? -streetWidth / 2 - 0.6 : streetWidth / 2 + 0.6, 0.6, z + 7);
+          boulevardGroup.add(bollard);
+
+          const ring = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.02, 8, 16), curbStripMat);
+          ring.rotation.x = Math.PI / 2;
+          ring.position.set(posX < 0 ? -streetWidth / 2 - 0.6 : streetWidth / 2 + 0.6, 0.95, z + 7);
+          boulevardGroup.add(ring);
+        });
+      }
+
+      return boulevardGroup;
+    }
+
+    cityGroup.add(createRealisticWetBoulevard());
+
+    function addRooftopEquipment(group, w, d, topY, hasCrane = true) {
+      // Mechanical Penthouse
+      const mechBox = new THREE.Mesh(new THREE.BoxGeometry(w * 0.45, 3.2, d * 0.45), louverMat);
+      mechBox.position.set(0, topY + 1.6, 0);
+      group.add(mechBox);
+
+      // 2x HVAC Cooling Towers with fans
+      [-w * 0.15, w * 0.15].forEach(offX => {
+        const chiller = new THREE.Mesh(new THREE.CylinderGeometry(w * 0.1, w * 0.1, 1.4, 16), blackSteelMat);
+        chiller.position.set(offX, topY + 0.7, d * 0.15);
+        group.add(chiller);
+
+        const fanGrille = new THREE.Mesh(new THREE.CylinderGeometry(w * 0.08, w * 0.08, 0.2, 12), louverMat);
+        fanGrille.position.set(offX, topY + 1.45, d * 0.15);
+        group.add(fanGrille);
+      });
+
+      // BMU Window Washing Crane Rig
+      if (hasCrane) {
+        const bmuBase = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.8, 0.8), blackSteelMat);
+        bmuBase.position.set(-w * 0.18, topY + 0.4, -d * 0.18);
+        group.add(bmuBase);
+
+        const bmuArm = new THREE.Mesh(new THREE.BoxGeometry(w * 0.35, 0.18, 0.18), goldFrameMat);
+        bmuArm.position.set(-w * 0.05, topY + 1.1, -d * 0.18);
+        group.add(bmuArm);
+      }
+
+      // Antenna Spire with Flashing Strobe Beacon
+      const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.18, 9.5, 8), blackSteelMat);
+      mast.position.set(0, topY + 6.0, 0);
+      group.add(mast);
+
+      const beacon = new THREE.Mesh(new THREE.SphereGeometry(0.32, 16, 16), redBeaconMat);
+      beacon.position.set(0, topY + 10.8, 0);
+      group.add(beacon);
+      beaconLights.push(beacon);
+    }
+
+    // 3D Extruded Vertical Aerodynamic Mullion Fins
+    function addFacadeVerticalFins(group, w, d, h, finCount = 6) {
+      for (let i = 0; i <= finCount; i++) {
+        const fx = -w / 2 + (i * (w / finCount));
+        const fin = new THREE.Mesh(new THREE.BoxGeometry(0.15, h * 0.98, 0.5), blackSteelMat);
+        fin.position.set(fx, h / 2, d / 2 + 0.2);
+        group.add(fin);
+      }
+    }
+
+    // Skyscraper Constructors with Crisp Modular Box Facades
+    function createSawtoothTower(x, z, width, depth, height) {
+      const group = new THREE.Group();
+      group.position.set(x, 0, z);
+
+      const tiers = [
+        { w: width * 1.12, d: depth * 1.12, h: height * 0.16, y: 0, isPodium: true },
+        { w: width * 1.02, d: depth * 1.02, h: height * 0.22, y: height * 0.16, isTerrace: true },
+        { w: width * 0.92, d: depth * 0.92, h: height * 0.28, y: height * 0.38, isTerrace: true },
+        { w: width * 0.80, d: depth * 0.80, h: height * 0.34, y: height * 0.66, isMainShaft: true }
+      ];
+
+      tiers.forEach((tier) => {
+        const geom = new THREE.BoxGeometry(tier.w, tier.h, tier.d);
+        const mesh = new THREE.Mesh(geom, bronzeGlassMat);
+        mesh.position.y = tier.y + tier.h / 2;
+        group.add(mesh);
+
+        const edges = new THREE.EdgesGeometry(geom);
+        const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({
+          color: isDark ? 0x94a3b8 : 0x475569,
+          linewidth: 1.5,
+          transparent: true,
+          opacity: 0.8
+        }));
+        lines.position.y = tier.y + tier.h / 2;
+        group.add(lines);
+
+        if (tier.isTerrace) {
+          const railMesh = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 1.02, 0.5, tier.d * 1.02), goldFrameMat);
+          railMesh.position.set(0, tier.y + tier.h, 0);
+          group.add(railMesh);
+        }
+      });
+
+      const crown = new THREE.Mesh(new THREE.BoxGeometry(width * 0.72, 3.5, depth * 0.72), blackSteelMat);
+      crown.position.y = height + 1.75;
+      group.add(crown);
+
+      addRooftopEquipment(group, width * 0.72, depth * 0.72, height + 3.5, true);
+
+      return { group, height };
+    }
+
+    function createSteppedRectTower(x, z, width, depth, height) {
+      const group = new THREE.Group();
+      group.position.set(x, 0, z);
+
+      const tiers = [
+        { w: width, d: depth, h: height * 0.35, y: 0, isPodium: true },
+        { w: width * 0.82, d: depth * 0.85, h: height * 0.28, y: height * 0.35 },
+        { w: width * 0.65, d: depth * 0.70, h: height * 0.22, y: height * 0.63 },
+        { w: width * 0.48, d: depth * 0.55, h: height * 0.15, y: height * 0.85 }
+      ];
+
+      tiers.forEach((tier) => {
+        const geom = new THREE.BoxGeometry(tier.w, tier.h, tier.d);
+        const mesh = new THREE.Mesh(geom, glassMat);
+        mesh.position.y = tier.y + tier.h / 2;
+        group.add(mesh);
+
+        const edges = new THREE.EdgesGeometry(geom);
+        const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: isDark ? 0x60a5fa : 0x3b82f6, linewidth: 1.5 }));
+        lines.position.y = tier.y + tier.h / 2;
+        group.add(lines);
+
+        const rail = new THREE.Mesh(new THREE.BoxGeometry(tier.w * 0.98, 0.4, tier.d * 0.98), blackSteelMat);
+        rail.position.y = tier.y + tier.h;
+        group.add(rail);
+      });
+
+      addRooftopEquipment(group, width * 0.48, depth * 0.55, height, false);
+
+      return { group, height };
+    }
+
+    function createModernRectTower(x, z, width, depth, height) {
+      const group = new THREE.Group();
+      group.position.set(x, 0, z);
+
+      const geom = new THREE.BoxGeometry(width, height, depth);
+      const mesh = new THREE.Mesh(geom, bronzeGlassMat);
+      mesh.position.y = height / 2;
+      group.add(mesh);
+
+      const edges = new THREE.EdgesGeometry(geom);
+      const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: isDark ? 0x93c5fd : 0x3b82f6, linewidth: 2 }));
+      lines.position.y = height / 2;
+      group.add(lines);
+
+      addFacadeVerticalFins(group, width, depth, height, 8);
+
+      const crown = new THREE.Mesh(new THREE.BoxGeometry(width * 0.75, 3.5, depth * 0.75), blackSteelMat);
+      crown.position.y = height + 1.75;
+      group.add(crown);
+
+      addRooftopEquipment(group, width * 0.75, depth * 0.75, height + 3.5, true);
+
+      return { group, height };
+    }
+
+    function createSlenderRectTower(x, z, width, depth, height) {
+      const group = new THREE.Group();
+      group.position.set(x, 0, z);
+
+      const geom = new THREE.BoxGeometry(width, height, depth);
+      const mesh = new THREE.Mesh(geom, glassMat);
+      mesh.position.y = height / 2;
+      group.add(mesh);
+
+      const edges = new THREE.EdgesGeometry(geom);
+      const lines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: isDark ? 0xffffff : 0x3b82f6, linewidth: 2 }));
+      lines.position.y = height / 2;
+      group.add(lines);
+
+      for (let y = height * 0.3; y < height; y += height * 0.32) {
+        const cut = new THREE.Mesh(new THREE.BoxGeometry(width * 1.02, 2.5, depth * 1.02), blackSteelMat);
+        cut.position.y = y;
+        group.add(cut);
+      }
+
+      const crown = new THREE.Mesh(new THREE.BoxGeometry(width * 0.85, 2.8, depth * 0.85), blackSteelMat);
+      crown.position.y = height + 1.4;
+      group.add(crown);
+
+      addRooftopEquipment(group, width * 0.85, depth * 0.85, height + 2.8, false);
+
+      return { group, height };
+    }
+
+    const streetSkyscrapers = [
+      { type: 'sawtooth', x: 22, z: 0, w: 14, d: 13, h: 56 },
+      { type: 'stepped', x: 23, z: -28, w: 15, d: 14, h: 52 },
+      { type: 'modern', x: 24, z: -58, w: 16, d: 14, h: 62 },
+      { type: 'slender', x: 25, z: -88, w: 12, d: 12, h: 68 },
+      { type: 'stepped', x: 26, z: -118, w: 17, d: 15, h: 58 },
+
+      { type: 'modern', x: -22, z: 2, w: 15, d: 13, h: 54 },
+      { type: 'slender', x: -23, z: -26, w: 13, d: 13, h: 64 },
+      { type: 'stepped', x: -24, z: -56, w: 16, d: 14, h: 50 },
+      { type: 'sawtooth', x: -25, z: -86, w: 15, d: 13, h: 60 },
+      { type: 'modern', x: -26, z: -116, w: 17, d: 15, h: 56 },
+
+      { type: 'stepped', x: 0, z: -145, w: 22, d: 18, h: 72 }
+    ];
+
+    streetSkyscrapers.forEach((item, idx) => {
+      let created;
+      if (item.type === 'sawtooth') created = createSawtoothTower(item.x, item.z, item.w, item.d, item.h);
+      else if (item.type === 'stepped') created = createSteppedRectTower(item.x, item.z, item.w, item.d, item.h);
+      else if (item.type === 'modern') created = createModernRectTower(item.x, item.z, item.w, item.d, item.h);
+      else if (item.type === 'slender') created = createSlenderRectTower(item.x, item.z, item.w, item.d, item.h);
+
+      if (created) {
+        const obj = created.group;
+        obj.userData = { targetY: 0, initialY: -created.height - 25, speed: 0.045 + (idx * 0.003) };
+        obj.position.y = obj.userData.initialY;
+        towerObjects.push(obj);
+        cityGroup.add(obj);
+      }
+    });
+
+    isRisingAnimation = true;
+    cityScene.add(cityGroup);
+
+    setTimeout(() => {
+      document.body.classList.add('page-revealed');
+      if (typeof AOS !== 'undefined') AOS.refresh();
+    }, 650);
+  }
+
+  function onCityMouseMove(e) {
+    const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    targetCamX = mouseX * 5;
+    targetCamY = 3.5 + (mouseY * 2.5);
+    targetLookX = mouseX * 18;
+    targetLookY = 36 + (mouseY * 18);
+  }
+
+  function onCityTouchMove(e) {
+    if (e.touches && e.touches.length > 0) {
+      const mouseX = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+      const mouseY = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
+      targetCamX = mouseX * 5;
+      targetCamY = 3.5 + (mouseY * 2.5);
+      targetLookX = mouseX * 18;
+      targetLookY = 36 + (mouseY * 18);
+    }
+  }
+
+  function onCityResize() {
+    if (!cityCamera || !cityRenderer) return;
+    cityCamera.aspect = window.innerWidth / window.innerHeight;
+    cityCamera.updateProjectionMatrix();
+    cityRenderer.setSize(window.innerWidth, window.innerHeight);
+  }
+
+  let cityClock = typeof THREE !== 'undefined' ? new THREE.Clock() : null;
+  function animateCity() {
+    requestAnimationFrame(animateCity);
+    if (!cityRenderer || !cityScene || !cityCamera) return;
+
+    const elapsedTime = cityClock ? cityClock.getElapsedTime() : 0;
+    cityCamera.position.x += (targetCamX - cityCamera.position.x) * 0.04;
+    cityCamera.position.y += (targetCamY - cityCamera.position.y) * 0.04;
+    cityCamera.lookAt(targetLookX, targetLookY, -35);
+
+    // Towers Rise Emerging From Clouds
+    if (isRisingAnimation) {
+      let allSettled = true;
+      towerObjects.forEach(t => {
+        const dy = t.userData.targetY - t.position.y;
+        if (Math.abs(dy) > 0.06) {
+          t.position.y += dy * t.userData.speed;
+          allSettled = false;
+        } else {
+          t.position.y = t.userData.targetY;
+        }
+      });
+      if (allSettled) isRisingAnimation = false;
+    }
+
+    const beaconPulse = Math.sin(elapsedTime * 5) * 0.5 + 0.5;
+    beaconLights.forEach(beacon => {
+      beacon.scale.setScalar(0.75 + beaconPulse * 0.45);
+    });
+
+    cityRenderer.render(cityScene, cityCamera);
+  }
+
+  window.addEventListener('load', () => {
+    initVantaClouds();
+    initThreeCity();
+  });
   initVantaClouds();
+  setTimeout(initThreeCity, 100);
 
   function updateThemeIcon(theme) {
     const icon = themeToggle.querySelector('i');
     const logos = document.querySelectorAll('.logo-img');
     
-    // Smooth transition for logos
     logos.forEach(img => img.classList.add('logo-fade'));
 
     setTimeout(() => {
-      const isWebp = true; // Set to true once images are converted
+      const isWebp = true;
       const ext = isWebp ? 'webp' : 'jpeg';
       const suffix = theme === 'dark' ? 'dark_banner' : 'light_banner';
       const newSrc = `assets/vsgrps_navbar_${suffix}.${ext}`;
@@ -4206,10 +5156,15 @@
         }
       }
 
-      // Re-init Vanta clouds for current theme
       initVantaClouds();
+      if (cityScene) {
+        if (cityScene.fog) {
+          cityScene.fog.color.setHex(theme === 'dark' ? 0x050c1e : 0x7bb1f9);
+        }
+        cityScene.environment = generateProceduralSkyEnv(theme === 'dark');
+      }
+      buildRealisticCity();
 
-      // Fade back in
       setTimeout(() => {
         logos.forEach(img => img.classList.remove('logo-fade'));
       }, 50);
