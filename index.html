@@ -4260,8 +4260,24 @@
     });
   });
 
-  // Global Hero Visibility State for Performance Rendering Loop
-  let isHeroVisible = true;
+  // Global Scroll Activity State for Extreme GPU/CPU Scroll Optimization
+  let isUserScrolling = false;
+  let scrollActivityTimeout = null;
+
+  window.addEventListener('scroll', () => {
+    isUserScrolling = true;
+    clearTimeout(scrollActivityTimeout);
+    scrollActivityTimeout = setTimeout(() => {
+      isUserScrolling = false;
+    }, 120);
+  }, { passive: true });
+
+  if ('onscrollend' in window) {
+    window.addEventListener('scrollend', () => {
+      isUserScrolling = false;
+      clearTimeout(scrollActivityTimeout);
+    }, { passive: true });
+  }
 
   // ---- Ultra-Optimized Particle System (Zero-Lag Squared Math) ----
   const canvas = document.getElementById('particle-canvas');
@@ -4299,7 +4315,7 @@
   }
 
   function animateParticles() {
-    if (document.hidden) {
+    if (document.hidden || isUserScrolling) {
       particleAnimId = requestAnimationFrame(animateParticles);
       return;
     }
@@ -5213,27 +5229,26 @@
 
   let cityClock = typeof THREE !== 'undefined' ? new THREE.Clock() : null;
   let cityCurrentLook = null;
+  let activeCityTime = 0;
 
   function animateCity() {
     requestAnimationFrame(animateCity);
     if (!cityRenderer || !cityScene || !cityCamera || document.hidden) return;
 
+    // While user is actively scrolling, pause background animation to guarantee 100% smooth 60/120FPS scroll performance
+    if (isUserScrolling && !isRisingAnimation) return;
+
     const delta = cityClock ? Math.min(cityClock.getDelta(), 0.1) : 0.016;
-    const elapsedTime = cityClock ? cityClock.getElapsedTime() : 0;
+    activeCityTime += delta;
     
-    // Smooth continuous harmonic drone drift + silky scroll-responsive parallax
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-    const scrollLift = Math.min(scrollY * 0.005, 24);
-    const scrollSway = Math.sin(scrollY * 0.0012) * 2.2;
-    const scrollPushZ = Math.min(scrollY * 0.003, 8);
+    // Smooth continuous harmonic drone drift (resumes smoothly on scroll release)
+    const t = activeCityTime * 0.22;
+    const targetCamX = Math.sin(t) * 3.2 + Math.sin(t * 0.43) * 1.0;
+    const targetCamY = 3.6 + Math.cos(t * 0.75) * 1.1;
+    const targetCamZ = 22 + Math.sin(t * 0.35) * 1.8;
 
-    const t = elapsedTime * 0.22;
-    const targetCamX = Math.sin(t) * 3.2 + Math.sin(t * 0.43) * 1.0 + scrollSway;
-    const targetCamY = 3.6 + Math.cos(t * 0.75) * 1.1 + scrollLift;
-    const targetCamZ = 22 + Math.sin(t * 0.35) * 1.8 - scrollPushZ;
-
-    const targetLookX = Math.sin(t * 0.85) * 8.0 + scrollSway * 0.5;
-    const targetLookY = 36 + Math.sin(t * 0.55) * 4.0 + scrollLift * 0.75;
+    const targetLookX = Math.sin(t * 0.85) * 8.0;
+    const targetLookY = 36 + Math.sin(t * 0.55) * 4.0;
     const targetLookZ = -38;
 
     // Silky smooth damping across all framerates
