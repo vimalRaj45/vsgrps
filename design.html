@@ -742,8 +742,6 @@
       buildRealisticCity();
 
       window.addEventListener('resize', onWindowResize);
-      window.addEventListener('mousemove', onMouseMove);
-      window.addEventListener('touchmove', onTouchMove, { passive: true });
 
       animate();
     }
@@ -1173,28 +1171,6 @@
       buildRealisticCity();
     }
 
-    function onMouseMove(e) {
-      const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-      const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-
-      // Street View Upward Pan/Tilt
-      targetCameraX = mouseX * 5;
-      targetCameraY = 3.5 + (mouseY * 2.5);
-      targetLookAtX = mouseX * 18;
-      targetLookAtY = 36 + (mouseY * 18);
-    }
-
-    function onTouchMove(e) {
-      if (e.touches.length > 0) {
-        const mouseX = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
-        const mouseY = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
-        targetCameraX = mouseX * 5;
-        targetCameraY = 3.5 + (mouseY * 2.5);
-        targetLookAtX = mouseX * 18;
-        targetLookAtY = 36 + (mouseY * 18);
-      }
-    }
-
     function onWindowResize() {
       if (!camera || !renderer) return;
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -1210,10 +1186,15 @@
 
       const elapsedTime = clock.getElapsedTime();
 
-      // Smooth Street View Camera Floating & Tilt
-      camera.position.x += (targetCameraX - camera.position.x) * 0.04;
-      camera.position.y += (targetCameraY - camera.position.y) * 0.04;
-      camera.lookAt(targetLookAtX, targetLookAtY, -35);
+      // Smooth Street View Automatic Floating & Tilt
+      const autoCamX = Math.sin(elapsedTime * 0.35) * 3.2;
+      const autoCamY = 3.5 + Math.cos(elapsedTime * 0.28) * 1.1;
+      const autoLookX = Math.sin(elapsedTime * 0.35) * 10;
+      const autoLookY = 36 + Math.sin(elapsedTime * 0.22) * 5;
+
+      camera.position.x += (autoCamX - camera.position.x) * 0.035;
+      camera.position.y += (autoCamY - camera.position.y) * 0.035;
+      camera.lookAt(autoLookX, autoLookY, -35);
 
       // Towers Rise Emerging From Clouds
       if (isRisingAnimation) {
