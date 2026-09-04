@@ -147,19 +147,19 @@
 
     /* ==================== HIGH-CONTRAST LIGHT THEME RULES ==================== */
     [data-theme="light"] {
-      --bg: #F8FAFC;
+      --bg: #EEF4FC;
       --card: #FFFFFF;
       --border: #CBD5E1;
-      --text: #0F172A;
+      --text: #0B132B;
       --text-muted: #334155;
-      --nav-bg: rgba(255, 255, 255, 0.96);
+      --nav-bg: rgba(238, 244, 252, 0.96);
       --accent: #1D4ED8;
       --accent-blue: #2563EB;
     }
 
     [data-theme="light"] body {
-      background-color: #F8FAFC !important;
-      color: #0F172A !important;
+      background-color: #EEF4FC !important;
+      color: #0B132B !important;
     }
 
     [data-theme="light"] h1,
@@ -176,19 +176,21 @@
     }
 
     [data-theme="light"] #hero h1 {
-      color: #0F172A !important;
-      text-shadow: 0 2px 14px rgba(255, 255, 255, 0.9), 0 0 28px rgba(255, 255, 255, 0.7);
+      color: #0B132B !important;
+      text-shadow: 0 2px 14px rgba(255, 255, 255, 0.95), 0 0 28px rgba(255, 255, 255, 0.9);
     }
 
     [data-theme="light"] #hero p {
-      color: #1E293B !important;
-      text-shadow: 0 1px 8px rgba(255, 255, 255, 0.8);
+      color: #0F172A !important;
+      text-shadow: 0 1px 8px rgba(255, 255, 255, 0.95);
     }
 
     [data-theme="light"] .gradient-text {
-      background: linear-gradient(135deg, #1D4ED8 0%, #0284C7 100%) !important;
+      background: linear-gradient(135deg, #D97706 0%, #EA580C 100%) !important;
       -webkit-background-clip: text !important;
+      background-clip: text !important;
       -webkit-text-fill-color: transparent !important;
+      filter: drop-shadow(0 1px 4px rgba(217, 119, 6, 0.25));
     }
 
     [data-theme="light"] .glass {
@@ -274,18 +276,18 @@
     }
 
     #hero h1 {
-      text-shadow: 0 3px 20px rgba(0, 0, 0, 0.85);
+      text-shadow: 0 4px 28px rgba(0, 0, 0, 0.95), 0 1px 8px rgba(0, 0, 0, 0.85);
     }
 
     #hero p {
-      color: #E2E8F0 !important;
-      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+      color: #F8FAFC !important;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95);
       font-weight: 500;
     }
 
     [data-theme="light"] #hero p {
-      color: #1E293B !important;
-      text-shadow: 0 1px 4px rgba(255, 255, 255, 0.9);
+      color: #0F172A !important;
+      text-shadow: 0 1px 8px rgba(255, 255, 255, 0.95);
       font-weight: 500;
     }
 
@@ -500,6 +502,7 @@
     [data-theme="light"] .glass-center-card .brand-title {
       background: linear-gradient(135deg, #0F172A 30%, #2563EB 100%) !important;
       -webkit-background-clip: text !important;
+      background-clip: text !important;
       -webkit-text-fill-color: transparent !important;
       text-shadow: none !important;
     }
@@ -559,6 +562,95 @@
       transform: scale(0.96) translateY(1px) !important;
     }
 
+    /* ==================== CELESTIAL STARFIELD & CONSTELLATION BACKGROUND ==================== */
+    #starfield-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 50% 18%, #0d214a 0%, #061128 45%, #030712 100%);
+      transition: background 0.5s ease;
+    }
+
+    #starfield-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 40px 70px, rgba(147,197,253,0.9), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,0.95), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 160px 120px, #93c5fd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 230px 190px, rgba(255,255,255,0.9), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 310px 80px, #60a5fa, rgba(0,0,0,0)),
+        radial-gradient(2.5px 2.5px at 380px 240px, rgba(255,255,255,1), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 470px 150px, #93c5fd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 540px 290px, rgba(147,197,253,0.85), rgba(0,0,0,0));
+      background-repeat: repeat;
+      background-size: 580px 380px;
+      opacity: 0.85;
+      animation: celestialDrift 90s linear infinite;
+    }
+
+    #starfield-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(1px 1px at 70px 110px, rgba(255,255,255,0.7), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 180px 220px, rgba(96,165,250,0.85), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 290px 310px, rgba(255,255,255,0.75), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 420px 90px, rgba(147,197,253,0.9), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 510px 230px, rgba(255,255,255,0.8), rgba(0,0,0,0));
+      background-repeat: repeat;
+      background-size: 440px 320px;
+      opacity: 0.7;
+      animation: celestialTwinkle 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes celestialDrift {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-380px); }
+    }
+
+    @keyframes celestialTwinkle {
+      0% { opacity: 0.45; transform: scale(0.99); }
+      50% { opacity: 0.85; transform: scale(1.01); }
+      100% { opacity: 0.45; transform: scale(0.99); }
+    }
+
+    /* Light Theme Starfield / Atmospheric Sky */
+    [data-theme="light"] #starfield-bg {
+      background: radial-gradient(ellipse at 50% 15%, #dbeafe 0%, #e2ecf8 45%, #eef4fc 100%);
+    }
+
+    [data-theme="light"] #starfield-bg::before {
+      background-image: 
+        radial-gradient(1.5px 1.5px at 20px 30px, rgba(30,64,175,0.45), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 40px 70px, rgba(37,99,235,0.35), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, rgba(29,78,216,0.5), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 160px 120px, rgba(37,99,235,0.4), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 230px 190px, rgba(30,64,175,0.45), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 310px 80px, rgba(59,130,246,0.4), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 380px 240px, rgba(29,78,216,0.5), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 470px 150px, rgba(37,99,235,0.35), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 540px 290px, rgba(30,64,175,0.4), rgba(0,0,0,0));
+      opacity: 0.65;
+    }
+
+    [data-theme="light"] #starfield-bg::after {
+      background-image: 
+        radial-gradient(1px 1px at 70px 110px, rgba(30,64,175,0.3), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 180px 220px, rgba(29,78,216,0.4), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 290px 310px, rgba(37,99,235,0.35), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 420px 90px, rgba(30,64,175,0.45), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 510px 230px, rgba(29,78,216,0.35), rgba(0,0,0,0));
+      opacity: 0.5;
+    }
+
     /* Particle Background */
     #particle-canvas {
       position: fixed;
@@ -600,16 +692,17 @@
     }
 
     /* Glow effects */
-    .glow-accent { box-shadow: 0 0 30px rgba(59,130,246,0.15); }
-    .glow-text { text-shadow: 0 0 40px rgba(59,130,246,0.4); }
+    .glow-accent { box-shadow: 0 0 30px rgba(245, 158, 11, 0.2); }
+    .glow-text { text-shadow: 0 0 35px rgba(245, 158, 11, 0.45); }
     .glow-blue { box-shadow: 0 0 30px rgba(96,165,250,0.15); }
 
-    /* Gradient text */
+    /* Gradient text - Warm Amber-Gold High Contrast */
     .gradient-text {
-      background: linear-gradient(135deg, var(--accent), var(--accent-blue));
+      background: linear-gradient(135deg, #F59E0B 0%, #F97316 50%, #EA580C 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      filter: drop-shadow(0 2px 14px rgba(245, 158, 11, 0.35));
     }
 
     /* Navbar */
@@ -649,7 +742,7 @@
       display: inline-block;
       width: 3px;
       height: 1em;
-      background: var(--accent);
+      background: #F59E0B;
       margin-left: 4px;
       animation: blink 0.8s infinite;
       vertical-align: middle;
@@ -840,7 +933,7 @@
       font-family: 'Syne', sans-serif;
       font-size: 3rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #3B82F6, #60A5FA);
+      background: linear-gradient(135deg, #F59E0B, #EA580C);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -2057,6 +2150,7 @@
       letter-spacing: -0.02em;
       background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
       margin-bottom: 6px;
@@ -2064,6 +2158,7 @@
     [data-theme="light"] .tech-brand-title {
       background: linear-gradient(135deg, #0F172A 30%, #2563EB 100%) !important;
       -webkit-background-clip: text !important;
+      background-clip: text !important;
       -webkit-text-fill-color: transparent !important;
       text-shadow: none !important;
     }
@@ -2328,10 +2423,8 @@
       border-color: #BFDBFE;
     }
   </style>
-  <!-- Three.js & Vanta.js (Globe + Clouds) -->
+  <!-- Three.js Engine -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
 </head>
 <body class="grid-bg">
 
@@ -2373,8 +2466,8 @@
   </div>
 </div>
 
-<!-- ==================== VANTA.JS CLOUDS BACKGROUND ==================== -->
-<div id="vanta-clouds-bg" style="position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none;opacity:1;"></div>
+<!-- ==================== CELESTIAL STARFIELD & CONSTELLATION BACKGROUND ==================== -->
+<div id="starfield-bg"></div>
 
 <!-- ==================== 3D REALISTIC MANHATTAN STREET CANYON ==================== -->
 <div id="towers-canvas-wrap" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;"></div>
@@ -2629,7 +2722,7 @@
       <div class="text-left order-2 lg:order-1 lg:col-span-7">
         <div class="hero-content-shield">
           <div class="section-tag" data-aos="fade-up" data-aos-delay="100">
-            <span style="width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block;margin-right:8px;animation:pulse 2s infinite;"></span>
+            <span style="width:7px;height:7px;background:#F59E0B;border-radius:50%;display:inline-block;margin-right:8px;box-shadow:0 0 10px rgba(245,158,11,0.8);animation:pulse 2s infinite;"></span>
             Enterprise Software & UI/UX Studio
           </div>
           <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-left" data-aos="fade-up" data-aos-delay="200" style="font-family:'Outfit',sans-serif;">
@@ -2652,19 +2745,19 @@
           <!-- Mini stats -->
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 hero-stats" data-aos="fade-up" data-aos-delay="500">
             <div class="glass p-4 rounded-xl text-center">
-              <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">7+</div>
+              <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">7+</div>
               <div style="font-size:12px;margin-top:4px;">Delivered Projects</div>
             </div>
             <div class="glass p-4 rounded-xl text-center">
-              <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">2</div>
+              <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">2</div>
               <div style="font-size:12px;margin-top:4px;">SaaS Platforms</div>
             </div>
             <div class="glass p-4 rounded-xl text-center">
-              <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Cloud</div>
+              <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Cloud</div>
               <div style="font-size:12px;margin-top:4px;">Architecture</div>
             </div>
             <div class="glass p-4 rounded-xl text-center">
-              <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">100%</div>
+              <div style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">100%</div>
               <div style="font-size:12px;margin-top:4px;">Commitment</div>
             </div>
           </div>
@@ -4331,14 +4424,14 @@
   let savedTheme = localStorage.getItem('vsgrps_theme') || 'dark';
   html.setAttribute('data-theme', savedTheme);
   updateThemeIcon(savedTheme);
-  document.body.style.backgroundColor = savedTheme === 'light' ? '#F8FAFC' : '#050810';
+  document.body.style.backgroundColor = savedTheme === 'light' ? '#EEF4FC' : '#050810';
 
   themeToggle.addEventListener('click', () => {
     const currentTheme = html.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('vsgrps_theme', newTheme);
-    document.body.style.backgroundColor = newTheme === 'light' ? '#F8FAFC' : '#050810';
+    document.body.style.backgroundColor = newTheme === 'light' ? '#EEF4FC' : '#050810';
     updateThemeIcon(newTheme);
   });
 
@@ -4389,45 +4482,13 @@
       splash.classList.add('hidden-splash');
       setTimeout(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-        initVantaClouds();
         document.body.classList.add('page-revealed');
         if (typeof AOS !== 'undefined') AOS.refresh();
       }, 500);
     }
   }
 
-  // ==================== 3D REALISTIC MANHATTAN STREET CANYON & VANTA CLOUDS ====================
-  let vantaEffect = null;
-  function initVantaClouds() {
-    if (typeof VANTA === 'undefined' || !VANTA.CLOUDS) return;
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-    const isDark = currentTheme !== 'light';
-    
-    if (vantaEffect) {
-      vantaEffect.destroy();
-      vantaEffect = null;
-    }
-    
-    try {
-      vantaEffect = VANTA.CLOUDS({
-        el: "#vanta-clouds-bg",
-        mouseControls: false,
-        touchControls: false,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        skyColor: isDark ? 0x050c1e : 0x5a9cf8,
-        cloudColor: isDark ? 0x1b3562 : 0xffffff,
-        cloudShadowColor: isDark ? 0x040814 : 0x225dc1,
-        sunColor: isDark ? 0x0066ff : 0xffaa00,
-        sunGlareColor: isDark ? 0x00d2ff : 0xffdd66,
-        sunlightColor: isDark ? 0x2563eb : 0xffffff,
-        speed: 0.65
-      });
-    } catch(e) {
-      console.warn("Vanta Clouds initialization fallback:", e);
-    }
-  }
+  // ==================== 3D REALISTIC MANHATTAN STREET CANYON ENGINE ====================
 
   // ---- High-Dynamic Procedural Sky & City Environment Map ----
   function generateProceduralSkyEnv(isDark) {
@@ -4448,11 +4509,12 @@
       skyGrad.addColorStop(0.78, '#0a1636');
       skyGrad.addColorStop(1, '#020617');
     } else {
-      skyGrad.addColorStop(0, '#60a5fa');
-      skyGrad.addColorStop(0.42, '#bae6fd');
-      skyGrad.addColorStop(0.52, '#ffffff');
-      skyGrad.addColorStop(0.62, '#cbd5e1');
-      skyGrad.addColorStop(1, '#94a3b8');
+      skyGrad.addColorStop(0, '#1e3a8a');
+      skyGrad.addColorStop(0.25, '#2563eb');
+      skyGrad.addColorStop(0.48, '#60a5fa');
+      skyGrad.addColorStop(0.53, '#e0f2fe');
+      skyGrad.addColorStop(0.65, '#bfdbfe');
+      skyGrad.addColorStop(1, '#93c5fd');
     }
     ctx.fillStyle = skyGrad;
     ctx.fillRect(0, 0, 1024, 512);
@@ -4476,7 +4538,7 @@
     ctx.fill();
 
     // Distant skyline silhouette along horizon for rich architectural reflections
-    ctx.fillStyle = isDark ? 'rgba(4, 14, 38, 0.75)' : 'rgba(203, 213, 225, 0.65)';
+    ctx.fillStyle = isDark ? 'rgba(4, 14, 38, 0.75)' : 'rgba(15, 23, 42, 0.45)';
     for (let x = 0; x < 1024; x += 14) {
       const bh = 18 + Math.sin(x * 0.05) * 16 + (x % 32);
       ctx.fillRect(x, 260 - bh, 12, bh + 45);
@@ -4495,7 +4557,7 @@
     const ctx = canvas.getContext('2d');
 
     // Base Structure: Deep Sapphire Obsidian Slate
-    ctx.fillStyle = isDark ? '#030a1c' : '#cbd5e1';
+    ctx.fillStyle = isDark ? '#030a1c' : '#0a192f';
     ctx.fillRect(0, 0, 1536, 3072);
 
     const cols = 28;
@@ -4510,31 +4572,31 @@
 
       // Floor Spandrel Divider
       const spandrelH = 5.0;
-      ctx.fillStyle = isDark ? '#020612' : '#64748b';
+      ctx.fillStyle = isDark ? '#020612' : '#0f172a';
       ctx.fillRect(0, floorY + cellH - spandrelH, 1536, spandrelH);
 
       // Thin Sapphire Trim Line
-      ctx.fillStyle = isDark ? 'rgba(96, 165, 250, 0.35)' : 'rgba(255, 255, 255, 0.5)';
+      ctx.fillStyle = isDark ? 'rgba(96, 165, 250, 0.35)' : 'rgba(59, 130, 246, 0.6)';
       ctx.fillRect(0, floorY + cellH - spandrelH, 1536, 0.6);
 
       if (isMechanicalFloor) {
-        ctx.fillStyle = isDark ? '#030816' : '#334155';
+        ctx.fillStyle = isDark ? '#030816' : '#0f172a';
         ctx.fillRect(0, floorY, 1536, cellH - spandrelH);
         for (let l = 0; l < cellH - spandrelH; l += 3.5) {
-          ctx.fillStyle = isDark ? 'rgba(15, 23, 42, 0.9)' : 'rgba(148, 163, 184, 0.5)';
+          ctx.fillStyle = isDark ? 'rgba(15, 23, 42, 0.9)' : 'rgba(30, 41, 59, 0.85)';
           ctx.fillRect(0, floorY + l, 1536, 1.2);
         }
         continue;
       }
 
-      // Standard Floors: Glossy Sapphire Glass with Rich Night Office Lights (~28% lit)
+      // Standard Floors: Glossy Sapphire Glass with Rich Office Windows
       for (let c = 0; c < cols; c++) {
         const x = c * cellW;
         const y = floorY;
         const boxW = cellW - mullionThick;
         const boxH = cellH - spandrelH - 0.8;
 
-        // Realistic urban night office occupancy (~28% lit with occasional busy floor clusters)
+        // Realistic urban office occupancy
         const isBusyFloor = (r % 6 === 2 || r % 9 === 4);
         const isLit = windowLightsEnabled && (Math.random() < (isBusyFloor ? 0.48 : 0.26));
         const randTone = Math.random();
@@ -4598,24 +4660,59 @@
             }
           }
         } else {
-          // Light Mode: Clean Daylight Crystal Glass
-          const lightGrad = ctx.createLinearGradient(x, y, x + boxW * 0.6, y + boxH);
+          // Light Mode: Premium Cobalt & Sapphire Architectural Glass with Crisp Reflections
           if (isLit) {
-            lightGrad.addColorStop(0, '#ffffff');
-            lightGrad.addColorStop(0.4, '#e0f2fe');
-            lightGrad.addColorStop(1, '#bae6fd');
+            // Bright Daylight Sky Glaze Panel
+            const litGrad = ctx.createLinearGradient(x, y, x + boxW, y + boxH);
+            litGrad.addColorStop(0, '#3b82f6');
+            litGrad.addColorStop(0.3, '#2563eb');
+            litGrad.addColorStop(0.7, '#1d4ed8');
+            litGrad.addColorStop(1, '#1e3a8a');
+            ctx.fillStyle = litGrad;
+            ctx.fillRect(x + mullionThick / 2, y + 0.6, boxW, boxH);
+
+            // Radiant daylight reflection streak
+            const specGrad = ctx.createLinearGradient(x, y, x + boxW * 0.7, y + boxH * 0.6);
+            specGrad.addColorStop(0, 'rgba(219, 234, 254, 0.75)');
+            specGrad.addColorStop(0.5, 'rgba(147, 197, 253, 0.35)');
+            specGrad.addColorStop(1, 'transparent');
+            ctx.fillStyle = specGrad;
+            ctx.beginPath();
+            ctx.moveTo(x + mullionThick / 2, y + 0.6);
+            ctx.lineTo(x + mullionThick / 2 + boxW * 0.65, y + 0.6);
+            ctx.lineTo(x + mullionThick / 2, y + 0.6 + boxH * 0.7);
+            ctx.closePath();
+            ctx.fill();
           } else {
-            lightGrad.addColorStop(0, '#f8fafc');
-            lightGrad.addColorStop(0.5, '#e2e8f0');
-            lightGrad.addColorStop(1, '#cbd5e1');
+            // Deep Reflective Sapphire/Navy Glazing
+            const sapphireGrad = ctx.createLinearGradient(x, y, x + boxW, y + boxH);
+            sapphireGrad.addColorStop(0, '#1e40af');
+            sapphireGrad.addColorStop(0.35, '#1d4ed8');
+            sapphireGrad.addColorStop(0.70, '#1e3a8a');
+            sapphireGrad.addColorStop(1, '#0f172a');
+            ctx.fillStyle = sapphireGrad;
+            ctx.fillRect(x + mullionThick / 2, y + 0.6, boxW, boxH);
+
+            // Subtle Sky Reflection Sheen
+            if (randTone > 0.3) {
+              const rayGrad = ctx.createLinearGradient(x, y, x + boxW * 0.6, y + boxH * 0.8);
+              rayGrad.addColorStop(0, 'rgba(191, 219, 254, 0.4)');
+              rayGrad.addColorStop(0.4, 'rgba(96, 165, 250, 0.2)');
+              rayGrad.addColorStop(1, 'transparent');
+              ctx.fillStyle = rayGrad;
+              ctx.beginPath();
+              ctx.moveTo(x + mullionThick / 2, y + 0.6);
+              ctx.lineTo(x + mullionThick / 2 + boxW * 0.55, y + 0.6);
+              ctx.lineTo(x + mullionThick / 2, y + 0.6 + boxH * 0.75);
+              ctx.closePath();
+              ctx.fill();
+            }
           }
-          ctx.fillStyle = lightGrad;
-          ctx.fillRect(x + mullionThick / 2, y + 0.6, boxW, boxH);
         }
 
-        // Crisp Structural Mullion Grid
-        ctx.strokeStyle = isDark ? '#02050f' : 'rgba(71, 85, 105, 0.9)';
-        ctx.lineWidth = mullionThick;
+        // Crisp Structural Mullion Grid - Bold Dark Charcoal in Light Mode for Definition
+        ctx.strokeStyle = isDark ? '#02050f' : '#0b132b';
+        ctx.lineWidth = isDark ? mullionThick : mullionThick * 1.15;
         ctx.strokeRect(x + mullionThick / 2, y + 0.6, boxW, boxH);
       }
     }
@@ -4649,7 +4746,7 @@
 
     cityScene = new THREE.Scene();
     const isDark = (document.documentElement.getAttribute('data-theme') || 'dark') !== 'light';
-    cityScene.fog = new THREE.FogExp2(isDark ? 0x030a1c : 0x7bb1f9, 0.0062);
+    cityScene.fog = new THREE.FogExp2(isDark ? 0x030a1c : 0xdbeafe, 0.0055);
 
     cityCamera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1600);
     cityCamera.position.set(0, 3.5, 22);
@@ -4716,15 +4813,15 @@
       emissive: new THREE.Color(isDark ? 0x2563eb : 0x000000),
       emissiveMap: facadeTex,
       emissiveIntensity: isDark ? 0.36 : 0.0,
-      color: isDark ? 0x0f2e63 : 0xffffff,
-      metalness: isDark ? 0.38 : 0.20,
-      roughness: isDark ? 0.04 : 0.08,
+      color: isDark ? 0x0f2e63 : 0x1e40af,
+      metalness: isDark ? 0.38 : 0.42,
+      roughness: isDark ? 0.04 : 0.05,
       reflectivity: 1.0,
       clearcoat: 1.0,
       clearcoatRoughness: 0.02,
       ior: 1.54,
-      sheen: isDark ? 1.0 : 0.25,
-      sheenColor: new THREE.Color(isDark ? 0x60a5fa : 0xffffff),
+      sheen: isDark ? 1.0 : 0.5,
+      sheenColor: new THREE.Color(isDark ? 0x60a5fa : 0x93c5fd),
       sheenRoughness: 0.06,
       transparent: true,
       opacity: 0.98
@@ -4735,38 +4832,38 @@
       emissive: new THREE.Color(isDark ? 0x1d4ed8 : 0x000000),
       emissiveMap: facadeTex,
       emissiveIntensity: isDark ? 0.36 : 0.0,
-      color: isDark ? 0x0b2046 : 0xf1f5f9,
-      metalness: isDark ? 0.42 : 0.22,
-      roughness: isDark ? 0.05 : 0.09,
+      color: isDark ? 0x0b2046 : 0x1e293b,
+      metalness: isDark ? 0.42 : 0.45,
+      roughness: isDark ? 0.05 : 0.06,
       reflectivity: 1.0,
       clearcoat: 1.0,
       clearcoatRoughness: 0.02,
       ior: 1.54,
-      sheen: isDark ? 1.0 : 0.25,
-      sheenColor: new THREE.Color(isDark ? 0x38bdf8 : 0xffffff),
+      sheen: isDark ? 1.0 : 0.5,
+      sheenColor: new THREE.Color(isDark ? 0x38bdf8 : 0x60a5fa),
       sheenRoughness: 0.06,
       transparent: true,
       opacity: 0.98
     });
 
     const blackSteelMat = new THREE.MeshStandardMaterial({
-      color: isDark ? 0x0f172a : 0x64748b,
+      color: isDark ? 0x0f172a : 0x0b132b,
       metalness: 0.92,
-      roughness: 0.25
+      roughness: 0.22
     });
 
     const louverMat = new THREE.MeshStandardMaterial({
-      color: isDark ? 0x070d1a : 0x475569,
+      color: isDark ? 0x070d1a : 0x1e293b,
       metalness: 0.85,
-      roughness: 0.4
+      roughness: 0.35
     });
 
     const goldFrameMat = new THREE.MeshStandardMaterial({ color: 0xd97706, metalness: 0.85, roughness: 0.25 });
     const redBeaconMat = new THREE.MeshBasicMaterial({ color: 0xff2a2a });
     const cyanBeaconMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
     const warmLampMat = new THREE.MeshBasicMaterial({ color: 0xfef08a });
-    const curbMat = new THREE.MeshStandardMaterial({ color: isDark ? 0x334155 : 0xcbd5e1, roughness: 0.8 });
-    const bollardMat = new THREE.MeshStandardMaterial({ color: isDark ? 0x1e293b : 0x94a3b8, metalness: 0.85, roughness: 0.2 });
+    const curbMat = new THREE.MeshStandardMaterial({ color: isDark ? 0x334155 : 0x94a3b8, roughness: 0.8 });
+    const bollardMat = new THREE.MeshStandardMaterial({ color: isDark ? 0x1e293b : 0x475569, metalness: 0.85, roughness: 0.2 });
 
     // ---- 4A. Ultra-Realistic Wet Reflective Metropolis Avenue ----
     function createRealisticWetBoulevard() {
@@ -4915,15 +5012,10 @@
         group.add(bmuArm);
       }
 
-      // Antenna Spire with Flashing Strobe Beacon
-      const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.18, 9.5, 8), blackSteelMat);
-      mast.position.set(0, topY + 6.0, 0);
+      // Antenna Spire
+      const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.16, 8.5, 8), blackSteelMat);
+      mast.position.set(0, topY + 5.5, 0);
       group.add(mast);
-
-      const beacon = new THREE.Mesh(new THREE.SphereGeometry(0.32, 16, 16), redBeaconMat);
-      beacon.position.set(0, topY + 10.8, 0);
-      group.add(beacon);
-      beaconLights.push(beacon);
     }
 
     // 3D Extruded Vertical Aerodynamic Mullion Fins
@@ -5167,22 +5259,15 @@
       if (allSettled) isRisingAnimation = false;
     }
 
-    const beaconPulse = Math.sin(elapsedTime * 4) * 0.5 + 0.5;
-    beaconLights.forEach(beacon => {
-      beacon.scale.setScalar(0.8 + beaconPulse * 0.4);
-    });
-
     cityRenderer.render(cityScene, cityCamera);
   }
 
   // Single clean initialization on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      initVantaClouds();
       initThreeCity();
     });
   } else {
-    initVantaClouds();
     initThreeCity();
   }
 
@@ -5210,10 +5295,10 @@
         }
       }
 
-      initVantaClouds();
       if (cityScene) {
         if (cityScene.fog) {
-          cityScene.fog.color.setHex(theme === 'dark' ? 0x050c1e : 0x7bb1f9);
+          cityScene.fog.color.setHex(theme === 'dark' ? 0x030a1c : 0xdbeafe);
+          cityScene.fog.density = theme === 'dark' ? 0.0062 : 0.0055;
         }
         cityScene.environment = generateProceduralSkyEnv(theme === 'dark');
       }
