@@ -15,7 +15,7 @@ India's Premier Software Development Studio.
 - **Structure**: Semantic HTML5
 - **Styling**: Tailwind CSS (via CDN) + Custom Vanilla CSS
 - **Interactivity**: Vanilla JavaScript
-- **Animations**: AOS (Animate On Scroll), Lottie Web
+- **Animations**: Three.js, Lottie Web, Native CSS Animations
 - **Icons**: Bootstrap Icons, Font Awesome 6
 - **Analytics**: Google Analytics 4 (G-2CQC98J7WY)
 - **SEO**: Google Site Verification, JSON-LD Schema

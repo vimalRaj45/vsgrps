@@ -16,10 +16,6 @@
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
@@ -405,11 +401,11 @@
 
   <main class="legal-wrapper">
 
-    <a href="index.html" class="btn-back" data-aos="fade-right">
+    <a href="index.html" class="btn-back">
       <i class="bi bi-arrow-left"></i> Back to Home
     </a>
 
-    <div class="page-hero" data-aos="fade-up">
+    <div class="page-hero">
       <div class="section-tag">
         <i class="bi bi-cookie"></i> Legal
       </div>
@@ -420,7 +416,7 @@
     </div>
 
     <!-- Section 1 -->
-    <div class="legal-card" data-aos="fade-up" data-aos-delay="50">
+    <div class="legal-card">
       <div class="card-header">
         <div class="card-icon"><i class="bi bi-question-circle-fill"></i></div>
         <div>
@@ -432,7 +428,7 @@
     </div>
 
     <!-- Section 2 -->
-    <div class="legal-card" data-aos="fade-up" data-aos-delay="100">
+    <div class="legal-card">
       <div class="card-header">
         <div class="card-icon"><i class="bi bi-sliders"></i></div>
         <div>
@@ -461,7 +457,7 @@
     </div>
 
     <!-- Section 3 -->
-    <div class="legal-card" data-aos="fade-up" data-aos-delay="150">
+    <div class="legal-card">
       <div class="card-header">
         <div class="card-icon"><i class="bi bi-person-check-fill"></i></div>
         <div>
@@ -477,7 +473,7 @@
     </div>
 
     <!-- Section 4 -->
-    <div class="legal-card" data-aos="fade-up" data-aos-delay="200">
+    <div class="legal-card">
       <div class="card-header">
         <div class="card-icon"><i class="bi bi-boxes"></i></div>
         <div>
@@ -489,7 +485,7 @@
     </div>
 
     <!-- Section 5 -->
-    <div class="legal-card" data-aos="fade-up" data-aos-delay="250">
+    <div class="legal-card">
       <div class="card-header">
         <div class="card-icon"><i class="bi bi-arrow-repeat"></i></div>
         <div>
@@ -501,7 +497,7 @@
     </div>
 
     <!-- Contact -->
-    <div class="contact-card" data-aos="fade-up" data-aos-delay="300">
+    <div class="contact-card">
       <div class="card-icon" style="margin:0 auto 20px;"><i class="bi bi-envelope-fill"></i></div>
       <h3>Cookie Questions?</h3>
       <p>Get in touch and we'll walk you through everything.</p>
@@ -528,8 +524,6 @@
   </footer>
 
   <script>
-    AOS.init({ duration: 700, once: true, easing: 'ease-out-cubic' });
-
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 20);
