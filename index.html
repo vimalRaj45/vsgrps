@@ -2382,6 +2382,89 @@
       border-color: #BFDBFE;
     }
 
+    /* ==================== HERO ARCHITECTURE TERMINAL ==================== */
+    .hero-terminal-card {
+      background: rgba(8, 12, 24, 0.88);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      border-radius: 16px;
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 35px -5px rgba(37, 99, 235, 0.2);
+      overflow: hidden;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .hero-terminal-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(96, 165, 250, 0.6);
+      box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.7), 0 0 45px -5px rgba(59, 130, 246, 0.35);
+    }
+    [data-theme="light"] .hero-terminal-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid #CBD5E1;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 0 25px -5px rgba(37, 99, 235, 0.08);
+    }
+    .terminal-header {
+      background: rgba(13, 19, 36, 0.95);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    [data-theme="light"] .terminal-header {
+      background: #F1F5F9;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .terminal-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .terminal-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34D399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    [data-theme="light"] .terminal-badge {
+      background: #ECFDF5;
+      color: #059669;
+      border-color: #A7F3D0;
+    }
+    .pulse-green {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 8px #10B981;
+      animation: pulse 1.8s infinite;
+    }
+    .code-line {
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: #94A3B8;
+    }
+    [data-theme="light"] .code-line {
+      color: #475569;
+    }
+    .code-kw { color: #F43F5E; font-weight: 600; }
+    .code-fn { color: #60A5FA; font-weight: 600; }
+    .code-str { color: #34D399; }
+    .code-prop { color: #FBBF24; }
+    .code-num { color: #A78BFA; }
+    .code-comment { color: #64748B; font-style: italic; }
+    [data-theme="light"] .code-kw { color: #E11D48; }
+    [data-theme="light"] .code-fn { color: #2563EB; }
+    [data-theme="light"] .code-str { color: #059669; }
+    [data-theme="light"] .code-prop { color: #D97706; }
+
     /* ==================== EXTREME 60/120FPS MOBILE SCROLL OPTIMIZATION ==================== */
     /* Content-visibility containment for below-the-fold sections */
     #about, #services, #products, #why-choose-us, #process, #tech-stack, #projects, #reviews, #pricing-estimator, #faq, #contact, footer {
@@ -2734,42 +2817,74 @@
   <div class="orb" style="width:400px;height:400px;background:rgba(96,165,250,0.05);bottom:-50px;left:-100px;animation-delay:3s;"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
-    <div class="max-w-3xl text-left">
-      <div class="hero-content-shield">
-        <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-3 sm:mb-6 text-left" style="font-family:'Outfit',sans-serif;">
-          Engineering<br/>
-          <span class="gradient-text glow-text">Digital</span><br/>
-          <span id="typing-text">Transformation</span><span class="cursor"></span>
-        </h1>
-        <p class="text-sm sm:text-base md:text-lg mb-4 sm:mb-8 leading-relaxed text-left" style="max-width:580px;">
-          VSGRPS designs and builds mission-critical web applications, enterprise SaaS architectures, and automated cloud systems for growing businesses and forward-thinking enterprises.
-        </p>
-        <div class="flex flex-wrap gap-3 sm:gap-4 justify-start">
-          <a href="#services" class="btn-primary" style="padding:10px 20px;font-size:14px;">
-            Explore Capabilities <i class="bi bi-arrow-right"></i>
-          </a>
-          <a href="#projects" class="btn-outline" style="padding:10px 20px;font-size:14px;">
-            <i class="bi bi-briefcase"></i> View Engagements
-          </a>
-        </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <!-- Left Hero Content -->
+      <div class="text-left lg:col-span-7">
+        <div class="hero-content-shield">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-3 sm:mb-6 text-left" style="font-family:'Outfit',sans-serif;">
+            Engineering<br/>
+            <span class="gradient-text glow-text">Digital</span><br/>
+            <span id="typing-text">Transformation</span><span class="cursor"></span>
+          </h1>
+          <p class="text-sm sm:text-base md:text-lg mb-4 sm:mb-8 leading-relaxed text-left" style="max-width:540px;">
+            VSGRPS designs and builds mission-critical web applications, enterprise SaaS architectures, and automated cloud systems for growing businesses and forward-thinking enterprises.
+          </p>
+          <div class="flex flex-wrap gap-3 sm:gap-4 justify-start">
+            <a href="#services" class="btn-primary" style="padding:10px 20px;font-size:14px;">
+              Explore Capabilities <i class="bi bi-arrow-right"></i>
+            </a>
+            <a href="#projects" class="btn-outline" style="padding:10px 20px;font-size:14px;">
+              <i class="bi bi-briefcase"></i> View Engagements
+            </a>
+          </div>
 
-        <!-- Mini stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-6 sm:mt-10 hero-stats max-w-2xl">
-          <div class="glass p-3 sm:p-4 rounded-xl text-center">
-            <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">7+</div>
-            <div style="font-size:11px;margin-top:2px;">Delivered Projects</div>
+          <!-- Mini stats -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-6 sm:mt-10 hero-stats">
+            <div class="glass p-3 rounded-xl text-center">
+              <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">7+</div>
+              <div style="font-size:11px;margin-top:2px;">Delivered Projects</div>
+            </div>
+            <div class="glass p-3 rounded-xl text-center">
+              <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">2</div>
+              <div style="font-size:11px;margin-top:2px;">SaaS Platforms</div>
+            </div>
+            <div class="glass p-3 rounded-xl text-center">
+              <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Cloud</div>
+              <div style="font-size:11px;margin-top:2px;">Architecture</div>
+            </div>
+            <div class="glass p-3 rounded-xl text-center">
+              <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">100%</div>
+              <div style="font-size:11px;margin-top:2px;">Commitment</div>
+            </div>
           </div>
-          <div class="glass p-3 sm:p-4 rounded-xl text-center">
-            <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">2</div>
-            <div style="font-size:11px;margin-top:2px;">SaaS Platforms</div>
-          </div>
-          <div class="glass p-3 sm:p-4 rounded-xl text-center">
-            <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Cloud</div>
-            <div style="font-size:11px;margin-top:2px;">Architecture</div>
-          </div>
-          <div class="glass p-3 sm:p-4 rounded-xl text-center">
-            <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">100%</div>
-            <div style="font-size:11px;margin-top:2px;">Commitment</div>
+        </div>
+      </div>
+
+      <!-- Right Column: Professional 3D Cloud Architecture Visual -->
+      <div class="lg:col-span-5 w-full flex justify-center">
+        <div class="relative group w-full max-w-lg">
+          <!-- Ambient Dynamic Glow -->
+          <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 via-indigo-500 to-sky-400 rounded-2xl blur-xl opacity-35 group-hover:opacity-60 transition duration-700"></div>
+          
+          <!-- Image Card Frame -->
+          <div class="relative rounded-2xl overflow-hidden border border-blue-500/30 bg-slate-950/90 shadow-2xl">
+            <img 
+              src="assets/hero_architecture.jpg" 
+              alt="VSGRPS Bespoke Software Engineering for Scalable Business Growth" 
+              class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-[1.03]"
+              width="640" 
+              height="480"
+              fetchpriority="high"
+            />
+            
+            <!-- Floating Badge Overlay -->
+            <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-center justify-between p-2.5 sm:p-3 rounded-xl bg-slate-950/85 border border-white/10 backdrop-blur-md">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]"></span>
+                <span class="text-xs font-semibold text-slate-200">Software Engineering for Business Growth</span>
+              </div>
+              <span class="text-[11px] font-mono text-emerald-400 font-bold hidden sm:inline">SCALE & INNOVATE</span>
+            </div>
           </div>
         </div>
       </div>
