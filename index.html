@@ -2384,6 +2384,64 @@
       color: #2563EB;
       border-color: #BFDBFE;
     }
+
+    /* ==================== EXTREME 60/120FPS MOBILE SCROLL OPTIMIZATION ==================== */
+    /* Content-visibility containment for below-the-fold sections */
+    #about, #services, #products, #why-choose-us, #process, #tech-stack, #projects, #reviews, #pricing-estimator, #faq, #contact, footer {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 750px;
+    }
+
+    /* Mobile-specific performance overrides */
+    @media (max-width: 768px) {
+      /* Disable expensive 80px blurred animated background orbs on mobile */
+      .orb {
+        display: none !important;
+      }
+
+      /* Eliminate multi-pass backdrop-filter blurs during touch scroll */
+      .glass,
+      #hero .hero-stats .glass,
+      .btn-outline,
+      .hero-scroll-pill,
+      .service-card,
+      .project-card,
+      .why-card,
+      .review-card,
+      .card {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+
+      [data-theme="dark"] .glass,
+      [data-theme="dark"] #hero .hero-stats .glass {
+        background: rgba(13, 19, 32, 0.94) !important;
+        border: 1px solid rgba(59, 130, 246, 0.25) !important;
+      }
+
+      [data-theme="light"] .glass,
+      [data-theme="light"] #hero .hero-stats .glass {
+        background: rgba(255, 255, 255, 0.98) !important;
+        border: 1px solid #CBD5E1 !important;
+      }
+
+      [data-theme="dark"] #navbar.scrolled {
+        background: rgba(5, 8, 16, 0.98) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+
+      [data-theme="light"] #navbar.scrolled {
+        background: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+
+      /* Reduce shadow radius to save GPU rasterization passes */
+      .card, .service-card, .project-card, .why-card, .review-card {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+      }
+    }
   </style>
   <!-- Three.js Engine -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
@@ -4239,10 +4297,15 @@
 
   function initParticles() {
     if (!canvas) return;
+    if (window.innerWidth < 768) {
+      canvas.style.display = 'none';
+      return;
+    }
+    canvas.style.display = 'block';
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     particles = [];
-    const count = window.innerWidth < 768 ? 16 : 32;
+    const count = 24;
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -4255,7 +4318,8 @@
   }
 
   function animateParticles() {
-    if (document.hidden || isUserScrolling) {
+    if (window.innerWidth < 768) return;
+    if (document.hidden || isUserScrolling || window.scrollY > window.innerHeight * 1.15) {
       particleAnimId = requestAnimationFrame(animateParticles);
       return;
     }
@@ -4702,7 +4766,7 @@
 
     cityRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance", precision: "mediump" });
     cityRenderer.setSize(width, height);
-    cityRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    cityRenderer.setPixelRatio(window.innerWidth < 768 ? 1.0 : Math.min(window.devicePixelRatio || 1, 1.5));
     cityRenderer.toneMapping = THREE.ACESFilmicToneMapping;
     cityRenderer.toneMappingExposure = isDark ? 1.15 : 1.25;
     container.innerHTML = '';
@@ -5146,6 +5210,10 @@
   function animateCity() {
     requestAnimationFrame(animateCity);
     if (!cityRenderer || !cityScene || !cityCamera || document.hidden) return;
+
+    // Viewport Visibility Culling: Sleep 3D WebGL renderer when scrolled past Hero section
+    const isHeroVisible = window.scrollY < (window.innerHeight * 1.15);
+    if (!isHeroVisible) return;
 
     // While user is actively scrolling, pause background animation to guarantee 100% smooth 60/120FPS scroll performance
     if (isUserScrolling && !isRisingAnimation) return;
