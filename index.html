@@ -4359,34 +4359,52 @@
     }
   });
 
-  // ---- Lottie Animations ----
+  // ---- Lottie Animations (Safe Deferred Initialization) ----
+  function initLottieAnimations() {
+    if (typeof lottie === 'undefined') {
+      window.addEventListener('load', initLottieAnimations, { once: true });
+      return;
+    }
 
-  // About - team/growth lottie
-  lottie.loadAnimation({
-    container: document.getElementById('about-lottie'),
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: 'https://assets4.lottiefiles.com/packages/lf20_qp1q7mct.json'
-  });
+    const aboutEl = document.getElementById('about-lottie');
+    if (aboutEl && !aboutEl.hasChildNodes()) {
+      lottie.loadAnimation({
+        container: aboutEl,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'https://assets4.lottiefiles.com/packages/lf20_qp1q7mct.json'
+      });
+    }
 
-  // CertLock - certificate lottie
-  lottie.loadAnimation({
-    container: document.getElementById('certlock-lottie'),
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: 'https://assets5.lottiefiles.com/packages/lf20_pqnfmone.json'
-  });
+    const certEl = document.getElementById('certlock-lottie');
+    if (certEl && !certEl.hasChildNodes()) {
+      lottie.loadAnimation({
+        container: certEl,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'https://assets5.lottiefiles.com/packages/lf20_pqnfmone.json'
+      });
+    }
 
-  // Sprintora - dashboard/workspace lottie
-  lottie.loadAnimation({
-    container: document.getElementById('sprintora-lottie'),
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: 'https://assets3.lottiefiles.com/packages/lf20_qm8eqzse.json'
-  });
+    const sprintEl = document.getElementById('sprintora-lottie');
+    if (sprintEl && !sprintEl.hasChildNodes()) {
+      lottie.loadAnimation({
+        container: sprintEl,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'https://assets3.lottiefiles.com/packages/lf20_qm8eqzse.json'
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLottieAnimations);
+  } else {
+    initLottieAnimations();
+  }
 
 
   // ---- Theme Toggle Logic ----
@@ -5181,13 +5199,21 @@
     cityRenderer.render(cityScene, cityCamera);
   }
 
-  // Single clean initialization on DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
+  // Safe initialization on DOM / THREE ready
+  function startThreeCity() {
+    if (typeof THREE !== 'undefined') {
       initThreeCity();
-    });
+    } else {
+      window.addEventListener('load', () => {
+        if (typeof THREE !== 'undefined') initThreeCity();
+      }, { once: true });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startThreeCity);
   } else {
-    initThreeCity();
+    startThreeCity();
   }
 
   function updateThemeIcon(theme) {
