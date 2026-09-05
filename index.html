@@ -47,7 +47,7 @@
   <link rel="dns-prefetch" href="https://assets5.lottiefiles.com" />
 
   <!-- ============ Critical Assets Preload ============ -->
-  <link rel="preload" href="assets/vsgrps_navbar_dark_banner.webp" as="image" type="image/webp" />
+  <link rel="preload" href="assets/vsgrps_navbar_dark_banner.webp" as="image" type="image/webp" fetchpriority="high" />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" /></noscript>
 
@@ -66,14 +66,14 @@
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /></noscript>
 
   <!-- ============ Deferred Scripts ============ -->
-  <!-- Lottie — must load before inline scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  <!-- Lottie — deferred for optimal initial render -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 
   <!-- Dotlottie WC — deferred module -->
   <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.10/dist/dotlottie-wc.js" type="module" defer></script>
 
   <!-- Lord Icon -->
-  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+  <script defer src="https://cdn.lordicon.com/lordicon.js"></script>
 
   <!-- ============ Google Analytics (deferred for perf) ============ -->
   <script defer src="https://www.googletagmanager.com/gtag/js?id=G-2CQC98J7WY"></script>
@@ -381,69 +381,10 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     }
 
-    /* ==================== CINEMATIC BUILDING-FIRST ENTRANCE SEQUENCE ==================== */
-    body:not(.page-revealed) #navbar {
-      transform: translateY(-100%) !important;
-      opacity: 0 !important;
-      pointer-events: none;
-    }
+    /* ==================== CLEAN INSTANT ENTRANCE (ZERO CLS) ==================== */
     #navbar {
-      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease !important;
-    }
-
-    body:not(.page-revealed) #hero .hero-content-shield,
-    body:not(.page-revealed) #hero .section-tag,
-    body:not(.page-revealed) #hero h1,
-    body:not(.page-revealed) #hero p,
-    body:not(.page-revealed) #hero .btn-primary,
-    body:not(.page-revealed) #hero .btn-outline,
-    body:not(.page-revealed) #hero .hero-stats,
-    body:not(.page-revealed) #hero dotlottie-wc {
-      opacity: 0 !important;
-      transform: translateY(28px) !important;
-      pointer-events: none;
-    }
-
-    #hero .hero-content-shield {
-      transition: opacity 0.85s ease 0.05s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
-    }
-    #hero .section-tag {
-      transition: opacity 0.75s ease 0.05s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
-    }
-    #hero h1 {
-      transition: opacity 0.8s ease 0.18s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
-    }
-    #hero p {
-      transition: opacity 0.8s ease 0.32s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.32s;
-    }
-    #hero .btn-primary,
-    #hero .btn-outline {
-      transition: opacity 0.8s ease 0.46s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.46s, background 0.3s ease, border-color 0.3s ease !important;
-    }
-    #hero .hero-stats {
-      transition: opacity 0.85s ease 0.6s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
-    }
-    #hero dotlottie-wc {
-      transition: opacity 0.9s ease 0.4s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
-    }
-
-    body.page-revealed #navbar {
-      transform: translateY(0) !important;
-      opacity: 1 !important;
-      pointer-events: auto;
-    }
-
-    body.page-revealed #hero .hero-content-shield,
-    body.page-revealed #hero .section-tag,
-    body.page-revealed #hero h1,
-    body.page-revealed #hero p,
-    body.page-revealed #hero .btn-primary,
-    body.page-revealed #hero .btn-outline,
-    body.page-revealed #hero .hero-stats,
-    body.page-revealed #hero dotlottie-wc {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-      pointer-events: auto;
+      transform: translateY(0);
+      opacity: 1;
     }
 
     [data-theme="light"] #chatbot-window {
@@ -2445,7 +2386,7 @@
     }
   </style>
   <!-- Three.js Engine -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 </head>
 <body class="grid-bg">
 
@@ -4466,57 +4407,17 @@
     updateThemeIcon(newTheme);
   });
 
-  // ---- Minimalist High-Tech Splash Lifecycle ----
-  let splashProgress = 0;
-  const progressBar = document.getElementById('splash-progress');
-  const percentText = document.getElementById('splash-percent');
-  const statusText = document.getElementById('splash-status-text');
-
-  const statusMessages = [
-    'INITIALIZING SYSTEM ARCHITECTURE...',
-    'LOADING HIGH-PERFORMANCE MODULES...',
-    'OPTIMIZING 60FPS RENDERING...',
-    'SYSTEM READY'
-  ];
-
-  const splashInterval = setInterval(() => {
-    splashProgress += 5;
-    if (splashProgress > 100) splashProgress = 100;
-
-    if (progressBar) progressBar.style.width = splashProgress + '%';
-    if (percentText) percentText.textContent = splashProgress + '%';
-
-    if (statusText) {
-      if (splashProgress < 30) statusText.textContent = statusMessages[0];
-      else if (splashProgress < 65) statusText.textContent = statusMessages[1];
-      else if (splashProgress < 90) statusText.textContent = statusMessages[2];
-      else statusText.textContent = statusMessages[3];
-    }
-
-    if (splashProgress >= 100) {
-      clearInterval(splashInterval);
-      setTimeout(dismissSplash, 150);
-    }
-  }, 25);
-
-  // Force instant scroll to top on initial boot
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-  window.scrollTo(0, 0);
+  // ---- Instant Zero-Delay Page Reveal ----
+  document.body.classList.add('page-revealed');
 
   function dismissSplash() {
-    clearInterval(splashInterval);
     const splash = document.getElementById('splash-screen');
-    if (splash && !splash.classList.contains('hidden-splash')) {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    if (splash) {
       splash.classList.add('hidden-splash');
-      setTimeout(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-        document.body.classList.add('page-revealed');
-        }, 500);
+      splash.style.display = 'none';
     }
   }
+  dismissSplash();
 
   // ==================== 3D REALISTIC MANHATTAN STREET CANYON ENGINE ====================
 
@@ -5211,10 +5112,6 @@
 
     isRisingAnimation = true;
     cityScene.add(cityGroup);
-
-    setTimeout(() => {
-      document.body.classList.add('page-revealed');
-      }, 650);
   }
 
   function onCityResize() {
