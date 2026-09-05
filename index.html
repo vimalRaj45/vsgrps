@@ -69,9 +69,6 @@
   <!-- Lottie — deferred for optimal initial render -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 
-  <!-- Dotlottie WC — deferred module -->
-  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.10/dist/dotlottie-wc.js" type="module" defer></script>
-
   <!-- Lord Icon -->
   <script defer src="https://cdn.lordicon.com/lordicon.js"></script>
 
@@ -2737,53 +2734,42 @@
   <div class="orb" style="width:400px;height:400px;background:rgba(96,165,250,0.05);bottom:-50px;left:-100px;animation-delay:3s;"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-12 items-center">
-      <!-- Illustration (Order 1 on mobile, Order 2 on desktop) -->
-      <div class="flex items-center justify-center order-1 lg:order-2 lg:col-span-5">
-        <div class="relative w-full max-w-[240px] sm:max-w-sm md:max-w-md mx-auto">
-          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(59,130,246,0.15),transparent 70%);"></div>
-          <dotlottie-wc src="https://lottie.host/53f42021-31ae-493c-b1b2-48e90284a730/CGvBx5r6P0.lottie" class="relative z-10 jump-anim w-full h-[180px] sm:h-[240px] md:h-[320px] lg:h-[400px]" autoplay loop></dotlottie-wc>
+    <div class="max-w-3xl text-left">
+      <div class="hero-content-shield">
+        <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-3 sm:mb-6 text-left" style="font-family:'Outfit',sans-serif;">
+          Engineering<br/>
+          <span class="gradient-text glow-text">Digital</span><br/>
+          <span id="typing-text">Transformation</span><span class="cursor"></span>
+        </h1>
+        <p class="text-sm sm:text-base md:text-lg mb-4 sm:mb-8 leading-relaxed text-left" style="max-width:580px;">
+          VSGRPS designs and builds mission-critical web applications, enterprise SaaS architectures, and automated cloud systems for growing businesses and forward-thinking enterprises.
+        </p>
+        <div class="flex flex-wrap gap-3 sm:gap-4 justify-start">
+          <a href="#services" class="btn-primary" style="padding:10px 20px;font-size:14px;">
+            Explore Capabilities <i class="bi bi-arrow-right"></i>
+          </a>
+          <a href="#projects" class="btn-outline" style="padding:10px 20px;font-size:14px;">
+            <i class="bi bi-briefcase"></i> View Engagements
+          </a>
         </div>
-      </div>
 
-      <!-- Content (Order 2 on mobile, Order 1 on desktop) -->
-      <div class="text-left order-2 lg:order-1 lg:col-span-7">
-        <div class="hero-content-shield">
-          <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-3 sm:mb-6 text-left" style="font-family:'Outfit',sans-serif;">
-            Engineering<br/>
-            <span class="gradient-text glow-text">Digital</span><br/>
-            <span id="typing-text">Transformation</span><span class="cursor"></span>
-          </h1>
-          <p class="text-sm sm:text-base md:text-lg mb-4 sm:mb-8 leading-relaxed text-left" style="max-width:540px;">
-            VSGRPS designs and builds mission-critical web applications, enterprise SaaS architectures, and automated cloud systems for growing businesses and forward-thinking enterprises.
-          </p>
-          <div class="flex flex-wrap gap-3 sm:gap-4 justify-start">
-            <a href="#services" class="btn-primary" style="padding:10px 20px;font-size:14px;">
-              Explore Capabilities <i class="bi bi-arrow-right"></i>
-            </a>
-            <a href="#projects" class="btn-outline" style="padding:10px 20px;font-size:14px;">
-              <i class="bi bi-briefcase"></i> View Engagements
-            </a>
+        <!-- Mini stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-6 sm:mt-10 hero-stats max-w-2xl">
+          <div class="glass p-3 sm:p-4 rounded-xl text-center">
+            <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">7+</div>
+            <div style="font-size:11px;margin-top:2px;">Delivered Projects</div>
           </div>
-
-          <!-- Mini stats -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-6 sm:mt-10 hero-stats">
-            <div class="glass p-3 sm:p-4 rounded-xl text-center">
-              <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">7+</div>
-              <div style="font-size:11px;margin-top:2px;">Delivered Projects</div>
-            </div>
-            <div class="glass p-3 sm:p-4 rounded-xl text-center">
-              <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">2</div>
-              <div style="font-size:11px;margin-top:2px;">SaaS Platforms</div>
-            </div>
-            <div class="glass p-3 sm:p-4 rounded-xl text-center">
-              <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Cloud</div>
-              <div style="font-size:11px;margin-top:2px;">Architecture</div>
-            </div>
-            <div class="glass p-3 sm:p-4 rounded-xl text-center">
-              <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">100%</div>
-              <div style="font-size:11px;margin-top:2px;">Commitment</div>
-            </div>
+          <div class="glass p-3 sm:p-4 rounded-xl text-center">
+            <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">2</div>
+            <div style="font-size:11px;margin-top:2px;">SaaS Platforms</div>
+          </div>
+          <div class="glass p-3 sm:p-4 rounded-xl text-center">
+            <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Cloud</div>
+            <div style="font-size:11px;margin-top:2px;">Architecture</div>
+          </div>
+          <div class="glass p-3 sm:p-4 rounded-xl text-center">
+            <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#EA580C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">100%</div>
+            <div style="font-size:11px;margin-top:2px;">Commitment</div>
           </div>
         </div>
       </div>
